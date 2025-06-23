@@ -6,7 +6,6 @@ import mysql.connector
 from datetime import datetime
 
 app = Flask(__name__)
-app.secret_key = 'super secret key'
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config["SESSION_PERMANENT"] = False
 Session(app)
