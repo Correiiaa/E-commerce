@@ -2,39 +2,45 @@ from dotenv import load_dotenv
 import os
 from flask_session import Session
 from flask import Flask, render_template, redirect, request, session, jsonify
-from simplySQL import SQL
+import mysql.connector
 from datetime import datetime
-import sqlalchemy.dialects.postgresql
-
-load_dotenv()
-
-SECRET_KEY = os.getenv("SECRET_KEY")
-DATABASE_URL = os.getenv("DATABASE_URL")
-DATABASE_URL = 'postgresql' + DATABASE_URL[8:]
 
 app = Flask(__name__)
+app.secret_key = 'super secret key'
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config["SESSION_PERMANENT"] = False
-app.secret_key = SECRET_KEY
-
 Session(app)
 
-db = SQL (DATABASE_URL)
+try:
+    mydb = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="Rossas31.",
+        database="e_commerce"
+    )
+    print("Conexão bem-sucedida!")
+except mysql.connector.Error as err:
+    print(f"Erro de conexão: {err}")
+    exit()
 
 
-
-
+@app.route('/login/', methods=['GET','POST'])
 def logged():
     # Sistema de login
-    user = request.form.get('user').lower()
+    user = request.form.get('user')
     pwd = request.form.get('pwd')
 
     # Ter a certeza que os espaços em branco não causam problemas
     if user == "" or pwd == "":
         return render_template('login.html')
     # Pesquisar na base de dados
-    query = "SELECT * FROM users WHERE username = :user AND password = :pwd"
-    rows = db.execute(query, usr=user, pwd=pwd)
+    mycursor = mydb.cursor(dictionary=True)
+    query = "SELECT * FROM users WHERE username = %s AND password = %s"
+    mycursor.execute(query, (user, pwd))    
+    rows = mycursor.fetchall()
+    print(rows)
+    print(user, pwd)
+    mycursor.close()
 
     if len(rows) == 1:
         session['user'] = user
@@ -46,8 +52,15 @@ def logged():
     
     return render_template('login.html', error="Invalid username or password")
 
-
-def register():
+@app.route('/')
+def index():
+    # Página inicial
+    if 'user' in session:
+        return render_template('index.html', user=session['user'])
+    else:
+        return render_template('index.html')
+    
+# def register():
     pwd = request.form.get('pwd')
     confirm = request.form.get('confirm')
     user = request.form.get('user').lower()
@@ -75,12 +88,13 @@ def register():
 
 
 
-def logout():
+# def logout():
     session.clear()
     return redirect('/')
 
 
-
+if __name__ == "__main__":
+    app.run(debug=True)
     
 
 
