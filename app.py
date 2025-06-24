@@ -58,38 +58,56 @@ def index():
         return render_template('index.html', user=session['user'])
     else:
         return render_template('index.html')
-    
-# def register():
-    pwd = request.form.get('pwd')
-    confirm = request.form.get('confirm')
-    user = request.form.get('user').lower()
-    fname = request.form.get('fname')
-    lname = request.form.get('lname')
-    email = request.form.get('email')
 
-    # Verificar se a senha e a confirmação são iguais
-    if pwd != confirm:
-        return render_template(register.html, error="Passwords do not match")
-    
-    # Verificar se o utilizador já existe
-    row = db.execute("SELECT * FROM users WHERE username = :user", user=user)
-    if len(row) > 0:
-        return render_template('register.html', error="Username already exists")
-    
-    # verificar se o email já existe
-    row = db.execute("SELECT * FROM users WHERE email = :email", email=email)
-    if len(row) > 0:    
-        return render_template('register.html', error="Email already registered")
-    
-    # Inserir o utilizador na base de dados
-    query = "INSERT INTO users (username, password, fname, lname, email) VALUES (:user, :pwd, :fname, :lname, :email)"
-    db.execute(query, user=user, pwd=pwd, fname=fname, lname=lname, email=email)
+@app.route('/register/', methods=['GET', 'POST'])   
+def register():
+    if request.method == 'POST':
+        pwd = request.form.get('pwd')
+        confirm = request.form.get('confirm')
+        user = request.form.get('user')
+        fname = request.form.get('fname')
+        lname = request.form.get('lname')
+        email = request.form.get('email')
+
+        # Verificar se a senha e a confirmação são iguais
+        if pwd != confirm:
+            return render_template('register.html', error="Passwords do not match")
+        
+        # Verificar se o utilizador já existe
+        mycursor = mydb.cursor(dictionary=True)
+        query = "SELECT * FROM users WHERE username = %s"
+        val = (user,)
+        mycursor.execute(query, val)
+        row = mycursor.fetchall()
+        if len(row) > 0:
+            mycursor.close()
+            return render_template('register.html', error="Username already exists")
+        
+        # verificar se o email já existe
+        query = "SELECT * FROM users WHERE email = %s"
+        val = (email,)
+        mycursor.execute(query, val)
+        row = mycursor.fetchall()
+        if len(row) > 0:    
+            mycursor.close()
+            return render_template('register.html', error="Email already registered")
+        
+        # Inserir o utilizador na base de dados
+        query = "INSERT INTO users (username, fname, lname, email, password) VALUES (%s, %s, %s, %s, %s)"
+        val = (user, fname, lname, email, pwd)
+        mycursor.execute(query, val)
+        mydb.commit()
+        mycursor.close()
+        
+        return render_template('register.html', error="User registered successfully!")
+   
+    # Se for GET, apenas renderiza o formulário
+    return render_template('register.html')
 
 
-
-# def logout():
-    session.clear()
-    return redirect('/')
+# # def logout():
+#     session.clear()
+#     return redirect('/')
 
 
 if __name__ == "__main__":
