@@ -23,7 +23,7 @@ except mysql.connector.Error as err:
     exit()
 
 
-@app.route('/login/', methods=['GET','POST'])
+@app.route('/login', methods=['GET','POST'])
 def logged():
     # Sistema de login
     user = request.form.get('user')
@@ -58,8 +58,9 @@ def index():
         return render_template('index.html', user=session['user'])
     else:
         return render_template('index.html')
+    
 
-@app.route('/register/', methods=['GET', 'POST'])   
+@app.route('/register', methods=['GET', 'POST'])   
 def register():
     if request.method == 'POST':
         pwd = request.form.get('pwd')
@@ -99,15 +100,16 @@ def register():
         mydb.commit()
         mycursor.close()
         
-        return render_template('register.html', error="User registered successfully!")
+        return render_template('index.html', error="User registered successfully!")
    
     # Se for GET, apenas renderiza o formulário
     return render_template('register.html')
 
 
-# # def logout():
-#     session.clear()
-#     return redirect('/')
+@app.route('/logout', methods=['POST'])
+def logout():
+     session.clear()
+     return redirect('/login/')
 
 
 if __name__ == "__main__":
