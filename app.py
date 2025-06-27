@@ -7,10 +7,11 @@ from flask_login import LoginManager, login_user
 import mysql.connector
 from datetime import datetime
 import requests 
+import json
 
 app = Flask(__name__)
 
-app.secret_key = "your-very-secret-key-change-this-in-production"
+app.secret_key = "7eZQ38^8eGkR!v@T9pJmSf$Wm"
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config["SESSION_PERMANENT"] = False
 Session(app)
@@ -19,7 +20,9 @@ os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'  # Para HTTP local
 google_bp = make_google_blueprint(
     client_id="262262777275-kpf98diqdo9dcpnhs7qlorlduir2ih42.apps.googleusercontent.com",
     client_secret="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",
-    scope=["https://www.googleapis.com/auth/userinfo.email","https://www.googleapis.com/auth/userinfo.profile","openid"]
+    scope=["https://www.googleapis.com/auth/userinfo.email",
+           "https://www.googleapis.com/auth/userinfo.profile",
+           "openid"]
 )
 app.register_blueprint(google_bp, url_prefix="/login")
 
@@ -120,58 +123,59 @@ def register():
     return render_template('register.html')
 
 
-@app.route("/login/google/authorized")
+@app.route("/register/google/authorized")
 def google_login():
     print("Google autorizado:", google.authorized)
     if not google.authorized:
         return redirect(url_for('google.login'))
     
-    try:
-        # Type hint para ajudar o VS Code
-        resp: requests.Response = google.get('/oauth2/v1/userinfo')
+    # Type hint para ajudar o VS Code
+    resp = google.get("https://www.googleapis.com/oauth2/v2/userinfo")
         
-        if not resp.ok:
-            print("Erro ao obter dados do Google:", resp.status_code, resp.text)
-            return redirect('/login')
+    if not resp.ok:
+        print("Erro ao obter dados do Google:", resp.status_code, resp.text)
+        return redirect('/login')
 
-        info = resp.json()
-        print("Dados do Google:", info)
-        email = info["email"]
-        name = info.get("name", "")
-        fname, lname = (name.split(" ", 1) + [""])[:2]
+    info = resp.json()
 
-        # Verificar se o utilizador já existe
-        mycursor = mydb.cursor(dictionary=True)
-        query = "SELECT * FROM users WHERE email = %s"
-        mycursor.execute(query, (email,))
-        row = mycursor.fetchall()
-        print("EMAIL:", email)
-        print("Utilizadores encontrados:", len(row))
+    # with open("google_user_info.json", "w", encoding="utf-8") as f:
+    #     json.dump(info, f, indent=4, ensure_ascii=False)
 
-        if len(row) == 0:
-            # Inserir o utilizador na base de dados
-            query = "INSERT INTO users (username, fname, lname, email, password) VALUES (%s, %s, %s, %s, %s)"
-            val = (email.split("@")[0], fname, lname, email, "")
-            mycursor.execute(query, val)
-            mydb.commit()
+    print("Dados do Google:", info)
+    email = info["email"]
+    name = info.get("name", "")
+    fname, lname = (name.split(" ", 1) + [""])[:2]
+
+    # Verificar se o utilizador já existe
+    mycursor = mydb.cursor(dictionary=True)
+    query = "SELECT * FROM users WHERE email = %s"
+    mycursor.execute(query, (email,))
+    row = mycursor.fetchall()
+    print("EMAIL:", email, flush=True)
+    print("Utilizadores encontrados:", len(row), flush=True)
+
+    if len(row) == 0:
+        # Inserir o utilizador na base de dados
+        query = "INSERT INTO users (username, fname, lname, email, password) VALUES (%s, %s, %s, %s, %s)"
+        val = (email.split("@")[0], fname, lname, email, "")
+        mycursor.execute(query, val)
+        mydb.commit()
             
-            new_user_id = mycursor.lastrowid
-            session['uid'] = str(new_user_id)
-        else:
-            session['uid'] = str(row[0]["id"])
+        new_user_id = mycursor.lastrowid
+        session['uid'] = str(new_user_id)
+    else:
+        session['uid'] = str(row[0]["id"])
 
         # Definir dados da sessão
-        session['user'] = email.split("@")[0]
-        session['time'] = datetime.now().isoformat()
+    session['user'] = email.split("@")[0]
+    session['time'] = datetime.now().isoformat()
         
-        print("Sessão criada - User:", session['user'], "UID:", session['uid'])
-        
-        mycursor.close()
-        return redirect('/')
-        
-    except Exception as e:
-        print("Erro na autenticação Google:", str(e))
-        return redirect('/login')
+    print("Sessão criada - User:", session['user'], "UID:", session['uid'])
+
+    mycursor.close()
+    return redirect('/')
+
+    
 
 
 @app.route('/logout', methods=['POST'])

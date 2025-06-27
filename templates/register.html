@@ -13,22 +13,24 @@
         </div>
 
         <div class="righ-side">
-            <form action="/register" method="POST" class="form-box">
-                <h2>Registo</h2>
-                <input type="text" id="username" name="user" placeholder="Username">
-                <input type="text" id="fname" name="fname" placeholder="First Name">
-                <input type="text" id="lname" name="lname" placeholder="Last Name">
-                <input type="email" id="email" name="email" placeholder="Email">
-                <input type="password" id="password" name="pwd" placeholder="Password">
-                <input type="password" id="confirm_password" name="confirm" placeholder="Confirm Password">
+            <div class="form-box">
+                <form action="/register" method="POST">
+                    <h2>Registo</h2>
+                    <input type="text" id="username" name="user" placeholder="Username">
+                    <input type="text" id="fname" name="fname" placeholder="First Name">
+                    <input type="text" id="lname" name="lname" placeholder="Last Name">
+                    <input type="email" id="email" name="email" placeholder="Email">
+                    <input type="password" id="password" name="pwd" placeholder="Password">
+                    <input type="password" id="confirm_password" name="confirm" placeholder="Confirm Password">
+                    <button type="submit" class="button-register">Registar</button>
     
-                <div class="form-links">
-                    <p>Já tem conta? <a href="/login">Faça login aqui</a></p>
-                </div>
+                    <div class="form-links">
+                        <p>Já tem conta? <a href="/login">Faça login aqui</a></p>
+                    </div>
 
-            </form>
-            <button type="submit" class="button-register">Registar</button><br><br>
-                <button type="button" class="gsi-material-button" onclick="window.location.href='{{ url_for('google.login') }}'">
+                </form>
+                <button type="button" class="gsi-material-button" onclick="location.href='/register/google/authorized'">
+                    <div class="gsi-material-button-focus-overlay"></div>
                     <div class="gsi-material-button-state"></div>
                         <div class="gsi-material-button-content-wrapper">
                             <div class="gsi-material-button-icon">
@@ -44,7 +46,7 @@
                                 <span style="display: none;">Sign in with Google</span>
                         </div>
                 </button>
-
+            </div>
         </div>
 
     </div>
