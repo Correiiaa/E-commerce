@@ -15,11 +15,7 @@
         <button type="submit" >Sair</button>
     </form>
 
-    {% if user %}
-        <p>Bem-vindo, {{ user }}!</p>
-    {% else %}
-        <p>Não autenticado</p>
-    {% endif %}
+    {% if user %}Olá, {{ user }}{% endif %}
 
 </body>
 </html>

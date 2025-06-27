@@ -173,15 +173,14 @@ def google_login():
     print("Sessão criada - User:", session['user'], "UID:", session['uid'])
 
     mycursor.close()
-    return redirect('/')
 
-    
+    return redirect(url_for('index'))
 
 
-@app.route('/logout', methods=['POST'])
-def logout():
-     session.clear()
-     return redirect('/login/')
+# @app.route('/logout', methods=['POST'])
+# def logout():
+#      session.clear()
+#      return redirect('/login')
 
 
 if __name__ == "__main__":
