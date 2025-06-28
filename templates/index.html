@@ -6,7 +6,19 @@
     <link rel="stylesheet" href="/static/index.css">
     <title>Index</title>
 </head>
-<body>
+
+<script>
+
+    function showPopup() {
+        document.getElementById("popup").style.display = "flex";
+    }
+
+    function closePopup() {
+      document.getElementById('popup').style.display = 'none';
+    }
+
+</script>
+<body {% if show_popup %}onload="showPopup()" {% endif %}>
     <div class="header">
         <div class="logo">
         </div>
@@ -24,6 +36,15 @@
         </div>
     </div>
 
+    <div class="popup-overlay" id="popup">
+        <div class="popup-content">
+            <div action="/popup">
+                <h2>Permissão</h2>
+                <button class="truebutton" name="confirm" onclick="window.location.href='/register/google/authorized'">Yes</button>
+            </div>
+        </div>
+    </div>
+
 
     <form method="post" action="/logout">
         <button type="submit" >Sair</button>
@@ -34,9 +55,12 @@
     {% endif %}
 
     {% if not user %}
-        <button type="button" onclick="window.location.href='/register/google/authorized'">
+    <!-- <script>
+        showPopup()
+    </script>     -->
+        <!-- <button type="button" onclick="window.location.href='/register/google/authorized'">
             Entrar com Google
-        </button>
+        </button> -->
     {% else %}
         <p>Bem-vindo, {{ user }}!</p>
     {% endif %}
