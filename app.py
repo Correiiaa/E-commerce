@@ -54,8 +54,8 @@ def logged():
     query = "SELECT * FROM users WHERE username = %s AND password = %s"
     mycursor.execute(query, (user, pwd))    
     rows = mycursor.fetchall()
-    print(rows)
-    print(user, pwd)
+    # print(rows)
+    # print(user, pwd)
     mycursor.close()
 
     if len(rows) == 1:
@@ -70,11 +70,9 @@ def logged():
 
 @app.route('/')
 def index():
-    # Página inicial
-    if 'user' in session:
-        return render_template('index.html', user=session['user'])
-    else:
-        return render_template('index.html')
+    # Mostra a página para todos, autenticados ou não
+    user = session.get('user')
+    return render_template('index.html', user=user)
     
 
 @app.route('/register', methods=['GET', 'POST'])   
@@ -138,13 +136,16 @@ def google_login():
 
     info = resp.json()
 
-    # with open("google_user_info.json", "w", encoding="utf-8") as f:
-    #     json.dump(info, f, indent=4, ensure_ascii=False)
+    with open("google_user_info.json", "w", encoding="utf-8") as f:
+        clear = None
+        json.dump(clear, f, indent=4, ensure_ascii=False)
+        json.dump(info, f, indent=4, ensure_ascii=False)
 
     print("Dados do Google:", info)
     email = info["email"]
     name = info.get("name", "")
     fname, lname = (name.split(" ", 1) + [""])[:2]
+    
 
     # Verificar se o utilizador já existe
     mycursor = mydb.cursor(dictionary=True)
@@ -175,12 +176,12 @@ def google_login():
     mycursor.close()
 
     return redirect(url_for('index'))
+    
 
-
-# @app.route('/logout', methods=['POST'])
-# def logout():
-#      session.clear()
-#      return redirect('/login')
+@app.route('/logout', methods=['POST'])
+def logout():
+     session.clear()
+     return redirect('/')
 
 
 if __name__ == "__main__":

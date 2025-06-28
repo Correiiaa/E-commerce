@@ -3,17 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/index.css">
     <title>Index</title>
 </head>
 <body>
-    
-    <h1>Bem-vindo ao sistema de login!</h1>
-    
-    <p>Você está logado como: {{ user }}</p>
-    
+    <div class="header">
+        <div class="logo">
+        </div>
+        <div class="headerlinks">
+            <nav>
+                <a href="/">Home</a>
+                <a href="/products">Products</a>
+                <a href="/cart">Cart</a>
+                <a href="/orders">Orders</a>
+                <a href="/profile">Profile</a>
+                <a href="/about">About</a>
+                <a href="/contact">Contact</a>
+                <a href="/login">Inicie Sessão</a>
+            </nav>
+        </div>
+    </div>
+
+
     <form method="post" action="/logout">
         <button type="submit" >Sair</button>
     </form>
+
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+
+    {% if not user %}
+        <button type="button" onclick="window.location.href='/register/google/authorized'">
+            Entrar com Google
+        </button>
+    {% else %}
+        <p>Bem-vindo, {{ user }}!</p>
+    {% endif %}
 
     {% if user %}Olá, {{ user }}{% endif %}
 
