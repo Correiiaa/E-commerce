@@ -3,6 +3,7 @@ import os
 from flask_session import Session
 from flask import Flask, render_template, redirect, request, session, jsonify, url_for
 from flask_dance.contrib.google import make_google_blueprint, google
+from flask_dance.consumer import oauth_authorized
 from flask_login import LoginManager, login_user
 import mysql.connector
 from datetime import datetime
@@ -70,10 +71,22 @@ def logged():
 
 @app.route('/')
 def index():
-    # Mostra a página para todos, autenticados ou não
-    user = session.get('user')
-    return render_template('index.html', user=user)
-    
+    if 'user' in session:
+        return render_template('index.html', user=session['user'], uid=session['uid'])
+    else:
+        return render_template('index.html', show_popup=request.args.get('show_popup', '0') == '1')
+
+
+
+@app.route('/permissao')
+def popup():
+    if not 'user' in session:
+        confirm = request.form.get('confirm')
+        if confirm == "yes":
+            return redirect('/register/google/authorized')
+        else:
+            return redirect('/') 
+
 
 @app.route('/register', methods=['GET', 'POST'])   
 def register():
@@ -121,62 +134,110 @@ def register():
     return render_template('register.html')
 
 
-@app.route("/register/google/authorized")
-def google_login():
-    print("Google autorizado:", google.authorized)
-    if not google.authorized:
-        return redirect(url_for('google.login'))
-    
-    # Type hint para ajudar o VS Code
-    resp = google.get("https://www.googleapis.com/oauth2/v2/userinfo")
-        
-    if not resp.ok:
-        print("Erro ao obter dados do Google:", resp.status_code, resp.text)
-        return redirect('/login')
+@oauth_authorized.connect_via(google_bp)
+def google_logged_in(blueprint, token):
+    resp = google.get("/oauth2/v2/userinfo")
+    if resp.ok:
+        info = resp.json()
+        print("Dados do Google:", info)
+        with open("google_user_info.json", "w", encoding="utf-8") as f:
+            json.dump(info, f, indent=4, ensure_ascii=False)
 
-    info = resp.json()
-
-    with open("google_user_info.json", "w", encoding="utf-8") as f:
-        clear = None
-        json.dump(clear, f, indent=4, ensure_ascii=False)
-        json.dump(info, f, indent=4, ensure_ascii=False)
-
-    print("Dados do Google:", info)
-    email = info["email"]
+    # 4. Extrai os dados necessários
+    email = info.get("email")
     name = info.get("name", "")
     fname, lname = (name.split(" ", 1) + [""])[:2]
-    
 
-    # Verificar se o utilizador já existe
+    # 5. Verifica se o utilizador já existe na base de dados
     mycursor = mydb.cursor(dictionary=True)
     query = "SELECT * FROM users WHERE email = %s"
     mycursor.execute(query, (email,))
     row = mycursor.fetchall()
-    print("EMAIL:", email, flush=True)
-    print("Utilizadores encontrados:", len(row), flush=True)
 
+        # 6. Se não existe, insere o utilizador
     if len(row) == 0:
-        # Inserir o utilizador na base de dados
         query = "INSERT INTO users (username, fname, lname, email, password) VALUES (%s, %s, %s, %s, %s)"
         val = (email.split("@")[0], fname, lname, email, "")
         mycursor.execute(query, val)
         mydb.commit()
-            
         new_user_id = mycursor.lastrowid
         session['uid'] = str(new_user_id)
     else:
         session['uid'] = str(row[0]["id"])
 
-        # Definir dados da sessão
+    # 7. Define os dados da sessão
     session['user'] = email.split("@")[0]
     session['time'] = datetime.now().isoformat()
-        
     print("Sessão criada - User:", session['user'], "UID:", session['uid'])
 
     mycursor.close()
 
-    return redirect(url_for('index'))
     
+
+
+# @app.route("/login/google/authorized")
+# def google_login():
+#     print("Google autorizado:", google.authorized)
+
+#     # 1. Verifica se está autenticado com o Google
+#     if not google.authorized:
+#         return redirect(url_for('google.login'))
+
+#     # 2. Obtém os dados do Google
+#     resp = google.get("https://www.googleapis.com/oauth2/v2/userinfo")
+#     if not resp.ok:
+#         print("Erro ao obter dados do Google:", resp.status_code, resp.text)
+#         return redirect('/login')
+    
+#     print("olaaAAAAAAAAAAAAAAAAa")
+
+#     info = resp.json()
+#     print("Dados do Google:", info)
+
+#     # 3. (Opcional) Guarda os dados no ficheiro JSON
+#     with open("google_user_info.json", "w", encoding="utf-8") as f:
+#         json.dump(info, f, indent=4, ensure_ascii=False)
+
+    # #4. Extrai os dados necessários
+    # email = info.get("email")
+    # name = info.get("name", "")
+    # fname, lname = (name.split(" ", 1) + [""])[:2]
+
+    # # 5. Verifica se o utilizador já existe na base de dados
+    # mycursor = mydb.cursor(dictionary=True)
+    # query = "SELECT * FROM users WHERE email = %s"
+    # mycursor.execute(query, (email,))
+    # row = mycursor.fetchall()
+#     print("EMAIL:", email, flush=True)
+#     print("Utilizadores encontrados:", len(row), flush=True)
+
+#     with open("google_user_info.json", "r", encoding="utf-8") as file:
+#         google_data = json.load(file)
+#         if google_data.get("email") != email:
+#             print("Email do Google não corresponde ao email obtido:", google_data.get("email"), email)
+
+#     # 6. Se não existe, insere o utilizador
+#     if len(row) == 0:
+#         query = "INSERT INTO users (username, fname, lname, email, password) VALUES (%s, %s, %s, %s, %s)"
+#         val = (email.split("@")[0], fname, lname, email, "")
+#         mycursor.execute(query, val)
+#         mydb.commit()
+#         new_user_id = mycursor.lastrowid
+#         session['uid'] = str(new_user_id)
+#     else:
+#         session['uid'] = str(row[0]["id"])
+
+#     # 7. Define os dados da sessão
+#     session['user'] = email.split("@")[0]
+#     session['time'] = datetime.now().isoformat()
+#     print("Sessão criada - User:", session['user'], "UID:", session['uid'])
+
+#     mycursor.close()
+
+#     # 8. Redireciona para o index
+#     return redirect('/')
+    
+
 
 @app.route('/logout', methods=['POST'])
 def logout():
