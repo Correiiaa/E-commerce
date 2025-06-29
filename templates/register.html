@@ -6,6 +6,13 @@
     <link rel="stylesheet" href="/static/style.css">
     <title>Registo</title>
 </head>
+
+<script>
+    function googleLogin() {
+        window.location.href = "{{ url_for('google.login') }}";
+    }
+</script>
+
 <body>
     <div class="container">
         <div class="left-side">
@@ -29,7 +36,7 @@
                     </div>
 
                 </form>
-                <button type="button" class="gsi-material-button" onclick="window.location.href='{{ url_for('google.login')}}   '">
+                <button type="button" class="gsi-material-button" onclick="googleLogin()">
                     <div class="gsi-material-button-focus-overlay"></div>
                     <div class="gsi-material-button-state"></div>
                         <div class="gsi-material-button-content-wrapper">

@@ -40,8 +40,12 @@ except mysql.connector.Error as err:
     print(f"Erro de conexão: {err}")
     exit()
 
+@app.route('/login', methods=['GET'])
+def login():
+    return render_template('login.html')
 
-@app.route('/login', methods=['GET','POST'])
+
+@app.route('/login', methods=['POST'])
 def logged():
     # Sistema de login
     user = request.form.get('user')
@@ -74,21 +78,10 @@ def index():
     if 'user' in session:
         return render_template('index.html', user=session['user'], uid=session['uid'])
     else:
-        return render_template('index.html', show_popup=request.args.get('show_popup', '0') == '1')
+        return render_template('index.html')
 
 
-
-@app.route('/permissao')
-def popup():
-    if not 'user' in session:
-        confirm = request.form.get('confirm')
-        if confirm == "yes":
-            return redirect('/register/google/authorized')
-        else:
-            return redirect('/') 
-
-
-@app.route('/register', methods=['GET', 'POST'])   
+@app.route('/register', methods=['POST', 'GET'])   
 def register():
     if request.method == 'POST':
         pwd = request.form.get('pwd')
