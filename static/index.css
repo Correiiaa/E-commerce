@@ -2,73 +2,134 @@
 width: 1440px;
 height: 2992px;
 }
-.header {
-    background-color: #000000;
-    padding: 20px;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    height: 2vh;
+
+.index-navigation {
+  display: flex;
+  justify-content: center;
 }
 
-.headerlinks a {
-    text-decoration: none;
-    color : white;
-    margin: 0 1vh;
-} 
+.index-navbar {
+display: flex;
+justify-content: center;
+width: 1440px;
+height: 80px;
+background:  #fcfcfc;
+box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.12);
+border-radius: 10px;
+justify-items: center;
+align-items: center;
+}
 
-    .popup-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      justify-content: center;
-      align-items: center;
-    }
+.nav-logo img {
+  object-fit: cover;
+  height: 100%;
+  width: 30%;
+}
 
-    /* Estilo para o conteúdo do popup */
-    .popup-content {
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      text-align: center;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
+.nav-logo{
+width: 100%;
+height: 100%;
+display: flex;
+align-items: center;
+justify-content: flex-start;
+}
 
-    /* Botão de fechar */
-    .truebutton {
-      background: #ff5c5c;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+/* .nav-name{
+display: flex;
+width: 344px;
+color: #000;
+font-family: Roboto;
+font-size: 28px;
+font-style: normal;
+font-weight: 500;
+line-height: 36px;
+justify-content: center;
+align-items: center;
+} */
 
-    .truebutton:hover {
-      background: #ff3b3b;
-    }
+.navigation {
+width: 644px;
+display:flex;
+align-items: center;
+justify-content: flex-end;  
+
+}
+
+.nav-tab{
+color: #000;
+font-family: Roboto;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px; /* 150% */
+border-radius: 6px;
+justify-content: center;
+align-items: center;
+margin: 10px;
+}
+
+
+.text-field{
+display: flex;
+padding: 8px;
+justify-content: center;
+align-items: center;
+justify-items: center;
+gap: 4px;
+
+}
+
+.form-nav{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.text-field-nav{
+flex: 1 0 0;
+color: rgba(0, 0, 0, 0.50);
+font-family: Roboto;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 20px; /* 142.857% */
+align-items: center;
+justify-content: center;
+}
+
+.search-icon-nav{
+width: 20px;
+height: 20px;
+flex-shrink: 0;
+aspect-ratio: 1/1;
+display: flex;
+justify-content: flex-end;
+align-items: center;
+}
+
+/* Template Style #########################################################*/
 
 .template {
 display: flex;
 justify-content: center;
 align-items: center;
+padding-top: 20px;
 }
 
 .templateindex {
 justify-items:center ;
 width: 1440px;
 height: 376px;
-padding-top: 44px;
+padding-top: 40px;
 flex-direction: column;
 justify-content: center;
 align-items: center;
 gap: 44px;
 background: linear-gradient(0deg, rgba(0, 0, 0, 0.30) 0%, rgba(0, 0, 0, 0.30) 100%), 
 url("fotocapaindex.jpg") lightgray 50% / cover no-repeat;
+border-radius: 30px;
+
 
 }
 
@@ -105,12 +166,13 @@ line-height: 24px; /* 150% */
 }
 
 .input-template{
-display:flex;
-width: 360px;
+display: flex;
+width: 520px;
 flex-direction: column;
 justify-content: center;
 align-items: center;
 gap: 4px;
+padding-bottom: 10px;
 
 }
 
@@ -131,6 +193,7 @@ flex-direction: column;
 align-items: center;
 gap: 12px;
 justify-items: center;
+padding: 10px;
 
 }
 
@@ -180,3 +243,159 @@ font-weight: 400;
 line-height: 20px; /* 142.857% */
 }
 
+
+/* Popular Products ################################################*/
+.popular-products {
+  display: flex;
+  flex-direction: column; /* Garante que o textcontainer fica em cima */
+  align-items: center;
+  width: 1220px;
+  padding: 60px;
+  gap: 60px;
+  margin: auto;
+}
+
+.popular-products-textcontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  margin-bottom: 32px; /* Ocupa toda a largura */
+}
+
+.popular-products-title{
+  width: 520px;
+  color: #000;
+text-align: center;
+font-family: Roboto;
+font-size: 40px;
+font-style: normal;
+font-weight: 700;
+line-height: 48px; /* 120% */
+}
+
+.popular-products-resume{
+width: 520px;
+color: #000;
+text-align: center;
+font-family: Roboto;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px; /* 150% */
+}
+
+.popular-products-list {
+  display: flex;
+  flex-direction: column; /* <-- Adiciona esta linha */
+  gap: 40px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.popular-products-list-row {
+  display: flex;
+  flex-direction: row;      /* Garante que os cards ficam em linha */
+  gap: 40px;
+  width: 100%;
+  justify-content: center;  /* Centraliza os cards na linha */
+}
+
+.popular-products-card{
+display: flex;
+flex-direction: column;
+align-items: center;
+flex: 1 0 0;
+border-radius: 6px;
+border: 1px solid #FFF;
+}
+
+.popular-products-bestseller {
+  display: flex;
+height: 330px;
+align-items: flex-start;
+align-self: stretch;
+background: url(<path-to-image>);
+}
+
+.popular-products-image-container{
+display: flex;
+padding: 0px 266px 306px 0px;
+align-items: center;
+flex: 1 0 0;
+align-self: stretch;
+background: rgba(255, 255, 255, 0.00);
+}
+
+.popular-products-bestseller-tag{
+display: inline-flex;
+flex-direction: row;
+white-space: nowrap;
+padding: 4px 8px;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+border-radius: 6px 0px;
+background: #FFF;
+
+color: #AF9C0A;
+font-family: Roboto;
+font-size: 12px;
+font-style: normal;
+font-weight: 500;
+line-height: 16px; /* 133.333% */
+}
+
+.popular-products-info{
+display: flex;
+padding: 12px;
+flex-direction: column;
+align-items: flex-start;
+gap: 4px;
+align-self: stretch;
+}
+
+.popular-products-winename {
+  align-self: stretch;
+  color: #000;
+
+font-family: Roboto;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px;
+}
+
+.popular-products-wineprice{
+color: #000;
+font-family: Roboto;
+font-size: 20px;
+font-style: normal;
+font-weight: 500;
+line-height: 28px; /* 140% */
+align-self: stretch;
+}
+
+.popular-products-toprated{
+display: flex;
+height: 330px;
+align-items: flex-start;
+}
+
+.popular-products-toprated-tag{
+display: flex;
+padding: 4px 8px;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+border-radius: 6px 0px;
+background: #FFF;
+color: #25972D;
+font-family: Roboto;
+font-size: 12px;
+font-style: normal;
+font-weight: 500;
+line-height: 16px; /* 133.333% */
+}

@@ -231,11 +231,26 @@ def google_logged_in(blueprint, token):
 #     return redirect('/')
     
 
-
 @app.route('/logout', methods=['POST'])
 def logout():
      session.clear()
      return redirect('/')
+
+
+@app.route('/search', methods=['GET'])
+def search():
+    product_name = request.form.get("query")
+    mycursor = mydb.cursor(dictionary=True)
+    query = "SELECT * FROM products WHERE name = %s"
+    mycursor.execute(query,(product_name,))
+    row = mycursor.fetchall()
+
+    if len(row) > 0:
+        return redirect(url_for('produto',product_id=row['id']))
+    else:
+        error = "Produto inexistente"
+        return render_template('index.html', error)
+
 
 
 if __name__ == "__main__":

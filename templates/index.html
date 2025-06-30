@@ -10,44 +10,41 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: brown;">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown link
-                    </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+    <div class="index-navigation">
+        <nav class="index-navbar">
+            <div class="nav-logo">
+                <img src="static\logo1.png" alt="Logo empresa">
+            </div>
+            <!-- <div class="nav-name">
+                Toni Correia Distribuição
+            </div> -->
+            <div class="navigation">
+                <div class="nav-tab">
+                    Home
                 </div>
-                </li>
-                <li class="nav-item">
-                    <a clas="nav-link" href="/login">Iniciar Sessão</a>
-                </li>
-            </ul>
-        </div>
-        <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </nav>
-
-
+                <div class="nav-tab">
+                    Products
+                </div>
+                <div class="nav-tab">
+                    Contact Us
+                </div>
+                <div class="nav-tab">
+                    Profile
+                </div>
+            </div>
+            <div class="text-field">
+                <form action="/search" class="form-nav">
+                    <input type="text" name="query" placeholder="Search for wines..." class="text-fild-nav">
+                        <div class="search-icon-nav">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M14.1356 14.9972C12.8151 16.1214 11.1034 16.7998 9.23329 16.7998C5.05434 16.7998 1.66663 13.4121 1.66663 9.23317C1.66663 5.05422 5.05434 1.6665 9.23329 1.6665C13.4122 1.6665 16.8 5.05422 16.8 9.23317C16.8 11.092 16.1297 12.7943 15.0177 14.1115L18.6497 17.7435L17.7658 18.6274L14.1356 14.9972ZM15.55 9.23317C15.55 12.7218 12.7219 15.5498 9.23329 15.5498C5.74469 15.5498 2.91663 12.7218 2.91663 9.23317C2.91663 5.74457 5.74469 2.9165 9.23329 2.9165C12.7219 2.9165 15.55 5.74457 15.55 9.23317Z" fill="black" fill-opacity="0.7"/>
+                            </svg>
+                        </div>
+                </form>
+            </div>
+        </nav>
+    </div>
+    
     <div class="template">
         <div class="templateindex">
             <div class="contentetemplate">
@@ -74,7 +71,70 @@
                     </div>
                 </form>
             </div>       
+        </div>
+    </div>
 
+    <div class="popular-products">
+        <div class="popular-products-textcontainer">
+            <p class="popular-products-title">Popular Wines</p>
+            <p class="popular-products-resume">Check out our customers favourites</p>
+        </div>
+        <div class="popular-products-list">
+            <div class="popular-products-list-row">
+                <div class="popular-products-card">
+                    <div class="popular-product-bestseller">
+                        <div class="popular-products-image-container">
+                            <div class="popular-products-image"></div>
+                            <div class="popular-products-bestseller-tag">Best Seller</div>
+                        </div>
+                    </div>
+                    <div class="poupular-products-info">
+                        <p class="poupular-products-winename">Wine</p>
+                        <p class="poupular-products-wineprice">999</p>
+                    </div>
+                </div>
+                <div class="popular-products-card">
+                    <div class="popular-product-toprated">
+                        <div class="popular-products-image-container">
+                            <div class="popular-products-toprated-tag">Top Rated</div>
+                        </div>
+                    </div>
+                    <div class="poupular-products-info">
+                        <p class="poupular-products-winename">Wine</p>
+                        <p class="poupular-products-wineprice">999</p>
+                    </div>
+                </div>
+                <div class="popular-products-card">
+                    <div class="popular-products-image-container"></div>
+                    <div class="poupular-products-info">
+                        <p class="poupular-products-winename">Wine</p>
+                        <p class="poupular-products-wineprice">999</p>
+                    </div>
+                </div>
+            </div>
+            <div class="popular-products-list-row">
+                <div class="popular-products-card">
+                    <div class="popular-products-image-container"></div>
+                    <div class="poupular-products-info">
+                        <p class="poupular-products-winename">Wine</p>
+                        <p class="poupular-products-wineprice">999</p>
+                    </div>
+                </div>
+                <div class="popular-products-card">
+                    <div class="popular-products-image-container"></div>
+                    <div class="poupular-products-info">
+                        <p class="poupular-products-winename">Wine</p>
+                        <p class="poupular-products-wineprice">999</p>
+                    </div>
+                </div>
+                <div class="popular-products-card">
+                    <div class="popular-products-image-container"></div>
+                    <div class="poupular-products-info">
+                        <p class="poupular-products-winename">Wine</p>
+                        <p class="poupular-products-wineprice">999</p>
+                    </div>
+                </div>
+            </div>            
         </div>
     </div>
     <form method="post" action="/logout">
