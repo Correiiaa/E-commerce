@@ -15,27 +15,29 @@ body, html {
 }
 
 .container {
-    display:inline-flex;
+    display: flex;
     height: 100vh;
     justify-content: center;
-    justify-items: center;
     align-items: center;
-
 }
 
-.left-side {
+.left-side, .right-side {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
+}
 
+.left-side {
+    align-items: stretch; /* imagem vai esticar para acompanhar a altura */
 }
 
 .left-side img {
-    width: 40vh;
-    height: 73vh;
+    width: 100%;
+    max-width: 350px;   /* igual ao max-width da .form-box */
     object-fit: cover;
     border-radius: 8px;
+    height: auto;      /* importante para ser flexível */
 }
 
 .right-side {
@@ -47,15 +49,13 @@ body, html {
 }
 
 .form-box {
-    height: 73vh;
-    width: 90%;
+    width: 100%;
     max-width: 350px;
     background-color: white;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
-
-
+    box-sizing: border-box;
 }
 
 .form-box h2 {
