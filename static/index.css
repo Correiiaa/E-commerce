@@ -3,6 +3,10 @@ width: 1440px;
 height: 2992px;
 }
 
+body{
+background-color: #e6e6e6;
+}
+
 .index-navigation {
   display: flex;
   justify-content: center;
@@ -316,6 +320,7 @@ line-height: 24px; /* 150% */
   align-items: center;
   flex: 1 0 0;
   border-radius: 6px;
+  background-color: white;
 }
 
 .popular-image-container{
@@ -324,7 +329,16 @@ line-height: 24px; /* 150% */
   height: 330px;
   align-items: flex-start;
   align-self: stretch;
-  background: url("/static/perspectiva-tintopng.png") rgb(255, 255, 255) 50% / contain no-repeat;
+  overflow: hidden;
+  position: relative;
+  justify-content: center;
+}
+
+.product-image {
+  width: 80%;
+  height: 100%; 
+  border-radius: 6px; /* Opcional: cantos arredondados */
+  display: flex;
 }
 
 .popular-text-content{
@@ -359,14 +373,12 @@ line-height: 24px; /* 150% */
   align-self: stretch; 
 }
 
-.best-seller{
-  display: flex;
-  padding: 0px 266px 306px 0px;
-  align-items: center;
-  flex: 1 0 0;
-  align-self: stretch;
-  width: 340px;
-  height: 330px;
+.best-seller {
+  position:absolute;
+  top: 8px;                /* distância do topo */
+  left: 8px;               /* distância da esquerda */
+  padding: 4px 8px;
+  border-radius: 4px;
 }
 
 .best-seller-tag{
@@ -375,6 +387,7 @@ line-height: 24px; /* 150% */
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  
 }
 
 .best-seller-text{

@@ -70,10 +70,14 @@ def logged():
 
 @app.route('/')
 def index():
+    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+        cursor.execute("SELECT id, name, price, image_url FROM products")
+        produtos = cursor.fetchall()
+
     if 'user' in session:
-        return render_template('index.html', user=session['user'], uid=session['uid'])
+        return render_template('index.html', user=session['user'], uid=session['uid'], produtos=produtos)
     else:
-        return render_template('index.html')
+        return render_template('index.html', produtos=produtos)
 
 
 @app.route('/register', methods=['GET'])
