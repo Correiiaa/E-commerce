@@ -171,6 +171,76 @@ def search():
         error = "Produto inexistente"
         return render_template('index.html', error=error)
 
+@app.route('/admin/add_product', methods=['POST'])
+def add_product():
+    name = request.form.get("name")
+    category = request.form.get("category")
+    description = request.form.get("description")
+    price = request.form.get("price")
+    quantity = request.form.get("quantity")
+    imagem_url = request.form.get("image")
+
+
+    try:
+        price = float(price)
+        quantity = int(quantity)
+    except (ValueError, TypeError):
+        return "Invalid price or quantity", 400
+    
+    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+        query = ("INSERT INTO products (name, category, description, price, quantity, image_url) VALUES (%s, %s, %s, %s, %s, %s)")
+        cursor.execute(query, (name, category, description, price, quantity, imagem_url))
+        mysql.connection.commit()
+
+
+    return "Produto adicionado com sucesso"
+
+
+@app.route('/products', methods=['GET'])
+def get_all_products():
+    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+        cursor.execute("SELECT * FROM products WHERE active=1")
+        products = cursor.fetchall()
+    return jsonify(products)
+
+
+@app.route('/products/<int:id>', methods=['GET'])
+def get_products_by_id(id):
+    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+        cursor.execute("SELECT * FROM products WHERE id=%s", (id,))
+        product = cursor.fetchall()
+    return jsonify(product)
+
+
+
+@app.route('/admin/products/<int:id>', methods=['PUT'])
+def update_product(id):
+    if 'user' not in session or session.get('role') != 'admin':
+        return "Unauthorized", 403
+
+    name = request.form.get("name")
+    category = request.form.get("category")
+    description = request.form.get("description")
+    price = request.form.get("price")
+    quantity = request.form.get("quantity")
+    image_url = request.form.get("image")
+
+    try:
+        price = float(price)
+        quantity = int(quantity)
+    except (ValueError, TypeError):
+        return "Invalid price or quantity", 400
+    
+    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+        query = "UPDATE products SET name=%s, category=%s, description=%s, price=%s, quantity=%s, image_url=%s WHERE id=%s"
+        cursor.execute(query, (name, category, description, price, quantity, image_url, id))
+        mysql.connection.commit()
+
+    return "Product updated successfully!"
+
+
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
