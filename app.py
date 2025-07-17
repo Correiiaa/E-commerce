@@ -158,19 +158,6 @@ def logout():
     return redirect('/')
 
 
-@app.route('/search', methods=['GET'])
-def search():
-    product_name = request.args.get("query")  # melhor usar request.args.get em GET
-    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
-        cursor.execute("SELECT * FROM products WHERE name = %s", (product_name,))
-        row = cursor.fetchone()
-
-    if row:
-        return redirect(url_for('produto', product_id=row['id']))
-    else:
-        error = "Produto inexistente"
-        return render_template('index.html', error=error)
-
 @app.route('/admin/add_product', methods=['POST'])
 def add_product():
     name = request.form.get("name")
@@ -212,8 +199,7 @@ def get_products_by_id(id):
     return jsonify(product)
 
 
-
-@app.route('/admin/products/<int:id>', methods=['PUT'])
+@app.route('/admin/update-products/<int:id>', methods=['PUT'])
 def update_product(id):
     if 'user' not in session or session.get('role') != 'admin':
         return "Unauthorized", 403
@@ -239,6 +225,47 @@ def update_product(id):
     return "Product updated successfully!"
 
 
+@app.route('/admin/delete-products/<int:id>' , methods=['PUT'])
+def delete_product(id):
+    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+        query = "UPDATE products SET active=0 WHERE id=%s"
+        cursor.execute(query,(id,))
+        mysql.connection.commit()
+
+    return "Product delete successfully"
+
+
+@app.route('/search', methods=['GET'])
+def search_products():
+    search_term = request.form.get("query")
+
+    if not search_term:
+        return jsonify([])
+    
+    search_term = f"%{search_term}%"
+
+    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+        cursor.execute("SELECT * FROM products WHERE name LIKE %s OR category LIKE %s", (search_term, search_term))
+        products = cursor.fetchall()
+
+    return jsonify(products)
+
+
+def update_stock(product_id, qty):
+    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+        cursor.execute("UPDATE products SET quantity = quanatity - %s WHERE id = %s", (qty, product_id,))
+        mysql.connection.commit()
+
+    return "Stock updated succesefully"
+
+
+@app.route('/low-stock', methods=['GET'])
+def get_low_stock():
+    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+        cursor.execute("SELECT * FROM products WHERE quantity < 15")
+        products = cursor.fetchall()
+    
+    return jsonify(products)
 
 
 
