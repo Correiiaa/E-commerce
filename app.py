@@ -315,15 +315,18 @@ def add_to_cart():
     return jsonify({"message": "Produto adicionado ao carrinho"})
 
 
-def create_order(cart_id, user_id):
+@app.route('/order', methods=['POST'])
+def create_order():
     if 'user' not in session:
         return "Não autenticado", 401
     
     user_id = session['uid']
 
     with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
-        cursor.execute("SELECT cart_id FROM cart WHERE user_id = %s", (user_id))
+        cursor.execute("SELECT * FROM cart WHERE user_id = %s", (user_id))
+        order = cursor.fetchall()
         
+    return jsonify(order)
     
     
     
