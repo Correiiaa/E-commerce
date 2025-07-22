@@ -269,5 +269,64 @@ def get_low_stock():
 
 
 
+@app.route('/cart/add', methods=['POST'])
+def add_to_cart():
+    if 'user' not in session:
+        return jsonify({"error": "Não autenticado"}), 401
+
+    user_id = session['uid']
+    product_id = request.form.get('product_id')
+    quantity = int(request.form.get('quantity', 1))
+
+    # Verificar se o produto existe
+    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+        cursor.execute("SELECT * FROM products WHERE id = %s", (product_id,))
+        product = cursor.fetchone()
+
+        if not product:
+            return jsonify({"error": "Produto não encontrado"}), 404
+
+        if product['quantity'] < quantity:
+            return jsonify({"error": "Estoque insuficiente"}), 400
+
+        # Verificar se o produto já está no carrinho
+        cursor.execute(
+            "SELECT * FROM cart WHERE user_id = %s AND product_id = %s",
+            (user_id, product_id)
+        )
+        existing = cursor.fetchone()
+
+        if existing:
+            # Atualiza a quantidade
+            new_quantity = existing['quantity'] + quantity
+            cursor.execute(
+                "UPDATE cart SET quantity = %s WHERE user_id = %s AND product_id = %s",
+                (new_quantity, user_id, product_id)
+            )
+        else:
+            # Adiciona novo produto
+            cursor.execute(
+                "INSERT INTO cart (user_id, product_id, quantity) VALUES (%s, %s, %s)",
+                (user_id, product_id, quantity)
+            )
+
+        mysql.connection.commit()
+
+    return jsonify({"message": "Produto adicionado ao carrinho"})
+
+
+def create_order(cart_id, user_id):
+    if 'user' not in session:
+        return "Não autenticado", 401
+    
+    user_id = session['uid']
+
+    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+        cursor.execute("SELECT cart_id FROM cart WHERE user_id = %s", (user_id))
+        
+    
+    
+    
+
 if __name__ == "__main__":
     app.run(debug=True)
