@@ -34,13 +34,27 @@ body, html {
 
 .left-side img {
     width: 100%;
-    max-width: 350px;   /* igual ao max-width da .form-box */
+    max-width: 400px;   /* igual ao max-width da .form-box */
     object-fit: cover;
     border-radius: 8px;
-    height: auto;      /* importante para ser flexível */
+}
+
+.left-side-register img {
+    width: 100%;
+    max-width: 397px;   /* igual ao max-width da .form-box */
+    object-fit: cover;
+    border-radius: 8px;
 }
 
 .right-side {
+    flex: 1;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-side-register {
     flex: 1;
     background-color: #f9f9f9;
     display: flex;
@@ -56,6 +70,18 @@ body, html {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     box-sizing: border-box;
+    height: 525px;
+}
+
+.form-box-register {
+    width: 100%;
+    max-width: 350px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+    height: 600px;
 }
 
 .form-box h2 {
@@ -63,7 +89,20 @@ body, html {
     margin-bottom: 20px;
 }
 
+.form-box-register h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 .form-box input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-box-register input {
     width: 100%;
     padding: 12px;
     margin: 10px 0;
@@ -92,6 +131,14 @@ body, html {
     cursor: pointer;
 }
 
+.form-box-register button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+}
 
 .form-links {
     text-align: center;
