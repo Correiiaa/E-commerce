@@ -15,7 +15,7 @@ background-color: #e6e6e6;
 .index-navbar {
 display: flex;
 justify-content: center;
-width: 1440px;
+width: 1920px;
 height: 80px;
 background:  #fcfcfc;
 box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.12);
@@ -26,8 +26,8 @@ align-items: center;
 
 .nav-logo img {
   object-fit: cover;
-  height: 100%;
-  width: 30%;
+  max-height: 80px;
+  width: 250px;
 }
 
 .nav-logo{
@@ -123,18 +123,15 @@ padding-top: 20px;
 
 .templateindex {
 justify-items:center ;
-width: 1440px;
-height: 376px;
+width: 1920px;
+height: 670px;
 padding-top: 40px;
 flex-direction: column;
 justify-content: center;
 align-items: center;
 gap: 44px;
 background: linear-gradient(0deg, rgba(0, 0, 0, 0.30) 0%, rgba(0, 0, 0, 0.30) 100%), 
-url("fotocapaindex.jpg") lightgray 50% / cover no-repeat;
-border-radius: 30px;
-
-
+url("kym-ellis-aF1NPSnDQLw-unsplash.jpg") lightgray 50% / cover no-repeat;
 }
 
 .contentetemplate {
