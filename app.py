@@ -63,6 +63,7 @@ def logged():
         session['user'] = user
         session['time'] = datetime.now().isoformat()
         session['uid'] = str(rows[0]["id"])
+        session['role'] = 'admin' if rows[0].get('is_admin', 0) == 1 else 'user'
         return redirect('/')
     
     return render_template('login.html', error="Invalid username or password")
@@ -326,20 +327,57 @@ def create_order():
     shipping_address = request.form.get("shipping_address")
 
     with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
-        cursor.execute("SELECT * FROM cart WHERE user_id = %s", (user_id))
+        cursor.execute("SELECT * FROM cart WHERE user_id = %s", (user_id,))
         orders = cursor.fetchall()
+
+        if not orders:
+            return "Carinho vazio", 400
 
         final_price = 0
         for price in orders:
             final_price += price['price']
 
-        cursor.execute("INSERT INTO order (user_id, status, total_price, shipping_address)")
+        cursor.execute("INSERT INTO orders (user_id, status, total_price, shipping_address) VALUES (%s, %s, %s, %s)",
+                       (user_id, "pendente", final_price, shipping_address,))
+        
+        order_id = cursor.lastrowid
+
+        for item in orders:
+            cursor.execute("INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (%s, %s, %s, %s)",
+                           (order_id, item['product_id'], item['quantity'], item['price'],))
+            
+
+            cursor.execute("DELETE FROM cart WHERE user_id = %s", (user_id,))
+
+            mysql.connection.commit()
         
             
-        return jsonify(orders, final_price)
+        return jsonify({"message": "Encomenda criada com sucesso", "order_id": order_id})
     
     
+def get_orders_by_user(user_id):
+    if 'user' not in session or session.get('role') != 'admin':
+        return "Unauthorized", 403
     
+    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+        cursor.execute("SELECT * FROM orders WHERE user_id = %s", (user_id))
+        orders = cursor.fetchall()
+
+    return jsonify(orders)
+
+
+
+@app.route('/admin/get_all_orders', methods=['GET'])
+def get_all_orders():
+    if 'user' not in session or session.get('role') != 'admin':
+        return "Unauthorized", 403
+    
+    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+        cursor.execute("SELECT * FROM orders")
+        orders = cursor.fetchall()
+
+    return jsonify(orders)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
