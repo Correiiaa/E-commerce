@@ -379,5 +379,43 @@ def get_all_orders():
     return jsonify(orders)
 
 
+@app.route('/admin/sales_report', methods=['GET'])
+def sales_report():
+    if 'user' not in session or session.get('role') != 'admin':
+        return "Unauthorized", 403
+
+    start_date = request.args.get('start_date')
+    end_date = request.args.get('end_date')
+
+    if not start_date or not end_date:
+        return "Faltam datas", 400
+
+    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+        cursor.execute(
+            "SELECT * FROM orders WHERE created_at BETWEEN %s AND %s",
+            (start_date, end_date)
+        )
+        orders = cursor.fetchall()
+
+    return jsonify(orders)
+
+
+@app.route('/admin/best_seller', methods=['GET'])
+def get_best_selling_products():
+    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+        cursor.execute("""SELECT products.id,
+                       products.name,
+                       SUM(order_items.quantity) AS total_vendido
+                       FROM order_items
+                       JOIN products ON order_items.product_id = products.id
+                       GROUP BY order_items.product_id
+                       ORDER BY total_vendido DESC
+                       LIMIT 2;""")
+        
+        best_seller = cursor.fetchall()
+
+    return jsonify(best_seller)
+
+
 if __name__ == "__main__":
     app.run(debug=True)
