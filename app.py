@@ -282,6 +282,7 @@ def add_to_cart():
     with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
         cursor.execute("SELECT * FROM products WHERE id = %s", (product_id,))
         product = cursor.fetchone()
+        price = product['price']
 
         if not product:
             return jsonify({"error": "Produto não encontrado"}), 404
@@ -299,15 +300,16 @@ def add_to_cart():
         if existing:
             # Atualiza a quantidade
             new_quantity = existing['quantity'] + quantity
+            new_price = existing['price'] + price
             cursor.execute(
-                "UPDATE cart SET quantity = %s WHERE user_id = %s AND product_id = %s",
-                (new_quantity, user_id, product_id)
+                "UPDATE cart SET quantity = %s, price=%s WHERE user_id = %s AND product_id = %s",
+                (new_quantity, new_price, user_id, product_id)
             )
         else:
             # Adiciona novo produto
             cursor.execute(
-                "INSERT INTO cart (user_id, product_id, quantity) VALUES (%s, %s, %s)",
-                (user_id, product_id, quantity)
+                "INSERT INTO cart (user_id, product_id, quantity, price) VALUES (%s, %s, %s, %s)",
+                (user_id, product_id, quantity, price)
             )
 
         mysql.connection.commit()
@@ -321,12 +323,20 @@ def create_order():
         return "Não autenticado", 401
     
     user_id = session['uid']
+    shipping_address = request.form.get("shipping_address")
 
     with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
         cursor.execute("SELECT * FROM cart WHERE user_id = %s", (user_id))
-        order = cursor.fetchall()
+        orders = cursor.fetchall()
+
+        final_price = 0
+        for price in orders:
+            final_price += price['price']
+
+        cursor.execute("INSERT INTO order (user_id, status, total_price, shipping_address)")
         
-    return jsonify(order)
+            
+        return jsonify(orders, final_price)
     
     
     
