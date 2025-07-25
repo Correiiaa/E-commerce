@@ -1,3 +1,102 @@
+body{
+    background:#E0E0E0;
+}
+
+p {
+    margin-bottom: 0;
+}
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+* {
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+}
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+*, ::after, ::before {
+    box-sizing: inherit;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
+}
+@media screen and (min-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+}
+@media screen and (min-width: 320px) {
+    body {
+        font-size: calc(14px + 2 * (100vw - 320px) / 448);
+    }
+}
+body {
+    font-size: 14px;
+}
+body {
+    margin: 0;
+    height: 100%;
+    min-height: 100vh;
+    font-family: "montserrat-regular", sans-serif;
+    color: #222;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: normal;
+}
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    background-color: #fff;
+}
+body {
+    font-family: "Helvetica", "Times New Roman", Times, serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+}
+html {
+    font-family: sans-serif;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+
+h2{
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+}
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+*, ::after, ::before {
+    box-sizing: inherit;
+}
+/*///////////////////////////////////////////////////////////////////////////////////////////////
+Navbar and coursel
+////////////////////////////////////////////////////////////////////////////////////////////////*/
 .carousel-item {
   height: 100vh;
   min-height: 300px;
@@ -16,6 +115,7 @@
   text-transform: uppercase;
   letter-spacing: 2px;
   margin-top: 25px;
+  color: #ffffff;
 }
 
 .carousel-caption p {
@@ -67,57 +167,96 @@
   color: #fff;
 }
 
-.search-wrapper {
-            max-width: 600px;
-            margin: 20px auto;
-        }
-        
-        .search-box {
-            position: relative;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            border-radius: 50px;
-            transition: all 0.3s ease;
-        }
-        
-        .search-box:focus-within {
-            box-shadow: 0 3px 20px rgba(0,0,0,0.1);
-            transform: translateY(-2px);
-        }
-        
-        .search-input {
-            border-radius: 50px;
-            padding-left: 45px;
-            padding-right: 20px;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-            height: 50px;
-        }
-        
-        .search-input:focus {
-            border-color: #0d6efd;
-            box-shadow: none;
-        }
-        
-        .search-icon {
-            position: absolute;
-            left: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #6c757d;
-            z-index: 10;
-        }
-        
-        .search-button {
-            position: absolute;
-            right: 5px;
-            top: 50%;
-            transform: translateY(-50%);
-            border-radius: 50px;
-            padding: 8px 20px;
-            transition: all 0.3s ease;
-        }
-        
-        .search-button:hover {
-            background-color: #0b5ed7;
-            transform: translateY(-50%) scale(1.05);
-        }
+/*////////////////////////////////////////////////////////////////////////////////////////////////////
+Cards
+//////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+.details {
+  border: 1.5px solid grey;
+  color: #212121;
+  width: 100%;
+  height: auto;
+  box-shadow: 0px 0px 10px #212121;}
+
+.cart {
+  background-color: #212121;
+  color: white;
+  margin-top: 10px;
+  font-size: 12px;
+   font-weight: 900;
+  width: 100%;
+  height: 39px;
+  padding-top: 9px;
+  box-shadow: 0px 5px 10px  #212121;}
+
+.card {
+  width: 297px;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  max-height: 500px;}
+
+.card-body {
+  width: fit-content;}
+
+.btn {
+  border-radius: 0;}
+
+.card-img-top {
+  border: none;
+  max-width: 120px;
+  max-height: 225px;
+  object-fit:scale-down;
+}
+
+.card {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, .2);
+  border-radius: 5px;
+  padding-bottom: 10px;}
+
+.encosta-daregos{
+    height: 200px !important;
+    width: 70px;
+}
+
+.MM-rose {
+    height: 300px !important;
+    width: 400px;
+    object-fit: cover;
+}
+
+/* ///////////////////////////////////////////////////////////////////////////////
+Section titles
+////////////////////////////////////////////////////////////////////// */
+@media screen and (min-width: 320px) {
+    .section-title {
+        font-size: calc(18px + 12 * (100vw - 320px) / 1600);
+    }
+}
+.section-title {
+    font-size: 18px;
+}
+.section-title {
+    margin-top: 8px;
+    font-family: "montserrat-medium";
+    color: #222;
+    font-size: 18px;
+    padding-bottom: 10px;
+    position: relative;
+}
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+*, ::after, ::before {
+    box-sizing: inherit;
+}
+.section-title:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 1px;
+    background-color: #a52446;
+}
