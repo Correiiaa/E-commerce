@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="nav">
         <div class="container">
             <a class="navbar-brand" href="#">Toni Correia</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,7 +26,7 @@
                         <a class="nav-link" href="#">Sobre nós</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Vinhos</a>
+                        <a class="nav-link" href="/products">Vinhos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Bar</a>
@@ -49,22 +49,22 @@
             <div class="carousel-item active">
                 <img class="d-block w-100" src="/static/pexels-craytive-1545529.jpg" alt="First slide">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>Slider One Item</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, nulla, tempore. Deserunt excepturi quas vero.</p>
+                    <h5>Um prazer servi-los</h5>
+                    <p></p>
                 </div>
             </div>
             <div class="carousel-item">
                 <img class="d-block w-100" src="/static/photo-1563514227147-6d2ff665a6a0.jpg" alt="Second slide">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>Slider One Item</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, nulla, tempore. Deserunt excepturi quas vero.</p>
+                    <h5>Qualidade e compromisso</h5>
+                    <p></p>
                 </div>
             </div>
             <div class="carousel-item">
                 <img class="d-block w-100" src="/static/pexels-remi-boussicaut-109289-338347.jpg" alt="Third slide">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>Slider One Item</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, nulla, tempore. Deserunt excepturi quas vero.</p>
+                    <h5>Toni Correia</h5>
+                    <p>Distribuição</p>
                 </div>
             </div>
         </div>
@@ -78,26 +78,69 @@
         </button>
     </div>
 
+    {% if user %}
     <form method="post" action="/logout">
         <button type="submit" >Sair</button>
     </form>
-
-    {% if error %}
-        <div class="error">{{ error }}</div>
-    {% endif %}
-
-    {% if not user %}
-    <!-- <script>
-        showPopup()
-    </script>     -->
-        <!-- <button type="button" onclick="window.location.href='/register/google/authorized'">
-            Entrar com Google
-        </button> -->
     {% else %}
-        <p>Bem-vindo, {{ user }}!</p>
+    Login
     {% endif %}
 
-    {% if user %}Olá, {{ user }}{% endif %}
+<div class="container">
+    <h2 class="section-subtitle highlight-products-subtitle">Produtos Recomendados</h2>
+    <p class="section-title highlight-products-title"></p>
+</div>
 
+<div class="container-fluid"
+id="product-container"></div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        fetch('/products')  // <- A rota correta da API
+            .then(response => response.json())
+            .then(products => {
+                const container = document.getElementById('product-container');
+                products.forEach(product => {
+                    let extraClass = '';
+                    console.log(`Produto: ${product.name}`);
+                    if (product.name === "Encosta d´Aregos")  {
+                        extraClass= ' encosta-daregos';
+                    } else if( product.name === "M&M ROSÉ") {
+                        extraClass = ' MM-rose'
+                    }
+                    const card = `
+                        <div class="col-md-3 col-sm-6 m-3 p-0">
+                            <div class="card h-100">
+                                <img class="card-img-top${extraClass}" src="/static/images/${product.image_url}" alt="${product.name}">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">${product.name}</h5>
+                                    <p class="card-text">${Number(product.price).toFixed(2)} €</p>
+                                    <a href="/products/${product.id}" class="btn btn-light">Ver detalhes</a>
+                                    <a href="/cart/add?product_id=${product.id}" class="btn btn-dark">Adicionar</a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    container.innerHTML += card;
+                });
+            })
+            .catch(error => {
+                console.error('Erro ao buscar produtos:', error);
+            });
+    });
+
+    var nav = document.getElementById('nav');
+        window.addEventListener("scroll", function(event) {
+            if(window.pageYOffset>100){
+
+                nav.style.background = "#212121";
+
+            }
+            else{
+                nav.style.background = "transparent";
+            }
+        });
+</script>
 </body>
+
 </html>
