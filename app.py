@@ -416,6 +416,21 @@ def get_best_selling_products():
 
     return jsonify(best_seller)
 
+@app.route('/admin/add-discont', methods=['PUT'])
+def add_discont():
+    if 'user' not in session or session.get('role') != 'admin':
+        return "Unauthorized", 403
+    
+    product_id = request.form.get("product_id")
+    discont = request.form.get("discont")
+
+    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+        cursor.execute("UPDATE products SET discont = %s WHERE id = %s", (discont, product_id,))
+        mysql.connection.commit()
+
+    return "Desconto adicionado com sucesso"
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
