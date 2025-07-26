@@ -276,8 +276,9 @@ def add_to_cart():
         return jsonify({"error": "Não autenticado"}), 401
 
     user_id = session['uid']
-    product_id = request.form.get('product_id')
-    quantity = int(request.form.get('quantity', 1))
+    data = request.get_json()
+    product_id = int(data.get('product_id'))
+    quantity = int(data.get('quantity', 1))
 
     # Verificar se o produto existe
     with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
@@ -315,8 +316,20 @@ def add_to_cart():
 
         mysql.connection.commit()
 
-    return jsonify({"message": "Produto adicionado ao carrinho"})
+        cursor.execute("""
+            SELECT p.name, c.quantity, c.price
+            FROM cart c
+            JOIN products p ON c.product_id = p.id
+            WHERE c.user_id = %s
+        """, (user_id,))
+        cart_items = cursor.fetchall()
 
+        total = sum(item['price'] for item in cart_items)
+
+    return jsonify({
+        "items": cart_items,
+        "total": float(total)
+    })
 
 @app.route('/order', methods=['POST'])
 def create_order():

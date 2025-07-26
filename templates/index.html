@@ -49,6 +49,7 @@
                         </svg>
                     </button>
             </div>
+            <div id="cart" class="mt-4" style="display: none;"></div>
         </div>
     </nav>
 
@@ -112,6 +113,7 @@
         <button class="carousel-btn next">›</button>
     </div>
 
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     fetch('/products')
@@ -138,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <h5 class="card-title">${product.name}</h5>
                         <p class="card-text">${Number(product.price).toFixed(2)} €</p>
                         <a href="/products/${product.id}" class="btn btn-light">Ver detalhes</a>
-                        <a href="/cart/add?product_id=${product.id}" class="btn btn-dark">Adicionar</a>
+                        <a class="btn btn-dark add-to-cart-btn" data-product-id="${product.id}">Adicionar</a>
                     </div>
                 `;
                 container.appendChild(card);
@@ -193,6 +195,56 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("scroll", function () {
         nav.style.background = window.pageYOffset > 100 ? "#212121" : "transparent";
     });
+
+    document.body.addEventListener('click', async (e) => {
+    if (e.target.classList.contains('add-to-cart-btn')) {
+      e.preventDefault();
+
+      const productId = e.target.dataset.productId;
+
+      // Enviar pedido POST à API
+      try {
+        const response = await fetch('/cart/add', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ product_id: productId, quantity: 1 })
+        });
+
+        if (!response.ok) {
+          throw new Error("Erro ao adicionar ao carrinho");
+        }
+
+        let cartData;
+        try {
+            cartData = await response.json();
+        } catch (e) {
+            console.error("Erro a fazer parse do JSON:", e);
+            const text = await response.text();
+            console.log("Resposta crua:", text);
+        return;
+        }
+        console.log(cartData);
+
+        // Mostrar carrinho numa div
+        const cartDiv = document.getElementById("cart");
+        cartDiv.style.display = 'block';
+        cartDiv.innerHTML = `
+          <h5>Carrinho Atualizado</h5>
+          <ul>
+            ${cartData.items.map(item => `
+              <li>${item.name} — ${item.quantity} x ${item.price}€</li>
+            `).join('')}
+          </ul>
+          <p><strong>Total:</strong> ${cartData.total.toFixed(2)}€</p>
+        `;
+      } catch (err) {
+        alert("Erro ao adicionar ao carrinho!");
+        console.error(err);
+      }
+    }
+  });
 });
 </script>
 
