@@ -10,6 +10,7 @@ from datetime import datetime
 import requests 
 import json
 import MySQLdb.cursors
+from flask_mail import Mail, Message
 
 # Carregar variáveis de ambiente se existirem (.env)
 load_dotenv()
@@ -27,6 +28,16 @@ app.config['MYSQL_USER'] = os.getenv('MYSQL_USER')
 app.config['MYSQL_PASSWORD'] = os.getenv('MYSQL_PASSWORD')
 app.config['MYSQL_DB'] = os.getenv('MYSQL_DB', 'e_commerce')
 mysql = MySQL(app)
+
+# Configuração do flask email
+app.config['MAIL_SERVER'] = os.getenv('MAIL_SERVER')
+app.config['MAIL_PORT'] = os.getenv('MAIL_PORT')
+app.config['MAIL_USE_SSL'] = os.getenv('MAIL_USE_SSL')
+app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
+app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_DEFAULT_SENDER')
+mail = Mail(app)
+
 
 # Google OAuth
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
@@ -443,6 +454,13 @@ def add_discont():
 
     return "Desconto adicionado com sucesso"
 
+
+@app.route("/test-email")
+def test_email():
+    msg = Message("Olá!", recipients=["tonicorreiaa4@gmail.com"])
+    msg.body = "Este é um teste de envio com Flask-Mail!"
+    mail.send(msg)
+    return "Email enviado!"
 
 
 if __name__ == "__main__":
