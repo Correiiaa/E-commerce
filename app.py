@@ -328,7 +328,7 @@ def add_to_cart():
         mysql.connection.commit()
 
         cursor.execute("""
-            SELECT p.name, c.quantity, c.price
+            SELECT p.name, p.image_url, c.quantity, c.price
             FROM cart c
             JOIN products p ON c.product_id = p.id
             WHERE c.user_id = %s

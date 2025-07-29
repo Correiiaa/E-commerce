@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Confirmação de Encomenda</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f6f6f6;
+      margin: 0;
+      padding: 20px;
+    }
+    .email-container {
+      max-width: 600px;
+      margin: auto;
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .header {
+      text-align: center;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #dddddd;
+    }
+    .header h2 {
+      margin: 0;
+      color: #333333;
+    }
+    .order-details {
+      margin-top: 20px;
+    }
+    .order-details h3 {
+      color: #555555;
+    }
+    .order-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    .order-table th, .order-table td {
+      padding: 10px;
+      border: 1px solid #dddddd;
+      text-align: left;
+    }
+    .footer {
+      margin-top: 30px;
+      font-size: 13px;
+      color: #888888;
+      text-align: center;
+    }
+    .total {
+      text-align: right;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-container">
+    <div class="header">
+      <h2>Confirmação da sua Encomenda</h2>
+      <p>Obrigado pela sua compra!</p>
+    </div>
+
+    <div class="order-details">
+      <h3>Resumo da Encomenda</h3>
+      <table class="order-table">
+        <thead>
+          <tr>
+            <th>Produto</th>
+            <th>Quantidade</th>
+            <th>Preço</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Estes dados devem ser preenchidos dinamicamente com Python -->
+          <tr>
+            <td>Vinho Tinto Reserva</td>
+            <td>2</td>
+            <td>17.00€</td>
+          </tr>
+          <tr>
+            <td>Espumante Bruto</td>
+            <td>1</td>
+            <td>12.00€</td>
+          </tr>
+          <tr>
+            <td class="total" colspan="2">Total</td>
+            <td><strong>46.00€</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p><strong>Endereço de envio:</strong><br>
+      Rua do Cliente, nº 123<br>
+      4000-000 Porto</p>
+
+    </div>
+
+    <div class="footer">
+      Toni Correia Distribuição<br>
+      Esta é uma mensagem automática. Não responder diretamente a este e-mail.
+    </div>
+  </div>
+</body>
+</html>

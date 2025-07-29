@@ -39,6 +39,11 @@
                 </ul>
             </div>
 
+            
+            <div class="cart-botton" id="cart-button">
+                <img src="/static/6493694.png" alt="cart-icon">
+            </div>
+
             <div class="search">
                 <input type="text" class="search__input" placeholder="Pesquisa o teu vinho" name="query">
                     <button class="search__button">
@@ -49,9 +54,10 @@
                         </svg>
                     </button>
             </div>
-            <div id="cart" class="mt-4" style="display: none;"></div>
         </div>
     </nav>
+
+    <div id="cart" class="mt-4" style="display: none;"></div>
 
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
@@ -231,20 +237,34 @@ document.addEventListener("DOMContentLoaded", () => {
         const cartDiv = document.getElementById("cart");
         cartDiv.style.display = 'block';
         cartDiv.innerHTML = `
-          <h5>Carrinho Atualizado</h5>
-          <ul>
-            ${cartData.items.map(item => `
-              <li>${item.name} — ${item.quantity} x ${item.price}€</li>
-            `).join('')}
-          </ul>
-          <p><strong>Total:</strong> ${cartData.total.toFixed(2)}€</p>
+          <h2>Carrinho</h2>
+            <div class="cart-items">
+                ${cartData.items.map(item => `
+                    <div class="cart-item">
+                        <div class="item-image">
+                            <img src="/static/images/${item.image_url}" alt="${item.name}">
+                        </div>
+                        <p>${item.name}</p>
+                        <p>Quantidade: ${item.quantity}</p>
+                        <p>Preço: ${item.price}€</p>
+                    </div>
+                `).join('')}
+            </div>
+            <div class="total-price">${cartData.total.toFixed(2)}€</div>
         `;
+        
       } catch (err) {
         alert("Erro ao adicionar ao carrinho!");
         console.error(err);
       }
     }
   });
+
+    document.querySelector('.cart-botton').addEventListener('click', function() {
+            const cartDiv = document.getElementById('cart');
+            cartDiv.style.display = 'block';
+            cartDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
 });
 </script>
 
