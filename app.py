@@ -279,6 +279,28 @@ def get_low_stock():
     
     return jsonify(products)
 
+@app.route("/get_user_cart", methods=['GET'])
+def get_user_cart_itens():
+    if 'user' not in session:
+        return jsonify({"error": "Inicie sessão para ver o carrinho"}), 401
+    
+    user_id = session['uid']
+
+    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+        cursor.execute("""
+            SELECT p.name, p.image_url, c.quantity, c.price, p.id
+            FROM cart c
+            JOIN products p ON c.product_id = p.id
+            WHERE c.user_id = %s
+        """, (user_id,))
+        cart_items = cursor.fetchall()
+
+        total = sum(item['price'] for item in cart_items)
+
+    return jsonify({
+        "items": cart_items,
+        "total": float(total)
+    })
 
 
 @app.route('/cart/add', methods=['POST'])
@@ -328,7 +350,7 @@ def add_to_cart():
         mysql.connection.commit()
 
         cursor.execute("""
-            SELECT p.name, p.image_url, c.quantity, c.price
+            SELECT p.name, p.image_url, c.quantity, c.price, p.id
             FROM cart c
             JOIN products p ON c.product_id = p.id
             WHERE c.user_id = %s
