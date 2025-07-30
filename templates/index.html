@@ -55,9 +55,10 @@
                     </button>
             </div>
         </div>
+        <div id="cart" class="mt-4" style="display: none;"></div>
     </nav>
 
-    <div id="cart" class="mt-4" style="display: none;"></div>
+
 
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
@@ -203,7 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     document.body.addEventListener('click', async (e) => {
-    if (e.target.classList.contains('add-to-cart-btn')) {
+    if (e.target.classList.contains('add-to-cart-btn', 'cart-botton')) {
       e.preventDefault();
 
       const productId = e.target.dataset.productId;
@@ -237,16 +238,50 @@ document.addEventListener("DOMContentLoaded", () => {
         const cartDiv = document.getElementById("cart");
         cartDiv.style.display = 'block';
         cartDiv.innerHTML = `
-          <h2>Carrinho</h2>
+            <div class="d-flex justify-content-between align-items-center" bis_skin_checked="1">
+                <p class="cart-title">O seu carrinho</p>
+                <button type="button" class="cart-close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <g fill="none" fill-rule="evenodd">
+                            <g fill="#222">
+                                <g>
+                                    <path d="M21.41 2.59c-.325-.326-.852-.326-1.178 0L12 10.821 3.768 2.589c-.326-.325-.853-.325-1.179 0-.325.326-.325.853 0 1.179L10.822 12l-8.233 8.232c-.325.326-.325.853 0 1.179.326.325.853.325 1.179 0L12 13.178l8.232 8.233c.326.325.853.325 1.179 0 .325-.326.325-.853 0-1.179L13.178 12l8.233-8.232c.325-.326.325-.853 0-1.179z" transform="translate(-1860 -34) translate(1860 34)"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </button>
+            </div>
             <div class="cart-items">
                 ${cartData.items.map(item => `
                     <div class="cart-item">
-                        <div class="item-image">
-                            <img src="/static/images/${item.image_url}" alt="${item.name}">
+                        <div class="d-flex align-items-start" bis_skin_checked="1">
+                            <div class="item-image">
+                                <img src="/static/images/${item.image_url}" alt="${item.name}">
+                            </div>
+                            <div class="item-details">
+                                <p class="item-title">${item.name}</p>
+                                <p class="item-id">ID: ${item.id}</p>
+                                <div class="item-cart-quantity-price d-flex justify-content-start align-items-start
+                                 flex-column flex-md-row justify-content-md-between align-items-md-end" bis_skin_checked="1">
+                                    <div class="quantity-button-wrapper d-flex align-items-center justify-content-start" bis_skin_checked="1">
+                                        <button type="button" class="quantity-button quantity-buttons-less core-cart--qty core-cart--qty-minus">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15"></svg>
+                                        </button>
+                                        <input type="text" name="Quantity" value=${item.quantity} class="quantity-buttons-input core-cart--qty-input" readonly>
+                                        <button type="button" class="quantity-button quantity-buttons-more core-cart--qty core-cart--qty-plus">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15"></svg>
+                                        </button>
+                                    </div>
+                                    <p class="mini-cart-item-price core-cart--item-price cart-item--price">
+                                        <span class="product-item-price">${item.price}</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <button type="button" class="mini-cart-item-remove d-flex justify-content-center align-items-center core-product--remove">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"></svg>
+                            </button>
                         </div>
-                        <p>${item.name}</p>
-                        <p>Quantidade: ${item.quantity}</p>
-                        <p>Preço: ${item.price}€</p>
                     </div>
                 `).join('')}
             </div>
