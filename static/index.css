@@ -369,16 +369,31 @@ Cart
     border-radius: 0 0 0 0;
     display: none;
     flex-direction: column;
+    box-shadow: 0 0 160px #000;
+
 }
 .cart-sidebar.cart-open {
     right: 0;
     display: flex;
+    animation: slideFdeIn 0.5s ease forwards;
+}
+
+@keyframes slideFadeIn {
+  from {
+    opacity:0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .cart-title{
   font-family: "montserrat-semibold";
   text-transform: uppercase;
-  font-size:15px;
+  font-size: 20px;
+  color: #a52446;
 }
 
 .cart-item{
@@ -471,6 +486,7 @@ Cart
   -moz-transition: all .3s ease-in-out;
   -o-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
+  border: none;
 }
 
 .cart-item-price {
@@ -513,4 +529,9 @@ Cart
 }
 .cart-item-remove:hover svg {
   fill: white !important;
+}
+
+.cart-close {
+  border: none;
+  background-color: transparent;
 }

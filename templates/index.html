@@ -212,7 +212,7 @@ function showCart(cartData){
                         </div>
                     `).join('')}
                 </div>
-                <div class="total-price">${cartData.total.toFixed(2)}€</div>
+                <div class="total-price">Total: ${cartData.total.toFixed(2)}€</div>
             `;
         }
 document.addEventListener("DOMContentLoaded", () => {
@@ -319,13 +319,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.log(cartData);
                 showCart(cartData);
             } catch (err) {
-                alert("Erro ao obter o carrinho!");
                 console.error(err);
             }
             return;
         }
-        // Fechar carrinho ao clicar no botão X
-        if (e.target.classList.contains('cart-close')) {
+        // Fechar carrinho ao clicar no botão X ou no SVG dentro dele
+        if (e.target.closest('.cart-close')) {
             document.getElementById('cart').classList.remove('cart-open');
             return;
         }
@@ -364,7 +363,6 @@ document.addEventListener("DOMContentLoaded", () => {
         showCart(cartData);
 
       } catch (err) {
-        alert("Erro ao adicionar ao carrinho!");
         console.error(err);
       }
     }
