@@ -535,3 +535,12 @@ Cart
   border: none;
   background-color: transparent;
 }
+
+.box-cart-total {
+  display: flex;
+  background-color: rgb(154, 154, 154);
+  align-content: center;
+  justify-content: center;
+  padding: 10px;
+  margin-top: 20px;
+}
