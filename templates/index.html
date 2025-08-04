@@ -212,7 +212,12 @@ function showCart(cartData){
                         </div>
                     `).join('')}
                 </div>
-                <div class="total-price">Total: ${cartData.total.toFixed(2)}€</div>
+                <div class="box-cart-total">
+                    <div class="title-cart-total">
+                        <p class="cart-total-title">Total: </p>
+                        <div class="total-price">${cartData.total.toFixed(2)}€</div>
+                    </div>
+                </div>
             `;
         }
 document.addEventListener("DOMContentLoaded", () => {
