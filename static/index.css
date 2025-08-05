@@ -203,6 +203,106 @@ Navbar and coursel
   width: 1.3em;
   fill: #b4b4b4;
 }
+
+.icon-user-menu img {
+  color: white;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  padding-right: 20px;
+}
+
+/*//////////////////////////////////////////////////////////////////////////////////////////////
+Submenus
+////////////////////////////////////////////////////////////////////////////////////////////*/
+
+
+.menu-user-wrap{
+  position: absolute;
+  top: 100%;
+  right: 10%;
+  width: 320px;
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height 0.5s;
+}
+
+.menu-user-wrap.show{
+  max-height: 400px;
+}
+
+.menu-user-wrap-no-user{
+  position: absolute;
+  top: 100%;
+  right: 10%;
+  width: 320px;
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height 0.5s;
+}
+
+.menu-user-wrap-no-user.show{
+  max-height: 400px;
+}
+
+.sub-menu{
+  background: #fff;
+  padding: 20px;
+  margin: 10px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-info h3 {
+  font-weight: 500;
+}
+
+.sub-menu hr {
+  border: 0;
+  height: 1px;
+  width: 100%;
+  background: #212529;
+  margin: 15px 0 10px;
+}
+
+.sub-menu-link{
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #212529;
+  margin: 12px 0;
+}
+
+.sub-menu-link p{
+  width: 100%;
+} 
+
+.sub-menu-link img{
+  width: 40px;
+  background-color:#ccc ;
+  border-radius: 50%;
+  padding: 8px;
+  margin-right: 15px;
+}
+
+.sub-menu-link span {
+  font-size: 22px;
+  transition: transform 0.5s;
+}
+
+.sub-menu-link:hover span {
+  transform: translateX(5px);
+}
+
+.sub-menu-link:hover p {
+  font-weight: 600;
+}
+
+
 /*////////////////////////////////////////////////////////////////////////////////////////////////////
 Cards
 //////////////////////////////////////////////////////////////////////////////////////////////////*/
@@ -230,7 +330,14 @@ Cards
   justify-content: center;
   justify-items: center;
   align-items: center;
-  max-height: 500px;}
+  max-height: 500px;
+  transition: transform 0.7s ease, box-shadow 0.3s ease;
+}
+
+.card:hover{
+  transform: scale(1.03) translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* efeito de sombra */
+}
 
 .card-body {
   width: fit-content;}
@@ -251,7 +358,9 @@ Cards
   padding-bottom: 10px;
   transition: opacity 0.3s;
   width: calc((100% - 40px) / 3);
-  flex-shrink: 0;}
+  flex-shrink: 0;
+  cursor: pointer;
+}
 
 .card.fade {
   opacity: 0.3;
@@ -325,12 +434,16 @@ Section titles
     font-size: 18px;
 }
 .section-title {
-    margin-top: 8px;
+    margin-top: 20px;
     font-family: "montserrat-medium";
     color: #222;
     font-size: 18px;
     padding-bottom: 10px;
     position: relative;
+}
+
+.section-subtitle{
+  margin-top: 50px;
 }
 
 *, ::after, ::before {
@@ -367,15 +480,15 @@ Cart
     transition: right 0.4s cubic-bezier(.4,0,.2,1);
     padding: 30px 20px 30px 20px;
     border-radius: 0 0 0 0;
-    display: none;
+    display: flex;
     flex-direction: column;
     box-shadow: 0 0 160px #000;
+    right: -999px; /* Inicia escondido */
+    transition: right 0.5s;
 
 }
 .cart-sidebar.cart-open {
     right: 0;
-    display: flex;
-    animation: slideFdeIn 0.5s ease forwards;
 }
 
 @keyframes slideFadeIn {
@@ -493,7 +606,7 @@ Cart
     color: #a52446;
     font-family: "montserrat-medium";
     font-size: 15px;
-    margin-top: 15px;
+    margin-top: 0;
 }
 
 .product-item-price {
@@ -536,11 +649,31 @@ Cart
   background-color: transparent;
 }
 
+.cart-total-title {
+  font-family: "montserrat-semibold";
+  font-size: 30px;
+  color: #000000;
+  margin-right: 10px;
+  text-transform: uppercase;
+}
+
+.total-price{
+  font-family: "montserrat-semibold";
+  font-size: 30px;
+  color: #a52446;
+  text-transform: uppercase;
+  margin-right: 0;
+  justify-content: flex-end;
+}
+
 .box-cart-total {
   display: flex;
-  background-color: rgb(154, 154, 154);
-  align-content: center;
+  align-items: center;
   justify-content: center;
-  padding: 10px;
-  margin-top: 20px;
+  padding-top: 20px;
+}
+
+.box-cart-total .cart-total-title,
+.box-cart-total .total-price {
+  display: inline-block;
 }

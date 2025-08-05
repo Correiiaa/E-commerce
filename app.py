@@ -477,6 +477,28 @@ def add_discont():
     return "Desconto adicionado com sucesso"
 
 
+@app.route("/check_login", methods=['GET'])
+def check_session():
+    if 'user' in session:
+        return jsonify({'is_logged_in': True})
+    else:
+        return jsonify({'is_logged_in': False})
+    
+
+@app.route("/user_info", methods=['GET'])
+def get_user_info():
+    if 'user' not in session:
+        return "Não autenticado", 401
+    
+    user_id = session['uid']
+    
+    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+        cursor.execute("SELECT * FROM users WHERE id = %s", (user_id))
+        info = cursor.fetchall()
+
+    return jsonify(info)
+
+
 @app.route("/test-email")
 def test_email():
     msg = Message("Olá!", recipients=["tonicorreiaa4@gmail.com"])
