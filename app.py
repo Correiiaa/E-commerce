@@ -498,6 +498,21 @@ def get_user_info():
 
     return jsonify(info)
 
+@app.route("/remove_from_cart", methods=['POST'])
+def remove_from_cart():
+    if 'user' not in session:
+        return "Não autenticado", 400
+    
+    cartdata = request.get_json()
+    product_id = int(cartdata.get('product_id'))
+    user_id = session['uid']
+    
+    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+        cursor.execute("DELETE FROM cart WHERE product_id = %s AND user_id = %s", (product_id, user_id,))
+        mysql.connection.commit()
+
+    return "Produto removido"
+
 
 @app.route("/test-email")
 def test_email():
