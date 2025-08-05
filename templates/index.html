@@ -290,7 +290,7 @@ function showCart(cartData){
                                         </p>
                                     </div>
                                 </div>
-                                <button type="button" class="cart-item-remove d-flex justify-content-center align-items-center core-product--remove">
+                                <button type="button" class="cart-item-remove d-flex justify-content-center align-items-center core-product--remove" data-product-id="${item.id}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
                                         <g>
                                             <g>
@@ -468,8 +468,35 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error(err);
       }
     }
+});
+
+async function fetchAndShowCart() {
+  try {
+    const response = await fetch('/get_user_cart');
+    if (!response.ok) throw new Error("Erro ao obter carrinho");
+
+    const cartData = await response.json();
+    showCart(cartData); // atualiza a UI
+  } catch (error) {
+    console.error("Erro ao atualizar carrinho:", error);
+  }
+}
+
+document.body.addEventListener('click', async (e) => {
+    if (e.target.classList.contains('cart-item-remove')) {
+        e.preventDefault();
+
+        const productId = e.target.dataset.productId;
+        await fetch('/remove_from_cart', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ product_id: productId })
+        });
+            await fetchAndShowCart();
+    }
   });
 });
+
 </script>
 
 
