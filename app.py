@@ -207,8 +207,9 @@ def get_all_products():
 def get_products_by_id(id):
     with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
         cursor.execute("SELECT * FROM products WHERE id=%s", (id,))
-        product = cursor.fetchall()
-    return jsonify(product)
+        product = cursor.fetchone()
+
+    return render_template("product.html", product=product)
 
 
 @app.route('/admin/update-products/<int:id>', methods=['PUT'])
