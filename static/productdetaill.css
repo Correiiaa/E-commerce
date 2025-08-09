@@ -1,3 +1,18 @@
 .navbar {
     background: #212121 !important;
 }
+
+.sectionwine {
+    margin-top: 80px;
+}  
+
+.containersection .section-header {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-section {
+    font-size: 2rem;
+}
