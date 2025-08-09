@@ -16,6 +16,7 @@
 
 </head>
 <body>
+    <div class="navbar-product-page"></div>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="nav">
         <div class="container">
             <a class="navbar-brand" href="/">Toni Correia</a>
@@ -137,12 +138,34 @@
 
     <div class="sectionwine">
         <div class="containersection" id="product-section">
-         <!-- Javascript -->
+            <div class="section-header">
+                <p class="product-section">{{ product.category }}</p>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="/">Home</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="/products">Produtos</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="product-details">
+                <div class="product-image">
+                    <img src="/static/images/{{ product.image_url }}" alt="{{ product.name }}">
+                </div>
+                <div class="product-info">
+                    <h1>{{ product.name }}</h1>
+                    <p class="product-description">{{ product.description }}</p>
+                    <p class="product-price">{{ product.price }} €</p>
+                    <button class="add-to-cart-btn" data-product-id="{{ product.id }}">Adicionar ao Carrinho</button>
+                </div>
+            </div>
         </div>
     </div>
 
 
 <script>
+console.log({{ product | tojson }});
 function toggleUserMenu() {
     fetch('/check_login')
         .then(response => response.json())
