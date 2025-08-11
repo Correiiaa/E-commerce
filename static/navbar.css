@@ -8,10 +8,6 @@
   letter-spacing: 2px;
 }
 
-.navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link {
-  color: #ff0000;
-}
-
 .navbar-light .navbar-nav .nav-link {
   color: #fff;
 }

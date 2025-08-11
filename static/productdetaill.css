@@ -2,8 +2,9 @@
     background: #212121 !important;
 }
 
-.sectionwine {
+.product-page {
     margin-top: 80px;
+    background: #fff;
 }  
 
 .containersection .section-header {
@@ -15,4 +16,62 @@
 
 .product-section {
     font-size: 2rem;
+    text-decoration: none;
+    color: #212121;
+}
+
+.product-section:hover {
+    color: #ff0000;
+}
+
+.product-image {
+    height: 600px;
+    width: 480px;
+    display: flex;
+    justify-content: center;
+    margin-left: 60px;
+    margin-top: 30px;
+    border: solid 1px #000;
+}
+
+.product-details {
+    display: flex;
+    flex-direction: row;
+    max-width: 1140px;
+    margin: 0 auto;  
+}
+
+.product-info {
+    margin-left: 60px;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-name {
+    font-size: 25px;
+    font-weight: bold;
+    height:25px;
+}
+
+.product-price {
+    font-size: calc(20px + 4 * (100vw - 320px) / 1600);
+    color: #ff0000;
+}
+
+.addtocart {
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-to-cart-btn {
+    background-color: #ff0000;
+    color: #fff;
+    border: 1px solid;
+    border-radius: 26.5px;
+    height: 30px;
+}
+
+.product-id {
+    margin-top: 0;
 }
