@@ -2,6 +2,10 @@
     background: #212121 !important;
 }
 
+body {
+    background: #fff;
+}
+
 .product-page {
     margin-top: 80px;
     background: #fff;
