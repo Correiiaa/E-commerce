@@ -212,6 +212,17 @@ def get_products_by_id(id):
     return render_template("product.html", product=product)
 
 
+@app.route('/get-products-section', methods=['GET'])
+def get_products_by_section():
+    section = request.args.get("section")
+    
+    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+        cursor.execute("SELECT * FROM products WHERE category=%s", (section,))
+        product = cursor.fetchone()
+
+    return render_template("product.html", product=product)
+
+
 @app.route('/admin/update-products/<int:id>', methods=['PUT'])
 def update_product(id):
     if 'user' not in session or session.get('role') != 'admin':
