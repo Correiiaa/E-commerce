@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="/static/cart.css">
     <link rel="stylesheet" href="/static/body.css">
     <link rel="stylesheet" href="/static/productdetaill.css">
+    <link rel="stylesheet" href="/static/cards.css">
+    <link rel="stylesheet" href="/static/SectionTitles.css">
     <title>Toni Distribuição</title>
 
 
@@ -46,11 +48,11 @@
 
             
             <div class="cart-botton" id="cart-button">
-                <img src="/static/6493694.png" alt="cart-icon">
+                <img src="/static/icons/6493694.png" alt="cart-icon">
             </div>
 
             <div class="icon-user-menu">
-                <img src="/static/usericon.png" alt="User" onclick="toggleUserMenu()">
+                <img src="/static/icons/usericon.png" alt="User" onclick="toggleUserMenu()">
             </div>
 
             <div class="menu-user-wrap" id="menu-user-wrap">
@@ -61,25 +63,25 @@
                     <hr>
 
                     <a href="#" class="sub-menu-link">
-                        <img src="/static/editprofile.png" alt="edit profile">
+                        <img src="/static/icons/editprofile.png" alt="edit profile">
                         <p>Edit Profile</p>
                         <span>></span>
                     </a>
 
                     <a href="#" class="sub-menu-link">
-                        <img src="/static/orders.png" alt="Orders">
+                        <img src="/static/icons/orders.png" alt="Orders">
                         <p>Orders</p>
                         <span>></span>
                     </a>
 
                     <a href="#" class="sub-menu-link">
-                        <img src="/static/support.png" alt="Support">
+                        <img src="/static/icons/support.png" alt="Support">
                         <p>Help & Support</p>
                         <span>></span>
                     </a>
 
                     <a href="#" class="sub-menu-link" onclick="logout()">
-                        <img src="/static/logout.png" alt="Lougout">
+                        <img src="/static/icons/logout.png" alt="Lougout">
                         <p>Logout</p>
                         <span>></span>
                     </a>
@@ -93,12 +95,12 @@
                     </div>
                     <hr>
                     <a href="/login" class="sub-menu-link">
-                        <img src="/static/login.png" alt="Login">
+                        <img src="/static/icons/login.png" alt="Login">
                         <p>Login</p>
                         <span>></span>
                     </a>
                     <a href="/register" class="sub-menu-link">
-                        <img src="/static/register.jpg" alt="Register">
+                        <img src="/static/icons/register.jpg" alt="Register">
                         <p>Register</p>
                         <span>></span>
                     </a>
@@ -201,7 +203,7 @@
                             <div class="col-12 col-lg-6">
                                 <div class="product-detail-spects">
                                     <div class="product-detail-spects-icon">
-                                        <img src="/static/regiao.jpg" alt="Regiao">
+                                        <img src="/static/icons/regiao.jpg" alt="Regiao">
                                     </div>
                                     <div class="product-detail-spects-text">
                                         <span>Região</span>
@@ -210,7 +212,7 @@
                                 </div>
                                 <div class="product-detail-spects">
                                     <div class="product-detail-spects-icon">
-                                        <img src="/static/anovinho.jpg" alt="">
+                                        <img src="/static/icons/anovinho.jpg" alt="">
                                     </div>
                                     <div class="product-detail-spects-text">
                                         <span>Ano</span>
@@ -219,7 +221,7 @@
                                 </div>
                                 <div class="product-detail-spects">
                                     <div class="product-detail-spects-icon">
-                                        <img src="/static/teoralcool.jpg" alt="Alcool">
+                                        <img src="/static/icons/teoralcool.jpg" alt="Alcool">
                                     </div>
                                     <div class="product-detail-spects-text">
                                         <span>Teor alcoólico</span>
@@ -230,7 +232,7 @@
                             <div class="col-12 col-lg-6">
                                 <div class="product-detail-spects">
                                     <div class="product-detail-spects-icon">
-                                        <img src="/static/contry-icon.png" alt="Pais de origem">
+                                        <img src="/static/icons/contry-icon.png" alt="Pais de origem">
                                     </div>
                                     <div class="product-detail-spects-text">
                                         <span>País</span>
@@ -239,7 +241,7 @@
                                 </div>
                                 <div class="product-detail-spects">
                                     <div class="product-detail-spects-icon">
-                                        <img src="/static/produtor.jpg" alt="Produtor">
+                                        <img src="/static/icons/produtor.jpg" alt="Produtor">
                                     </div>
                                     <div class="product-detail-spects-text">
                                         <span>Produtor</span>
@@ -253,6 +255,20 @@
                 </div>
             </div>
         </div>
+    </div>
+
+
+    <div class="container">
+        <h2 class="section-subtitle highlight-products-subtitle">Produtos Recomendados</h2>
+        <p class="section-title highlight-products-title"></p>
+    </div>
+
+    <div class="carousel-wrapper">
+        <button class="carousel-btn prev">‹</button>
+        <div class="carousel-viewport">
+            <div class="carousel-track" id="product-container"></div>
+        </div>
+        <button class="carousel-btn next">›</button>
     </div>
 
 
@@ -609,7 +625,83 @@ document.body.addEventListener('click', async (e) => {
     }
   });
 
-  
+document.addEventListener("DOMContentLoaded", () => {
+const section = {{ product.category | tojson }};
+fetch(`/get-products-section?section=${encodeURIComponent(section)}`)
+    .then(response => response.json())
+    .then(products => {
+        const container = document.getElementById('product-container');
+        container.innerHTML = "";
+        products.forEach(product => {
+            let extraClass = '';
+            if (product.name === "Encosta d´Aregos") {
+                extraClass = ' encosta-daregos';
+            } else if (product.name === "M&M ROSÉ") {
+                extraClass = ' MM-rose';
+            } else if (product.name === "Perspetiva Colheita Branco"){
+                extraClass = ' perspetiva-colheita-branco';
+            }
+
+            const card = document.createElement("div");
+            card.classList.add("card", "h-100");
+            card.innerHTML = `
+                <img class="card-img-top${extraClass}" src="/static/images/${product.image_url}" alt="${product.name}">
+                <div class="card-body text-center">
+                    <h5 class="card-title">${product.name}</h5>
+                    <p class="card-text">${Number(product.price).toFixed(2)} €</p>
+                    <a href="/products/${product.id}" class="btn btn-light">Ver detalhes</a>
+                    <a class="btn btn-dark add-to-cart-btn" data-product-id="${product.id}">Adicionar</a>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+
+        // Carousel logic igual ao index
+        const track = document.querySelector('.carousel-track');
+        const cards = track.querySelectorAll('.card');
+        const prevBtn = document.querySelector('.carousel-btn.prev');
+        const nextBtn = document.querySelector('.carousel-btn.next');
+        const visibleCards = 2;
+        let currentIndex = 0;
+
+        const updateCarousel = () => {
+            const cardWidth = cards[0].offsetWidth + 20; // 20px gap
+            const offset = currentIndex * cardWidth;
+            track.style.transform = `translateX(-${offset}px)`;
+
+            cards.forEach((card, index) => {
+                card.classList.remove('fade');
+                if (
+                    index < currentIndex ||
+                    index >= currentIndex + visibleCards
+                ) {
+                    card.classList.add('fade');
+                }
+            });
+        };
+
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCarousel();
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < cards.length - visibleCards) {
+                currentIndex++;
+                updateCarousel();
+            }
+        });
+
+        updateCarousel();
+    })
+    .catch(error => {
+        console.error('Erro ao buscar produtos:', error);
+    });
+});
+
 </script>
 </body>
 </html>
+

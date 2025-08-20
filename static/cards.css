@@ -1,0 +1,105 @@
+.details {
+  border: 1.5px solid grey;
+  color: #212121;
+  width: 100%;
+  height: auto;
+  box-shadow: 0px 0px 10px #212121;}
+
+.card {
+  width: 297px;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  max-height: 500px;
+  transition: transform 0.7s ease, box-shadow 0.3s ease;
+}
+
+.card:hover{
+  transform: scale(1.03) translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* efeito de sombra */
+}
+
+.card-body {
+  width: fit-content;}
+
+.btn {
+  border-radius: 0;}
+
+.card-img-top {
+  border: none;
+  max-width: 120px;
+  max-height: 225px;
+  object-fit:scale-down;
+}
+
+.card {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, .2);
+  border-radius: 5px;
+  padding-bottom: 10px;
+  transition: opacity 0.3s;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.card.fade {
+  opacity: 0.3;
+  filter: blur(1px);
+}
+
+.encosta-daregos{
+    height: 300px !important;
+}  
+
+.MM-rose {
+    height: 300px !important;
+    width: 400px;
+    object-fit: cover;
+}
+
+.perspetiva-colheita-branco {
+  height: 300px !important;
+  object-fit: contain;
+}
+
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+  overflow: hidden;
+}
+
+.carousel-viewport {
+    overflow: hidden;
+    width: 100%;
+    height: 500px;
+    align-items: center;
+    display: flex;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    gap: 20px;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.177);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.carousel-btn.prev {
+    left: 0;
+}
+
+.carousel-btn.next {
+    right: 0;
+}
