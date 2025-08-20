@@ -218,10 +218,9 @@ def get_products_by_section():
     
     with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
         cursor.execute("SELECT * FROM products WHERE category=%s", (section,))
-        product = cursor.fetchone()
+        products = cursor.fetchall()
 
-    return render_template("product.html", product=product)
-
+    return jsonify(products)
 
 @app.route('/admin/update-products/<int:id>', methods=['PUT'])
 def update_product(id):
