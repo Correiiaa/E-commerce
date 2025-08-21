@@ -95,6 +95,7 @@ Navbar and coursel
 
 .nav-link {
   padding: .2rem 1rem;
+  cursor: pointer;
 }
 
 .nav-link.active,.nav-link:focus{
@@ -312,7 +313,7 @@ Cards
   border-radius: 5px;
   padding-bottom: 10px;
   transition: opacity 0.3s;
-  width: calc((100% - 40px) / 3);
+  /* width: calc((100% - 40px) / 3); */
   flex-shrink: 0;
   cursor: pointer;
 }

@@ -195,7 +195,13 @@ def add_product():
     return "Produto adicionado com sucesso"
 
 
+
 @app.route('/products', methods=['GET'])
+def render_products_page():
+    return render_template("products.html")
+    
+
+@app.route('/api/products', methods=['GET'])
 def get_all_products():
     with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
         cursor.execute("SELECT * FROM products WHERE active=1")
