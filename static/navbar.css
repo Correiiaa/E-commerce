@@ -107,6 +107,9 @@
   padding-right: 20px;
 }
 
+.nav-item{
+  cursor: pointer;
+}
 
 /*SUbsmenus*/
 
