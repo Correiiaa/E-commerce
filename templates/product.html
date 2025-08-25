@@ -284,11 +284,11 @@
 
     <!-- Right -->
             <div>
-            <a href="" class="me-4 text-reset">
-                <i class="fab fa-facebook-f"></i>
+            <a href="https://www.facebook.com/profile.php?id=100088980578739" target="_blank" class="me-4 text-reset">
+                <img src="/static/icons/facebookicon.png" class="icons-footer" style="width: 30px;">
             </a>
-            <a href="" class="me-4 text-reset">
-                <i class="fab fa-twitter"></i>
+            <a href="https://www.instagram.com/winewine.distribuicao/" target="_blank" class="me-4 text-reset">
+                <img src="/static/icons/instagramicon.png" alt="Instagram" class="icons-footer" style="width: 30px;">
             </a>
             <a href="" class="me-4 text-reset">
                 <i class="fab fa-google"></i>
@@ -519,6 +519,7 @@ function showCart(cartData){
                 </div>
             `;
         }
+    
 
 
     // Efeito de scroll para mudar a cor do navbar
@@ -655,6 +656,7 @@ fetch(`/get-products-section?section=${encodeURIComponent(section)}`)
             `;
             container.appendChild(card);
         });
+    
 
         // Carousel logic igual ao index
         const track = document.querySelector('.carousel-track');
