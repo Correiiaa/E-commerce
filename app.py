@@ -172,6 +172,10 @@ def logout():
 
 @app.route('/admin/add_product', methods=['POST'])
 def add_product():
+    if 'user' not in session or session.get('role') != 'admin':
+        return "Unauthorized", 403
+
+
     name = request.form.get("name")
     category = request.form.get("category")
     description = request.form.get("description")
@@ -463,17 +467,16 @@ def sales_report():
     return jsonify(orders)
 
 
-@app.route('/admin/best_seller', methods=['GET'])
+@app.route('/api/best_seller', methods=['GET'])
 def get_best_selling_products():
     with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
-        cursor.execute("""SELECT products.id,
-                       products.name,
+        cursor.execute("""SELECT  products.*,
                        SUM(order_items.quantity) AS total_vendido
                        FROM order_items
                        JOIN products ON order_items.product_id = products.id
                        GROUP BY order_items.product_id
                        ORDER BY total_vendido DESC
-                       LIMIT 2;""")
+                       LIMIT 6;""")
         
         best_seller = cursor.fetchall()
 
@@ -537,6 +540,9 @@ def test_email():
     msg.body = "Este é um teste de envio com Flask-Mail!"
     mail.send(msg)
     return "Email enviado!"
+
+
+
 
 
 if __name__ == "__main__":

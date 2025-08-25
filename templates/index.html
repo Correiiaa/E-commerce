@@ -195,6 +195,14 @@
         <p class="section-title highlight-products-title"></p>
     </div>
 
+    <div class="carousel-wrapper">
+        <button class="carousel-btn prev">‹</button>
+        <div class="carousel-viewport">
+            <div class="carousel-track" id="product-container-bestseller"></div>
+        </div>
+        <button class="carousel-btn next">›</button>
+    </div>
+
 
         <!-- Footer -->
     <footer class="text-center text-lg-start bg-body-tertiary text-muted" style="background-color: #212121 !important;">
@@ -208,11 +216,11 @@
 
     <!-- Right -->
             <div>
-            <a href="" class="me-4 text-reset">
-                <i class="fab fa-facebook-f"></i>
+            <a href="https://www.facebook.com/profile.php?id=100088980578739" target="_blank" class="me-4 text-reset">
+                <img src="/static/icons/facebookicon.png" class="icons-footer" style="width: 30px;">
             </a>
-            <a href="" class="me-4 text-reset">
-                <i class="fab fa-twitter"></i>
+            <a href="https://www.instagram.com/winewine.distribuicao/" target="_blank" class="me-4 text-reset">
+                <img src="/static/icons/instagramicon.png" alt="Instagram" class="icons-footer" style="width: 30px;">
             </a>
             <a href="" class="me-4 text-reset">
                 <i class="fab fa-google"></i>
@@ -516,6 +524,8 @@ document.addEventListener("DOMContentLoaded", () => {
         .catch(error => {
             console.error('Erro ao buscar produtos:', error);
         });
+});
+
 
     var nav = document.getElementById('nav');
     window.addEventListener("scroll", function () {
@@ -618,9 +628,85 @@ document.body.addEventListener('click', async (e) => {
         });
             await fetchAndShowCart();
     }
-  });
 });
 
+
+document.addEventListener("DOMContentLoaded", () => {
+    fetch('/api/best_seller')
+        .then(response => response.json())
+        .then(products => {
+            const container = document.getElementById('product-container-bestseller');
+            products.forEach(product => {
+                console.log(product.name);
+                let extraClass = '';
+                if (product.name === "Encosta d´Aregos") {
+                    extraClass = ' encosta-daregos';
+                } else if (product.name === "M&M ROSÉ") {
+                    extraClass = ' MM-rose';
+                } else if (product.name === "Perspetiva Colheita Branco"){
+                    extraClass = ' perspetiva-colheita-branco';
+                }
+                
+
+                const card = document.createElement("div");
+                card.classList.add("card", "h-100");
+                card.innerHTML = `
+                    <img class="card-img-top${extraClass}" src="/static/images/${product.image_url}" alt="${product.name}">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">${product.name}</h5>
+                        <p class="card-text">${Number(product.price).toFixed(2)} €</p>
+                        <a href="/products/${product.id}" class="btn btn-light">Ver detalhes</a>
+                        <a class="btn btn-dark add-to-cart-btn" data-product-id="${product.id}">Adicionar</a>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            // Carousel logic
+            const track = document.querySelector('.carousel-track');
+            const cards = track.querySelectorAll('.card');
+            const prevBtn = document.querySelector('.carousel-btn.prev');
+            const nextBtn = document.querySelector('.carousel-btn.next');
+            const visibleCards = 3;
+            let currentIndex = 0;
+
+            const updateCarousel = () => {
+                const cardWidth = cards[0].offsetWidth + 20; // 20px gap
+                const offset = currentIndex * cardWidth;
+                track.style.transform = `translateX(-${offset}px)`;
+
+                cards.forEach((card, index) => {
+                    card.classList.remove('fade');
+                    if (
+                        index < currentIndex ||
+                        index >= currentIndex + visibleCards
+                    ) {
+                        card.classList.add('fade');
+                    }
+                });
+            };
+
+            prevBtn.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateCarousel();
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (currentIndex < cards.length - visibleCards) {
+                    currentIndex++;
+                    updateCarousel();
+                }
+            });
+
+            // Inicializar com fade correto
+            updateCarousel();
+        })
+        .catch(error => {
+            console.error('Erro ao buscar produtos:', error);
+        });
+});
 
 function scrollToBottom() {
   window.scrollTo(0, document.body.scrollHeight);
