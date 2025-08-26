@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
@@ -12,11 +11,16 @@
     <link rel="stylesheet" href="/static/body.css">
     <link rel="stylesheet" href="/static/cards.css">
     <link rel="stylesheet" href="/static/SectionTitles.css">
+    <link rel="stylesheet" href="/static/products.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <title>Toni Distribuição</title>
 </head>
 <body>
     <div class="navbar-product-page"></div>
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="nav">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="nav" style="background: #212121;">
         <div class="container">
             <a class="navbar-brand" href="/">Toni Correia</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -135,32 +139,598 @@
             </div>
     </nav>
 
-    <div class="larger-container">
-        <div class="row">
-            
+     <main class="container-fluid py-4" style="max-width: 1140px;padding-top: 5rem !important;" >
+        <!-- Header Section -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <h1 class="display-4 fw-bold mb-2">Vinhos</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/" class="text-decoration-none">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Vinhos</li>
+                    </ol>
+                </nav>
+                <div class="free-shipping">
+                    <i class="fas fa-truck me-2"></i>Portes grátis a partir de 50€
+                </div>
+            </div>
         </div>
+
+        <!-- Sub-header with results and sorting -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <p class="results-info mb-2">
+                    <span id="totalProducts">0</span> produtos encontrados
+                </p>
+            </div>
+            <div class="col-md-6">
+                <div class="sort-buttons d-flex flex-wrap justify-content-md-end">
+                    <button class="btn btn-outline-secondary btn-sm" onclick="sortProducts('discount')">
+                        <i class="fas fa-percentage me-1"></i>Descontos
+                    </button>
+                    <button class="btn btn-outline-secondary btn-sm" onclick="sortProducts('recommended')">
+                        <i class="fas fa-star me-1"></i>Recomendadas
+                    </button>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                            Ordenar por
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" onclick="sortProducts('price_asc')">Preço: Menor para Maior</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="sortProducts('price_desc')">Preço: Maior para Menor</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="sortProducts('name_asc')">Nome: A-Z</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="sortProducts('name_desc')">Nome: Z-A</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="sortProducts('year_desc')">Ano: Mais Recente</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar with Filters -->
+            <div class="col-lg-3 col-md-4 mb-4">
+                <div class="sidebar">
+                    <!-- Search Bar -->
+                    <div class="search-box mb-4">
+                        <input type="text" class="form-control" id="searchInput" placeholder="Pesquisar vinhos...">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+
+                    <!-- Filters -->
+                    <div class="accordion" id="filtersAccordion">
+                        <!-- Wine Types -->
+                        <div class="accordion-item border-0">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#wineTypes">
+                                    Tipos de Vinho
+                                </button>
+                            </h2>
+                            <div id="wineTypes" class="accordion-collapse collapse show" data-bs-parent="#filtersAccordion">
+                                <div class="accordion-body">
+                                    <div class="filter-options">
+                                        <div class="filter-option">
+                                            <label><input type="checkbox" class="form-check-input me-2" value="tinto"> Tinto</label>
+                                            <span class="filter-count">(45)</span>
+                                        </div>
+                                        <div class="filter-option">
+                                            <label><input type="checkbox" class="form-check-input me-2" value="branco"> Branco</label>
+                                            <span class="filter-count">(32)</span>
+                                        </div>
+                                        <div class="filter-option">
+                                            <label><input type="checkbox" class="form-check-input me-2" value="rose"> Rosé</label>
+                                            <span class="filter-count">(18)</span>
+                                        </div>
+                                        <div class="filter-option">
+                                            <label><input type="checkbox" class="form-check-input me-2" value="espumante"> Espumante</label>
+                                            <span class="filter-count">(12)</span>
+                                        </div>
+                                        <div class="filter-option">
+                                            <label><input type="checkbox" class="form-check-input me-2" value="champagne"> Champagne</label>
+                                            <span class="filter-count">(8)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Price Range -->
+                        <div class="accordion-item border-0">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#priceRange">
+                                    Preço
+                                </button>
+                            </h2>
+                            <div id="priceRange" class="accordion-collapse collapse" data-bs-parent="#filtersAccordion">
+                                <div class="accordion-body">
+                                    <div class="price-range">
+                                        <label for="priceSlider" class="form-label">Faixa de preço: <span id="priceValue">5€ - 500€</span></label>
+                                        <input type="range" class="form-range" id="priceSlider" min="5" max="500" value="250">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input type="number" class="form-control form-control-sm" id="minPrice" placeholder="Min" value="5">
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="number" class="form-control form-control-sm" id="maxPrice" placeholder="Max" value="500">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Capacity -->
+                        <div class="accordion-item border-0">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#capacity">
+                                    Capacidade
+                                </button>
+                            </h2>
+                            <div id="capacity" class="accordion-collapse collapse" data-bs-parent="#filtersAccordion">
+                                <div class="accordion-body">
+                                    <div class="filter-option">
+                                        <label><input type="checkbox" class="form-check-input me-2" value="375ml"> 375ml</label>
+                                        <span class="filter-count">(5)</span>
+                                    </div>
+                                    <div class="filter-option">
+                                        <label><input type="checkbox" class="form-check-input me-2" value="750ml"> 750ml</label>
+                                        <span class="filter-count">(89)</span>
+                                    </div>
+                                    <div class="filter-option">
+                                        <label><input type="checkbox" class="form-check-input me-2" value="1500ml"> 1500ml</label>
+                                        <span class="filter-count">(12)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Country -->
+                        <div class="accordion-item border-0">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#country">
+                                    País
+                                </button>
+                            </h2>
+                            <div id="country" class="accordion-collapse collapse" data-bs-parent="#filtersAccordion">
+                                <div class="accordion-body">
+                                    <div class="filter-option">
+                                        <label><input type="checkbox" class="form-check-input me-2" value="portugal"> Portugal</label>
+                                        <span class="filter-count">(78)</span>
+                                    </div>
+                                    <div class="filter-option">
+                                        <label><input type="checkbox" class="form-check-input me-2" value="espanha"> Espanha</label>
+                                        <span class="filter-count">(23)</span>
+                                    </div>
+                                    <div class="filter-option">
+                                        <label><input type="checkbox" class="form-check-input me-2" value="franca"> França</label>
+                                        <span class="filter-count">(15)</span>
+                                    </div>
+                                    <div class="filter-option">
+                                        <label><input type="checkbox" class="form-check-input me-2" value="italia"> Itália</label>
+                                        <span class="filter-count">(9)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Region -->
+                        <div class="accordion-item border-0">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#region">
+                                    Região
+                                </button>
+                            </h2>
+                            <div id="region" class="accordion-collapse collapse" data-bs-parent="#filtersAccordion">
+                                <div class="accordion-body">
+                                    <div class="filter-option">
+                                        <label><input type="checkbox" class="form-check-input me-2" value="alentejo"> Alentejo</label>
+                                        <span class="filter-count">(34)</span>
+                                    </div>
+                                    <div class="filter-option">
+                                        <label><input type="checkbox" class="form-check-input me-2" value="douro"> Douro</label>
+                                        <span class="filter-count">(28)</span>
+                                    </div>
+                                    <div class="filter-option">
+                                        <label><input type="checkbox" class="form-check-input me-2" value="dao"> Dão</label>
+                                        <span class="filter-count">(16)</span>
+                                    </div>
+                                    <div class="filter-option">
+                                        <label><input type="checkbox" class="form-check-input me-2" value="vinho-verde"> Vinho Verde</label>
+                                        <span class="filter-count">(12)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Grape Variety -->
+                        <div class="accordion-item border-0">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#grape">
+                                    Casta
+                                </button>
+                            </h2>
+                            <div id="grape" class="accordion-collapse collapse" data-bs-parent="#filtersAccordion">
+                                <div class="accordion-body">
+                                    <div class="filter-option">
+                                        <label><input type="checkbox" class="form-check-input me-2" value="touriga-nacional"> Touriga Nacional</label>
+                                        <span class="filter-count">(25)</span>
+                                    </div>
+                                    <div class="filter-option">
+                                        <label><input type="checkbox" class="form-check-input me-2" value="aragonez"> Aragonês</label>
+                                        <span class="filter-count">(18)</span>
+                                    </div>
+                                    <div class="filter-option">
+                                        <label><input type="checkbox" class="form-check-input me-2" value="arinto"> Arinto</label>
+                                        <span class="filter-count">(14)</span>
+                                    </div>
+                                    <div class="filter-option">
+                                        <label><input type="checkbox" class="form-check-input me-2" value="alvarinho"> Alvarinho</label>
+                                        <span class="filter-count">(12)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Year -->
+                        <div class="accordion-item border-0">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#year">
+                                    Ano
+                                </button>
+                            </h2>
+                            <div id="year" class="accordion-collapse collapse" data-bs-parent="#filtersAccordion">
+                                <div class="accordion-body">
+                                    <div class="filter-option">
+                                        <label><input type="checkbox" class="form-check-input me-2" value="2023"> 2023</label>
+                                        <span class="filter-count">(8)</span>
+                                    </div>
+                                    <div class="filter-option">
+                                        <label><input type="checkbox" class="form-check-input me-2" value="2022"> 2022</label>
+                                        <span class="filter-count">(15)</span>
+                                    </div>
+                                    <div class="filter-option">
+                                        <label><input type="checkbox" class="form-check-input me-2" value="2021"> 2021</label>
+                                        <span class="filter-count">(23)</span>
+                                    </div>
+                                    <div class="filter-option">
+                                        <label><input type="checkbox" class="form-check-input me-2" value="2020"> 2020</label>
+                                        <span class="filter-count">(28)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reset Filters Button -->
+                    <button class="reset-filters" onclick="resetAllFilters()">
+                        <i class="fas fa-undo-alt me-2"></i>Redefinir filtros
+                    </button>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="col-lg-9 col-md-8">
+                <div class="row" id="productsGrid">
+                    <!-- Os produtos serão carregados aqui pela função JavaScript -->
+                </div>
+
+                <!-- Loading indicator -->
+                <div id="loadingIndicator" class="text-center py-4">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">A carregar...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+        <!-- Footer -->
+    <footer class="text-center text-lg-start bg-body-tertiary text-muted" style="background-color: #212121 !important;">
+    <!-- Section: Social media -->
+        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+    <!-- Left -->
+            <div class="me-5 d-none d-lg-block" style="color: rgb(221, 221, 221);">
+                <span>Get connected with us on social networks:</span>
+            </div>
+    <!-- Left -->
+
+    <!-- Right -->
+            <div>
+            <a href="https://www.facebook.com/profile.php?id=100088980578739" target="_blank" class="me-4 text-reset">
+                <img src="/static/icons/facebookicon.png" class="icons-footer" style="width: 30px;">
+            </a>
+            <a href="https://www.instagram.com/winewine.distribuicao/" target="_blank" class="me-4 text-reset">
+                <img src="/static/icons/instagramicon.png" alt="Instagram" class="icons-footer" style="width: 30px;">
+            </a>
+            <a href="" class="me-4 text-reset">
+                <i class="fab fa-google"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+                <i class="fab fa-github"></i>
+            </a>
+            </div>
+    <!-- Right -->
+        </section>
+  <!-- Section: Social media -->
+
+  <!-- Section: Links  -->
+        <section class="">
+            <div class="container text-center text-md-start mt-5">
+      <!-- Grid row -->
+                <div class="row mt-3">
+        <!-- Grid column -->
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4" style="color: white;">
+          <!-- Content -->
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        <i class="fas fa-gem me-3">Toni Correia</i>
+                    </h6>
+                    <p>
+                    Horário: Segunda a Sexta - 10h00 às 19h00
+                    </p>
+                </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4" style="color: white;">
+          <!-- Links -->
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        Products
+                    </h6>
+                    <p>
+                        <a href="#!" class="text-reset">Vinho tinto</a>
+                    </p>
+                    <p>
+                        <a href="#!" class="text-reset">Vinho Branco</a>
+                    </p>
+                    <p>
+                        <a href="#!" class="text-reset">Espumantes</a>
+                    </p>
+                    <p>
+                        <a href="#!" class="text-reset">Vinho Verde</a>
+                    </p>
+                </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4" style="color: white;">
+          <!-- Links -->
+                    <h6 class="text-uppercase fw-bold mb-4">
+                        Useful links
+                    </h6>
+                    <p>
+                        <a href="/products" class="text-reset">All products</a>
+                    </p>
+                    <p>
+                        <a href="#!" class="text-reset">About us</a>
+                    </p>
+                    <p>
+                        <a href="#!" class="text-reset">Orders</a>
+                    </p>
+                    <p>
+                        <a href="#!" class="text-reset">Bar</a>
+                    </p>
+                </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4" style="color: white;">
+          <!-- Links -->
+                    <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                    <p><i class="fas fa-home me-3"></i> 4540 Arouca, Rossas</p>
+                    <p>
+                        <i class="fas fa-envelope me-3"></i>
+                        winewine.distribuicao@example.com
+                    </p>
+                    <p><i class="fas fa-phone me-3"></i> + 351 910 295 159</p>
+                </div>
+        <!-- Grid column -->
+            </div>
+      <!-- Grid row -->
+        </div>
+    </section>
+  <!-- Section: Links  -->
+
+  <!-- Copyright -->
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);color: white;">
+        © 2021 Copyright:
+        <a class="text-reset fw-bold" href="/">tonicorreia.com</a>
     </div>
+  <!-- Copyright -->
+    </footer>
+<!-- Footer -->
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-    fetch('/api/products')
-        .then(response => response.json())
-        .then(products => {
-            const container = document.getElementById('product-container');
-            products.forEach(product => {
-                console.log(product.name);
-            })
-        });
-    });
 
+        // Variáveis globais
+        let allProducts = [];
+        let filteredProducts = [];
+        let currentSort = 'default';
+
+        // Função para renderizar os produtos (assumindo que recebes da API)
+        function renderProducts(products) {
+            const grid = document.getElementById('productsGrid');
+            const totalProducts = document.getElementById('totalProducts');
+            
+            totalProducts.textContent = products.length;
+            
+            if (products.length === 0) {
+                grid.innerHTML = '<div class="col-12 text-center py-5"><h4>Nenhum produto encontrado</h4></div>';
+                return;
+            }
+            
+            grid.innerHTML = products.map(product => `
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="/static/images/${product.image_url}" 
+                                 alt="${product.name}" class="img-fluid">
+                            <button class="favorite-icon ${product.isFavorite ? 'active' : ''}" 
+                                    onclick="toggleFavorite(${product.id})">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                        <div class="product-category">${product.regiao || 'REGIÃO'}</div>
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-year">${product.ano || 'N/A'}</div>
+                        <div class="product-price">${product.price}€</div>
+                        <button class="add-to-cart add-to-cart-btn" data-product-id="${product.id}">
+                            <i class="fas fa-shopping-cart me-2"></i>Adicionar ao Carrinho
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Função para ordenar produtos
+        function sortProducts(sortType) {
+            currentSort = sortType;
+            let sortedProducts = [...filteredProducts];
+            
+            switch(sortType) {
+                case 'price_asc':
+                    sortedProducts.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price_desc':
+                    sortedProducts.sort((a, b) => b.price - a.price);
+                    break;
+                case 'name_asc':
+                    sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
+                    break;
+                case 'name_desc':
+                    sortedProducts.sort((a, b) => b.name.localeCompare(a.name));
+                    break;
+                case 'year_desc':
+                    sortedProducts.sort((a, b) => (b.ano || 0) - (a.ano || 0));
+                    break;
+                case 'discount':
+                    sortedProducts.sort((a, b) => (b.discount || 0) - (a.discount || 0));
+                    break;
+                case 'recommended':
+                    sortedProducts.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+                    break;
+            }
+            
+            renderProducts(sortedProducts);
+        }
+
+        // Função para filtrar produtos
+        function applyFilters() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const minPrice = parseFloat(document.getElementById('minPrice').value) || 0;
+            const maxPrice = parseFloat(document.getElementById('maxPrice').value) || 9999;
+            
+            // Obter todos os filtros selecionados
+            const selectedTypes = Array.from(document.querySelectorAll('#wineTypes input:checked')).map(cb => cb.value);
+            const selectedCapacities = Array.from(document.querySelectorAll('#capacity input:checked')).map(cb => cb.value);
+            const selectedCountries = Array.from(document.querySelectorAll('#country input:checked')).map(cb => cb.value);
+            const selectedRegions = Array.from(document.querySelectorAll('#region input:checked')).map(cb => cb.value);
+            const selectedGrapes = Array.from(document.querySelectorAll('#grape input:checked')).map(cb => cb.value);
+            const selectedYears = Array.from(document.querySelectorAll('#year input:checked')).map(cb => cb.value);
+            
+            filteredProducts = allProducts.filter(product => {
+                // Filtro de pesquisa
+                const matchesSearch = !searchTerm || 
+                    product.name.toLowerCase().includes(searchTerm) ||
+                    (product.regiao && product.regiao.toLowerCase().includes(searchTerm));
+                
+                // Filtro de preço
+                const matchesPrice = product.price >= minPrice && product.price <= maxPrice;
+                
+                // Filtros de categoria (só aplicar se algum estiver selecionado)
+                const matchesType = selectedTypes.length === 0 || selectedTypes.includes(product.category);
+                const matchesCapacity = selectedCapacities.length === 0 || selectedCapacities.includes(product.capacity);
+                const matchesCountry = selectedCountries.length === 0 || selectedCountries.includes(product.pais);
+                const matchesRegion = selectedRegions.length === 0 || selectedRegions.includes(product.regiao);
+                const matchesGrape = selectedGrapes.length === 0 || selectedGrapes.includes(product.grape);
+                const matchesYear = selectedYears.length === 0 || selectedYears.includes(product.ano?.toString());
+                
+                return matchesSearch && matchesPrice && matchesType && matchesCapacity && 
+                       matchesCountry && matchesRegion && matchesGrape && matchesYear;
+            });
+            
+            sortProducts(currentSort);
+        }
+
+        // Carregar produtos da API e inicializar filtros
+        document.addEventListener('DOMContentLoaded', function() {
+            // Esconder loading indicator inicialmente
+            document.getElementById('loadingIndicator').style.display = 'block';
+            
+            // Fetch produtos da API
+            fetch('/api/products')
+                .then(response => response.json())
+                .then(products => {
+                    console.log('Produtos carregados:', products);
+                    
+                    // Armazenar produtos globalmente
+                    allProducts = products;
+                    filteredProducts = [...products];
+                    
+                    // Esconder loading e renderizar produtos
+                    document.getElementById('loadingIndicator').style.display = 'none';
+                    renderProducts(filteredProducts);
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar produtos:', error);
+                    document.getElementById('loadingIndicator').innerHTML = 
+                        '<div class="alert alert-danger">Erro ao carregar produtos. Tente novamente.</div>';
+                });
+            
+            // Search input
+            document.getElementById('searchInput').addEventListener('input', applyFilters);
+            
+            // Price range
+            const priceSlider = document.getElementById('priceSlider');
+            const priceValue = document.getElementById('priceValue');
+            const minPrice = document.getElementById('minPrice');
+            const maxPrice = document.getElementById('maxPrice');
+            
+            priceSlider.addEventListener('input', function() {
+                const value = this.value;
+                priceValue.textContent = `5€ - ${value}€`;
+                maxPrice.value = value;
+                applyFilters();
+            });
+            
+            minPrice.addEventListener('change', applyFilters);
+            maxPrice.addEventListener('change', applyFilters);
+            
+            // Todos os checkboxes
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', applyFilters);
+            });
+        });
+
+        // Função para reset de filtros
+        function resetAllFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('minPrice').value = '5';
+            document.getElementById('maxPrice').value = '500';
+            document.getElementById('priceSlider').value = '250';
+            document.getElementById('priceValue').textContent = '5€ - 500€';
+            
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            
+            filteredProducts = [...allProducts];
+            currentSort = 'default';
+            renderProducts(filteredProducts);
+        }
 
     var nav = document.getElementById('nav');
     window.addEventListener("scroll", function () {
-        nav.style.background = window.pageYOffset > 100 ? "#212121" : "transparent";
+        nav.style.background = window.pageYOffset > 100 ? "#212121" : "#212121";
     });
-
-
 
 function toggleUserMenu() {
     fetch('/check_login')
@@ -319,6 +889,70 @@ function logout(){
             return;
         }
     });
+
+    document.body.addEventListener('click', async (e) => {
+    if (e.target.classList.contains('add-to-cart-btn')) {
+      e.preventDefault();
+
+      const productId = e.target.dataset.productId;
+
+      // Enviar pedido POST à API
+      try {
+        const response = await fetch('/cart/add', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ product_id: productId, quantity: 1 })
+        });
+
+        if (!response.ok) {
+          throw new Error("Erro ao adicionar ao carrinho");
+        }
+
+        let cartData;
+        try {
+            cartData = await response.json();
+        } catch (e) {
+            console.error("Erro a fazer parse do JSON:", e);
+            const text = await response.text();
+            console.log("Resposta crua:", text);
+        return;
+        }
+        console.log(cartData);
+        showCart(cartData);
+
+      } catch (err) {
+        console.error(err);
+      }
+    }
+});
+
+async function fetchAndShowCart() {
+  try {
+    const response = await fetch('/get_user_cart');
+    if (!response.ok) throw new Error("Erro ao obter carrinho");
+
+    const cartData = await response.json();
+    showCart(cartData); // atualiza a UI
+  } catch (error) {
+    console.error("Erro ao atualizar carrinho:", error);
+  }
+}
+
+document.body.addEventListener('click', async (e) => {
+    if (e.target.classList.contains('cart-item-remove')) {
+        e.preventDefault();
+
+        const productId = e.target.dataset.productId;
+        await fetch('/remove_from_cart', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ product_id: productId })
+        });
+            await fetchAndShowCart();
+    }
+});
 
 </script>
 
