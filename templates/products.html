@@ -210,24 +210,24 @@
                                 <div class="accordion-body">
                                     <div class="filter-options">
                                         <div class="filter-option">
-                                            <label><input type="checkbox" class="form-check-input me-2" value="tinto"> Tinto</label>
-                                            <span class="filter-count">(45)</span>
+                                            <label><input type="checkbox" class="form-check-input me-2" value="vinho tinto"> Tinto</label>
+                                            <span class="filter-count">()</span>
                                         </div>
                                         <div class="filter-option">
-                                            <label><input type="checkbox" class="form-check-input me-2" value="branco"> Branco</label>
-                                            <span class="filter-count">(32)</span>
+                                            <label><input type="checkbox" class="form-check-input me-2" value="vinho branco"> Branco</label>
+                                            <span class="filter-count">()</span>
                                         </div>
                                         <div class="filter-option">
-                                            <label><input type="checkbox" class="form-check-input me-2" value="rose"> Rosé</label>
-                                            <span class="filter-count">(18)</span>
+                                            <label><input type="checkbox" class="form-check-input me-2" value="vinho rosé"> Rosé</label>
+                                            <span class="filter-count">()</span>
                                         </div>
                                         <div class="filter-option">
                                             <label><input type="checkbox" class="form-check-input me-2" value="espumante"> Espumante</label>
-                                            <span class="filter-count">(12)</span>
+                                            <span class="filter-count">()</span>
                                         </div>
                                         <div class="filter-option">
                                             <label><input type="checkbox" class="form-check-input me-2" value="champagne"> Champagne</label>
-                                            <span class="filter-count">(8)</span>
+                                            <span class="filter-count">()</span>
                                         </div>
                                     </div>
                                 </div>
@@ -622,6 +622,12 @@
             renderProducts(sortedProducts);
         }
 
+        function normalize(str) {
+            return str
+                ? str.toString().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                : "";
+        }
+
         // Função para filtrar produtos
         function applyFilters() {
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
@@ -637,25 +643,22 @@
             const selectedYears = Array.from(document.querySelectorAll('#year input:checked')).map(cb => cb.value);
             
             filteredProducts = allProducts.filter(product => {
-                // Filtro de pesquisa
                 const matchesSearch = !searchTerm || 
-                    product.name.toLowerCase().includes(searchTerm) ||
-                    (product.regiao && product.regiao.toLowerCase().includes(searchTerm));
-                
-                // Filtro de preço
-                const matchesPrice = product.price >= minPrice && product.price <= maxPrice;
-                
-                // Filtros de categoria (só aplicar se algum estiver selecionado)
-                const matchesType = selectedTypes.length === 0 || selectedTypes.includes(product.category);
-                const matchesCapacity = selectedCapacities.length === 0 || selectedCapacities.includes(product.capacity);
-                const matchesCountry = selectedCountries.length === 0 || selectedCountries.includes(product.pais);
-                const matchesRegion = selectedRegions.length === 0 || selectedRegions.includes(product.regiao);
-                const matchesGrape = selectedGrapes.length === 0 || selectedGrapes.includes(product.grape);
-                const matchesYear = selectedYears.length === 0 || selectedYears.includes(product.ano?.toString());
-                
-                return matchesSearch && matchesPrice && matchesType && matchesCapacity && 
-                       matchesCountry && matchesRegion && matchesGrape && matchesYear;
-            });
+                    normalize(product.name).includes(searchTerm) ||
+                    normalize(product.regiao).includes(searchTerm);
+
+            const matchesPrice = product.price >= minPrice && product.price <= maxPrice;
+
+            const matchesType = selectedTypes.length === 0 || selectedTypes.includes(normalize(product.category));
+            const matchesCapacity = selectedCapacities.length === 0 || selectedCapacities.includes(normalize(product.capacity));
+            const matchesCountry = selectedCountries.length === 0 || selectedCountries.includes(normalize(product.pais));
+            const matchesRegion = selectedRegions.length === 0 || selectedRegions.includes(normalize(product.regiao));
+            const matchesGrape = selectedGrapes.length === 0 || selectedGrapes.includes(normalize(product.grape));
+            const matchesYear = selectedYears.length === 0 || selectedYears.includes(product.ano?.toString());
+
+            return matchesSearch && matchesPrice && matchesType && matchesCapacity &&
+                matchesCountry && matchesRegion && matchesGrape && matchesYear;
+        });
             
             sortProducts(currentSort);
         }
@@ -953,6 +956,8 @@ document.body.addEventListener('click', async (e) => {
             await fetchAndShowCart();
     }
 });
+
+
 
 </script>
 
