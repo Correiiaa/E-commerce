@@ -52,6 +52,9 @@ google_bp = make_google_blueprint(
 )
 app.register_blueprint(google_bp, url_prefix="/login")
 
+
+
+#Login/registo e logout
 @app.route('/login', methods=['GET'])
 def login():
     return render_template('login.html')
@@ -79,25 +82,13 @@ def logged():
     
     return render_template('login.html', error="Invalid username or password")
 
-
-@app.route('/')
-def index():
-    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
-        cursor.execute("SELECT * FROM products")
-        produtos = cursor.fetchall()
-    
-    if 'user' in session:
-        return render_template('index.html', user=session['user'], uid=session['uid'])
-    else:
-        return render_template('index.html')
-
-
 @app.route('/register', methods=['GET'])
 def reges():
     if 'user' in session:
         return render_template('index.html', user=session['user'], uid=session['uid'])
     else:
         return render_template('register.html')
+    
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
@@ -169,7 +160,31 @@ def logout():
     session.clear()
     return redirect('/')
 
+@app.route("/check_login", methods=['GET'])
+def check_session():
+    if 'user' in session:
+        return jsonify({'is_logged_in': True})
+    else:
+        return jsonify({'is_logged_in': False})
 
+###############################
+
+
+#Redirecionamento pagina inicial
+@app.route('/')
+def index():
+    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+        cursor.execute("SELECT * FROM products")
+        produtos = cursor.fetchall()
+    
+    if 'user' in session:
+        return render_template('index.html', user=session['user'], uid=session['uid'])
+    else:
+        return render_template('index.html')
+    
+##########################
+
+#Admin functions
 @app.route('/admin/add_product', methods=['POST'])
 def add_product():
     if 'user' not in session or session.get('role') != 'admin':
@@ -197,40 +212,6 @@ def add_product():
 
 
     return "Produto adicionado com sucesso"
-
-
-
-@app.route('/products', methods=['GET'])
-def render_products_page():
-    return render_template("products.html")
-    
-
-@app.route('/api/products', methods=['GET'])
-def get_all_products():
-    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
-        cursor.execute("SELECT * FROM products WHERE active=1")
-        products = cursor.fetchall()
-    return jsonify(products)
-
-
-@app.route('/products/<int:id>', methods=['GET'])
-def get_products_by_id(id):
-    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
-        cursor.execute("SELECT * FROM products WHERE id=%s", (id,))
-        product = cursor.fetchone()
-
-    return render_template("product.html", product=product)
-
-
-@app.route('/get-products-section', methods=['GET'])
-def get_products_by_section():
-    section = request.args.get("section")
-    
-    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
-        cursor.execute("SELECT * FROM products WHERE category=%s", (section,))
-        products = cursor.fetchall()
-
-    return jsonify(products)
 
 @app.route('/admin/update-products/<int:id>', methods=['PUT'])
 def update_product(id):
@@ -268,60 +249,72 @@ def delete_product(id):
     return "Product delete successfully"
 
 
-@app.route('/search', methods=['GET'])
-def search_products():
-    search_term = request.form.get("query")
-
-    if not search_term:
-        return jsonify([])
+@app.route('/admin/get_all_orders', methods=['GET'])
+def get_all_orders():
+    if 'user' not in session or session.get('role') != 'admin':
+        return "Unauthorized", 403
     
-    search_term = f"%{search_term}%"
+    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+        cursor.execute("SELECT * FROM orders")
+        orders = cursor.fetchall()
+
+    return jsonify(orders)
+
+
+@app.route('/admin/sales_report', methods=['GET'])
+def sales_report():
+    if 'user' not in session or session.get('role') != 'admin':
+        return "Unauthorized", 403
+
+    start_date = request.args.get('start_date')
+    end_date = request.args.get('end_date')
+
+    if not start_date or not end_date:
+        return "Faltam datas", 400
 
     with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
-        cursor.execute("SELECT * FROM products WHERE name LIKE %s OR category LIKE %s", (search_term, search_term))
-        products = cursor.fetchall()
+        cursor.execute(
+            "SELECT * FROM orders WHERE created_at BETWEEN %s AND %s",
+            (start_date, end_date)
+        )
+        orders = cursor.fetchall()
 
-    return jsonify(products)
+    return jsonify(orders)
 
 
-def update_stock(product_id, qty):
+@app.route('/admin/add-discont', methods=['PUT'])
+def add_discont():
+    if 'user' not in session or session.get('role') != 'admin':
+        return "Unauthorized", 403
+    
+    product_id = request.form.get("product_id")
+    discont = request.form.get("discont")
+
     with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
-        cursor.execute("UPDATE products SET quantity = quanatity - %s WHERE id = %s", (qty, product_id,))
+        cursor.execute("UPDATE products SET discont = %s WHERE id = %s", (discont, product_id,))
         mysql.connection.commit()
 
-    return "Stock updated succesefully"
+    return "Desconto adicionado com sucesso"
 
 
-@app.route('/low-stock', methods=['GET'])
-def get_low_stock():
-    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
-        cursor.execute("SELECT * FROM products WHERE quantity < 15")
-        products = cursor.fetchall()
-    
-    return jsonify(products)
+##############################################33
 
-@app.route("/get_user_cart", methods=['GET'])
-def get_user_cart_itens():
+#Cart
+@app.route("/remove_from_cart", methods=['POST'])
+def remove_from_cart():
     if 'user' not in session:
-        return jsonify({"error": "Inicie sessão para ver o carrinho"}), 401
+        return "Não autenticado", 400
     
+    cartdata = request.get_json()
+    product_id = int(cartdata.get('product_id'))
     user_id = session['uid']
-
+    
     with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
-        cursor.execute("""
-            SELECT p.name, p.image_url, c.quantity, c.price, p.id
-            FROM cart c
-            JOIN products p ON c.product_id = p.id
-            WHERE c.user_id = %s
-        """, (user_id,))
-        cart_items = cursor.fetchall()
+        cursor.execute("DELETE FROM cart WHERE product_id = %s AND user_id = %s", (product_id, user_id,))
+        mysql.connection.commit()
 
-        total = sum(item['price'] for item in cart_items)
+    return "Produto removido"
 
-    return jsonify({
-        "items": cart_items,
-        "total": float(total)
-    })
 
 
 @app.route('/cart/add', methods=['POST'])
@@ -385,6 +378,33 @@ def add_to_cart():
         "total": float(total)
     })
 
+@app.route("/get_user_cart", methods=['GET'])
+def get_user_cart_itens():
+    if 'user' not in session:
+        return jsonify({"error": "Inicie sessão para ver o carrinho"}), 401
+    
+    user_id = session['uid']
+
+    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+        cursor.execute("""
+            SELECT p.name, p.image_url, c.quantity, c.price, p.id
+            FROM cart c
+            JOIN products p ON c.product_id = p.id
+            WHERE c.user_id = %s
+        """, (user_id,))
+        cart_items = cursor.fetchall()
+
+        total = sum(item['price'] for item in cart_items)
+
+    return jsonify({
+        "items": cart_items,
+        "total": float(total)
+    })
+
+################################
+
+
+#Orders
 @app.route('/order', methods=['POST'])
 def create_order():
     if 'user' not in session:
@@ -432,39 +452,73 @@ def get_orders_by_user(user_id):
 
     return jsonify(orders)
 
+####################################
+
+#Products
+@app.route('/products', methods=['GET'])
+def render_products_page():
+    return render_template("products.html")
+    
+
+@app.route('/api/products', methods=['GET'])
+def get_all_products():
+    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+        cursor.execute("SELECT * FROM products WHERE active=1")
+        products = cursor.fetchall()
+    return jsonify(products)
 
 
-@app.route('/admin/get_all_orders', methods=['GET'])
-def get_all_orders():
-    if 'user' not in session or session.get('role') != 'admin':
-        return "Unauthorized", 403
+@app.route('/products/<int:id>', methods=['GET'])
+def get_products_by_id(id):
+    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+        cursor.execute("SELECT * FROM products WHERE id=%s", (id,))
+        product = cursor.fetchone()
+
+    return render_template("product.html", product=product)
+
+
+@app.route('/get-products-section', methods=['GET'])
+def get_products_by_section():
+    section = request.args.get("section")
     
     with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
-        cursor.execute("SELECT * FROM orders")
-        orders = cursor.fetchall()
+        cursor.execute("SELECT * FROM products WHERE category=%s", (section,))
+        products = cursor.fetchall()
 
-    return jsonify(orders)
+    return jsonify(products)
 
 
-@app.route('/admin/sales_report', methods=['GET'])
-def sales_report():
-    if 'user' not in session or session.get('role') != 'admin':
-        return "Unauthorized", 403
+@app.route('/search', methods=['GET'])
+def search_products():
+    search_term = request.form.get("query")
 
-    start_date = request.args.get('start_date')
-    end_date = request.args.get('end_date')
-
-    if not start_date or not end_date:
-        return "Faltam datas", 400
+    if not search_term:
+        return jsonify([])
+    
+    search_term = f"%{search_term}%"
 
     with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
-        cursor.execute(
-            "SELECT * FROM orders WHERE created_at BETWEEN %s AND %s",
-            (start_date, end_date)
-        )
-        orders = cursor.fetchall()
+        cursor.execute("SELECT * FROM products WHERE name LIKE %s OR category LIKE %s", (search_term, search_term))
+        products = cursor.fetchall()
 
-    return jsonify(orders)
+    return jsonify(products)
+
+
+def update_stock(product_id, qty):
+    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+        cursor.execute("UPDATE products SET quantity = quanatity - %s WHERE id = %s", (qty, product_id,))
+        mysql.connection.commit()
+
+    return "Stock updated succesefully"
+
+
+@app.route('/low-stock', methods=['GET'])
+def get_low_stock():
+    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
+        cursor.execute("SELECT * FROM products WHERE quantity < 15")
+        products = cursor.fetchall()
+    
+    return jsonify(products)
 
 
 @app.route('/api/best_seller', methods=['GET'])
@@ -482,27 +536,7 @@ def get_best_selling_products():
 
     return jsonify(best_seller)
 
-@app.route('/admin/add-discont', methods=['PUT'])
-def add_discont():
-    if 'user' not in session or session.get('role') != 'admin':
-        return "Unauthorized", 403
-    
-    product_id = request.form.get("product_id")
-    discont = request.form.get("discont")
-
-    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
-        cursor.execute("UPDATE products SET discont = %s WHERE id = %s", (discont, product_id,))
-        mysql.connection.commit()
-
-    return "Desconto adicionado com sucesso"
-
-
-@app.route("/check_login", methods=['GET'])
-def check_session():
-    if 'user' in session:
-        return jsonify({'is_logged_in': True})
-    else:
-        return jsonify({'is_logged_in': False})
+#############################################################3
     
 
 @app.route("/user_info", methods=['GET'])
@@ -518,21 +552,6 @@ def get_user_info():
 
     return jsonify(info)
 
-@app.route("/remove_from_cart", methods=['POST'])
-def remove_from_cart():
-    if 'user' not in session:
-        return "Não autenticado", 400
-    
-    cartdata = request.get_json()
-    product_id = int(cartdata.get('product_id'))
-    user_id = session['uid']
-    
-    with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:
-        cursor.execute("DELETE FROM cart WHERE product_id = %s AND user_id = %s", (product_id, user_id,))
-        mysql.connection.commit()
-
-    return "Produto removido"
-
 
 @app.route("/test-email")
 def test_email():
@@ -540,9 +559,6 @@ def test_email():
     msg.body = "Este é um teste de envio com Flask-Mail!"
     mail.send(msg)
     return "Email enviado!"
-
-
-
 
 
 if __name__ == "__main__":
