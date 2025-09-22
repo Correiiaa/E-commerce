@@ -6,9 +6,32 @@ body {
     background: #fff;
 }
 
+.breadcrumb-item a {
+    color: #6c757d;
+    text-decoration: none;
+}
+
+.breadcrumb-item.active {
+    color: #212529;
+}
+
+.free-shipping {
+    background: linear-gradient(90deg, #a73b28, #3f0d05);
+    color: white;
+    border-radius: 20px;
+    padding: 8px 16px;
+    display: inline-block;
+    font-size: 0.9rem;
+    margin: 10px 0;
+}
+
 .product-page {
+    max-width: 1140px;
+    margin: 0 auto;
     margin-top: 80px;
-    background: #fff;
+    background: #fff;~
+    
+
 }  
 
 .containersection .section-header {
