@@ -29,8 +29,7 @@ body {
     max-width: 1140px;
     margin: 0 auto;
     margin-top: 80px;
-    background: #fff;~
-    
+    background: #fff;
 
 }  
 
@@ -84,7 +83,7 @@ body {
 
 .product-price {
     font-size: calc(20px + 4 * (100vw - 320px) / 1600);
-    color: #ff0000;
+    color: #000000;
 }
 
 .addtocart {
@@ -92,12 +91,20 @@ body {
     justify-content: space-between;
 }
 
-.add-to-cart-btn {
-    background-color: #ff0000;
-    color: #fff;
-    border: 1px solid;
-    border-radius: 26.5px;
-    height: 30px;
+.add-to-cart-btn {      
+    border: 2px solid #212529;
+    background: white;
+    color: #212529;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    width: 65%;
+}
+
+.a {
+    width: 35%;
+    margin-top: 10px;
 }
 
 .product-id {
