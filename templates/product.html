@@ -176,7 +176,7 @@
                     <p class="product-id">ID: {{ product.id }}</p>
                     <p class="product-price">{{ product.price }} €</p>
                     <div class="addtocart">
-                        <button class="add-to-cart-btn" data-product-id="{{ product.id }}">Adicionar ao Carrinho</button>
+                        <button class="btn btn-dark add-to-cart-btn" data-product-id="{{ product.id }}">Adicionar ao Carrinho</button>
                         <div class="quantity-button-wrapper d-flex align-items-center justify-content-start" bis_skin_checked="1">
                                             <button type="button" class="quantity-button quantity-buttons-less core-cart--qty core-cart--qty-minus">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
@@ -211,7 +211,6 @@
                                             </button>
                             </div>
                     </div>
-                    <p class="product-description">{{ product.description }}</p>
 
 
                     <div class="product-spects">
@@ -666,7 +665,7 @@ fetch(`/get-products-section?section=${encodeURIComponent(section)}`)
                     <h5 class="card-title">${product.name}</h5>
                     <p class="card-text">${Number(product.price).toFixed(2)} €</p>
                     <a href="/products/${product.id}" class="btn btn-light">Ver detalhes</a>
-                    <a class="btn btn-dark add-to-cart-btn" data-product-id="${product.id}">Adicionar</a>
+                    <a class="btn btn-dark a add-to-cart-btn" data-product-id="${product.id}">Cart</a>
                 </div>
             `;
             container.appendChild(card);

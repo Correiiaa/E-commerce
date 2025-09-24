@@ -45,7 +45,8 @@ Navbar and coursel
 ////////////////////////////////////////////////////////////////////////////////////////////////*/
 .carousel-item {
   height: 100vh;
-  min-height: 300px;
+  width: 100%;
+  min-height: 1dp;
   background: no-repeat center center scroll;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -53,7 +54,7 @@ Navbar and coursel
   background-size: cover;
 }
 .carousel-caption {
-  bottom: 270px;
+  bottom: 200px;
 }
 
 .carousel-caption h5 {
@@ -309,7 +310,7 @@ Cards
 }
 
 .card {
-  box-shadow: 0 20px 40px rgba(0, 0, 0, .2);
+  box-shadow: 0 20px 10px rgba(0, 0, 0, .2);
   border-radius: 5px;
   padding-bottom: 10px;
   transition: opacity 0.3s;
@@ -379,6 +380,22 @@ Cards
 
 .carousel-btn.next {
     right: 0;
+}
+
+.add-to-cart-btn {      
+    border: 2px solid #212529;
+    background: white;
+    color: #212529;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    width: 65%;
+}
+
+.a {
+    width: 35%;
+    margin-top: 10px;
 }
 
 /* ///////////////////////////////////////////////////////////////////////////////

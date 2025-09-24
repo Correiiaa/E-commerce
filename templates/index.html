@@ -288,7 +288,7 @@
                         <a href="/products" class="text-reset">All products</a>
                     </p>
                     <p>
-                        <a href="#!" class="text-reset">About us</a>
+                        <a href="/aboutus" class="text-reset">About us</a>
                     </p>
                     <p>
                         <a href="#!" class="text-reset">Orders</a>
@@ -475,7 +475,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <h5 class="card-title">${product.name}</h5>
                         <p class="card-text">${Number(product.price).toFixed(2)} €</p>
                         <a href="/products/${product.id}" class="btn btn-light">Ver detalhes</a>
-                        <a class="btn btn-dark add-to-cart-btn" data-product-id="${product.id}">Adicionar</a>
+                        <a class="btn btn-dark a add-to-cart-btn" data-product-id="${product.id}">Cart</a>
                     </div>
                 `;
                 container.appendChild(card);
@@ -657,7 +657,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <h5 class="card-title">${product.name}</h5>
                         <p class="card-text">${Number(product.price).toFixed(2)} €</p>
                         <a href="/products/${product.id}" class="btn btn-light">Ver detalhes</a>
-                        <a class="btn btn-dark add-to-cart-btn" data-product-id="${product.id}">Adicionar</a>
+                        <a class="btn btn-dark a add-to-cart-btn" data-product-id="${product.id}">Cart</a>
                     </div>
                 `;
                 container.appendChild(card);
