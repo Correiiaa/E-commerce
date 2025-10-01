@@ -108,7 +108,3 @@ Opções a considerar:
 - Responsividade base (mobile-first)
 
 ## 📝 Licença
-(Adicionar se publicares: MIT recomendada para portefólio)
-
----
-Atualiza este README após iniciares a migração para Laravel.
