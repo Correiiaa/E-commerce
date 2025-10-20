@@ -339,7 +339,8 @@ Cards
 
 .MM-rose {
   height: 250px !important;
-  object-fit: cover;
+  object-fit: contain;
+  padding-top: 3px;
 }
 
 .perspetiva-colheita-branco {
