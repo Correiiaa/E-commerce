@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/static/SectionTitles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <title>Toni Distribuição</title>
+    <title>Toni DistribuiÃ§Ã£o</title>
 
 
 </head>
@@ -34,7 +34,7 @@
                         <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Sobre nós</a>
+                        <a class="nav-link" href="#">Sobre nÃ³s</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/products">Vinhos</a>
@@ -163,7 +163,7 @@
                         </ol>
                     </nav>
                     <div class="free-shipping">
-                        <i class="fas fa-truck me-2"></i>Portes grátis a partir de 50€
+                        <i class="fas fa-truck me-2"></i>Portes grÃ¡tis a partir de 50â‚¬
                     </div>
                 </div>
             </div>
@@ -174,7 +174,7 @@
                 <div class="product-info">
                     <p class="product-name">{{ product.name }}</p>
                     <p class="product-id">ID: {{ product.id }}</p>
-                    <p class="product-price">{{ product.price }} €</p>
+                    <p class="product-price">{{ product.price }} â‚¬</p>
                     <div class="addtocart">
                         <button class="btn btn-dark add-to-cart-btn" data-product-id="{{ product.id }}">Adicionar ao Carrinho</button>
                         <div class="quantity-button-wrapper d-flex align-items-center justify-content-start" bis_skin_checked="1">
@@ -221,7 +221,7 @@
                                         <img src="/static/icons/regiao.jpg" alt="Regiao">
                                     </div>
                                     <div class="product-detail-spects-text">
-                                        <span>Região</span>
+                                        <span>RegiÃ£o</span>
                                         <p>{{ product.regiao }}</p>
                                     </div>
                                 </div>
@@ -239,7 +239,7 @@
                                         <img src="/static/icons/teoralcool.jpg" alt="Alcool">
                                     </div>
                                     <div class="product-detail-spects-text">
-                                        <span>Teor alcoólico</span>
+                                        <span>Teor alcoÃ³lico</span>
                                         <p>{{ product.volumeal }}</p>
                                     </div>
                                 </div>
@@ -250,7 +250,7 @@
                                         <img src="/static/icons/contry-icon.png" alt="Pais de origem">
                                     </div>
                                     <div class="product-detail-spects-text">
-                                        <span>País</span>
+                                        <span>PaÃ­s</span>
                                         <p>{{ product.pais }}</p>
                                     </div>
                                 </div>
@@ -279,11 +279,11 @@
     </div>
 
     <div class="carousel-wrapper">
-        <button class="carousel-btn prev">‹</button>
+        <button class="carousel-btn prev">â€¹</button>
         <div class="carousel-viewport">
             <div class="carousel-track" id="product-container"></div>
         </div>
-        <button class="carousel-btn next">›</button>
+        <button class="carousel-btn next">â€º</button>
     </div>
 
 
@@ -334,7 +334,7 @@
                         <i class="fas fa-gem me-3">Toni Correia</i>
                     </h6>
                     <p>
-                    Horário: Segunda a Sexta - 10h00 às 19h00
+                    HorÃ¡rio: Segunda a Sexta - 10h00 Ã s 19h00
                     </p>
                 </div>
         <!-- Grid column -->
@@ -401,7 +401,7 @@
 
   <!-- Copyright -->
     <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-        © 2021 Copyright:
+        Â© 2021 Copyright:
         <a class="text-reset fw-bold" href="/">tonicorreia.com</a>
     </div>
   <!-- Copyright -->
@@ -412,7 +412,7 @@
 
 <script>
 function toggleUserMenu() {
-    fetch('/check_login')
+    fetch('/tesp-ds-g32/E-commerce/check_login')
         .then(response => response.json())
         .then(data => {
             if (data.is_logged_in) {
@@ -427,7 +427,7 @@ function toggleUserMenu() {
 }
 
 function logout(){
-    fetch('/logout', {
+    fetch('/tesp-ds-g32/E-commerce/logout', {
         method:'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -502,7 +502,7 @@ function showCart(cartData){
                                             </button>
                                         </div>
                                         <p class="cart-item-price core-cart--item-price cart-item--price">
-                                            <span class="product-item-price">${item.price} €</span>
+                                            <span class="product-item-price">${item.price} â‚¬</span>
                                         </p>
                                     </div>
                                 </div>
@@ -528,7 +528,7 @@ function showCart(cartData){
                 <div class="box-cart-total">
                     <div class="title-cart-total">
                         <span class="cart-total-title">Total: </span>
-                        <div class="total-price">${cartData.total.toFixed(2)}€</div>
+                        <div class="total-price">${cartData.total.toFixed(2)}â‚¬</div>
                     </div>
                 </div>
             `;
@@ -547,7 +547,7 @@ function showCart(cartData){
         if (e.target.closest('.cart-botton')) {
             e.preventDefault();
             try {
-                const response = await fetch('/get_user_cart', {
+                const response = await fetch('/tesp-ds-g32/E-commerce/get_user_cart', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'
@@ -569,7 +569,7 @@ function showCart(cartData){
             }
             return;
         }
-        // Fechar carrinho ao clicar no botão X ou no SVG dentro dele
+        // Fechar carrinho ao clicar no botÃ£o X ou no SVG dentro dele
         if (e.target.closest('.cart-close')) {
             document.getElementById('cart').classList.remove('cart-open');
             return;
@@ -582,9 +582,9 @@ function showCart(cartData){
 
       const productId = e.target.dataset.productId;
 
-      // Enviar pedido POST à API
+      // Enviar pedido POST Ã  API
       try {
-        const response = await fetch('/cart/add', {
+        const response = await fetch('/tesp-ds-g32/E-commerce/cart/add', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -616,7 +616,7 @@ function showCart(cartData){
 
 async function fetchAndShowCart() {
   try {
-    const response = await fetch('/get_user_cart');
+    const response = await fetch('/tesp-ds-g32/E-commerce/get_user_cart');
     if (!response.ok) throw new Error("Erro ao obter carrinho");
 
     const cartData = await response.json();
@@ -631,7 +631,7 @@ document.body.addEventListener('click', async (e) => {
         e.preventDefault();
 
         const productId = e.target.dataset.productId;
-        await fetch('/remove_from_cart', {
+        await fetch('/tesp-ds-g32/E-commerce/remove_from_cart', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ product_id: productId })
@@ -649,9 +649,9 @@ fetch(`/get-products-section?section=${encodeURIComponent(section)}`)
         container.innerHTML = "";
         products.forEach(product => {
             let extraClass = '';
-            if (product.name === "Encosta d´Aregos") {
+            if (product.name === "Encosta dÂ´Aregos") {
                 extraClass = ' encosta-daregos';
-            } else if (product.name === "M&M ROSÉ") {
+            } else if (product.name === "M&M ROSÃ‰") {
                 extraClass = ' MM-rose';
             } else if (product.name === "Perspetiva Colheita Branco"){
                 extraClass = ' perspetiva-colheita-branco';
@@ -663,7 +663,7 @@ fetch(`/get-products-section?section=${encodeURIComponent(section)}`)
                 <img class="card-img-top${extraClass}" src="/static/images/${product.image_url}" alt="${product.name}">
                 <div class="card-body text-center">
                     <h5 class="card-title">${product.name}</h5>
-                    <p class="card-text">${Number(product.price).toFixed(2)} €</p>
+                    <p class="card-text">${Number(product.price).toFixed(2)} â‚¬</p>
                     <a href="/products/${product.id}" class="btn btn-light">Ver detalhes</a>
                     <a class="btn btn-dark a add-to-cart-btn" data-product-id="${product.id}">Cart</a>
                 </div>
@@ -724,4 +724,5 @@ function scrollToBottom() {
 </script>
 </body>
 </html>
+
 
