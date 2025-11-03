@@ -200,7 +200,7 @@ def add_product():
 
 
     try:
-        price = float(price)
+        price = float(price)    
         quantity = int(quantity)
     except (ValueError, TypeError):
         return "Invalid price or quantity", 400

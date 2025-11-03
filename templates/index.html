@@ -642,9 +642,7 @@
               const card = document.createElement("div");
               card.classList.add("card", "h-100");
               card.innerHTML = `
-                    <img class="card-img-top${extraClass}" src="/tesp-ds-g32/E-commerce/static/images/${
-                product.image_url
-              }" alt="${product.name}">
+                    <img class="card-img-top${extraClass}" src="/tesp-ds-g32/E-commerce/static/images/${product.image_url}" alt="${product.name}">
                     <div class="card-body text-center">
                         <h5 class="card-title">${product.name}</h5>
                         <p class="card-text">${Number(product.price).toFixed(
@@ -755,7 +753,7 @@
 
           // Enviar pedido POST à API
           try {
-            const response = await fetch("/cart/add", {
+            const response = await fetch("https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/E-commerce/api/cart/add_cart.php", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
