@@ -2,7 +2,6 @@
 
 require_once  "../config.php";
 require_once  "../core.php";
-require_once "../user/check_login.php";
 
 
 if (session_status() !== PHP_SESSION_ACTIVE) {
@@ -75,7 +74,7 @@ $stmt->execute();
 $cart_items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $total = 0;
 foreach ($cart_items as $item) {
-    $total += $item['price'] * $item['quantity'];
+    $total += $item['price'];
 }
 
 echo json_encode([

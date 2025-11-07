@@ -23,7 +23,6 @@ if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
     echo json_encode(['error' => 'Erro ao decodificar JSON']);
 } else {
     $product_id = $data['product_id'] ?? null;
-
     $pdo = connectDB($db);
     $sql = "DELETE FROM cart WHERE product_id = :product_id AND user_id = :user_id";
     $stmt = $pdo->prepare($sql);
