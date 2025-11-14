@@ -8,7 +8,7 @@
       rel="stylesheet"
     />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="../static/index.css"/>
+    <link rel="stylesheet" href="../static/index.css" />
     <link
       rel="stylesheet"
       type="text/css"
@@ -642,15 +642,15 @@
               const card = document.createElement("div");
               card.classList.add("card", "h-100");
               card.innerHTML = `
-                    <img class="card-img-top${extraClass}" src="/tesp-ds-g32/E-commerce/static/images/${product.image_url}" alt="${product.name}">
+                    <img class="card-img-top${extraClass}" src="/tesp-ds-g32/E-commerce/static/images/${
+                product.image_url
+              }" alt="${product.name}">
                     <div class="card-body text-center">
                         <h5 class="card-title">${product.name}</h5>
                         <p class="card-text">${Number(product.price).toFixed(
                           2
                         )} €</p>
-                        <a href="/products/${
-                          product.id
-                        }" class="btn btn-light">Ver detalhes</a>
+                        <a href="product.html?id=${product.id}" class="btn btn-light">Ver detalhes</a>
                         <a class="btn btn-dark a add-to-cart-btn" data-product-id="${
                           product.id
                         }">Cart</a>
@@ -753,13 +753,16 @@
 
           // Enviar pedido POST à API
           try {
-            const response = await fetch("https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/E-commerce/api/cart/add_cart.php", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ product_id: productId, quantity: 1 }),
-            });
+            const response = await fetch(
+              "https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/E-commerce/api/cart/add_cart.php",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ product_id: productId, quantity: 1 }),
+              }
+            );
 
             if (!response.ok) {
               throw new Error("Erro ao adicionar ao carrinho");
