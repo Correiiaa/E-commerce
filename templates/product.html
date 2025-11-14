@@ -1,148 +1,192 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
-    <link rel="stylesheet" href="../static/navbar.css">
-    <link rel="stylesheet" href="../static/cart.css">
-    <link rel="stylesheet" href="../static/body.css">
-    <link rel="stylesheet" href="../static/productdetaill.css">
-    <link rel="stylesheet" href="../static/cards.css">
-    <link rel="stylesheet" href="../static/SectionTitles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <title>Toni DistribuiÃ§Ã£o</title>
-
-
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
+    />
+    <link rel="stylesheet" href="../static/navbar.css" />
+    <link rel="stylesheet" href="../static/cart.css" />
+    <link rel="stylesheet" href="../static/body.css" />
+    <link rel="stylesheet" href="../static/productdetaill.css" />
+    <link rel="stylesheet" href="../static/cards.css" />
+    <link rel="stylesheet" href="../static/SectionTitles.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Toni Distribuição</title>
+  </head>
+  <body>
     <div class="navbar-product-page"></div>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="nav">
-        <div class="container">
-            <a class="navbar-brand" href="#">Toni Correia</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+      <div class="container">
+        <a class="navbar-brand" href="#">Toni Correia</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Sobre nÃ³s</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/products">Vinhos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Bar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" onclick="scrollToBottom()">Contacto</a>
-                    </li>
-                </ul>
-            </div>
-
-            
-            <div class="cart-botton" id="cart-button">
-                <img src="../static/icons/6493694.png" alt="cart-icon">
-            </div>
-
-            <div class="icon-user-menu">
-                <img src="../static/icons/usericon.png" alt="User" onclick="toggleUserMenu()">
-            </div>
-
-            <div class="menu-user-wrap" id="menu-user-wrap">
-                <div class="sub-menu">
-                    <div class="user-info">
-                        <h2>User Menu</h2>
-                    </div>
-                    <hr>
-
-                    <a href="#" class="sub-menu-link">
-                        <img src="../static/icons/editprofile.png" alt="edit profile">
-                        <p>Edit Profile</p>
-                        <span>></span>
-                    </a>
-
-                    <a href="#" class="sub-menu-link">
-                        <img src="../static/icons/orders.png" alt="Orders">
-                        <p>Orders</p>
-                        <span>></span>
-                    </a>
-
-                    <a href="#" class="sub-menu-link">
-                        <img src="../static/icons/support.png" alt="Support">
-                        <p>Help & Support</p>
-                        <span>></span>
-                    </a>
-
-                    <a href="#" class="sub-menu-link" onclick="logout()">
-                        <img src="../static/icons/logout.png" alt="Lougout">
-                        <p>Logout</p>
-                        <span>></span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="menu-user-wrap-no-user" id="menu-user-wrap-no-user">
-                <div class="sub-menu">
-                    <div class="user-info">
-                        <h2>Login to acess</h2>
-                    </div>
-                    <hr>
-                    <a href="/login" class="sub-menu-link">
-                        <img src="../static/icons/login.png" alt="Login">
-                        <p>Login</p>
-                        <span>></span>
-                    </a>
-                    <a href="/register" class="sub-menu-link">
-                        <img src="../static/icons/register.jpg" alt="Register">
-                        <p>Register</p>
-                        <span>></span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="search">
-                <input type="text" class="search__input" placeholder="Pesquisa o teu vinho" name="query">
-                    <button class="search__button">
-                        <svg class="search__icon" aria-hidden="true" viewBox="0 0 24 24">
-                            <g>
-                                <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
-                            </g>
-                        </svg>
-                    </button>
-            </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Sobre nÃ³s</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/products">Vinhos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Bar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="scrollToBottom()">Contacto</a>
+            </li>
+          </ul>
         </div>
-        <!-- Carrinho removido da navbar -->
 
-        <div id="cart" class="cart-sidebar">
-        <div class="d-flex justify-content-between align-items-center" bis_skin_checked="1">
-                    <p class="cart-title">O seu carrinho</p>
-                    <button type="button" class="cart-close">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                            <g fill="none" fill-rule="evenodd">
-                                <g fill="#222">
-                                    <g>
-                                        <path d="M21.41 2.59c-.325-.326-.852-.326-1.178 0L12 10.821 3.768 2.589c-.326-.325-.853-.325-1.179 0-.325.326-.325.853 0 1.179L10.822 12l-8.233 8.232c-.325.326-.325.853 0 1.179.326.325.853.325 1.179 0L12 13.178l8.232 8.233c.326.325.853.325 1.179 0 .325-.326.325-.853 0-1.179L13.178 12l8.233-8.232c.325-.326.325-.853 0-1.179z" transform="translate(-1860 -34) translate(1860 34)"></path>
-                                    </g>
-                                </g>
-                            </g>
-                        </svg>
-                    </button>
-                </div>
+        <div class="cart-botton" id="cart-button">
+          <img src="../static/icons/6493694.png" alt="cart-icon" />
+        </div>
+
+        <div class="icon-user-menu">
+          <img
+            src="../static/icons/usericon.png"
+            alt="User"
+            onclick="toggleUserMenu()"
+          />
+        </div>
+
+        <div class="menu-user-wrap" id="menu-user-wrap">
+          <div class="sub-menu">
+            <div class="user-info">
+              <h2>User Menu</h2>
             </div>
+            <hr />
+
+            <a href="#" class="sub-menu-link">
+              <img src="../static/icons/editprofile.png" alt="edit profile" />
+              <p>Edit Profile</p>
+              <span>></span>
+            </a>
+
+            <a href="#" class="sub-menu-link">
+              <img src="../static/icons/orders.png" alt="Orders" />
+              <p>Orders</p>
+              <span>></span>
+            </a>
+
+            <a href="#" class="sub-menu-link">
+              <img src="../static/icons/support.png" alt="Support" />
+              <p>Help & Support</p>
+              <span>></span>
+            </a>
+
+            <a href="#" class="sub-menu-link" onclick="logout()">
+              <img src="../static/icons/logout.png" alt="Lougout" />
+              <p>Logout</p>
+              <span>></span>
+            </a>
+          </div>
+        </div>
+
+        <div class="menu-user-wrap-no-user" id="menu-user-wrap-no-user">
+          <div class="sub-menu">
+            <div class="user-info">
+              <h2>Login to acess</h2>
+            </div>
+            <hr />
+            <a href="/login" class="sub-menu-link">
+              <img src="../static/icons/login.png" alt="Login" />
+              <p>Login</p>
+              <span>></span>
+            </a>
+            <a href="/register" class="sub-menu-link">
+              <img src="../static/icons/register.jpg" alt="Register" />
+              <p>Register</p>
+              <span>></span>
+            </a>
+          </div>
+        </div>
+
+        <div class="search">
+          <input
+            type="text"
+            class="search__input"
+            placeholder="Pesquisa o teu vinho"
+            name="query"
+          />
+          <button class="search__button">
+            <svg class="search__icon" aria-hidden="true" viewBox="0 0 24 24">
+              <g>
+                <path
+                  d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"
+                ></path>
+              </g>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <!-- Carrinho removido da navbar -->
+
+      <div id="cart" class="cart-sidebar">
+        <div
+          class="d-flex justify-content-between align-items-center"
+          bis_skin_checked="1"
+        >
+          <p class="cart-title">O seu carrinho</p>
+          <button type="button" class="cart-close">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <g fill="none" fill-rule="evenodd">
+                <g fill="#222">
+                  <g>
+                    <path
+                      d="M21.41 2.59c-.325-.326-.852-.326-1.178 0L12 10.821 3.768 2.589c-.326-.325-.853-.325-1.179 0-.325.326-.325.853 0 1.179L10.822 12l-8.233 8.232c-.325.326-.325.853 0 1.179.326.325.853.325 1.179 0L12 13.178l8.232 8.233c.326.325.853.325 1.179 0 .325-.326.325-.853 0-1.179L13.178 12l8.233-8.232c.325-.326.325-.853 0-1.179z"
+                      transform="translate(-1860 -34) translate(1860 34)"
+                    ></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </button>
+        </div>
+      </div>
     </nav>
 
     <div class="product-page">
-        <div class="containersection" id="product-section">
-            <!-- <div class="section-header">
+      <div class="containersection" id="product-section">
+        <!-- <div class="section-header">
                 <a class="product-section" href="/products"><p>{{ product.category }}</p></a>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item">
@@ -153,576 +197,710 @@
                     </li>
                 </ul>
             </div> -->
-            <div class="row mb-4">
-                <div class="col-12">
-                    <h1 class="display-4 fw-bold mb-2">Vinhos</h1>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="/" class="text-decoration-none">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Vinhos</li>
-                        </ol>
-                    </nav>
-                    <div class="free-shipping">
-                        <i class="fas fa-truck me-2"></i>Portes grátis a partir de 50€
-                    </div>
-                </div>
+        <div class="row mb-4">
+          <div class="col-12">
+            <h1 class="display-4 fw-bold mb-2">Vinhos</h1>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="/" class="text-decoration-none">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Vinhos
+                </li>
+              </ol>
+            </nav>
+            <div class="free-shipping">
+              <i class="fas fa-truck me-2"></i>Portes grátis a partir de 50€
             </div>
-            <div class="product-details">
-                <div class="product-image">
-                    <img src="../static/images/{{ product.image_url }}" alt="{{ product.name }}">
-                </div>
-                <div class="product-info">
-                    <p class="product-name">{{ product.name }}</p>
-                    <p class="product-id">ID: {{ product.id }}</p>
-                    <p class="product-price">{{ product.price }} â‚¬</p>
-                    <div class="addtocart">
-                        <button class="btn btn-dark add-to-cart-btn" data-product-id="{{ product.id }}">Adicionar ao Carrinho</button>
-                        <div class="quantity-button-wrapper d-flex align-items-center justify-content-start" bis_skin_checked="1">
-                                            <button type="button" class="quantity-button quantity-buttons-less core-cart--qty core-cart--qty-minus">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
-                                                    <g fill="none" fill-rule="evenodd">
-                                                        <g fill="#222">
-                                                            <g>
-                                                                <g>
-                                                                    <g>
-                                                                        <path d="M2.636 2.633c-.223.224-.223.586 0 .81l8.904 8.902c.223.224.585.224.808 0 .224-.223.224-.585 0-.809L3.445 2.633c-.223-.223-.585-.223-.809 0z" transform="translate(-114 -167) translate(9 79) translate(80 75) translate(25 13) rotate(-45 7.492 7.49)"></path>
-                                                                    </g>
-                                                                </g>
-                                                            </g>
-                                                        </g>
-                                                    </g>
-                                                </svg>
-                                            </button>
-                                            <input type="text" name="Quantity" value="1" class="quantity-buttons-input core-cart--qty-input" readonly="">
-                                            <button type="button" class="quantity-button quantity-buttons-more core-cart--qty core-cart--qty-plus">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
-                                                    <g fill="none" fill-rule="evenodd">
-                                                        <g fill="#222">
-                                                            <g>
-                                                                <g>
-                                                                    <g>
-                                                                        <path d="M12.35 2.637c-.223-.223-.586-.223-.809 0L7.496 6.682 3.451 2.637c-.223-.223-.585-.223-.809 0-.223.223-.223.586 0 .809L6.687 7.49l-4.06 4.06c-.223.223-.223.585 0 .809.224.223.586.223.809 0l4.06-4.06 4.05 4.049c.223.223.585.223.808 0 .224-.223.224-.586 0-.809L8.305 7.49l4.045-4.044c.223-.223.223-.586 0-.809z" transform="translate(-227 -167) translate(9 79) translate(80 75) translate(138 13) rotate(-45 7.49 7.498)"></path>
-                                                                    </g>
-                                                                </g>
-                                                            </g>
-                                                        </g>
-                                                    </g>
-                                                </svg>
-                                            </button>
-                            </div>
-                    </div>
-
-
-                    <div class="product-spects">
-                        <div class="row">
-                            <div class="col-12 col-lg-6">
-                                <div class="product-detail-spects">
-                                    <div class="product-detail-spects-icon">
-                                        <img src="../static/icons/regiao.jpg" alt="Regiao">
-                                    </div>
-                                    <div class="product-detail-spects-text">
-                                        <span>RegiÃ£o</span>
-                                        <p>{{ product.regiao }}</p>
-                                    </div>
-                                </div>
-                                <div class="product-detail-spects">
-                                    <div class="product-detail-spects-icon">
-                                        <img src="../static/icons/anovinho.jpg" alt="">
-                                    </div>
-                                    <div class="product-detail-spects-text">
-                                        <span>Ano</span>
-                                        <p>{{ product.ano }}</p>
-                                    </div>
-                                </div>
-                                <div class="product-detail-spects">
-                                    <div class="product-detail-spects-icon">
-                                        <img src="../static/icons/teoralcool.jpg" alt="Alcool">
-                                    </div>
-                                    <div class="product-detail-spects-text">
-                                        <span>Teor alcoÃ³lico</span>
-                                        <p>{{ product.volumeal }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-6">
-                                <div class="product-detail-spects">
-                                    <div class="product-detail-spects-icon">
-                                        <img src="../static/icons/contry-icon.png" alt="Pais de origem">
-                                    </div>
-                                    <div class="product-detail-spects-text">
-                                        <span>Pai­s</span>
-                                        <p>{{ product.pais }}</p>
-                                    </div>
-                                </div>
-                                <div class="product-detail-spects">
-                                    <div class="product-detail-spects-icon">
-                                        <img src="../static/icons/produtor.jpg" alt="Produtor">
-                                    </div>
-                                    <div class="product-detail-spects-text">
-                                        <span>Produtor</span>
-                                        <p>{{ product.produtor }}</p>
-                                    </div>
-                                </div>                                
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+          </div>
         </div>
+        <div class="product-details">
+          <div class="product-image">
+            <img
+              src="../static/images/{{ product.image_url }}"
+              alt="{{ product.name }}"
+            />
+          </div>
+          <div class="product-info">
+            <p class="product-name">{{ product.name }}</p>
+            <p class="product-id">ID: {{ product.id }}</p>
+            <p class="product-price">{{ product.price }} â‚¬</p>
+            <div class="addtocart">
+              <button
+                class="btn btn-dark add-to-cart-btn"
+                data-product-id="{{ product.id }}"
+              >
+                Adicionar ao Carrinho
+              </button>
+              <div
+                class="quantity-button-wrapper d-flex align-items-center justify-content-start"
+                bis_skin_checked="1"
+              >
+                <button
+                  type="button"
+                  class="quantity-button quantity-buttons-less core-cart--qty core-cart--qty-minus"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="15"
+                    height="15"
+                    viewBox="0 0 15 15"
+                  >
+                    <g fill="none" fill-rule="evenodd">
+                      <g fill="#222">
+                        <g>
+                          <g>
+                            <g>
+                              <path
+                                d="M2.636 2.633c-.223.224-.223.586 0 .81l8.904 8.902c.223.224.585.224.808 0 .224-.223.224-.585 0-.809L3.445 2.633c-.223-.223-.585-.223-.809 0z"
+                                transform="translate(-114 -167) translate(9 79) translate(80 75) translate(25 13) rotate(-45 7.492 7.49)"
+                              ></path>
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </button>
+                <input
+                  type="text"
+                  name="Quantity"
+                  value="1"
+                  class="quantity-buttons-input core-cart--qty-input"
+                  readonly=""
+                />
+                <button
+                  type="button"
+                  class="quantity-button quantity-buttons-more core-cart--qty core-cart--qty-plus"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="15"
+                    height="15"
+                    viewBox="0 0 15 15"
+                  >
+                    <g fill="none" fill-rule="evenodd">
+                      <g fill="#222">
+                        <g>
+                          <g>
+                            <g>
+                              <path
+                                d="M12.35 2.637c-.223-.223-.586-.223-.809 0L7.496 6.682 3.451 2.637c-.223-.223-.585-.223-.809 0-.223.223-.223.586 0 .809L6.687 7.49l-4.06 4.06c-.223.223-.223.585 0 .809.224.223.586.223.809 0l4.06-4.06 4.05 4.049c.223.223.585.223.808 0 .224-.223.224-.586 0-.809L8.305 7.49l4.045-4.044c.223-.223.223-.586 0-.809z"
+                                transform="translate(-227 -167) translate(9 79) translate(80 75) translate(138 13) rotate(-45 7.49 7.498)"
+                              ></path>
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="product-spects">
+              <div class="row">
+                <div class="col-12 col-lg-6">
+                  <div class="product-detail-spects">
+                    <div class="product-detail-spects-icon">
+                      <img src="../static/icons/regiao.jpg" alt="Regiao" />
+                    </div>
+                    <div class="product-detail-spects-text">
+                      <span>Região</span>
+                      <p data-field="regiao"></p>
+                    </div>
+                  </div>
+                  <div class="product-detail-spects">
+                    <div class="product-detail-spects-icon">
+                      <img src="../static/icons/anovinho.jpg" alt="" />
+                    </div>
+                    <div class="product-detail-spects-text">
+                      <span>Ano</span>
+                      <p data-field="ano"></p>
+                    </div>
+                  </div>
+                  <div class="product-detail-spects">
+                    <div class="product-detail-spects-icon">
+                      <img src="../static/icons/teoralcool.jpg" alt="Alcool" />
+                    </div>
+                    <div class="product-detail-spects-text">
+                      <span>Teor alcoólico</span>
+                      <p data-field="volumeal"></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                  <div class="product-detail-spects">
+                    <div class="product-detail-spects-icon">
+                      <img
+                        src="../static/icons/contry-icon.png"
+                        alt="Pais de origem"
+                      />
+                    </div>
+                    <div class="product-detail-spects-text">
+                      <span>Pai­s</span>
+                      <p data-field="pais"></p>
+                    </div>
+                  </div>
+                  <div class="product-detail-spects">
+                    <div class="product-detail-spects-icon">
+                      <img src="../static/icons/produtor.jpg" alt="Produtor" />
+                    </div>
+                    <div class="product-detail-spects-text">
+                      <span>Produtor</span>
+                      <p data-field="produtor"></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-
     <div class="container">
-        <h2 class="section-subtitle highlight-products-subtitle">Produtos Recomendados</h2>
-        <p class="section-title highlight-products-title"></p>
+      <h2 class="section-subtitle highlight-products-subtitle">
+        Produtos Recomendados
+      </h2>
+      <p class="section-title highlight-products-title"></p>
     </div>
 
     <div class="carousel-wrapper">
-        <button class="carousel-btn prev"><</button>
-        <div class="carousel-viewport">
-            <div class="carousel-track" id="product-container"></div>
-        </div>
-        <button class="carousel-btn next">></button>
+      <button class="carousel-btn prev"><</button>
+      <div class="carousel-viewport">
+        <div class="carousel-track" id="product-container"></div>
+      </div>
+      <button class="carousel-btn next">></button>
     </div>
 
-
-        <!-- Footer -->
-    <footer class="text-center text-lg-start bg-body-tertiary text-muted" style="background-color: #212121 !important;">
-    <!-- Section: Social media -->
-        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-    <!-- Left -->
-            <div class="me-5 d-none d-lg-block" style="color: rgb(221, 221, 221);">
-                <span>Get connected with us on social networks:</span>
-            </div>
-    <!-- Left -->
-
-    <!-- Right -->
-            <div>
-            <a href="https://www.facebook.com/profile.php?id=100088980578739" target="_blank" class="me-4 text-reset">
-                <img src="../static/icons/facebookicon.png" class="icons-footer" style="width: 30px;">
-            </a>
-            <a href="https://www.instagram.com/winewine.distribuicao/" target="_blank" class="me-4 text-reset">
-                <img src="../static/icons/instagramicon.png" alt="Instagram" class="icons-footer" style="width: 30px;">
-            </a>
-            <a href="" class="me-4 text-reset">
-                <i class="fab fa-google"></i>
-            </a>
-            <a href="" class="me-4 text-reset">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="" class="me-4 text-reset">
-                <i class="fab fa-linkedin"></i>
-            </a>
-            <a href="" class="me-4 text-reset">
-                <i class="fab fa-github"></i>
-            </a>
-            </div>
-    <!-- Right -->
-        </section>
-  <!-- Section: Social media -->
-
-  <!-- Section: Links  -->
-        <section class="">
-            <div class="container text-center text-md-start mt-5">
-      <!-- Grid row -->
-                <div class="row mt-3">
-        <!-- Grid column -->
-                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4" style="color: white;">
-          <!-- Content -->
-                    <h6 class="text-uppercase fw-bold mb-4">
-                        <i class="fas fa-gem me-3">Toni Correia</i>
-                    </h6>
-                    <p>
-                    HorÃ¡rio: Segunda a Sexta - 10h00 Ã s 19h00
-                    </p>
-                </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4" style="color: white;">
-          <!-- Links -->
-                    <h6 class="text-uppercase fw-bold mb-4">
-                        Products
-                    </h6>
-                    <p>
-                        <a href="#!" class="text-reset">Vinho tinto</a>
-                    </p>
-                    <p>
-                        <a href="#!" class="text-reset">Vinho Branco</a>
-                    </p>
-                    <p>
-                        <a href="#!" class="text-reset">Espumantes</a>
-                    </p>
-                    <p>
-                        <a href="#!" class="text-reset">Vinho Verde</a>
-                    </p>
-                </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4" style="color: white;">
-          <!-- Links -->
-                    <h6 class="text-uppercase fw-bold mb-4">
-                        Useful links
-                    </h6>
-                    <p>
-                        <a href="#!" class="text-reset">All products</a>
-                    </p>
-                    <p>
-                        <a href="#!" class="text-reset">About us</a>
-                    </p>
-                    <p>
-                        <a href="#!" class="text-reset">Orders</a>
-                    </p>
-                    <p>
-                        <a href="#!" class="text-reset">Bar</a>
-                    </p>
-                </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4" style="color: white;">
-          <!-- Links -->
-                    <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-                    <p><i class="fas fa-home me-3"></i> 4540 Arouca, Rossas</p>
-                    <p>
-                        <i class="fas fa-envelope me-3"></i>
-                        winewine.distribuicao@example.com
-                    </p>
-                    <p><i class="fas fa-phone me-3"></i> + 351 910 295 159</p>
-                </div>
-        <!-- Grid column -->
-            </div>
-      <!-- Grid row -->
+    <!-- Footer -->
+    <footer
+      class="text-center text-lg-start bg-body-tertiary text-muted"
+      style="background-color: #212121 !important"
+    >
+      <!-- Section: Social media -->
+      <section
+        class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
+      >
+        <!-- Left -->
+        <div class="me-5 d-none d-lg-block" style="color: rgb(221, 221, 221)">
+          <span>Get connected with us on social networks:</span>
         </div>
-    </section>
-  <!-- Section: Links  -->
+        <!-- Left -->
 
-  <!-- Copyright -->
-    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+        <!-- Right -->
+        <div>
+          <a
+            href="https://www.facebook.com/profile.php?id=100088980578739"
+            target="_blank"
+            class="me-4 text-reset"
+          >
+            <img
+              src="../static/icons/facebookicon.png"
+              class="icons-footer"
+              style="width: 30px"
+            />
+          </a>
+          <a
+            href="https://www.instagram.com/winewine.distribuicao/"
+            target="_blank"
+            class="me-4 text-reset"
+          >
+            <img
+              src="../static/icons/instagramicon.png"
+              alt="Instagram"
+              class="icons-footer"
+              style="width: 30px"
+            />
+          </a>
+          <a href="" class="me-4 text-reset">
+            <i class="fab fa-google"></i>
+          </a>
+          <a href="" class="me-4 text-reset">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="" class="me-4 text-reset">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="" class="me-4 text-reset">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+        <!-- Right -->
+      </section>
+      <!-- Section: Social media -->
+
+      <!-- Section: Links  -->
+      <section class="">
+        <div class="container text-center text-md-start mt-5">
+          <!-- Grid row -->
+          <div class="row mt-3">
+            <!-- Grid column -->
+            <div
+              class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4"
+              style="color: white"
+            >
+              <!-- Content -->
+              <h6 class="text-uppercase fw-bold mb-4">
+                <i class="fas fa-gem me-3">Toni Correia</i>
+              </h6>
+              <p>HorÃ¡rio: Segunda a Sexta - 10h00 Ã s 19h00</p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div
+              class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4"
+              style="color: white"
+            >
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold mb-4">Products</h6>
+              <p>
+                <a href="#!" class="text-reset">Vinho tinto</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Vinho Branco</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Espumantes</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Vinho Verde</a>
+              </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div
+              class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4"
+              style="color: white"
+            >
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold mb-4">Useful links</h6>
+              <p>
+                <a href="#!" class="text-reset">All products</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">About us</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Orders</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Bar</a>
+              </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div
+              class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4"
+              style="color: white"
+            >
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+              <p><i class="fas fa-home me-3"></i> 4540 Arouca, Rossas</p>
+              <p>
+                <i class="fas fa-envelope me-3"></i>
+                winewine.distribuicao@example.com
+              </p>
+              <p><i class="fas fa-phone me-3"></i> + 351 910 295 159</p>
+            </div>
+            <!-- Grid column -->
+          </div>
+          <!-- Grid row -->
+        </div>
+      </section>
+      <!-- Section: Links  -->
+
+      <!-- Copyright -->
+      <div
+        class="text-center p-4"
+        style="background-color: rgba(0, 0, 0, 0.05)"
+      >
         Â© 2021 Copyright:
         <a class="text-reset fw-bold" href="/">tonicorreia.com</a>
-    </div>
-  <!-- Copyright -->
+      </div>
+      <!-- Copyright -->
     </footer>
-<!-- Footer -->
+    <!-- Footer -->
 
-
-
-<script>
-function toggleUserMenu() {
-    fetch('/tesp-ds-g32/E-commerce/check_login')
-        .then(response => response.json())
-        .then(data => {
-            if (data.is_logged_in) {
-                let submenu = document.getElementById("menu-user-wrap");
-                submenu.classList.toggle("show");
-            } else {
-                let submenu = document.getElementById("menu-user-wrap-no-user");
-                submenu.classList.toggle("show");
-            }
-        })
-        .catch(error => console.error('Error checking user session:', error));
-}
-
-function logout(){
-    fetch('/tesp-ds-g32/E-commerce/logout', {
-        method:'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-
-    window.location.reload(true);
-}
-
-
-function showCart(cartData){
-            const cartDiv = document.getElementById("cart");
-            cartDiv.classList.add('cart-open');
-            cartDiv.innerHTML = `
-                <div class="d-flex justify-content-between align-items-center" bis_skin_checked="1">
-                    <p class="cart-title">O seu carrinho</p>
-                    <button type="button" class="cart-close">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                            <g fill="none" fill-rule="evenodd">
-                                <g fill="#222">
-                                    <g>
-                                        <path d="M21.41 2.59c-.325-.326-.852-.326-1.178 0L12 10.821 3.768 2.589c-.326-.325-.853-.325-1.179 0-.325.326-.325.853 0 1.179L10.822 12l-8.233 8.232c-.325.326-.325.853 0 1.179.326.325.853.325 1.179 0L12 13.178l8.232 8.233c.326.325.853.325 1.179 0 .325-.326.325-.853 0-1.179L13.178 12l8.233-8.232c.325-.326.325-.853 0-1.179z" transform="translate(-1860 -34) translate(1860 34)"></path>
-                                    </g>
-                                </g>
-                            </g>
-                        </svg>
-                    </button>
-                </div>
-                <div class="cart-items">
-                    ${cartData.items.map(item => `
-                        <div class="cart-item">
-                            <div class="d-flex align-items-start" bis_skin_checked="1">
-                                <div class="item-image">
-                                    <img src="/static/images/${item.image_url}" alt="${item.name}">
-                                </div>
-                                <div class="item-details">
-                                    <p class="item-title">${item.name}</p>
-                                    <p class="item-id">ID: ${item.id}</p>
-                                    <div class="item-cart-quantity-price d-flex justify-content-start align-items-start
-                                    flex-column flex-md-row justify-content-md-between align-items-md-end" bis_skin_checked="1">
-                                        <div class="quantity-button-wrapper d-flex align-items-center justify-content-start" bis_skin_checked="1">
-                                            <button type="button" class="quantity-button quantity-buttons-less core-cart--qty core-cart--qty-minus">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
-                                                    <g fill="none" fill-rule="evenodd">
-                                                        <g fill="#222">
-                                                            <g>
-                                                                <g>
-                                                                    <g>
-                                                                        <path d="M2.636 2.633c-.223.224-.223.586 0 .81l8.904 8.902c.223.224.585.224.808 0 .224-.223.224-.585 0-.809L3.445 2.633c-.223-.223-.585-.223-.809 0z" transform="translate(-114 -167) translate(9 79) translate(80 75) translate(25 13) rotate(-45 7.492 7.49)"></path>
-                                                                    </g>
-                                                                </g>
-                                                            </g>
-                                                        </g>
-                                                    </g>
-                                                </svg>
-                                            </button>
-                                            <input type="text" name="Quantity" value=${item.quantity} class="quantity-buttons-input core-cart--qty-input" readonly>
-                                            <button type="button" class="quantity-button quantity-buttons-more core-cart--qty core-cart--qty-plus">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
-                                                    <g fill="none" fill-rule="evenodd">
-                                                        <g fill="#222">
-                                                            <g>
-                                                                <g>
-                                                                    <g>
-                                                                        <path d="M12.35 2.637c-.223-.223-.586-.223-.809 0L7.496 6.682 3.451 2.637c-.223-.223-.585-.223-.809 0-.223.223-.223.586 0 .809L6.687 7.49l-4.06 4.06c-.223.223-.223.585 0 .809.224.223.586.223.809 0l4.06-4.06 4.05 4.049c.223.223.585.223.808 0 .224-.223.224-.586 0-.809L8.305 7.49l4.045-4.044c.223-.223.223-.586 0-.809z" transform="translate(-227 -167) translate(9 79) translate(80 75) translate(138 13) rotate(-45 7.49 7.498)"></path>
-                                                                    </g>
-                                                                </g>
-                                                            </g>
-                                                        </g>
-                                                    </g>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <p class="cart-item-price core-cart--item-price cart-item--price">
-                                            <span class="product-item-price">${item.price} â‚¬</span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <button type="button" class="cart-item-remove d-flex justify-content-center align-items-center core-product--remove" data-product-id="${item.id}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                                        <g>
-                                            <g>
-                                                <g>
-                                                    <g>
-                                                        <g>
-                                                            <path d="M9.185.667c.49 0 .89.416.89.928V2.1c0 .038-.006.074-.018.107h3.618c.534 0 .969.434.969.968v.187c0 .521-.413.947-.929.968l-.819 9.842c0 .007 0 .013-.002.02-.074.518-.54.924-1.058.924H4.744c-.519 0-.984-.406-1.058-.925l-.003-.019-.819-9.847C2.374 4.27 2 3.86 2 3.363v-.187c0-.534.435-.969.969-.969l3.565.001c-.012-.033-.018-.07-.018-.107v-.506c0-.512.394-.928.879-.928h1.79zM5.357 4.385H3.509l.809 9.724c.033.202.226.37.426.37h1.033l-.42-10.094zm2.539 0H5.995l.42 10.094h1.481V4.385zm2.688 0h-2.05v10.094h1.629l.421-10.094zm2.486 0h-1.848l-.421 10.094h1.035c.2 0 .393-.168.426-.37l.808-9.724zm.605-1.54H2.969c-.183 0-.332.148-.332.331v.187c0 .183.15.332.332.332h10.706c.183 0 .331-.149.331-.332v-.187c0-.183-.148-.331-.331-.331zm-4.49-1.54h-1.79c-.15 0-.242.15-.242.29V2.1c0 .038-.006.074-.018.107h2.321c-.012-.033-.018-.07-.018-.107v-.506c0-.14-.102-.29-.253-.29z" transform="translate(-279 -102) translate(9 79) translate(263 16) translate(7 7)"></path>
-                                                        </g>
-                                                    </g>
-                                                </g>
-                                            </g>
-                                        </g>
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    `).join('')}
-                </div>
-                <div class="box-cart-total">
-                    <div class="title-cart-total">
-                        <span class="cart-total-title">Total: </span>
-                        <div class="total-price">${cartData.total.toFixed(2)}â‚¬</div>
-                    </div>
-                </div>
-            `;
-        }
-    
-
-
-    // Efeito de scroll para mudar a cor do navbar
-    var nav = document.getElementById('nav');
-    window.addEventListener("scroll", function () {
-        nav.style.background = window.pageYOffset > 100 ? "#212121" : "transparent";
-    });
-    
-    document.body.addEventListener('click', async (e) => {
-        // Abrir carrinho ao clicar no .cart-botton ou seu filho
-        if (e.target.closest('.cart-botton')) {
-            e.preventDefault();
-            try {
-                const response = await fetch('/tesp-ds-g32/E-commerce/get_user_cart', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-                let cartData;
-                try {
-                    cartData = await response.json();
-                } catch (e) {
-                    console.error("Erro a fazer parse do JSON:", e);
-                    const text = await response.text();
-                    console.log("Resposta crua:", text);
-                    return;
-                }
-                console.log(cartData);
-                showCart(cartData);
-            } catch (err) {
-                console.error(err);
-            }
-            return;
-        }
-        // Fechar carrinho ao clicar no botÃ£o X ou no SVG dentro dele
-        if (e.target.closest('.cart-close')) {
-            document.getElementById('cart').classList.remove('cart-open');
-            return;
-        }
-    });
-
-    document.body.addEventListener('click', async (e) => {
-    if (e.target.classList.contains('add-to-cart-btn')) {
-      e.preventDefault();
-
-      const productId = e.target.dataset.productId;
-
-      // Enviar pedido POST Ã  API
-      try {
-        const response = await fetch('/tesp-ds-g32/E-commerce/cart/add', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ product_id: productId, quantity: 1 })
-        });
-
-        if (!response.ok) {
-          throw new Error("Erro ao adicionar ao carrinho");
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+        // obter id da querystring (?id=123) ou fallback para última parte do caminho
+        const params = new URLSearchParams(window.location.search);
+        let productId = Number(params.get('id') || 0);
+        if (!productId) {
+          const parts = window.location.pathname.split('/').filter(Boolean);
+          const last = parts[parts.length - 1] || '';
+          productId = Number(last) || 0;
         }
 
-        let cartData;
-        try {
-            cartData = await response.json();
-        } catch (e) {
-            console.error("Erro a fazer parse do JSON:", e);
-            const text = await response.text();
-            console.log("Resposta crua:", text);
-        return;
+        if (!productId) {
+          console.error('product id missing');
+          document.querySelector('.product-name')?.textContent = 'Produto inválido';
+          return;
         }
-        console.log(cartData);
-        showCart(cartData);
 
-      } catch (err) {
-        console.error(err);
-      }
-    }
-});
+        // caminho relativo à API (ajusta se a tua estrutura for diferente)
+        const apiUrl = `../api/products/get_products_by_id.php?id=${encodeURIComponent(productId)}`;
+        console.log('Fetching product from', apiUrl);
 
-async function fetchAndShowCart() {
-  try {
-    const response = await fetch('/tesp-ds-g32/E-commerce/get_user_cart');
-    if (!response.ok) throw new Error("Erro ao obter carrinho");
+        fetch(apiUrl)
+          .then(response => {
+            if (!response.ok) throw new Error(`API returned ${response.status}`);
+            return response.json();
+          })
+          .then(product => {
+            console.log('product', product);
 
-    const cartData = await response.json();
-    showCart(cartData); // atualiza a UI
-  } catch (error) {
-    console.error("Erro ao atualizar carrinho:", error);
-  }
-}
+            // campos principais
+            document.querySelector('.product-name')?.textContent = product.name ?? '';
+            document.querySelector('.product-id')?.textContent = 'ID: ' + (product.id ?? productId);
+            document.querySelector('.product-price')?.textContent = (product.price !== null && product.price !== undefined)
+              ? Number(product.price).toFixed(2) + ' €' : '—';
 
-document.body.addEventListener('click', async (e) => {
-    if (e.target.classList.contains('cart-item-remove')) {
-        e.preventDefault();
-
-        const productId = e.target.dataset.productId;
-        await fetch('/tesp-ds-g32/E-commerce/remove_from_cart', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ product_id: productId })
-        });
-            await fetchAndShowCart();
-    }
-  });
-
-document.addEventListener("DOMContentLoaded", () => {
-const section = {{ product.category | tojson }};
-fetch(`/get-products-section?section=${encodeURIComponent(section)}`)
-    .then(response => response.json())
-    .then(products => {
-        const container = document.getElementById('product-container');
-        container.innerHTML = "";
-        products.forEach(product => {
-            let extraClass = '';
-            if (product.name === "Encosta dÂ´Aregos") {
-                extraClass = ' encosta-daregos';
-            } else if (product.name === "M&M ROSÃ‰") {
-                extraClass = ' MM-rose';
-            } else if (product.name === "Perspetiva Colheita Branco"){
-                extraClass = ' perspetiva-colheita-branco';
-            }
-
-            const card = document.createElement("div");
-            card.classList.add("card", "h-100");
-            card.innerHTML = `
-                <img class="card-img-top${extraClass}" src="/static/images/${product.image_url}" alt="${product.name}">
-                <div class="card-body text-center">
-                    <h5 class="card-title">${product.name}</h5>
-                    <p class="card-text">${Number(product.price).toFixed(2)} â‚¬</p>
-                    <a href="/products/${product.id}" class="btn btn-light">Ver detalhes</a>
-                    <a class="btn btn-dark a add-to-cart-btn" data-product-id="${product.id}">Cart</a>
-                </div>
-            `;
-            container.appendChild(card);
-        });
-    
-
-        // Carousel logic igual ao index
-        const track = document.querySelector('.carousel-track');
-        const cards = track.querySelectorAll('.card');
-        const prevBtn = document.querySelector('.carousel-btn.prev');
-        const nextBtn = document.querySelector('.carousel-btn.next');
-        const visibleCards = 3;
-        let currentIndex = 0;
-
-        const updateCarousel = () => {
-            const cardWidth = cards[0].offsetWidth + 20; // 20px gap
-            const offset = currentIndex * cardWidth;
-            track.style.transform = `translateX(-${offset}px)`;
-
-            cards.forEach((card, index) => {
-                card.classList.remove('fade');
-                if (
-                    index < currentIndex ||
-                    index >= currentIndex + visibleCards
-                ) {
-                    card.classList.add('fade');
-                }
+            // preencher todos os elementos com data-field automatizado
+            document.querySelectorAll('[data-field]').forEach(el => {
+              const field = el.getAttribute('data-field');
+              if (field && product[field] !== undefined && product[field] !== null) {
+                el.textContent = product[field];
+              }
             });
-        };
 
-        prevBtn.addEventListener('click', () => {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateCarousel();
+            // descrição
+            const descEl = document.getElementById('desc');
+            if (descEl) descEl.innerHTML = (product.description || '').replace(/\n/g, '<br>');
+
+            // imagem
+            const imgEl = document.querySelector('.product-image img');
+            if (imgEl) {
+              if (product.image_url) {
+                imgEl.src = `../static/images/${product.image_url}`;
+                imgEl.alt = product.name || '';
+              } else {
+                imgEl.style.display = 'none';
+              }
             }
+          })
+          .catch(err => {
+            console.error('Erro a obter produto:', err);
+            document.querySelector('.product-name')?.textContent = 'Erro a carregar produto';
+          });
+      });
+
+      function toggleUserMenu() {
+          fetch('/tesp-ds-g32/E-commerce/check_login')
+              .then(response => response.json())
+              .then(data => {
+                  if (data.is_logged_in) {
+                      let submenu = document.getElementById("menu-user-wrap");
+                      submenu.classList.toggle("show");
+                  } else {
+                      let submenu = document.getElementById("menu-user-wrap-no-user");
+                      submenu.classList.toggle("show");
+                  }
+              })
+              .catch(error => console.error('Error checking user session:', error));
+      }
+
+
+      function logout(){
+          fetch('/tesp-ds-g32/E-commerce/logout', {
+              method:'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              }
+          })
+
+          window.location.reload(true);
+      }
+
+
+      function showCart(cartData){
+                  const cartDiv = document.getElementById("cart");
+                  cartDiv.classList.add('cart-open');
+                  cartDiv.innerHTML = `
+                      <div class="d-flex justify-content-between align-items-center" bis_skin_checked="1">
+                          <p class="cart-title">O seu carrinho</p>
+                          <button type="button" class="cart-close">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                  <g fill="none" fill-rule="evenodd">
+                                      <g fill="#222">
+                                          <g>
+                                              <path d="M21.41 2.59c-.325-.326-.852-.326-1.178 0L12 10.821 3.768 2.589c-.326-.325-.853-.325-1.179 0-.325.326-.325.853 0 1.179L10.822 12l-8.233 8.232c-.325.326-.325.853 0 1.179.326.325.853.325 1.179 0L12 13.178l8.232 8.233c.326.325.853.325 1.179 0 .325-.326.325-.853 0-1.179L13.178 12l8.233-8.232c.325-.326.325-.853 0-1.179z" transform="translate(-1860 -34) translate(1860 34)"></path>
+                                          </g>
+                                      </g>
+                                  </g>
+                              </svg>
+                          </button>
+                      </div>
+                      <div class="cart-items">
+                          ${cartData.items.map(item => `
+                              <div class="cart-item">
+                                  <div class="d-flex align-items-start" bis_skin_checked="1">
+                                      <div class="item-image">
+                                          <img src="/static/images/${item.image_url}" alt="${item.name}">
+                                      </div>
+                                      <div class="item-details">
+                                          <p class="item-title">${item.name}</p>
+                                          <p class="item-id">ID: ${item.id}</p>
+                                          <div class="item-cart-quantity-price d-flex justify-content-start align-items-start
+                                          flex-column flex-md-row justify-content-md-between align-items-md-end" bis_skin_checked="1">
+                                              <div class="quantity-button-wrapper d-flex align-items-center justify-content-start" bis_skin_checked="1">
+                                                  <button type="button" class="quantity-button quantity-buttons-less core-cart--qty core-cart--qty-minus">
+                                                      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
+                                                          <g fill="none" fill-rule="evenodd">
+                                                              <g fill="#222">
+                                                                  <g>
+                                                                      <g>
+                                                                          <g>
+                                                                              <path d="M2.636 2.633c-.223.224-.223.586 0 .81l8.904 8.902c.223.224.585.224.808 0 .224-.223.224-.585 0-.809L3.445 2.633c-.223-.223-.585-.223-.809 0z" transform="translate(-114 -167) translate(9 79) translate(80 75) translate(25 13) rotate(-45 7.492 7.49)"></path>
+                                                                          </g>
+                                                                      </g>
+                                                                  </g>
+                                                              </g>
+                                                          </g>
+                                                      </svg>
+                                                  </button>
+                                                  <input type="text" name="Quantity" value=${item.quantity} class="quantity-buttons-input core-cart--qty-input" readonly>
+                                                  <button type="button" class="quantity-button quantity-buttons-more core-cart--qty core-cart--qty-plus">
+                                                      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
+                                                          <g fill="none" fill-rule="evenodd">
+                                                              <g fill="#222">
+                                                                  <g>
+                                                                      <g>
+                                                                          <g>
+                                                                              <path d="M12.35 2.637c-.223-.223-.586-.223-.809 0L7.496 6.682 3.451 2.637c-.223-.223-.585-.223-.809 0-.223.223-.223.586 0 .809L6.687 7.49l-4.06 4.06c-.223.223-.223.585 0 .809.224.223.586.223.809 0l4.06-4.06 4.05 4.049c.223.223.585.223.808 0 .224-.223.224-.586 0-.809L8.305 7.49l4.045-4.044c.223-.223.223-.586 0-.809z" transform="translate(-227 -167) translate(9 79) translate(80 75) translate(138 13) rotate(-45 7.49 7.498)"></path>
+                                                                          </g>
+                                                                      </g>
+                                                                  </g>
+                                                              </g>
+                                                          </g>
+                                                      </svg>
+                                                  </button>
+                                              </div>
+                                              <p class="cart-item-price core-cart--item-price cart-item--price">
+                                                  <span class="product-item-price">${item.price} â‚¬</span>
+                                              </p>
+                                          </div>
+                                      </div>
+                                      <button type="button" class="cart-item-remove d-flex justify-content-center align-items-center core-product--remove" data-product-id="${item.id}">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                                              <g>
+                                                  <g>
+                                                      <g>
+                                                          <g>
+                                                              <g>
+                                                                  <path d="M9.185.667c.49 0 .89.416.89.928V2.1c0 .038-.006.074-.018.107h3.618c.534 0 .969.434.969.968v.187c0 .521-.413.947-.929.968l-.819 9.842c0 .007 0 .013-.002.02-.074.518-.54.924-1.058.924H4.744c-.519 0-.984-.406-1.058-.925l-.003-.019-.819-9.847C2.374 4.27 2 3.86 2 3.363v-.187c0-.534.435-.969.969-.969l3.565.001c-.012-.033-.018-.07-.018-.107v-.506c0-.512.394-.928.879-.928h1.79zM5.357 4.385H3.509l.809 9.724c.033.202.226.37.426.37h1.033l-.42-10.094zm2.539 0H5.995l.42 10.094h1.481V4.385zm2.688 0h-2.05v10.094h1.629l.421-10.094zm2.486 0h-1.848l-.421 10.094h1.035c.2 0 .393-.168.426-.37l.808-9.724zm.605-1.54H2.969c-.183 0-.332.148-.332.331v.187c0 .183.15.332.332.332h10.706c.183 0 .331-.149.331-.332v-.187c0-.183-.148-.331-.331-.331zm-4.49-1.54h-1.79c-.15 0-.242.15-.242.29V2.1c0 .038-.006.074-.018.107h2.321c-.012-.033-.018-.07-.018-.107v-.506c0-.14-.102-.29-.253-.29z" transform="translate(-279 -102) translate(9 79) translate(263 16) translate(7 7)"></path>
+                                                              </g>
+                                                          </g>
+                                                      </g>
+                                                  </g>
+                                              </g>
+                                          </svg>
+                                      </button>
+                                  </div>
+                              </div>
+                          `).join('')}
+                      </div>
+                      <div class="box-cart-total">
+                          <div class="title-cart-total">
+                              <span class="cart-total-title">Total: </span>
+                              <div class="total-price">${cartData.total.toFixed(2)}â‚¬</div>
+                          </div>
+                      </div>
+                  `;
+              }
+
+
+
+          // Efeito de scroll para mudar a cor do navbar
+          var nav = document.getElementById('nav');
+          window.addEventListener("scroll", function () {
+              nav.style.background = window.pageYOffset > 100 ? "#212121" : "transparent";
+          });
+
+          document.body.addEventListener('click', async (e) => {
+              // Abrir carrinho ao clicar no .cart-botton ou seu filho
+              if (e.target.closest('.cart-botton')) {
+                  e.preventDefault();
+                  try {
+                      const response = await fetch('/tesp-ds-g32/E-commerce/get_user_cart', {
+                          method: 'GET',
+                          headers: {
+                              'Content-Type': 'application/json'
+                          }
+                      });
+                      let cartData;
+                      try {
+                          cartData = await response.json();
+                      } catch (e) {
+                          console.error("Erro a fazer parse do JSON:", e);
+                          const text = await response.text();
+                          console.log("Resposta crua:", text);
+                          return;
+                      }
+                      console.log(cartData);
+                      showCart(cartData);
+                  } catch (err) {
+                      console.error(err);
+                  }
+                  return;
+              }
+              // Fechar carrinho ao clicar no botÃ£o X ou no SVG dentro dele
+              if (e.target.closest('.cart-close')) {
+                  document.getElementById('cart').classList.remove('cart-open');
+                  return;
+              }
+          });
+
+          document.body.addEventListener('click', async (e) => {
+          if (e.target.classList.contains('add-to-cart-btn')) {
+            e.preventDefault();
+
+            const productId = e.target.dataset.productId;
+
+            // Enviar pedido POST Ã  API
+            try {
+              const response = await fetch('/tesp-ds-g32/E-commerce/cart/add', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ product_id: productId, quantity: 1 })
+              });
+
+              if (!response.ok) {
+                throw new Error("Erro ao adicionar ao carrinho");
+              }
+
+              let cartData;
+              try {
+                  cartData = await response.json();
+              } catch (e) {
+                  console.error("Erro a fazer parse do JSON:", e);
+                  const text = await response.text();
+                  console.log("Resposta crua:", text);
+              return;
+              }
+              console.log(cartData);
+              showCart(cartData);
+
+            } catch (err) {
+              console.error(err);
+            }
+          }
+      });
+
+      async function fetchAndShowCart() {
+        try {
+          const response = await fetch('/tesp-ds-g32/E-commerce/get_user_cart');
+          if (!response.ok) throw new Error("Erro ao obter carrinho");
+
+          const cartData = await response.json();
+          showCart(cartData); // atualiza a UI
+        } catch (error) {
+          console.error("Erro ao atualizar carrinho:", error);
+        }
+      }
+
+      document.body.addEventListener('click', async (e) => {
+          if (e.target.classList.contains('cart-item-remove')) {
+              e.preventDefault();
+
+              const productId = e.target.dataset.productId;
+              await fetch('/tesp-ds-g32/E-commerce/remove_from_cart', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ product_id: productId })
+              });
+                  await fetchAndShowCart();
+          }
         });
 
-        nextBtn.addEventListener('click', () => {
-            if (currentIndex < cards.length - visibleCards) {
-                currentIndex++;
-                updateCarousel();
-            }
-        });
+      document.addEventListener("DOMContentLoaded", () => {
+      const section = {{ product.category | tojson }};
+      fetch(`/get-products-section?section=${encodeURIComponent(section)}`)
+          .then(response => response.json())
+          .then(products => {
+              const container = document.getElementById('product-container');
+              container.innerHTML = "";
+              products.forEach(product => {
+                  let extraClass = '';
+                  if (product.name === "Encosta dÂ´Aregos") {
+                      extraClass = ' encosta-daregos';
+                  } else if (product.name === "M&M ROSÃ‰") {
+                      extraClass = ' MM-rose';
+                  } else if (product.name === "Perspetiva Colheita Branco"){
+                      extraClass = ' perspetiva-colheita-branco';
+                  }
 
-        updateCarousel();
-    })
-    .catch(error => {
-        console.error('Erro ao buscar produtos:', error);
-    });
-});
+                  const card = document.createElement("div");
+                  card.classList.add("card", "h-100");
+                  card.innerHTML = `
+                      <img class="card-img-top${extraClass}" src="/static/images/${product.image_url}" alt="${product.name}">
+                      <div class="card-body text-center">
+                          <h5 class="card-title">${product.name}</h5>
+                          <p class="card-text">${Number(product.price).toFixed(2)} â‚¬</p>
+                          <a href="/products/${product.id}" class="btn btn-light">Ver detalhes</a>
+                          <a class="btn btn-dark a add-to-cart-btn" data-product-id="${product.id}">Cart</a>
+                      </div>
+                  `;
+                  container.appendChild(card);
+              });
 
-function scrollToBottom() {
-    window.scrollTo(0, document.body.scrollHeight);
-}
 
-</script>
-</body>
+              // Carousel logic igual ao index
+              const track = document.querySelector('.carousel-track');
+              const cards = track.querySelectorAll('.card');
+              const prevBtn = document.querySelector('.carousel-btn.prev');
+              const nextBtn = document.querySelector('.carousel-btn.next');
+              const visibleCards = 3;
+              let currentIndex = 0;
+
+              const updateCarousel = () => {
+                  const cardWidth = cards[0].offsetWidth + 20; // 20px gap
+                  const offset = currentIndex * cardWidth;
+                  track.style.transform = `translateX(-${offset}px)`;
+
+                  cards.forEach((card, index) => {
+                      card.classList.remove('fade');
+                      if (
+                          index < currentIndex ||
+                          index >= currentIndex + visibleCards
+                      ) {
+                          card.classList.add('fade');
+                      }
+                  });
+              };
+
+              prevBtn.addEventListener('click', () => {
+                  if (currentIndex > 0) {
+                      currentIndex--;
+                      updateCarousel();
+                  }
+              });
+
+              nextBtn.addEventListener('click', () => {
+                  if (currentIndex < cards.length - visibleCards) {
+                      currentIndex++;
+                      updateCarousel();
+                  }
+              });
+
+              updateCarousel();
+          })
+          .catch(error => {
+              console.error('Erro ao buscar produtos:', error);
+          });
+      });
+
+      function scrollToBottom() {
+          window.scrollTo(0, document.body.scrollHeight);
+      }
+    </script>
+  </body>
 </html>
-
-

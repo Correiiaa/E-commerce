@@ -2,6 +2,8 @@
 require_once  "../config.php";
 require_once  "../core.php";
 
+// garantir que a API devolve JSON
+header('Content-Type: application/json; charset=utf-8');
 
 $id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 if ($id <= 0) {
