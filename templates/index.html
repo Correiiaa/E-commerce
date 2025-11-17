@@ -576,11 +576,11 @@
             `;
       }
 
-      async function safeFetchJson(url, opts = {}) {
+      
         const res = await fetch(url, opts);
         const text = await res.text();
         if (!res.ok) {
-          console.error(`Fetch ${url} falhou (status ${res.status}):`, text);
+          consasync function safeFetchJson(url, opts = {}) {ole.error(`Fetch ${url} falhou (status ${res.status}):`, text);
           throw new Error(`Fetch failed: ${res.status}`);
         }
         const ct = res.headers.get("content-type") || "";

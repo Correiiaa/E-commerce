@@ -93,6 +93,7 @@
             <div class="form-links">
               <p>Não tem conta? <a href="./register.html">Crie uma aqui</a></p>
             </div>
+            <div id="login-error" style="color: red"></div>
           </form>
           <button
             type="button"
@@ -203,7 +204,8 @@
             });
             window.location.href = "./index.html";
           } catch (err) {
-            console.error("Login falhou:", err);
+            document.getElementById("login-error").textContent =
+              "Erro no login: ";
           }
         });
     </script>
