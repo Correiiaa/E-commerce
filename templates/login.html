@@ -1,89 +1,211 @@
 ﻿<!DOCTYPE html>
 <html lang="pt">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <title>Login</title>
-</head>
+  </head>
 
-<script>
+  <script>
     function googleLogin() {
-        window.location.href = "{{ url_for('google.login') }}";
+      window.location.href = "{{ url_for('google.login') }}";
     }
-</script>
+  </script>
 
-<body>
+  <body>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="nav">
-        <div class="container">
-            <a class="navbar-brand" href="/">Toni Correia</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+      <div class="container">
+        <a class="navbar-brand" href="./index.html">Toni Correia</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Sobre nÃ³s</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/products">Vinhos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Bar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contacto</a>
-                    </li>
-                </ul>
-            </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="./index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Sobre nós</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./products.html">Vinhos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Bar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contacto</a>
+            </li>
+          </ul>
         </div>
+      </div>
     </nav>
 
-
     <div class="container-login">
-        <div class="left-side">
-            <img src="/static/kevin-kelly-PPneSBqfCCU-unsplash.jpg" alt="wine login page" class="loginImage">
-        </div>
+      <div class="left-side">
+        <img
+          src="../static/kevin-kelly-PPneSBqfCCU-unsplash.jpg"
+          alt="wine login page"
+          class="loginImage"
+        />
+      </div>
 
-        <div class="righ-side">
-            <div class="form-box">
-                <form action="https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/E-commerce/api/user/login.php" method="POST">
-                    <h2>Login</h2>
-                    <input type="text" id="username" name="user" placeholder="Username" required>
-                    <input type="password" id="password" name="pwd" placeholder="Password" required>
-                    <button type="submit" class="button-register">Login</button>
-                <div class="form-links">
-                    <p>NÃ£o tem conta? <a href="/register">Crie uma aqui</a></p>
-                </div>
-                </form>
-                <button type="button" class="gsi-material-button" onclick="googleLogin()">
-                    <div class="gsi-material-button-focus-overlay"></div>
-                    <div class="gsi-material-button-state"></div>
-                        <div class="gsi-material-button-content-wrapper">
-                            <div class="gsi-material-button-icon">
-                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" xmlns:xlink="http://www.w3.org/1999/xlink" style="display: block;">
-                                    <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path>
-                                    <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path>
-                                    <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path>
-                                    <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path>
-                                    <path fill="none" d="M0 0h48v48H0z"></path>
-                                </svg>
-                            </div>
-                                <span class="gsi-material-button-contents">Sign in with Google</span>
-                                <span style="display: none;">Sign in with Google</span>
-                        </div>
-                </button>
+      <div class="righ-side">
+        <div class="form-box">
+          <form
+            id="login-form"
+            action="https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/E-commerce/api/user/login.php"
+            method="POST"
+          >
+            <h2>Login</h2>
+            <input
+              type="text"
+              id="username"
+              name="user"
+              placeholder="Username"
+              required
+            />
+            <input
+              type="password"
+              id="password"
+              name="pwd"
+              placeholder="Password"
+              required
+            />
+            <button type="submit" class="button-register" onclick="redirect()">
+              Login
+            </button>
+            <div class="form-links">
+              <p>Não tem conta? <a href="./register.html">Crie uma aqui</a></p>
             </div>
-
+          </form>
+          <button
+            type="button"
+            class="gsi-material-button"
+            onclick="googleLogin()"
+          >
+            <div class="gsi-material-button-focus-overlay"></div>
+            <div class="gsi-material-button-state"></div>
+            <div class="gsi-material-button-content-wrapper">
+              <div class="gsi-material-button-icon">
+                <svg
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 48 48"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  style="display: block"
+                >
+                  <path
+                    fill="#EA4335"
+                    d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"
+                  ></path>
+                  <path
+                    fill="#4285F4"
+                    d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"
+                  ></path>
+                  <path
+                    fill="#FBBC05"
+                    d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"
+                  ></path>
+                  <path
+                    fill="#34A853"
+                    d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"
+                  ></path>
+                  <path fill="none" d="M0 0h48v48H0z"></path>
+                </svg>
+              </div>
+              <span class="gsi-material-button-contents"
+                >Sign in with Google</span
+              >
+              <span style="display: none">Sign in with Google</span>
+            </div>
+          </button>
         </div>
-
+      </div>
     </div>
-    
-</body>
+
+    <script>
+      async function safeFetchJson(url, opts = {}) {
+        const res = await fetch(url, opts);
+        const text = await res.text();
+        if (!res.ok) {
+          console.error(`Fetch ${url} falhou (status ${res.status}):`, text);
+          throw new Error(`Fetch failed: ${res.status}`);
+        }
+        const ct = res.headers.get("content-type") || "";
+        if (ct.includes("application/json")) {
+          try {
+            return JSON.parse(text);
+          } catch (e) {
+            console.error(
+              "Falha ao parsear JSON com content-type application/json:",
+              e,
+              text.slice(0, 500)
+            );
+            throw e;
+          }
+        }
+        // fallback: extrair primeiro objecto/array JSON do body (remove scripts/html debug)
+        const m = text.match(/(\{[\s\S]*\}|\[[\s\S]*\])/);
+        if (m) {
+          try {
+            return JSON.parse(m[1]);
+          } catch (e) {
+            console.error(
+              "Falha ao parsear JSON extraído:",
+              e,
+              m[1].slice(0, 500)
+            );
+            throw e;
+          }
+        }
+        console.error(
+          "Resposta não-JSON recebida de",
+          url,
+          "->",
+          text.slice(0, 500)
+        );
+        throw new SyntaxError("Response is not JSON");
+      }
+
+      document
+        .getElementById("login-form")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const form = e.target;
+          const username = form.user.value.trim();
+          const password = form.pwd.value;
+          if (!username || !password) return;
+          try {
+            const data = await safeFetchJson(form.action, {
+              method: "POST",
+              credentials: "include",
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              body: new URLSearchParams({
+                user: username,
+                pwd: password,
+              }).toString(),
+            });
+            window.location.href = "./index.html";
+          } catch (err) {
+            console.error("Login falhou:", err);
+          }
+        });
+    </script>
+  </body>
 </html>
