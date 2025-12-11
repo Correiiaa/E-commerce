@@ -1,13 +1,7 @@
 <?php
-// ...existing code...
 
 require_once  "../config.php";
 require_once  "../core.php";
-
-// permitir envio do id de sessão via header para testes (apenas em dev)
-// if (!empty($_SERVER['HTTP_X_SESSION_ID'])) {
-//     session_id(trim($_SERVER['HTTP_X_SESSION_ID']));
-// }
 
 // garantir sessão iniciada para poder fazer logout corretamente
 if (session_status() !== PHP_SESSION_ACTIVE) {

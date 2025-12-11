@@ -1,1271 +1,1037 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
-    />
-    <link rel="stylesheet" href="../static/navbar.css" />
-    <link rel="stylesheet" href="../static/cart.css" />
-    <link rel="stylesheet" href="../static/body.css" />
-    <link rel="stylesheet" href="../static/cards.css" />
-    <link rel="stylesheet" href="../static/SectionTitles.css" />
-    <link rel="stylesheet" href="../static/products.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <title>Toni Distribuição</title>
-  </head>
-  <body>
-    <div class="navbar-product-page"></div>
-    <nav
-      class="navbar navbar-expand-lg navbar-light fixed-top"
-      id="nav"
-      style="background: #212121"
-    >
-      <div class="container">
-        <a class="navbar-brand" href="./index.html">Toni Correia</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="./index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Sobre nÃ³s</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./products.html">Vinhos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Bar</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" onclick="scrollToBottom()">Contacto</a>
-            </li>
-          </ul>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+  <link rel="stylesheet" href="../static/navbar.css" />
+  <link rel="stylesheet" href="../static/cart.css" />
+  <link rel="stylesheet" href="../static/body.css" />
+  <link rel="stylesheet" href="../static/cards.css" />
+  <link rel="stylesheet" href="../static/SectionTitles.css" />
+  <link rel="stylesheet" href="../static/products.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <title>Toni Distribuição</title>
+</head>
 
-        <div class="cart-botton" id="cart-button">
-          <img src="../static/icons/6493694.png" alt="cart-icon" />
-        </div>
+<body>
+  <div class="navbar-product-page"></div>
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="nav" style="background: #212121">
+    <div class="container">
+      <a class="navbar-brand" href="./index.html">Toni Correia</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-        <div class="icon-user-menu">
-          <img
-            src="../static/icons/usericon.png"
-            alt="User"
-            onclick="toggleUserMenu()"
-          />
-        </div>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="./index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Sobre nÃ³s</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./products.html">Vinhos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Bar</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" onclick="scrollToBottom()">Contacto</a>
+          </li>
+        </ul>
+      </div>
 
-        <div class="menu-user-wrap" id="menu-user-wrap">
-          <div class="sub-menu">
-            <div class="user-info">
-              <h2>User Menu</h2>
-            </div>
-            <hr />
+      <div class="cart-botton" id="cart-button">
+        <img src="../static/icons/6493694.png" alt="cart-icon" />
+      </div>
 
-            <a href="#" class="sub-menu-link">
-              <img src="/static/icons/editprofile.png" alt="edit profile" />
-              <p>Edit Profile</p>
-              <span>></span>
-            </a>
+      <div class="icon-user-menu">
+        <img src="../static/icons/usericon.png" alt="User" onclick="toggleUserMenu()" />
+      </div>
 
-            <a href="#" class="sub-menu-link">
-              <img src="../static/icons/orders.png" alt="Orders" />
-              <p>Orders</p>
-              <span>></span>
-            </a>
-
-            <a href="#" class="sub-menu-link">
-              <img src="../static/icons/support.png" alt="Support" />
-              <p>Help & Support</p>
-              <span>></span>
-            </a>
-
-            <a href="#" class="sub-menu-link" onclick="logout()">
-              <img src="../static/icons/logout.png" alt="Lougout" />
-              <p>Logout</p>
-              <span>></span>
-            </a>
+      <div class="menu-user-wrap" id="menu-user-wrap">
+        <div class="sub-menu">
+          <div class="user-info">
+            <h2>User Menu</h2>
           </div>
-        </div>
+          <hr />
 
-        <div class="menu-user-wrap-no-user" id="menu-user-wrap-no-user">
-          <div class="sub-menu">
-            <div class="user-info">
-              <h2>Login to acess</h2>
-            </div>
-            <hr />
-            <a href="./login.html" class="sub-menu-link">
-              <img src="../static/icons/login.png" alt="Login" />
-              <p>Login</p>
-              <span>></span>
-            </a>
-            <a href="./register.html" class="sub-menu-link">
-              <img src="../static/icons/register.jpg" alt="Register" />
-              <p>Register</p>
-              <span>></span>
-            </a>
-          </div>
-        </div>
+          <a href="#" class="sub-menu-link">
+            <img src="/static/icons/editprofile.png" alt="edit profile" />
+            <p>Edit Profile</p>
+            <span>></span>
+          </a>
 
-        <div class="search">
-          <input
-            type="text"
-            class="search__input"
-            placeholder="Pesquisa o teu vinho"
-            name="query"
-          />
-          <button class="search__button">
-            <svg class="search__icon" aria-hidden="true" viewBox="0 0 24 24">
-              <g>
-                <path
-                  d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"
-                ></path>
-              </g>
-            </svg>
-          </button>
+          <a href="#" class="sub-menu-link">
+            <img src="../static/icons/orders.png" alt="Orders" />
+            <p>Orders</p>
+            <span>></span>
+          </a>
+
+          <a href="#" class="sub-menu-link">
+            <img src="../static/icons/support.png" alt="Support" />
+            <p>Help & Support</p>
+            <span>></span>
+          </a>
+
+          <a href="#" class="sub-menu-link" onclick="logout()">
+            <img src="../static/icons/logout.png" alt="Lougout" />
+            <p>Logout</p>
+            <span>></span>
+          </a>
         </div>
       </div>
-      <!-- Carrinho removido da navbar -->
 
-      <div id="cart" class="cart-sidebar">
-        <div
-          class="d-flex justify-content-between align-items-center"
-          bis_skin_checked="1"
-        >
-          <p class="cart-title">O seu carrinho</p>
-          <button type="button" class="cart-close">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-            >
-              <g fill="none" fill-rule="evenodd">
-                <g fill="#222">
-                  <g>
-                    <path
-                      d="M21.41 2.59c-.325-.326-.852-.326-1.178 0L12 10.821 3.768 2.589c-.326-.325-.853-.325-1.179 0-.325.326-.325.853 0 1.179L10.822 12l-8.233 8.232c-.325.326-.325.853 0 1.179.326.325.853.325 1.179 0L12 13.178l8.232 8.233c.326.325.853.325 1.179 0 .325-.326.325-.853 0-1.179L13.178 12l8.233-8.232c.325-.326.325-.853 0-1.179z"
-                      transform="translate(-1860 -34) translate(1860 34)"
-                    ></path>
-                  </g>
+      <div class="menu-user-wrap-no-user" id="menu-user-wrap-no-user">
+        <div class="sub-menu">
+          <div class="user-info">
+            <h2>Login to acess</h2>
+          </div>
+          <hr />
+          <a href="./login.html" class="sub-menu-link">
+            <img src="../static/icons/login.png" alt="Login" />
+            <p>Login</p>
+            <span>></span>
+          </a>
+          <a href="./register.html" class="sub-menu-link">
+            <img src="../static/icons/register.jpg" alt="Register" />
+            <p>Register</p>
+            <span>></span>
+          </a>
+        </div>
+      </div>
+
+      <div class="search">
+        <input type="text" class="search__input" placeholder="Pesquisa o teu vinho" name="query" />
+        <button class="search__button">
+          <svg class="search__icon" aria-hidden="true" viewBox="0 0 24 24">
+            <g>
+              <path
+                d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+              </path>
+            </g>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <!-- Carrinho removido da navbar -->
+
+    <div id="cart" class="cart-sidebar">
+      <div class="d-flex justify-content-between align-items-center" bis_skin_checked="1">
+        <p class="cart-title">O seu carrinho</p>
+        <button type="button" class="cart-close">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <g fill="none" fill-rule="evenodd">
+              <g fill="#222">
+                <g>
+                  <path
+                    d="M21.41 2.59c-.325-.326-.852-.326-1.178 0L12 10.821 3.768 2.589c-.326-.325-.853-.325-1.179 0-.325.326-.325.853 0 1.179L10.822 12l-8.233 8.232c-.325.326-.325.853 0 1.179.326.325.853.325 1.179 0L12 13.178l8.232 8.233c.326.325.853.325 1.179 0 .325-.326.325-.853 0-1.179L13.178 12l8.233-8.232c.325-.326.325-.853 0-1.179z"
+                    transform="translate(-1860 -34) translate(1860 34)"></path>
                 </g>
               </g>
-            </svg>
+            </g>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container-fluid py-4" style="max-width: 1140px; padding-top: 5rem !important">
+    <!-- Header Section -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <h1 class="display-4 fw-bold mb-2">Vinhos</h1>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="/" class="text-decoration-none">Home</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Vinhos</li>
+          </ol>
+        </nav>
+        <div class="free-shipping">
+          <i class="fas fa-truck me-2"></i>Portes grátis a partir de 50€
+        </div>
+      </div>
+    </div>
+
+    <!-- Sub-header with results and sorting -->
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <p class="results-info mb-2">
+          <span id="totalProducts">0</span> produtos encontrados
+        </p>
+      </div>
+      <div class="col-md-6">
+        <div class="sort-buttons d-flex flex-wrap justify-content-md-end">
+          <button class="btn btn-outline-secondary btn-sm" onclick="sortProducts('discount')">
+            <i class="fas fa-percentage me-1"></i>Descontos
+          </button>
+          <button class="btn btn-outline-secondary btn-sm" onclick="sortProducts('recommended')">
+            <i class="fas fa-star me-1"></i>Recomendadas
+          </button>
+          <div class="dropdown">
+            <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
+              Ordenar por
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" href="#" onclick="sortProducts('price_asc')">Preço: Menor para Maior</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#" onclick="sortProducts('price_desc')">Preço: Maior para Menor</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#" onclick="sortProducts('name_asc')">Nome: A-Z</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#" onclick="sortProducts('name_desc')">Nome: Z-A</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#" onclick="sortProducts('year_desc')">Ano: Mais Recente</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Sidebar with Filters -->
+      <div class="col-lg-3 col-md-4 mb-4">
+        <div class="sidebar">
+          <!-- Search Bar -->
+          <div class="search-box mb-4">
+            <input type="text" class="form-control" id="searchInput" placeholder="Pesquisar vinhos..." />
+            <i class="fas fa-search search-icon"></i>
+          </div>
+
+          <!-- Filters -->
+          <div class="accordion" id="filtersAccordion">
+            <!-- Wine Types -->
+            <div class="accordion-item border-0">
+              <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#wineTypes">
+                  Tipos de Vinho
+                </button>
+              </h2>
+              <div id="wineTypes" class="accordion-collapse collapse show" data-bs-parent="#filtersAccordion">
+                <div class="accordion-body">
+                  <div class="filter-options">
+                    <div class="filter-option">
+                      <label><input type="checkbox" class="form-check-input me-2" value="vinho tinto" />
+                        Tinto</label>
+                      <span class="filter-count"></span>
+                    </div>
+                    <div class="filter-option">
+                      <label><input type="checkbox" class="form-check-input me-2" value="vinho branco" />
+                        Branco</label>
+                      <span class="filter-count"></span>
+                    </div>
+                    <div class="filter-option">
+                      <label><input type="checkbox" class="form-check-input me-2" value="vinho rosé" />
+                        Rosé</label>
+                      <span class="filter-count"></span>
+                    </div>
+                    <div class="filter-option">
+                      <label><input type="checkbox" class="form-check-input me-2" value="espumante" />
+                        Espumante</label>
+                      <span class="filter-count"></span>
+                    </div>
+                    <div class="filter-option">
+                      <label><input type="checkbox" class="form-check-input me-2" value="champagne" />
+                        Champagne</label>
+                      <span class="filter-count"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Price Range -->
+            <div class="accordion-item border-0">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#priceRange">
+                  Preço
+                </button>
+              </h2>
+              <div id="priceRange" class="accordion-collapse collapse" data-bs-parent="#filtersAccordion">
+                <div class="accordion-body">
+                  <div class="price-range">
+                    <label for="priceSlider" class="form-label">Faixa de preço:
+                      <span id="priceValue">5€ - 500€</span></label>
+                    <input type="range" class="form-range" id="priceSlider" min="5" max="500" value="250" />
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <input type="number" class="form-control form-control-sm" id="minPrice" placeholder="Min"
+                        value="5" />
+                    </div>
+                    <div class="col-6">
+                      <input type="number" class="form-control form-control-sm" id="maxPrice" placeholder="Max"
+                        value="500" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Capacity -->
+            <div class="accordion-item border-0">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#capacity">
+                  Capacidade
+                </button>
+              </h2>
+              <div id="capacity" class="accordion-collapse collapse" data-bs-parent="#filtersAccordion">
+                <div class="accordion-body">
+                  <div class="filter-option">
+                    <label><input type="checkbox" class="form-check-input me-2" value="375ml" />
+                      375ml</label>
+                    <span class="filter-count"></span>
+                  </div>
+                  <div class="filter-option">
+                    <label><input type="checkbox" class="form-check-input me-2" value="750ml" />
+                      750ml</label>
+                    <span class="filter-count"></span>
+                  </div>
+                  <div class="filter-option">
+                    <label><input type="checkbox" class="form-check-input me-2" value="1500ml" />
+                      1500ml</label>
+                    <span class="filter-count"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Country -->
+            <div class="accordion-item border-0">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#country">
+                  País
+                </button>
+              </h2>
+              <div id="country" class="accordion-collapse collapse" data-bs-parent="#filtersAccordion">
+                <div class="accordion-body">
+                  <div class="filter-option">
+                    <label><input type="checkbox" class="form-check-input me-2" value="portugal" />
+                      Portugal</label>
+                    <span class="filter-count"></span>
+                  </div>
+                  <div class="filter-option">
+                    <label><input type="checkbox" class="form-check-input me-2" value="espanha" />
+                      Espanha</label>
+                    <span class="filter-count"></span>
+                  </div>
+                  <div class="filter-option">
+                    <label><input type="checkbox" class="form-check-input me-2" value="franca" />
+                      França</label>
+                    <span class="filter-count"></span>
+                  </div>
+                  <div class="filter-option">
+                    <label><input type="checkbox" class="form-check-input me-2" value="italia" />
+                      Itália</label>
+                    <span class="filter-count"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Region -->
+            <div class="accordion-item border-0">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#region">
+                  Região
+                </button>
+              </h2>
+              <div id="region" class="accordion-collapse collapse" data-bs-parent="#filtersAccordion">
+                <div class="accordion-body">
+                  <div class="filter-option">
+                    <label><input type="checkbox" class="form-check-input me-2" value="alentejo" />
+                      Alentejo</label>
+                    <span class="filter-count"></span>
+                  </div>
+                  <div class="filter-option">
+                    <label><input type="checkbox" class="form-check-input me-2" value="douro" />
+                      Douro</label>
+                    <span class="filter-count"></span>
+                  </div>
+                  <div class="filter-option">
+                    <label><input type="checkbox" class="form-check-input me-2" value="dao" />
+                      Dão</label>
+                    <span class="filter-count"></span>
+                  </div>
+                  <div class="filter-option">
+                    <label><input type="checkbox" class="form-check-input me-2" value="vinho-verde" />
+                      Vinho Verde</label>
+                    <span class="filter-count"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Grape Variety -->
+            <div class="accordion-item border-0">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#grape">
+                  Casta
+                </button>
+              </h2>
+              <div id="grape" class="accordion-collapse collapse" data-bs-parent="#filtersAccordion">
+                <div class="accordion-body">
+                  <div class="filter-option">
+                    <label><input type="checkbox" class="form-check-input me-2" value="touriga-nacional" />
+                      Touriga Nacional</label>
+                    <span class="filter-count"></span>
+                  </div>
+                  <div class="filter-option">
+                    <label><input type="checkbox" class="form-check-input me-2" value="aragonez" />
+                      AragonÃªs</label>
+                    <span class="filter-count"></span>
+                  </div>
+                  <div class="filter-option">
+                    <label><input type="checkbox" class="form-check-input me-2" value="arinto" />
+                      Arinto</label>
+                    <span class="filter-count"></span>
+                  </div>
+                  <div class="filter-option">
+                    <label><input type="checkbox" class="form-check-input me-2" value="alvarinho" />
+                      Alvarinho</label>
+                    <span class="filter-count"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Year -->
+            <div class="accordion-item border-0">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#year">
+                  Ano
+                </button>
+              </h2>
+              <div id="year" class="accordion-collapse collapse" data-bs-parent="#filtersAccordion">
+                <div class="accordion-body">
+                  <div class="filter-option">
+                    <label><input type="checkbox" class="form-check-input me-2" value="2023" />
+                      2023</label>
+                    <span class="filter-count"></span>
+                  </div>
+                  <div class="filter-option">
+                    <label><input type="checkbox" class="form-check-input me-2" value="2022" />
+                      2022</label>
+                    <span class="filter-count"></span>
+                  </div>
+                  <div class="filter-option">
+                    <label><input type="checkbox" class="form-check-input me-2" value="2021" />
+                      2021</label>
+                    <span class="filter-count"></span>
+                  </div>
+                  <div class="filter-option">
+                    <label><input type="checkbox" class="form-check-input me-2" value="2020" />
+                      2020</label>
+                    <span class="filter-count"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reset Filters Button -->
+          <button class="reset-filters" onclick="resetAllFilters()">
+            <i class="fas fa-undo-alt me-2"></i>Redefinir filtros
           </button>
         </div>
       </div>
-    </nav>
 
-    <main
-      class="container-fluid py-4"
-      style="max-width: 1140px; padding-top: 5rem !important"
-    >
-      <!-- Header Section -->
-      <div class="row mb-4">
-        <div class="col-12">
-          <h1 class="display-4 fw-bold mb-2">Vinhos</h1>
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item">
-                <a href="/" class="text-decoration-none">Home</a>
-              </li>
-              <li class="breadcrumb-item active" aria-current="page">Vinhos</li>
-            </ol>
-          </nav>
-          <div class="free-shipping">
-            <i class="fas fa-truck me-2"></i>Portes grátis a partir de 50€
+      <!-- Products Grid -->
+      <div class="col-lg-9 col-md-8">
+        <div class="row" id="productsGrid">
+          <!-- Os produtos serÃ£o carregados aqui pela funÃ§Ã£o JavaScript -->
+        </div>
+
+        <!-- Loading indicator -->
+        <div id="loadingIndicator" class="text-center py-4">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">A carregar...</span>
           </div>
         </div>
       </div>
+    </div>
+  </main>
 
-      <!-- Sub-header with results and sorting -->
-      <div class="row mb-4">
-        <div class="col-md-6">
-          <p class="results-info mb-2">
-            <span id="totalProducts">0</span> produtos encontrados
-          </p>
-        </div>
-        <div class="col-md-6">
-          <div class="sort-buttons d-flex flex-wrap justify-content-md-end">
-            <button
-              class="btn btn-outline-secondary btn-sm"
-              onclick="sortProducts('discount')"
-            >
-              <i class="fas fa-percentage me-1"></i>Descontos
-            </button>
-            <button
-              class="btn btn-outline-secondary btn-sm"
-              onclick="sortProducts('recommended')"
-            >
-              <i class="fas fa-star me-1"></i>Recomendadas
-            </button>
-            <div class="dropdown">
-              <button
-                class="btn btn-outline-secondary btn-sm dropdown-toggle"
-                type="button"
-                data-bs-toggle="dropdown"
-              >
-                Ordenar por
-              </button>
-              <ul class="dropdown-menu">
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="#"
-                    onclick="sortProducts('price_asc')"
-                    >Preço: Menor para Maior</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="#"
-                    onclick="sortProducts('price_desc')"
-                    >Preço: Maior para Menor</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="#"
-                    onclick="sortProducts('name_asc')"
-                    >Nome: A-Z</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="#"
-                    onclick="sortProducts('name_desc')"
-                    >Nome: Z-A</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="#"
-                    onclick="sortProducts('year_desc')"
-                    >Ano: Mais Recente</a
-                  >
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
+  <!-- Footer -->
+  <footer class="text-center text-lg-start bg-body-tertiary text-muted" style="background-color: #212121 !important">
+    <!-- Section: Social media -->
+    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+      <!-- Left -->
+      <div class="me-5 d-none d-lg-block" style="color: rgb(221, 221, 221)">
+        <span>Get connected with us on social networks:</span>
       </div>
+      <!-- Left -->
 
-      <div class="row">
-        <!-- Sidebar with Filters -->
-        <div class="col-lg-3 col-md-4 mb-4">
-          <div class="sidebar">
-            <!-- Search Bar -->
-            <div class="search-box mb-4">
-              <input
-                type="text"
-                class="form-control"
-                id="searchInput"
-                placeholder="Pesquisar vinhos..."
-              />
-              <i class="fas fa-search search-icon"></i>
-            </div>
-
-            <!-- Filters -->
-            <div class="accordion" id="filtersAccordion">
-              <!-- Wine Types -->
-              <div class="accordion-item border-0">
-                <h2 class="accordion-header">
-                  <button
-                    class="accordion-button"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#wineTypes"
-                  >
-                    Tipos de Vinho
-                  </button>
-                </h2>
-                <div
-                  id="wineTypes"
-                  class="accordion-collapse collapse show"
-                  data-bs-parent="#filtersAccordion"
-                >
-                  <div class="accordion-body">
-                    <div class="filter-options">
-                      <div class="filter-option">
-                        <label
-                          ><input
-                            type="checkbox"
-                            class="form-check-input me-2"
-                            value="vinho tinto"
-                          />
-                          Tinto</label
-                        >
-                        <span class="filter-count"></span>
-                      </div>
-                      <div class="filter-option">
-                        <label
-                          ><input
-                            type="checkbox"
-                            class="form-check-input me-2"
-                            value="vinho branco"
-                          />
-                          Branco</label
-                        >
-                        <span class="filter-count"></span>
-                      </div>
-                      <div class="filter-option">
-                        <label
-                          ><input
-                            type="checkbox"
-                            class="form-check-input me-2"
-                            value="vinho rosé"
-                          />
-                          Rosé</label
-                        >
-                        <span class="filter-count"></span>
-                      </div>
-                      <div class="filter-option">
-                        <label
-                          ><input
-                            type="checkbox"
-                            class="form-check-input me-2"
-                            value="espumante"
-                          />
-                          Espumante</label
-                        >
-                        <span class="filter-count"></span>
-                      </div>
-                      <div class="filter-option">
-                        <label
-                          ><input
-                            type="checkbox"
-                            class="form-check-input me-2"
-                            value="champagne"
-                          />
-                          Champagne</label
-                        >
-                        <span class="filter-count"></span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Price Range -->
-              <div class="accordion-item border-0">
-                <h2 class="accordion-header">
-                  <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#priceRange"
-                  >
-                    Preço
-                  </button>
-                </h2>
-                <div
-                  id="priceRange"
-                  class="accordion-collapse collapse"
-                  data-bs-parent="#filtersAccordion"
-                >
-                  <div class="accordion-body">
-                    <div class="price-range">
-                      <label for="priceSlider" class="form-label"
-                        >Faixa de preço:
-                        <span id="priceValue">5€ - 500€</span></label
-                      >
-                      <input
-                        type="range"
-                        class="form-range"
-                        id="priceSlider"
-                        min="5"
-                        max="500"
-                        value="250"
-                      />
-                    </div>
-                    <div class="row">
-                      <div class="col-6">
-                        <input
-                          type="number"
-                          class="form-control form-control-sm"
-                          id="minPrice"
-                          placeholder="Min"
-                          value="5"
-                        />
-                      </div>
-                      <div class="col-6">
-                        <input
-                          type="number"
-                          class="form-control form-control-sm"
-                          id="maxPrice"
-                          placeholder="Max"
-                          value="500"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Capacity -->
-              <div class="accordion-item border-0">
-                <h2 class="accordion-header">
-                  <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#capacity"
-                  >
-                    Capacidade
-                  </button>
-                </h2>
-                <div
-                  id="capacity"
-                  class="accordion-collapse collapse"
-                  data-bs-parent="#filtersAccordion"
-                >
-                  <div class="accordion-body">
-                    <div class="filter-option">
-                      <label
-                        ><input
-                          type="checkbox"
-                          class="form-check-input me-2"
-                          value="375ml"
-                        />
-                        375ml</label
-                      >
-                      <span class="filter-count"></span>
-                    </div>
-                    <div class="filter-option">
-                      <label
-                        ><input
-                          type="checkbox"
-                          class="form-check-input me-2"
-                          value="750ml"
-                        />
-                        750ml</label
-                      >
-                      <span class="filter-count"></span>
-                    </div>
-                    <div class="filter-option">
-                      <label
-                        ><input
-                          type="checkbox"
-                          class="form-check-input me-2"
-                          value="1500ml"
-                        />
-                        1500ml</label
-                      >
-                      <span class="filter-count"></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Country -->
-              <div class="accordion-item border-0">
-                <h2 class="accordion-header">
-                  <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#country"
-                  >
-                    País
-                  </button>
-                </h2>
-                <div
-                  id="country"
-                  class="accordion-collapse collapse"
-                  data-bs-parent="#filtersAccordion"
-                >
-                  <div class="accordion-body">
-                    <div class="filter-option">
-                      <label
-                        ><input
-                          type="checkbox"
-                          class="form-check-input me-2"
-                          value="portugal"
-                        />
-                        Portugal</label
-                      >
-                      <span class="filter-count"></span>
-                    </div>
-                    <div class="filter-option">
-                      <label
-                        ><input
-                          type="checkbox"
-                          class="form-check-input me-2"
-                          value="espanha"
-                        />
-                        Espanha</label
-                      >
-                      <span class="filter-count"></span>
-                    </div>
-                    <div class="filter-option">
-                      <label
-                        ><input
-                          type="checkbox"
-                          class="form-check-input me-2"
-                          value="franca"
-                        />
-                        França</label
-                      >
-                      <span class="filter-count"></span>
-                    </div>
-                    <div class="filter-option">
-                      <label
-                        ><input
-                          type="checkbox"
-                          class="form-check-input me-2"
-                          value="italia"
-                        />
-                        Itália</label
-                      >
-                      <span class="filter-count"></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Region -->
-              <div class="accordion-item border-0">
-                <h2 class="accordion-header">
-                  <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#region"
-                  >
-                    Região
-                  </button>
-                </h2>
-                <div
-                  id="region"
-                  class="accordion-collapse collapse"
-                  data-bs-parent="#filtersAccordion"
-                >
-                  <div class="accordion-body">
-                    <div class="filter-option">
-                      <label
-                        ><input
-                          type="checkbox"
-                          class="form-check-input me-2"
-                          value="alentejo"
-                        />
-                        Alentejo</label
-                      >
-                      <span class="filter-count"></span>
-                    </div>
-                    <div class="filter-option">
-                      <label
-                        ><input
-                          type="checkbox"
-                          class="form-check-input me-2"
-                          value="douro"
-                        />
-                        Douro</label
-                      >
-                      <span class="filter-count"></span>
-                    </div>
-                    <div class="filter-option">
-                      <label
-                        ><input
-                          type="checkbox"
-                          class="form-check-input me-2"
-                          value="dao"
-                        />
-                        Dão</label
-                      >
-                      <span class="filter-count"></span>
-                    </div>
-                    <div class="filter-option">
-                      <label
-                        ><input
-                          type="checkbox"
-                          class="form-check-input me-2"
-                          value="vinho-verde"
-                        />
-                        Vinho Verde</label
-                      >
-                      <span class="filter-count"></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Grape Variety -->
-              <div class="accordion-item border-0">
-                <h2 class="accordion-header">
-                  <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#grape"
-                  >
-                    Casta
-                  </button>
-                </h2>
-                <div
-                  id="grape"
-                  class="accordion-collapse collapse"
-                  data-bs-parent="#filtersAccordion"
-                >
-                  <div class="accordion-body">
-                    <div class="filter-option">
-                      <label
-                        ><input
-                          type="checkbox"
-                          class="form-check-input me-2"
-                          value="touriga-nacional"
-                        />
-                        Touriga Nacional</label
-                      >
-                      <span class="filter-count"></span>
-                    </div>
-                    <div class="filter-option">
-                      <label
-                        ><input
-                          type="checkbox"
-                          class="form-check-input me-2"
-                          value="aragonez"
-                        />
-                        AragonÃªs</label
-                      >
-                      <span class="filter-count"></span>
-                    </div>
-                    <div class="filter-option">
-                      <label
-                        ><input
-                          type="checkbox"
-                          class="form-check-input me-2"
-                          value="arinto"
-                        />
-                        Arinto</label
-                      >
-                      <span class="filter-count"></span>
-                    </div>
-                    <div class="filter-option">
-                      <label
-                        ><input
-                          type="checkbox"
-                          class="form-check-input me-2"
-                          value="alvarinho"
-                        />
-                        Alvarinho</label
-                      >
-                      <span class="filter-count"></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Year -->
-              <div class="accordion-item border-0">
-                <h2 class="accordion-header">
-                  <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#year"
-                  >
-                    Ano
-                  </button>
-                </h2>
-                <div
-                  id="year"
-                  class="accordion-collapse collapse"
-                  data-bs-parent="#filtersAccordion"
-                >
-                  <div class="accordion-body">
-                    <div class="filter-option">
-                      <label
-                        ><input
-                          type="checkbox"
-                          class="form-check-input me-2"
-                          value="2023"
-                        />
-                        2023</label
-                      >
-                      <span class="filter-count"></span>
-                    </div>
-                    <div class="filter-option">
-                      <label
-                        ><input
-                          type="checkbox"
-                          class="form-check-input me-2"
-                          value="2022"
-                        />
-                        2022</label
-                      >
-                      <span class="filter-count"></span>
-                    </div>
-                    <div class="filter-option">
-                      <label
-                        ><input
-                          type="checkbox"
-                          class="form-check-input me-2"
-                          value="2021"
-                        />
-                        2021</label
-                      >
-                      <span class="filter-count"></span>
-                    </div>
-                    <div class="filter-option">
-                      <label
-                        ><input
-                          type="checkbox"
-                          class="form-check-input me-2"
-                          value="2020"
-                        />
-                        2020</label
-                      >
-                      <span class="filter-count"></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Reset Filters Button -->
-            <button class="reset-filters" onclick="resetAllFilters()">
-              <i class="fas fa-undo-alt me-2"></i>Redefinir filtros
-            </button>
-          </div>
-        </div>
-
-        <!-- Products Grid -->
-        <div class="col-lg-9 col-md-8">
-          <div class="row" id="productsGrid">
-            <!-- Os produtos serÃ£o carregados aqui pela funÃ§Ã£o JavaScript -->
-          </div>
-
-          <!-- Loading indicator -->
-          <div id="loadingIndicator" class="text-center py-4">
-            <div class="spinner-border text-primary" role="status">
-              <span class="visually-hidden">A carregar...</span>
-            </div>
-          </div>
-        </div>
+      <!-- Right -->
+      <div>
+        <a href="https://www.facebook.com/profile.php?id=100088980578739" target="_blank" class="me-4 text-reset">
+          <img src="../static/icons/facebookicon.png" class="icons-footer" style="width: 30px" />
+        </a>
+        <a href="https://www.instagram.com/winewine.distribuicao/" target="_blank" class="me-4 text-reset">
+          <img src="../static/icons/instagramicon.png" alt="Instagram" class="icons-footer" style="width: 30px" />
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-google"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-github"></i>
+        </a>
       </div>
-    </main>
+      <!-- Right -->
+    </section>
+    <!-- Section: Social media -->
 
-    <!-- Footer -->
-    <footer
-      class="text-center text-lg-start bg-body-tertiary text-muted"
-      style="background-color: #212121 !important"
-    >
-      <!-- Section: Social media -->
-      <section
-        class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
-      >
-        <!-- Left -->
-        <div class="me-5 d-none d-lg-block" style="color: rgb(221, 221, 221)">
-          <span>Get connected with us on social networks:</span>
-        </div>
-        <!-- Left -->
-
-        <!-- Right -->
-        <div>
-          <a
-            href="https://www.facebook.com/profile.php?id=100088980578739"
-            target="_blank"
-            class="me-4 text-reset"
-          >
-            <img
-              src="/static/icons/facebookicon.png"
-              class="icons-footer"
-              style="width: 30px"
-            />
-          </a>
-          <a
-            href="https://www.instagram.com/winewine.distribuicao/"
-            target="_blank"
-            class="me-4 text-reset"
-          >
-            <img
-              src="/static/icons/instagramicon.png"
-              alt="Instagram"
-              class="icons-footer"
-              style="width: 30px"
-            />
-          </a>
-          <a href="" class="me-4 text-reset">
-            <i class="fab fa-google"></i>
-          </a>
-          <a href="" class="me-4 text-reset">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="" class="me-4 text-reset">
-            <i class="fab fa-linkedin"></i>
-          </a>
-          <a href="" class="me-4 text-reset">
-            <i class="fab fa-github"></i>
-          </a>
-        </div>
-        <!-- Right -->
-      </section>
-      <!-- Section: Social media -->
-
-      <!-- Section: Links  -->
-      <section class="">
-        <div class="container text-center text-md-start mt-5">
-          <!-- Grid row -->
-          <div class="row mt-3">
-            <!-- Grid column -->
-            <div
-              class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4"
-              style="color: white"
-            >
-              <!-- Content -->
-              <h6 class="text-uppercase fw-bold mb-4">
-                <i class="fas fa-gem me-3">Toni Correia</i>
-              </h6>
-              <p>Horário: Segunda a Sexta - 10h00 às 19h00</p>
-            </div>
-            <!-- Grid column -->
-
-            <!-- Grid column -->
-            <div
-              class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4"
-              style="color: white"
-            >
-              <!-- Links -->
-              <h6 class="text-uppercase fw-bold mb-4">Products</h6>
-              <p>
-                <a href="#!" class="text-reset">Vinho tinto</a>
-              </p>
-              <p>
-                <a href="#!" class="text-reset">Vinho Branco</a>
-              </p>
-              <p>
-                <a href="#!" class="text-reset">Espumantes</a>
-              </p>
-              <p>
-                <a href="#!" class="text-reset">Vinho Verde</a>
-              </p>
-            </div>
-            <!-- Grid column -->
-
-            <!-- Grid column -->
-            <div
-              class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4"
-              style="color: white"
-            >
-              <!-- Links -->
-              <h6 class="text-uppercase fw-bold mb-4">Useful links</h6>
-              <p>
-                <a href="/products" class="text-reset">All products</a>
-              </p>
-              <p>
-                <a href="#!" class="text-reset">About us</a>
-              </p>
-              <p>
-                <a href="#!" class="text-reset">Orders</a>
-              </p>
-              <p>
-                <a href="#!" class="text-reset">Bar</a>
-              </p>
-            </div>
-            <!-- Grid column -->
-
-            <!-- Grid column -->
-            <div
-              class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4"
-              style="color: white"
-            >
-              <!-- Links -->
-              <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-              <p><i class="fas fa-home me-3"></i> 4540 Arouca, Rossas</p>
-              <p>
-                <i class="fas fa-envelope me-3"></i>
-                winewine.distribuicao@example.com
-              </p>
-              <p><i class="fas fa-phone me-3"></i> + 351 910 295 159</p>
-            </div>
-            <!-- Grid column -->
+    <!-- Section: Links  -->
+    <section class="">
+      <div class="container text-center text-md-start mt-5">
+        <!-- Grid row -->
+        <div class="row mt-3">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4" style="color: white">
+            <!-- Content -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              <i class="fas fa-gem me-3">Toni Correia</i>
+            </h6>
+            <p>Horário: Segunda a Sexta - 10h00 às 19h00</p>
           </div>
-          <!-- Grid row -->
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4" style="color: white">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">Products</h6>
+            <p>
+              <a href="#!" class="text-reset">Vinho tinto</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Vinho Branco</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Espumantes</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Vinho Verde</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4" style="color: white">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">Useful links</h6>
+            <p>
+              <a href="./products.html" class="text-reset">All products</a>
+            </p>
+            <p>
+              <a href="./aboutus.html" class="text-reset">About us</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Orders</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Bar</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4" style="color: white">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+            <p><i class="fas fa-home me-3"></i> 4540 Arouca, Rossas</p>
+            <p>
+              <i class="fas fa-envelope me-3"></i>
+              winewine.distribuicao@example.com
+            </p>
+            <p><i class="fas fa-phone me-3"></i> + 351 910 295 159</p>
+          </div>
+          <!-- Grid column -->
         </div>
-      </section>
-      <!-- Section: Links  -->
-
-      <!-- Copyright -->
-      <div
-        class="text-center p-4"
-        style="background-color: rgba(0, 0, 0, 0.05); color: white"
-      >
-        Â© 2021 Copyright:
-        <a class="text-reset fw-bold" href="/">tonicorreia.com</a>
+        <!-- Grid row -->
       </div>
-      <!-- Copyright -->
-    </footer>
-    <!-- Footer -->
+    </section>
+    <!-- Section: Links  -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
-    <script>
-      async function safeFetchJson(url, opts = {}) {
-        const res = await fetch(url, opts);
-        const text = await res.text();
-        if (!res.ok) {
-          console.error(`Fetch ${url} falhou (status ${res.status}):`, text);
-          throw new Error(`Fetch failed: ${res.status}`);
+    <!-- Copyright -->
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05); color: white">
+      2021 Copyright:
+      <a class="text-reset fw-bold" href="./index.html">tonicorreia.com</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+  <script>
+    async function safeFetchJson(url, opts = {}) {
+      const res = await fetch(url, opts);
+      const text = await res.text();
+      if (!res.ok) {
+        console.error(`Fetch ${url} falhou (status ${res.status}):`, text);
+        throw new Error(`Fetch failed: ${res.status}`);
+      }
+      const ct = res.headers.get("content-type") || "";
+      if (ct.includes("application/json")) {
+        try {
+          return JSON.parse(text);
+        } catch (e) {
+          console.error(
+            "Falha ao parsear JSON com content-type application/json:",
+            e,
+            text.slice(0, 500)
+          );
+          throw e;
         }
-        const ct = res.headers.get("content-type") || "";
-        if (ct.includes("application/json")) {
-          try {
-            return JSON.parse(text);
-          } catch (e) {
-            console.error(
-              "Falha ao parsear JSON com content-type application/json:",
-              e,
-              text.slice(0, 500)
-            );
-            throw e;
-          }
+      }
+      // fallback: extrair primeiro objecto/array JSON do body (remove scripts/html debug)
+      const m = text.match(/(\{[\s\S]*\}|\[[\s\S]*\])/);
+      if (m) {
+        try {
+          return JSON.parse(m[1]);
+        } catch (e) {
+          console.error(
+            "Falha ao parsear JSON extraído:",
+            e,
+            m[1].slice(0, 500)
+          );
+          throw e;
         }
-        // fallback: extrair primeiro objecto/array JSON do body (remove scripts/html debug)
-        const m = text.match(/(\{[\s\S]*\}|\[[\s\S]*\])/);
-        if (m) {
-          try {
-            return JSON.parse(m[1]);
-          } catch (e) {
-            console.error(
-              "Falha ao parsear JSON extraído:",
-              e,
-              m[1].slice(0, 500)
-            );
-            throw e;
-          }
-        }
-        console.error(
-          "Resposta não-JSON recebida de",
-          url,
-          "->",
-          text.slice(0, 500)
-        );
-        throw new SyntaxError("Response is not JSON");
+      }
+      console.error(
+        "Resposta não-JSON recebida de",
+        url,
+        "->",
+        text.slice(0, 500)
+      );
+      throw new SyntaxError("Response is not JSON");
+    }
+
+    // VariÃ¡veis globais
+    let allProducts = [];
+    let filteredProducts = [];
+    let currentSort = "default";
+
+    // FunÃ§Ã£o para renderizar os produtos (assumindo que recebes da API)
+    function renderProducts(products) {
+      const grid = document.getElementById("productsGrid");
+      const totalProducts = document.getElementById("totalProducts");
+
+      totalProducts.textContent = products.length;
+
+      if (products.length === 0) {
+        grid.innerHTML =
+          '<div class="col-12 text-center py-5"><h4>Nenhum produto encontrado</h4></div>';
+        return;
       }
 
-      // VariÃ¡veis globais
-      let allProducts = [];
-      let filteredProducts = [];
-      let currentSort = "default";
-
-      // FunÃ§Ã£o para renderizar os produtos (assumindo que recebes da API)
-      function renderProducts(products) {
-        const grid = document.getElementById("productsGrid");
-        const totalProducts = document.getElementById("totalProducts");
-
-        totalProducts.textContent = products.length;
-
-        if (products.length === 0) {
-          grid.innerHTML =
-            '<div class="col-12 text-center py-5"><h4>Nenhum produto encontrado</h4></div>';
-          return;
-        }
-
-        grid.innerHTML = products
-          .map(
-            (product) => `
+      grid.innerHTML = products
+        .map(
+          (product) => `
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                     <div class="product-card">
                         <div class="product-image">
                             <img src="../static/images/${product.image_url}" 
                                  alt="${product.name}" class="img-fluid">
-                            <button class="favorite-icon ${
-                              product.isFavorite ? "active" : ""
-                            }" 
+                            <button class="favorite-icon ${product.isFavorite ? "active" : ""
+            }" 
                                     onclick="toggleFavorite(${product.id})">
                                 <i class="far fa-heart"></i>
                             </button>
                         </div>
-                        <div class="product-category">${
-                          product.regiao || "REGIÃO"
-                        }</div>
+                        <div class="product-category">${product.regiao || "REGIÃO"
+            }</div>
                         <div class="product-name">${product.name}</div>
                         <div class="product-year">${product.ano || "N/A"}</div>
                         <div class="product-price">${product.price}€</div>
-                        <button class="add-to-cart add-to-cart-btn" data-product-id="${
-                          product.id
-                        }">
+                        <button class="add-to-cart add-to-cart-btn" data-product-id="${product.id
+            }">
                             <i class="fas fa-shopping-cart me-2"></i>Adicionar ao Carrinho
                         </button>
                     </div>
                 </div>
             `
-          )
-          .join("");
+        )
+        .join("");
+    }
+
+    // FunÃ§Ã£o para ordenar produtos
+    function sortProducts(sortType) {
+      currentSort = sortType;
+      let sortedProducts = [...filteredProducts];
+
+      switch (sortType) {
+        case "price_asc":
+          sortedProducts.sort((a, b) => a.price - b.price);
+          break;
+        case "price_desc":
+          sortedProducts.sort((a, b) => b.price - a.price);
+          break;
+        case "name_asc":
+          sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
+          break;
+        case "name_desc":
+          sortedProducts.sort((a, b) => b.name.localeCompare(a.name));
+          break;
+        case "year_desc":
+          sortedProducts.sort((a, b) => (b.ano || 0) - (a.ano || 0));
+          break;
+        case "discount":
+          sortedProducts.sort(
+            (a, b) => (b.discount || 0) - (a.discount || 0)
+          );
+          break;
+        case "recommended":
+          sortedProducts.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+          break;
       }
 
-      // FunÃ§Ã£o para ordenar produtos
-      function sortProducts(sortType) {
-        currentSort = sortType;
-        let sortedProducts = [...filteredProducts];
+      renderProducts(sortedProducts);
+    }
 
-        switch (sortType) {
-          case "price_asc":
-            sortedProducts.sort((a, b) => a.price - b.price);
-            break;
-          case "price_desc":
-            sortedProducts.sort((a, b) => b.price - a.price);
-            break;
-          case "name_asc":
-            sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
-            break;
-          case "name_desc":
-            sortedProducts.sort((a, b) => b.name.localeCompare(a.name));
-            break;
-          case "year_desc":
-            sortedProducts.sort((a, b) => (b.ano || 0) - (a.ano || 0));
-            break;
-          case "discount":
-            sortedProducts.sort(
-              (a, b) => (b.discount || 0) - (a.discount || 0)
-            );
-            break;
-          case "recommended":
-            sortedProducts.sort((a, b) => (b.rating || 0) - (a.rating || 0));
-            break;
+    function normalize(str) {
+      return str
+        ? str
+          .toString()
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+        : "";
+    }
+
+    // FunÃ§Ã£o para filtrar produtos
+    function applyFilters() {
+      const searchTerm = document
+        .getElementById("searchInput")
+        .value.toLowerCase();
+      const minPrice =
+        parseFloat(document.getElementById("minPrice").value) || 0;
+      const maxPrice =
+        parseFloat(document.getElementById("maxPrice").value) || 9999;
+
+      // Obter todos os filtros selecionados
+      const selectedTypes = Array.from(
+        document.querySelectorAll("#wineTypes input:checked")
+      ).map((cb) => cb.value);
+      const selectedCapacities = Array.from(
+        document.querySelectorAll("#capacity input:checked")
+      ).map((cb) => cb.value);
+      const selectedCountries = Array.from(
+        document.querySelectorAll("#country input:checked")
+      ).map((cb) => cb.value);
+      const selectedRegions = Array.from(
+        document.querySelectorAll("#region input:checked")
+      ).map((cb) => cb.value);
+      const selectedGrapes = Array.from(
+        document.querySelectorAll("#grape input:checked")
+      ).map((cb) => cb.value);
+      const selectedYears = Array.from(
+        document.querySelectorAll("#year input:checked")
+      ).map((cb) => cb.value);
+
+      filteredProducts = allProducts.filter((product) => {
+        const matchesSearch =
+          !searchTerm ||
+          normalize(product.name).includes(searchTerm) ||
+          normalize(product.regiao).includes(searchTerm);
+
+        const matchesPrice =
+          product.price >= minPrice && product.price <= maxPrice;
+
+        const matchesType =
+          selectedTypes.length === 0 ||
+          selectedTypes.includes(normalize(product.category));
+        const matchesCapacity =
+          selectedCapacities.length === 0 ||
+          selectedCapacities.includes(normalize(product.capacity));
+        const matchesCountry =
+          selectedCountries.length === 0 ||
+          selectedCountries.includes(normalize(product.pais));
+        const matchesRegion =
+          selectedRegions.length === 0 ||
+          selectedRegions.includes(normalize(product.regiao));
+        const matchesGrape =
+          selectedGrapes.length === 0 ||
+          selectedGrapes.includes(normalize(product.grape));
+        const matchesYear =
+          selectedYears.length === 0 ||
+          selectedYears.includes(product.ano?.toString());
+
+        return (
+          matchesSearch &&
+          matchesPrice &&
+          matchesType &&
+          matchesCapacity &&
+          matchesCountry &&
+          matchesRegion &&
+          matchesGrape &&
+          matchesYear
+        );
+      });
+
+      sortProducts(currentSort);
+    }
+
+
+    const API_BASE_URL = "https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/E-commerce/api";
+
+
+    // Toggle favorito (adicionar/remover)
+    async function toggleFavorite(productId) {
+      const isFavorited = userFavorites.has(productId);
+
+      console.log(`${isFavorited ? '💔' : '❤️'} Toggle favorito para produto ID:`, productId);
+
+      try {
+        if (isFavorited) {
+          // Remover favorito
+          await safeFetchJson(`${API_BASE_URL}/favourites/remove_favorite.php`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include",
+            body: JSON.stringify({ product_id: parseInt(productId, 10) })
+          });
+
+          userFavorites.delete(productId);
+          console.log("💔 Removido dos favoritos:", productId);
+
+        } else {
+          // Adicionar favorito
+          await safeFetchJson(`${API_BASE_URL}/favourites/add_favorite.php`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include",
+            body: JSON.stringify({ product_id: parseInt(productId, 10) })
+          });
+
+          userFavorites.add(productId);
+          console.log("❤️ Adicionado aos favoritos:", productId);
         }
 
-        renderProducts(sortedProducts);
+        // Atualizar UI do botão específico
+        const btn = document.querySelector(`.favorite-icon[onclick="toggleFavorite(${productId})"]`);
+        if (btn) {
+          btn.classList.toggle("active", !isFavorited);
+        }
+
+      } catch (error) {
+        console.error("❌ Erro ao atualizar favorito:", error);
+
+        // Se user não está logado, redirecionar
+        if (error.message.includes("401") || error.message.includes("Not authenticated")) {
+          alert("Faça login para adicionar favoritos!");
+          window.location.href = "./login.html";
+        }
+      }
+    }
+
+    function renderProducts(products) {
+      const grid = document.getElementById("productsGrid");
+      const totalProducts = document.getElementById("totalProducts");
+
+      totalProducts.textContent = products.length;
+
+      if (products.length === 0) {
+        grid.innerHTML = '<div class="col-12 text-center py-5"><h4>Nenhum produto encontrado</h4></div>';
+        return;
       }
 
-      function normalize(str) {
-        return str
-          ? str
-              .toString()
-              .toLowerCase()
-              .normalize("NFD")
-              .replace(/[\u0300-\u036f]/g, "")
-          : "";
-      }
+      grid.innerHTML = products
+        .map((product) => {
+          // ✅ Verificar se produto está nos favoritos
+          const isFavorited = userFavorites.has(product.id);
 
-      // FunÃ§Ã£o para filtrar produtos
-      function applyFilters() {
-        const searchTerm = document
-          .getElementById("searchInput")
-          .value.toLowerCase();
-        const minPrice =
-          parseFloat(document.getElementById("minPrice").value) || 0;
-        const maxPrice =
-          parseFloat(document.getElementById("maxPrice").value) || 9999;
+          return `
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="../static/images/${product.image_url}" 
+                                 alt="${product.name}" class="img-fluid">
+                            <button class="favorite-icon ${isFavorited ? "active" : ""}" 
+                                    onclick="toggleFavorite(${product.id})">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                        <div class="product-category">${product.regiao || "REGIÃO"}</div>
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-year">${product.ano || "N/A"}</div>
+                        <div class="product-price">${product.price}€</div>
+                        <button class="add-to-cart add-to-cart-btn" data-product-id="${product.id}">
+                            <i class="fas fa-shopping-cart me-2"></i>Adicionar ao Carrinho
+                        </button>
+                    </div>
+                </div>
+            `;
+        })
+        .join("");
+    }
 
-        // Obter todos os filtros selecionados
-        const selectedTypes = Array.from(
-          document.querySelectorAll("#wineTypes input:checked")
-        ).map((cb) => cb.value);
-        const selectedCapacities = Array.from(
-          document.querySelectorAll("#capacity input:checked")
-        ).map((cb) => cb.value);
-        const selectedCountries = Array.from(
-          document.querySelectorAll("#country input:checked")
-        ).map((cb) => cb.value);
-        const selectedRegions = Array.from(
-          document.querySelectorAll("#region input:checked")
-        ).map((cb) => cb.value);
-        const selectedGrapes = Array.from(
-          document.querySelectorAll("#grape input:checked")
-        ).map((cb) => cb.value);
-        const selectedYears = Array.from(
-          document.querySelectorAll("#year input:checked")
-        ).map((cb) => cb.value);
+    // ========== FAVORITOS ==========
+    let userFavorites = new Set();
 
-        filteredProducts = allProducts.filter((product) => {
-          const matchesSearch =
-            !searchTerm ||
-            normalize(product.name).includes(searchTerm) ||
-            normalize(product.regiao).includes(searchTerm);
-
-          const matchesPrice =
-            product.price >= minPrice && product.price <= maxPrice;
-
-          const matchesType =
-            selectedTypes.length === 0 ||
-            selectedTypes.includes(normalize(product.category));
-          const matchesCapacity =
-            selectedCapacities.length === 0 ||
-            selectedCapacities.includes(normalize(product.capacity));
-          const matchesCountry =
-            selectedCountries.length === 0 ||
-            selectedCountries.includes(normalize(product.pais));
-          const matchesRegion =
-            selectedRegions.length === 0 ||
-            selectedRegions.includes(normalize(product.regiao));
-          const matchesGrape =
-            selectedGrapes.length === 0 ||
-            selectedGrapes.includes(normalize(product.grape));
-          const matchesYear =
-            selectedYears.length === 0 ||
-            selectedYears.includes(product.ano?.toString());
-
-          return (
-            matchesSearch &&
-            matchesPrice &&
-            matchesType &&
-            matchesCapacity &&
-            matchesCountry &&
-            matchesRegion &&
-            matchesGrape &&
-            matchesYear
-          );
+    async function loadUserFavorites() {
+      try {
+        const favorites = await safeFetchJson(`${API_BASE_URL}/favourites/get_favorites.php`, {
+          credentials: "include"
         });
 
-        sortProducts(currentSort);
+        if (Array.isArray(favorites)) {
+          userFavorites = new Set(favorites.map(fav => fav.id));
+        }
+
+        console.log("✅ Favoritos carregados:", Array.from(userFavorites));
+
+      } catch (error) {
+        console.error("❌ Erro ao carregar favoritos:", error);
+        userFavorites = new Set();
       }
+    }
 
-      // Carregar produtos da API e inicializar filtros
-      document.addEventListener("DOMContentLoaded", function () {
-        // Esconder loading indicator inicialmente
-        document.getElementById("loadingIndicator").style.display = "block";
+    // ========== ATUALIZAR DOMContentLoaded ==========
+    document.addEventListener("DOMContentLoaded", async function () {
+      document.getElementById("loadingIndicator").style.display = "block";
 
-        // Fetch produtos da API
-        safeFetchJson(
-          "https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/E-commerce/api/products/allproducts.php"
-        )
-          .then((data) => {
-            console.log("Produtos carregados:", data);
-            const products = Array.isArray(data) ? data : data.products || [];
+      try {
+        // 1. ✅ CARREGAR FAVORITOS PRIMEIRO (se user logado)
+        await loadUserFavorites();
 
-            // Armazenar produtos globalmente
-            allProducts = products;
-            filteredProducts = [...products];
+        // 2. ✅ DEPOIS CARREGAR PRODUTOS
+        const data = await safeFetchJson(`${API_BASE_URL}/products/allproducts.php`);
+        console.log("✅ Produtos carregados:", data);
 
-            // Esconder loading e renderizar produtos
-            document.getElementById("loadingIndicator").style.display = "none";
-            renderProducts(filteredProducts);
-          })
-          .catch((error) => {
-            console.error("Erro ao carregar produtos:", error);
-            document.getElementById("loadingIndicator").innerHTML =
-              '<div class="alert alert-danger">Erro ao carregar produtos. Tente novamente.</div>';
-          });
+        const products = Array.isArray(data) ? data : data.products || [];
+        allProducts = products;
+        filteredProducts = [...products];
 
-        // Search input
-        document
-          .getElementById("searchInput")
-          .addEventListener("input", applyFilters);
-
-        // Price range
-        const priceSlider = document.getElementById("priceSlider");
-        const priceValue = document.getElementById("priceValue");
-        const minPrice = document.getElementById("minPrice");
-        const maxPrice = document.getElementById("maxPrice");
-
-        priceSlider.addEventListener("input", function () {
-          const value = this.value;
-          priceValue.textContent = `5€ - ${value}€`;
-          maxPrice.value = value;
-          applyFilters();
-        });
-
-        minPrice.addEventListener("change", applyFilters);
-        maxPrice.addEventListener("change", applyFilters);
-
-        // Todos os checkboxes
-        document
-          .querySelectorAll('input[type="checkbox"]')
-          .forEach((checkbox) => {
-            checkbox.addEventListener("change", applyFilters);
-          });
-      });
-
-      // FunÃ§Ã£o para reset de filtros
-      function resetAllFilters() {
-        document.getElementById("searchInput").value = "";
-        document.getElementById("minPrice").value = "5";
-        document.getElementById("maxPrice").value = "500";
-        document.getElementById("priceSlider").value = "250";
-        document.getElementById("priceValue").textContent = "5€ - 500€";
-
-        document
-          .querySelectorAll('input[type="checkbox"]')
-          .forEach((checkbox) => {
-            checkbox.checked = false;
-          });
-
-        filteredProducts = [...allProducts];
-        currentSort = "default";
+        // 3. ✅ RENDERIZAR COM FAVORITOS JÁ CARREGADOS
+        document.getElementById("loadingIndicator").style.display = "none";
         renderProducts(filteredProducts);
+
+      } catch (error) {
+        console.error("❌ Erro ao carregar dados:", error);
+        document.getElementById("loadingIndicator").innerHTML =
+          '<div class="alert alert-danger">Erro ao carregar produtos. Tente novamente.</div>';
       }
 
-      var nav = document.getElementById("nav");
-      window.addEventListener("scroll", function () {
-        nav.style.background = window.pageYOffset > 100 ? "#212121" : "#212121";
+      // Search input
+      document
+        .getElementById("searchInput")
+        .addEventListener("input", applyFilters);
+
+      // Price range
+      const priceSlider = document.getElementById("priceSlider");
+      const priceValue = document.getElementById("priceValue");
+      const minPrice = document.getElementById("minPrice");
+      const maxPrice = document.getElementById("maxPrice");
+
+      priceSlider.addEventListener("input", function () {
+        const value = this.value;
+        priceValue.textContent = `5€ - ${value}€`;
+        maxPrice.value = value;
+        applyFilters();
       });
 
-      function toggleUserMenu() {
-        safeFetchJson(
-          "https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/E-commerce/api/users/check_session.php"
-        )
-          .then((data) => {
-            if (data.is_logged_in) {
-              let submenu = document.getElementById("menu-user-wrap");
-              submenu.classList.toggle("show");
-            } else {
-              let submenu = document.getElementById("menu-user-wrap-no-user");
-              submenu.classList.toggle("show");
-            }
-          })
-          .catch((error) =>
-            console.error("Error checking user session:", error)
-          );
-      }
+      minPrice.addEventListener("change", applyFilters);
+      maxPrice.addEventListener("change", applyFilters);
 
-      function logout() {
-        safeFetchJson(
-          "https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/E-commerce/api/users/logout.php",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
+      // Todos os checkboxes
+      document
+        .querySelectorAll('input[type="checkbox"]')
+        .forEach((checkbox) => {
+          checkbox.addEventListener("change", applyFilters);
+        });
+    });
+
+    // FunÃ§Ã£o para reset de filtros
+    function resetAllFilters() {
+      document.getElementById("searchInput").value = "";
+      document.getElementById("minPrice").value = "5";
+      document.getElementById("maxPrice").value = "500";
+      document.getElementById("priceSlider").value = "250";
+      document.getElementById("priceValue").textContent = "5€ - 500€";
+
+      document
+        .querySelectorAll('input[type="checkbox"]')
+        .forEach((checkbox) => {
+          checkbox.checked = false;
+        });
+
+      filteredProducts = [...allProducts];
+      currentSort = "default";
+      renderProducts(filteredProducts);
+    }
+
+    var nav = document.getElementById("nav");
+    window.addEventListener("scroll", function () {
+      nav.style.background = window.pageYOffset > 100 ? "#212121" : "#212121";
+    });
+
+    function toggleUserMenu() {
+      safeFetchJson(
+        "https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/E-commerce/api/users/check_session.php"
+      )
+        .then((data) => {
+          if (data.is_logged_in) {
+            let submenu = document.getElementById("menu-user-wrap");
+            submenu.classList.toggle("show");
+          } else {
+            let submenu = document.getElementById("menu-user-wrap-no-user");
+            submenu.classList.toggle("show");
           }
+        })
+        .catch((error) =>
+          console.error("Error checking user session:", error)
         );
+    }
 
-        window.location.reload(true);
-      }
+    function logout() {
+      safeFetchJson(
+        "https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/E-commerce/api/users/logout.php",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-      function showCart(cartData) {
-        const cartDiv = document.getElementById("cart");
-        cartDiv.classList.add("cart-open");
-        cartDiv.innerHTML = `
+      window.location.reload(true);
+    }
+
+    function showCart(cartData) {
+      const cartDiv = document.getElementById("cart");
+      cartDiv.classList.add("cart-open");
+      cartDiv.innerHTML = `
                 <div class="d-flex justify-content-between align-items-center" bis_skin_checked="1">
                     <p class="cart-title">O seu carrinho</p>
                     <button type="button" class="cart-close">
@@ -1282,8 +1048,8 @@
                 </div>
                 <div class="cart-items">
                     ${cartData.items
-                      .map(
-                        (item) => `
+          .map(
+            (item) => `
                         <div class="cart-item">
                             <div class="d-flex align-items-start" bis_skin_checked="1">
                                 <div class="item-image">
@@ -1350,122 +1116,123 @@
                             </div>
                         </div>
                     `
-                      )
-                      .join("")}
+          )
+          .join("")}
                 </div>
                 <div class="box-cart-total">
                     <div class="title-cart-total">
                         <span class="cart-total-title">Total: </span>
                         <div class="total-price">${cartData.total.toFixed(
-                          2
-                        )}€</div>
+            2
+          )}€</div>
                     </div>
                 </div>
             `;
-      }
+    }
 
-      document.body.addEventListener("click", async (e) => {
-        // Abrir carrinho ao clicar no .cart-botton ou seu filho
-        if (e.target.closest(".cart-botton")) {
-          e.preventDefault();
-          try {
-            const cartData = await safeFetchJson(
-              "https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/E-commerce/api/cart/get_user_cart.php",
-              {
-                method: "GET",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-              }
-            );
-            console.log(cartData);
-            showCart(cartData);
-          } catch (err) {
-            console.error(err);
-          }
-          return;
-        }
-        // Fechar carrinho ao clicar no botÃ£o X ou no SVG dentro dele
-        if (e.target.closest(".cart-close")) {
-          document.getElementById("cart").classList.remove("cart-open");
-          return;
-        }
-      });
-
-      document.body.addEventListener("click", async (e) => {
-        if (e.target.classList.contains("add-to-cart-btn")) {
-          e.preventDefault();
-
-          const productId = e.target.dataset.productId;
-
-          // Enviar pedido POST à API
-          try {
-            const cartData = await safeFetchJson(
-              "https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/E-commerce/api/cart/add_cart.php",
-              {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ product_id: productId, quantity: 1 }),
-              }
-            );
-            if (!cartData.ok) {
-              throw new Error("Erro ao adicionar ao carrinho");
-            }
-            console.log(cartData);
-            showCart(cartData);
-          } catch (err) {
-            console.error(err);
-          }
-        }
-      });
-
-      async function fetchAndShowCart() {
+    document.body.addEventListener("click", async (e) => {
+      // Abrir carrinho ao clicar no .cart-botton ou seu filho
+      if (e.target.closest(".cart-botton")) {
+        e.preventDefault();
         try {
           const cartData = await safeFetchJson(
             "https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/E-commerce/api/cart/get_user_cart.php",
             {
               method: "GET",
-              headers: { "Content-Type": "application/json" },
-              credentials: "include",
+              headers: {
+                "Content-Type": "application/json",
+              },
             }
           );
-          // não existe cartData.ok aqui
+          console.log(cartData);
           showCart(cartData);
-        } catch (error) {
-          console.error("Erro ao atualizar carrinho:", error);
-          // opcional: mostrar carrinho vazio
-          showCart({ items: [], total: 0 });
+        } catch (err) {
+          console.error(err);
         }
+        return;
       }
+      // Fechar carrinho ao clicar no botÃ£o X ou no SVG dentro dele
+      if (e.target.closest(".cart-close")) {
+        document.getElementById("cart").classList.remove("cart-open");
+        return;
+      }
+    });
 
-      document.body.addEventListener("click", async (e) => {
-        const removeBtn = e.target.closest(".cart-item-remove");
-        if (removeBtn) {
-          e.preventDefault();
-          const productId = removeBtn.dataset.productId;
-          console.log("Remover produto ID:", productId);
-          try {
-            await safeFetchJson(
-              "https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/E-commerce/api/cart/remove_from_cart.php",
-              {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                credentials: "include",
-                body: JSON.stringify({ product_id: productId }),
-              }
-            );
-            await fetchAndShowCart();
-          } catch (err) {
-            console.error("Erro a remover item do carrinho:", err);
+    document.body.addEventListener("click", async (e) => {
+      if (e.target.classList.contains("add-to-cart-btn")) {
+        e.preventDefault();
+
+        const productId = e.target.dataset.productId;
+
+        // Enviar pedido POST à API
+        try {
+          const cartData = await safeFetchJson(
+            "https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/E-commerce/api/cart/add_cart.php",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ product_id: productId, quantity: 1 }),
+            }
+          );
+          if (!cartData.ok) {
+            throw new Error("Erro ao adicionar ao carrinho");
           }
+          console.log(cartData);
+          showCart(cartData);
+        } catch (err) {
+          console.error(err);
         }
-      });
-
-      function scrollToBottom() {
-        window.scrollTo(0, document.body.scrollHeight);
       }
-    </script>
-  </body>
+    });
+
+    async function fetchAndShowCart() {
+      try {
+        const cartData = await safeFetchJson(
+          "https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/E-commerce/api/cart/get_user_cart.php",
+          {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include",
+          }
+        );
+        // não existe cartData.ok aqui
+        showCart(cartData);
+      } catch (error) {
+        console.error("Erro ao atualizar carrinho:", error);
+        // opcional: mostrar carrinho vazio
+        showCart({ items: [], total: 0 });
+      }
+    }
+
+    document.body.addEventListener("click", async (e) => {
+      const removeBtn = e.target.closest(".cart-item-remove");
+      if (removeBtn) {
+        e.preventDefault();
+        const productId = removeBtn.dataset.productId;
+        console.log("Remover produto ID:", productId);
+        try {
+          await safeFetchJson(
+            "https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/E-commerce/api/cart/remove_from_cart.php",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              credentials: "include",
+              body: JSON.stringify({ product_id: productId }),
+            }
+          );
+          await fetchAndShowCart();
+        } catch (err) {
+          console.error("Erro a remover item do carrinho:", err);
+        }
+      }
+    });
+
+    function scrollToBottom() {
+      window.scrollTo(0, document.body.scrollHeight);
+    }
+  </script>
+</body>
+
 </html>

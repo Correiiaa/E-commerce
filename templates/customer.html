@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Área de Cliente - Toni Correia</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="../static/navbar.css" />
+    <link rel="stylesheet" href="../static/cart.css" />
+    <link rel="stylesheet" href="../static/body.css" />
+    <link rel="stylesheet" href="../static/SectionTitles.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .hero-section {
+        background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+        padding: 60px 20px;
+        text-align: center;
+      }
+      .hero-section h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 15px;
+      }
+      .breadcrumb-custom {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        font-size: 1rem;
+        color: #666;
+      }
+      .breadcrumb-custom a {
+        color: #666;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+      .breadcrumb-custom a:hover {
+        color: #dc3545;
+      }
+      .breadcrumb-custom .active {
+        color: #dc3545;
+        font-weight: 600;
+      }
+      .tabs-container {
+        max-width: 1400px;
+        margin: 50px auto;
+        padding: 0 20px;
+      }
+      .nav-tabs-custom {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 3px solid #dee2e6;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .nav-tabs-custom .nav-link {
+        flex: 1;
+        min-width: 150px;
+        padding: 18px 25px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #6c757d;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border: none;
+        border-bottom: 3px solid transparent;
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.3s;
+        text-align: center;
+      }
+      .nav-tabs-custom .nav-link:hover {
+        color: #dc3545;
+      }
+      .nav-tabs-custom .nav-link.active {
+        color: #dc3545;
+        border-bottom: 3px solid #dc3545;
+        background: transparent;
+      }
+      .logout-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #6c757d;
+        font-weight: 600;
+        cursor: pointer;
+        padding: 18px 25px;
+        transition: color 0.3s;
+      }
+      .logout-btn:hover {
+        color: #dc3545;
+      }
+      .tab-content-custom {
+        background: white;
+        padding: 50px;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        margin-top: 30px;
+        min-height: 400px;
+      }
+      .section-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: #6c757d;
+      }
+      .empty-state p {
+        font-size: 1.2rem;
+        margin: 0;
+      }
+      .order-card {
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        padding: 25px;
+        margin-bottom: 20px;
+        transition: box-shadow 0.3s;
+      }
+      .order-card:hover {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+      .order-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+      .order-number {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #1a1a1a;
+      }
+      .order-status {
+        padding: 6px 15px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+      .order-status.pending {
+        background: #fff3cd;
+        color: #856404;
+      }
+      .order-status.completed {
+        background: #d4edda;
+        color: #155724;
+      }
+      .order-status.cancelled {
+        background: #f8d7da;
+        color: #721c24;
+      }
+      .form-group {
+        margin-bottom: 25px;
+      }
+      .form-group label {
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 8px;
+        display: block;
+      }
+      .form-control {
+        padding: 12px 15px;
+        border: 1px solid #dee2e6;
+        border-radius: 6px;
+        font-size: 1rem;
+      }
+      .btn-save {
+        background-color: #dc3545;
+        color: white;
+        padding: 12px 40px;
+        border: none;
+        border-radius: 6px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .btn-save:hover {
+        background-color: #c82333;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+      }
+      @media (max-width: 768px) {
+        .hero-section h1 {
+          font-size: 2rem;
+        }
+        .nav-tabs-custom {
+          flex-direction: column;
+        }
+        .nav-tabs-custom .nav-link {
+          width: 100%;
+        }
+        .tab-content-custom {
+          padding: 30px 20px;
+        }
+        .logout-btn {
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-expand-lg navbar-light fixed-top"
+      id="nav"
+      style="background-color: #212121 !important"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="./index.html">Toni Correia</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="./index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./aboutus.html">Sobre nós</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./products.html">Vinhos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Bar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="scrollToBottom()">Contacto</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="cart-botton" id="cart-button">
+          <img src="../static/icons/6493694.png" alt="cart-icon" />
+        </div>
+
+        <div class="icon-user-menu">
+          <img
+            src="../static/icons/usericon.png"
+            alt="User"
+            onclick="toggleUserMenu()"
+          />
+        </div>
+
+        <div class="menu-user-wrap" id="menu-user-wrap">
+          <div class="sub-menu">
+            <div class="user-info">
+              <h2>User Menu</h2>
+            </div>
+            <hr />
+
+            <a href="#" class="sub-menu-link">
+              <img src="../static/icons/editprofile.png" alt="edit profile" />
+              <p>Edit Profile</p>
+              <span>></span>
+            </a>
+
+            <a href="#" class="sub-menu-link">
+              <img src="../static/icons/orders.png" alt="Orders" />
+              <p>Orders</p>
+              <span>></span>
+            </a>
+
+            <a href="#" class="sub-menu-link">
+              <img src="../static/icons/support.png" alt="Support" />
+              <p>Help & Support</p>
+              <span>></span>
+            </a>
+
+            <a href="" class="sub-menu-link" onclick="logout()">
+              <img src="../static/icons/logout.png" alt="Lougout" />
+              <p>Logout</p>
+              <span>></span>
+            </a>
+          </div>
+        </div>
+
+        <div class="menu-user-wrap-no-user" id="menu-user-wrap-no-user">
+          <div class="sub-menu">
+            <div class="user-info">
+              <h2>Login to acess</h2>
+            </div>
+            <hr />
+            <a href="./login.html" class="sub-menu-link">
+              <img src="../static/icons/login.png" alt="Login" />
+              <p>Login</p>
+              <span>></span>
+            </a>
+            <a href="./register.html" class="sub-menu-link">
+              <img src="../static/icons/register.jpg" alt="Register" />
+              <p>Register</p>
+              <span>></span>
+            </a>
+          </div>
+        </div>
+
+        <div class="search">
+          <input
+            type="text"
+            class="search__input"
+            placeholder="Pesquisa o teu vinho"
+            name="query"
+          />
+          <button class="search__button">
+            <svg class="search__icon" aria-hidden="true" viewBox="0 0 24 24">
+              <g>
+                <path
+                  d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"
+                ></path>
+              </g>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <!-- Carrinho removido da navbar -->
+
+      <div id="cart" class="cart-sidebar">
+        <div
+          class="d-flex justify-content-between align-items-center"
+          bis_skin_checked="1"
+        >
+          <p class="cart-title">O seu carrinho</p>
+          <button type="button" class="cart-close">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <g fill="none" fill-rule="evenodd">
+                <g fill="#222">
+                  <g>
+                    <path
+                      d="M21.41 2.59c-.325-.326-.852-.326-1.178 0L12 10.821 3.768 2.589c-.326-.325-.853-.325-1.179 0-.325.326-.325.853 0 1.179L10.822 12l-8.233 8.232c-.325.326-.325.853 0 1.179.326.325.853.325 1.179 0L12 13.178l8.232 8.233c.326.325.853.325 1.179 0 .325-.326.325-.853 0-1.179L13.178 12l8.233-8.232c.325-.326.325-.853 0-1.179z"
+                      transform="translate(-1860 -34) translate(1860 34)"
+                    ></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <div id="cart" class="cart-sidebar">
+      <div
+        class="d-flex justify-content-between align-items-center"
+        bis_skin_checked="1"
+      >
+        <p class="cart-title">O seu carrinho</p>
+        <button type="button" class="cart-close">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <g fill="none" fill-rule="evenodd">
+              <g fill="#222">
+                <g>
+                  <path
+                    d="M21.41 2.59c-.325-.326-.852-.326-1.178 0L12 10.821 3.768 2.589c-.326-.325-.853-.325-1.179 0-.325.326-.325.853 0 1.179L10.822 12l-8.233 8.232c-.325.326-.325.853 0 1.179.326.325.853.325 1.179 0L12 13.178l8.232 8.233c.326.325.853.325 1.179 0 .325-.326.325-.853 0-1.179L13.178 12l8.233-8.232c.325-.326.325-.853 0-1.179z"
+                    transform="translate(-1860 -34) translate(1860 34)"
+                  ></path>
+                </g>
+              </g>
+            </g>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section" style="padding-top: 120px">
+      <h1>Área de Cliente</h1>
+      <div class="breadcrumb-custom">
+        <a href="./index.html">Home</a>
+        <span>›</span>
+        <span class="active">Área de Cliente</span>
+      </div>
+    </section>
+
+    <!-- Tabs Section -->
+    <section class="tabs-container">
+      <div class="nav-tabs-custom">
+        <button class="nav-link active" onclick="showTab('encomendas')">
+          Encomendas
+        </button>
+        <button class="nav-link" onclick="showTab('dados')">
+          Dados Pessoais
+        </button>
+        <button class="nav-link" onclick="showTab('moradas')">Moradas</button>
+        <button class="nav-link" onclick="showTab('favoritos')">
+          Favoritos
+        </button>
+        <div class="logout-btn" onclick="logout()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" y1="12" x2="9" y2="12"></line>
+          </svg>
+          Logout
+        </div>
+      </div>
+
+      <!-- Tab Content -->
+      <div class="tab-content-custom">
+        <!-- Encomendas Tab -->
+        <div id="tab-encomendas" class="tab-pane">
+          <h2 class="section-title">As Suas Encomendas</h2>
+          <div class="empty-state">
+            <p>Ainda não efetuou nenhuma encomenda</p>
+          </div>
+          <!-- Exemplo de encomenda (remover classe d-none quando houver dados) -->
+          <div class="order-card d-none">
+            <div class="order-header">
+              <span class="order-number">Encomenda #12345</span>
+              <span class="order-status completed">Entregue</span>
+            </div>
+            <p><strong>Data:</strong> 01/12/2025</p>
+            <p><strong>Total:</strong> 89,90 €</p>
+            <p><strong>Produtos:</strong> 3 itens</p>
+          </div>
+        </div>
+
+        <!-- Dados Pessoais Tab -->
+        <div id="tab-dados" class="tab-pane d-none">
+          <h2 class="section-title">Dados Pessoais</h2>
+          <form id="form-dados">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="nome">Nome Completo</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="nome"
+                    placeholder="João Silva"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    placeholder="joao@exemplo.com"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="telefone">Telefone</label>
+                  <input
+                    type="tel"
+                    class="form-control"
+                    id="telefone"
+                    placeholder="+351 912 345 678"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="nif">NIF</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="nif"
+                    placeholder="123456789"
+                  />
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn-save">Guardar Alterações</button>
+          </form>
+        </div>
+
+        <!-- Moradas Tab -->
+        <div id="tab-moradas" class="tab-pane d-none">
+          <h2 class="section-title">Moradas</h2>
+          <div class="empty-state">
+            <p>Ainda não adicionou nenhuma morada</p>
+          </div>
+        </div>
+
+        <!-- Favoritos Tab -->
+        <div id="tab-favoritos" class="tab-pane d-none">
+          <h2 class="section-title">Favoritos</h2>
+          <div class="empty-state">
+            <p>Ainda não tem produtos favoritos</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer
+      class="text-center text-lg-start bg-body-tertiary text-muted"
+      style="background-color: #212121 !important"
+    >
+      <!-- Section: Social media -->
+      <section
+        class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
+      >
+        <!-- Left -->
+        <div class="me-5 d-none d-lg-block" style="color: rgb(221, 221, 221)">
+          <span>Get connected with us on social networks:</span>
+        </div>
+        <!-- Left -->
+
+        <!-- Right -->
+        <div>
+          <a
+            href="https://www.facebook.com/profile.php?id=100088980578739"
+            target="_blank"
+            class="me-4 text-reset"
+          >
+            <img
+              src="../static/icons/facebookicon.png"
+              class="icons-footer"
+              style="width: 30px"
+            />
+          </a>
+          <a
+            href="https://www.instagram.com/winewine.distribuicao/"
+            target="_blank"
+            class="me-4 text-reset"
+          >
+            <img
+              src="../static/icons/instagramicon.png"
+              alt="Instagram"
+              class="icons-footer"
+              style="width: 30px"
+            />
+          </a>
+          <a href="" class="me-4 text-reset">
+            <i class="fab fa-google"></i>
+          </a>
+          <a href="" class="me-4 text-reset">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="" class="me-4 text-reset">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="" class="me-4 text-reset">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+        <!-- Right -->
+      </section>
+      <!-- Section: Social media -->
+
+      <!-- Section: Links  -->
+      <section class="">
+        <div class="container text-center text-md-start mt-5">
+          <!-- Grid row -->
+          <div class="row mt-3">
+            <!-- Grid column -->
+            <div
+              class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4"
+              style="color: white"
+            >
+              <!-- Content -->
+              <h6 class="text-uppercase fw-bold mb-4">
+                <i class="fas fa-gem me-3">Toni Correia</i>
+              </h6>
+              <p>Horário: Segunda a Sexta - 10h00 às 19h00</p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div
+              class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4"
+              style="color: white"
+            >
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold mb-4">Products</h6>
+              <p>
+                <a href="#!" class="text-reset">Vinho tinto</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Vinho Branco</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Espumantes</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Vinho Verde</a>
+              </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div
+              class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4"
+              style="color: white"
+            >
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold mb-4">Useful links</h6>
+              <p>
+                <a href="/products" class="text-reset">All products</a>
+              </p>
+              <p>
+                <a href="/aboutus" class="text-reset">About us</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Orders</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Bar</a>
+              </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div
+              class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4"
+              style="color: white"
+            >
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+              <p><i class="fas fa-home me-3"></i> 4540 Arouca, Rossas</p>
+              <p>
+                <i class="fas fa-envelope me-3"></i>
+                winewine.distribuicao@example.com
+              </p>
+              <p><i class="fas fa-phone me-3"></i> + 351 910 295 159</p>
+            </div>
+            <!-- Grid column -->
+          </div>
+          <!-- Grid row -->
+        </div>
+      </section>
+      <!-- Section: Links  -->
+
+      <!-- Copyright -->
+      <div
+        class="text-center p-4"
+        style="background-color: rgba(0, 0, 0, 0.05); color: white"
+      >
+        © 2021 Copyright:
+        <a class="text-reset fw-bold" href="/">tonicorreia.com</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const API_BASE_URL =
+        "https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/E-commerce/api";
+
+      function showTab(tabName) {
+        // Esconder todos os tabs
+        document.querySelectorAll(".tab-pane").forEach((pane) => {
+          pane.classList.add("d-none");
+        });
+
+        // Remover active de todos os botões
+        document.querySelectorAll(".nav-link").forEach((link) => {
+          link.classList.remove("active");
+        });
+
+        // Mostrar tab selecionado
+        document.getElementById(`tab-${tabName}`).classList.remove("d-none");
+
+        // Adicionar active ao botão clicado
+        event.target.classList.add("active");
+      }
+
+      function logout() {
+        fetch(`${API_BASE_URL}/user/logout.php`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+        }).then(() => {
+          window.location.href = "./index.html";
+        });
+      }
+
+      // Carregar dados do utilizador ao carregar página
+      //   document.addEventListener("DOMContentLoaded", async () => {
+      //     try {
+      //       const response = await fetch(`${API_BASE_URL}/user/check_login.php`, {
+      //         credentials: "include",
+      //       });
+      //       const data = await response.json();
+
+      //       if (!data.is_logged_in) {
+      //         window.location.href = "./login.html";
+      //         return;
+      //       }
+
+      //       // Carregar encomendas
+      //       loadOrders();
+
+      //       // Carregar dados pessoais
+      //       loadUserData();
+      //     } catch (error) {
+      //       console.error("Erro ao verificar sessão:", error);
+      //       window.location.href = "./login.html";
+      //     }
+      //   });
+    </script>
+  </body>
+</html>

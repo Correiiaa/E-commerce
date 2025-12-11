@@ -1,11 +1,854 @@
 <!DOCTYPE html>
 <html lang="pt">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toni Correia</title>
-</head>
-<body>
-    <h1>HELLO WORLD</h1>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sobre Nós - Toni Correia Distribuição</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="../static/navbar.css" />
+    <link rel="stylesheet" href="../static/cart.css" />
+    <link rel="stylesheet" href="../static/body.css" />
+    <link rel="stylesheet" href="../static/SectionTitles.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .hero-section {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        padding: 100px 0 80px;
+      }
+      .hero-content {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+        padding: 0 20px;
+      }
+      .hero-content h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 30px;
+      }
+      .hero-content p {
+        font-size: 1.2rem;
+        color: #555;
+        line-height: 1.8;
+        margin-bottom: 50px;
+      }
+      .hero-image {
+        width: 100%;
+        max-width: 1000px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        display: block;
+        margin: 0 auto;
+      }
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        text-align: center;
+        margin: 100px 0 60px;
+        position: relative;
+      }
+      .section-title::after {
+        content: "";
+        display: block;
+        width: 100px;
+        height: 5px;
+        background: #dc3545;
+        margin: 25px auto 0;
+        border-radius: 2px;
+      }
+      .content-block {
+        max-width: 1200px;
+        margin: 0 auto 80px;
+        padding: 0 20px;
+      }
+      .row-custom {
+        display: flex;
+        align-items: center;
+        gap: 80px;
+        margin-bottom: 80px;
+      }
+      .row-custom.reverse {
+        flex-direction: row-reverse;
+      }
+      .text-column {
+        flex: 1;
+        min-width: 300px;
+      }
+      .text-column h3 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 25px;
+      }
+      .text-column p {
+        font-size: 1.1rem;
+        line-height: 1.9;
+        color: #555;
+        margin-bottom: 20px;
+      }
+      .image-column {
+        flex: 1;
+        min-width: 300px;
+      }
+      .image-column img {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+      }
+      .btn-learn-more {
+        background-color: #1a1a1a;
+        color: white;
+        padding: 15px 45px;
+        border: none;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-block;
+        margin-top: 20px;
+      }
+      .btn-learn-more:hover {
+        background-color: #333;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        color: white;
+        text-decoration: none;
+      }
+      .social-section {
+        background-color: #f8f9fa;
+        padding: 100px 20px;
+      }
+      .social-content {
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      .social-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .social-title::after {
+        content: "";
+        display: block;
+        width: 100px;
+        height: 5px;
+        background: #dc3545;
+        margin: 25px auto 0;
+        border-radius: 2px;
+      }
+      .social-subtitle {
+        font-size: 1.1rem;
+        color: #555;
+        text-align: center;
+        margin-bottom: 60px;
+      }
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+      }
+      .gallery-item {
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+      .gallery-item:hover {
+        transform: scale(1.05);
+      }
+      .gallery-item img {
+        width: 100%;
+        height: 350px;
+        object-fit: cover;
+        display: block;
+      }
+      @media (max-width: 992px) {
+        .hero-content h1 {
+          font-size: 2.2rem;
+        }
+        .section-title,
+        .social-title {
+          font-size: 2rem;
+        }
+        .row-custom,
+        .row-custom.reverse {
+          flex-direction: column;
+          gap: 40px;
+        }
+        .text-column h3 {
+          font-size: 1.6rem;
+        }
+      }
+      @media (max-width: 576px) {
+        .hero-content h1 {
+          font-size: 1.8rem;
+        }
+        .hero-content p {
+          font-size: 1rem;
+        }
+        .gallery-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav
+      class="navbar navbar-expand-lg navbar-light fixed-top"
+      id="nav"
+      style="background-color: #212121 !important"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="./index.html">Toni Correia</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="./index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./aboutus.html">Sobre nós</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./products.html">Vinhos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Bar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="scrollToBottom()">Contacto</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="cart-botton" id="cart-button">
+          <img src="../static/icons/6493694.png" alt="cart-icon" />
+        </div>
+
+        <div class="icon-user-menu">
+          <img
+            src="../static/icons/usericon.png"
+            alt="User"
+            onclick="toggleUserMenu()"
+          />
+        </div>
+
+        <div class="menu-user-wrap" id="menu-user-wrap">
+          <div class="sub-menu">
+            <div class="user-info">
+              <h2>User Menu</h2>
+            </div>
+            <hr />
+
+            <a href="#" class="sub-menu-link">
+              <img src="../static/icons/editprofile.png" alt="edit profile" />
+              <p>Edit Profile</p>
+              <span>></span>
+            </a>
+
+            <a href="#" class="sub-menu-link">
+              <img src="../static/icons/orders.png" alt="Orders" />
+              <p>Orders</p>
+              <span>></span>
+            </a>
+
+            <a href="#" class="sub-menu-link">
+              <img src="../static/icons/support.png" alt="Support" />
+              <p>Help & Support</p>
+              <span>></span>
+            </a>
+
+            <a href="" class="sub-menu-link" onclick="logout()">
+              <img src="../static/icons/logout.png" alt="Lougout" />
+              <p>Logout</p>
+              <span>></span>
+            </a>
+          </div>
+        </div>
+
+        <div class="menu-user-wrap-no-user" id="menu-user-wrap-no-user">
+          <div class="sub-menu">
+            <div class="user-info">
+              <h2>Login to acess</h2>
+            </div>
+            <hr />
+            <a href="./login.html" class="sub-menu-link">
+              <img src="../static/icons/login.png" alt="Login" />
+              <p>Login</p>
+              <span>></span>
+            </a>
+            <a href="./register.html" class="sub-menu-link">
+              <img src="../static/icons/register.jpg" alt="Register" />
+              <p>Register</p>
+              <span>></span>
+            </a>
+          </div>
+        </div>
+
+        <div class="search">
+          <input
+            type="text"
+            class="search__input"
+            placeholder="Pesquisa o teu vinho"
+            name="query"
+          />
+          <button class="search__button">
+            <svg class="search__icon" aria-hidden="true" viewBox="0 0 24 24">
+              <g>
+                <path
+                  d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"
+                ></path>
+              </g>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <!-- Carrinho removido da navbar -->
+
+      <div id="cart" class="cart-sidebar">
+        <div
+          class="d-flex justify-content-between align-items-center"
+          bis_skin_checked="1"
+        >
+          <p class="cart-title">O seu carrinho</p>
+          <button type="button" class="cart-close">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <g fill="none" fill-rule="evenodd">
+                <g fill="#222">
+                  <g>
+                    <path
+                      d="M21.41 2.59c-.325-.326-.852-.326-1.178 0L12 10.821 3.768 2.589c-.326-.325-.853-.325-1.179 0-.325.326-.325.853 0 1.179L10.822 12l-8.233 8.232c-.325.326-.325.853 0 1.179.326.325.853.325 1.179 0L12 13.178l8.232 8.233c.326.325.853.325 1.179 0 .325-.326.325-.853 0-1.179L13.178 12l8.233-8.232c.325-.326.325-.853 0-1.179z"
+                      transform="translate(-1860 -34) translate(1860 34)"
+                    ></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <div id="cart" class="cart-sidebar">
+      <div
+        class="d-flex justify-content-between align-items-center"
+        bis_skin_checked="1"
+      >
+        <p class="cart-title">O seu carrinho</p>
+        <button type="button" class="cart-close">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <g fill="none" fill-rule="evenodd">
+              <g fill="#222">
+                <g>
+                  <path
+                    d="M21.41 2.59c-.325-.326-.852-.326-1.178 0L12 10.821 3.768 2.589c-.326-.325-.853-.325-1.179 0-.325.326-.325.853 0 1.179L10.822 12l-8.233 8.232c-.325.326-.325.853 0 1.179.326.325.853.325 1.179 0L12 13.178l8.232 8.233c.326.325.853.325 1.179 0 .325-.326.325-.853 0-1.179L13.178 12l8.233-8.232c.325-.326.325-.853 0-1.179z"
+                    transform="translate(-1860 -34) translate(1860 34)"
+                  ></path>
+                </g>
+              </g>
+            </g>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <h1>Olá, somos Toni Correia Distribuição</h1>
+        <p>
+          Começámos com uma visão simples: onde a tradição vinícola se combina
+          com a inovação, para ajudar as pessoas a aceder aos melhores vinhos de
+          forma fácil e sustentável.
+        </p>
+      </div>
+      <div class="container">
+        <img
+          src="../static/images/team.jpg"
+          alt="Nossa Equipa"
+          class="hero-image"
+        />
+      </div>
+    </section>
+
+    <!-- Inspiring Change -->
+    <section class="content-block">
+      <h2 class="section-title">Inspirando Mudança</h2>
+
+      <div class="row-custom">
+        <div class="image-column">
+          <img src="../static/images/wine-tasting.jpg" alt="Prova de Vinhos" />
+        </div>
+        <div class="text-column">
+          <h3>Você é o que bebe. Então beba com excelência</h3>
+          <p>
+            A nossa abordagem à inovação é impulsionada por um propósito
+            singular: tornamos fácil optar pela escolha mais saudável e
+            sustentável, a qualquer momento e em qualquer lugar.
+          </p>
+          <p>
+            A nossa linha premiada de produtos vínico melhora a qualidade, o
+            sabor e a conveniência geral, de modo que optar por uma única
+            garrafa premium nunca foi uma opção melhor.
+          </p>
+        </div>
+      </div>
+
+      <div class="row-custom reverse">
+        <div class="image-column">
+          <img src="../static/images/vineyard.jpg" alt="Vinha" />
+        </div>
+        <div class="text-column">
+          <h3>Beber com propósito</h3>
+          <p>
+            Somos membros orgulhosos da rede 1% for the Planet. Através desta
+            parceria, uma parte da sua compra é dedicada a financiar
+            organizações sem fins lucrativos ambientais em todo o mundo, bem
+            como trazer vinho para milhares de pessoas em todo o mundo.
+          </p>
+          <p>Porque Vinho não é um privilégio. É um direito.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Social Section -->
+    <section class="social-section">
+      <div class="social-content">
+        <h2 class="social-title">#ArteDeSaberBeber</h2>
+        <p class="social-subtitle">
+          Partilhe uma foto dos nossos vinhos para ter a oportunidade de ser
+          destacado @ToniCorreia #ArteDeSaberBeber
+        </p>
+
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img src="../static/images/gallery1.jpg" alt="Vinho 1" />
+          </div>
+          <div class="gallery-item">
+            <img src="../static/images/gallery2.jpg" alt="Vinho 2" />
+          </div>
+          <div class="gallery-item">
+            <img src="../static/images/gallery3.jpg" alt="Vinho 3" />
+          </div>
+          <div class="gallery-item">
+            <img src="../static/images/gallery4.jpg" alt="Vinho 4" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer
+      class="text-center text-lg-start bg-body-tertiary text-muted"
+      style="background-color: #212121 !important"
+    >
+      <!-- Section: Social media -->
+      <section
+        class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
+      >
+        <!-- Left -->
+        <div class="me-5 d-none d-lg-block" style="color: rgb(221, 221, 221)">
+          <span>Get connected with us on social networks:</span>
+        </div>
+        <!-- Left -->
+
+        <!-- Right -->
+        <div>
+          <a
+            href="https://www.facebook.com/profile.php?id=100088980578739"
+            target="_blank"
+            class="me-4 text-reset"
+          >
+            <img
+              src="../static/icons/facebookicon.png"
+              class="icons-footer"
+              style="width: 30px"
+            />
+          </a>
+          <a
+            href="https://www.instagram.com/winewine.distribuicao/"
+            target="_blank"
+            class="me-4 text-reset"
+          >
+            <img
+              src="../static/icons/instagramicon.png"
+              alt="Instagram"
+              class="icons-footer"
+              style="width: 30px"
+            />
+          </a>
+          <a href="" class="me-4 text-reset">
+            <i class="fab fa-google"></i>
+          </a>
+          <a href="" class="me-4 text-reset">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="" class="me-4 text-reset">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="" class="me-4 text-reset">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+        <!-- Right -->
+      </section>
+      <!-- Section: Social media -->
+
+      <!-- Section: Links  -->
+      <section class="">
+        <div class="container text-center text-md-start mt-5">
+          <!-- Grid row -->
+          <div class="row mt-3">
+            <!-- Grid column -->
+            <div
+              class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4"
+              style="color: white"
+            >
+              <!-- Content -->
+              <h6 class="text-uppercase fw-bold mb-4">
+                <i class="fas fa-gem me-3">Toni Correia</i>
+              </h6>
+              <p>Horário: Segunda a Sexta - 10h00 às 19h00</p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div
+              class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4"
+              style="color: white"
+            >
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold mb-4">Products</h6>
+              <p>
+                <a href="#!" class="text-reset">Vinho tinto</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Vinho Branco</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Espumantes</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Vinho Verde</a>
+              </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div
+              class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4"
+              style="color: white"
+            >
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold mb-4">Useful links</h6>
+              <p>
+                <a href="/products" class="text-reset">All products</a>
+              </p>
+              <p>
+                <a href="/aboutus" class="text-reset">About us</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Orders</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Bar</a>
+              </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div
+              class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4"
+              style="color: white"
+            >
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+              <p><i class="fas fa-home me-3"></i> 4540 Arouca, Rossas</p>
+              <p>
+                <i class="fas fa-envelope me-3"></i>
+                winewine.distribuicao@example.com
+              </p>
+              <p><i class="fas fa-phone me-3"></i> + 351 910 295 159</p>
+            </div>
+            <!-- Grid column -->
+          </div>
+          <!-- Grid row -->
+        </div>
+      </section>
+      <!-- Section: Links  -->
+
+      <!-- Copyright -->
+      <div
+        class="text-center p-4"
+        style="background-color: rgba(0, 0, 0, 0.05); color: white"
+      >
+        © 2021 Copyright:
+        <a class="text-reset fw-bold" href="/">tonicorreia.com</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+
+    <script>
+      const url =
+        "https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/E-commerce/api";
+      async function safeFetchJson(url, opts = {}) {
+        const res = await fetch(url, opts);
+        const text = await res.text();
+        if (!res.ok) {
+          console.error(`Fetch ${url} falhou (status ${res.status}):`, text);
+          throw new Error(`Fetch failed: ${res.status}`);
+        }
+        const ct = res.headers.get("content-type") || "";
+        if (ct.includes("application/json")) {
+          try {
+            return JSON.parse(text);
+          } catch (e) {
+            console.error("Falha ao parsear JSON:", e, text.slice(0, 500));
+            throw e;
+          }
+        }
+        const m = text.match(/(\{[\s\S]*\}|\[[\s\S]*\])/);
+        if (m) return JSON.parse(m[1]);
+        console.error("Resposta não-JSON:", text.slice(0, 500));
+        throw new SyntaxError("Response is not JSON");
+      }
+
+      function toggleUserMenu() {
+        safeFetchJson(`${url}/user/check_login.php`, { credentials: "include" })
+          .then((data) => {
+            if (data.is_logged_in) {
+              document
+                .getElementById("menu-user-wrap")
+                .classList.toggle("show");
+            } else {
+              document
+                .getElementById("menu-user-wrap-no-user")
+                .classList.toggle("show");
+            }
+          })
+          .catch((error) =>
+            console.error("Error checking user session:", error)
+          );
+      }
+
+      function logout() {
+        safeFetchJson(`${url}/user/logout.php`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+        }).then(() => window.location.reload(true));
+      }
+
+      function showCart(cartData) {
+        const cartDiv = document.getElementById("cart");
+        cartDiv.classList.add("cart-open");
+        cartDiv.innerHTML = `
+                <div class="d-flex justify-content-between align-items-center" bis_skin_checked="1">
+                    <p class="cart-title">O seu carrinho</p>
+                    <button type="button" class="cart-close">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <g fill="none" fill-rule="evenodd">
+                                <g fill="#222">
+                                    <g>
+                                        <path d="M21.41 2.59c-.325-.326-.852-.326-1.178 0L12 10.821 3.768 2.589c-.326-.325-.853-.325-1.179 0-.325.326-.325.853 0 1.179L10.822 12l-8.233 8.232c-.325.326-.325.853 0 1.179.326.325.853.325 1.179 0L12 13.178l8.232 8.233c.326.325.853.325 1.179 0 .325-.326.325-.853 0-1.179L13.178 12l8.233-8.232c.325-.326.325-.853 0-1.179z" transform="translate(-1860 -34) translate(1860 34)"></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                    </button>
+                </div>
+                <div class="cart-items">
+                    ${cartData.items
+                      .map(
+                        (item) => `
+                        <div class="cart-item">
+                            <div class="d-flex align-items-start" bis_skin_checked="1">
+                                <div class="item-image">
+                                    <img src="../static/images/${item.image_url}" alt="${item.name}">
+                                </div>
+                                <div class="item-details">
+                                    <p class="item-title">${item.name}</p>
+                                    <p class="item-id">ID: ${item.id}</p>
+                                    <div class="item-cart-quantity-price d-flex justify-content-start align-items-start
+                                    flex-column flex-md-row justify-content-md-between align-items-md-end" bis_skin_checked="1">
+                                        <div class="quantity-button-wrapper d-flex align-items-center justify-content-start" bis_skin_checked="1">
+                                            <button type="button" class="quantity-button quantity-buttons-less core-cart--qty core-cart--qty-minus">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
+                                                    <g fill="none" fill-rule="evenodd">
+                                                        <g fill="#222">
+                                                            <g>
+                                                                <g>
+                                                                    <g>
+                                                                        <path d="M2.636 2.633c-.223.224-.223.586 0 .81l8.904 8.902c.223.224.585.224.808 0 .224-.223.224-.585 0-.809L3.445 2.633c-.223-.223-.585-.223-.809 0z" transform="translate(-114 -167) translate(9 79) translate(80 75) translate(25 13) rotate(-45 7.492 7.49)"></path>
+                                                                    </g>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                            </button>
+                                            <input type="text" name="Quantity" value=${item.quantity} class="quantity-buttons-input core-cart--qty-input" readonly>
+                                            <button type="button" class="quantity-button quantity-buttons-more core-cart--qty core-cart--qty-plus">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
+                                                    <g fill="none" fill-rule="evenodd">
+                                                        <g fill="#222">
+                                                            <g>
+                                                                <g>
+                                                                    <g>
+                                                                        <path d="M12.35 2.637c-.223-.223-.586-.223-.809 0L7.496 6.682 3.451 2.637c-.223-.223-.585-.223-.809 0-.223.223-.223.586 0 .809L6.687 7.49l-4.06 4.06c-.223.223-.223.585 0 .809.224.223.586.223.809 0l4.06-4.06 4.05 4.049c.223.223.585.223.808 0 .224-.223.224-.586 0-.809L8.305 7.49l4.045-4.044c.223-.223.223-.586 0-.809z" transform="translate(-227 -167) translate(9 79) translate(80 75) translate(138 13) rotate(-45 7.49 7.498)"></path>
+                                                                    </g>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <p class="cart-item-price core-cart--item-price cart-item--price">
+                                            <span class="product-item-price">${item.price} €</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <button type="button" class="cart-item-remove d-flex justify-content-center align-items-center core-product--remove" data-product-id="${item.id}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                                        <g>
+                                            <g>
+                                                <g>
+                                                    <g>
+                                                        <g>
+                                                            <path d="M9.185.667c.49 0 .89.416.89.928V2.1c0 .038-.006.074-.018.107h3.618c.534 0 .969.434.969.968v.187c0 .521-.413.947-.929.968l-.819 9.842c0 .007 0 .013-.002.02-.074.518-.54.924-1.058.924H4.744c-.519 0-.984-.406-1.058-.925l-.003-.019-.819-9.847C2.374 4.27 2 3.86 2 3.363v-.187c0-.534.435-.969.969-.969l3.565.001c-.012-.033-.018-.07-.018-.107v-.506c0-.512.394-.928.879-.928h1.79zM5.357 4.385H3.509l.809 9.724c.033.202.226.37.426.37h1.033l-.42-10.094zm2.539 0H5.995l.42 10.094h1.481V4.385zm2.688 0h-2.05v10.094h1.629l.421-10.094zm2.486 0h-1.848l-.421 10.094h1.035c.2 0 .393-.168.426-.37l.808-9.724zm.605-1.54H2.969c-.183 0-.332.148-.332.331v.187c0 .183.15.332.332.332h10.706c.183 0 .331-.149.331-.332v-.187c0-.183-.148-.331-.331-.331zm-4.49-1.54h-1.79c-.15 0-.242.15-.242.29V2.1c0 .038-.006.074-.018.107h2.321c-.012-.033-.018-.07-.018-.107v-.506c0-.14-.102-.29-.253-.29z" transform="translate(-279 -102) translate(9 79) translate(263 16) translate(7 7)"></path>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    `
+                      )
+                      .join("")}
+                </div>
+                <div class="box-cart-total">
+                    <div class="title-cart-total">
+                        <span class="cart-total-title">Total: </span>
+                        <div class="total-price">${cartData.total.toFixed(
+                          2
+                        )}€</div>
+                    </div>
+                </div>
+            `;
+      }
+
+      document.body.addEventListener("click", async (e) => {
+        // Abrir carrinho ao clicar no .cart-botton ou seu filho
+        if (e.target.closest(".cart-botton")) {
+          e.preventDefault();
+          try {
+            const cartData = await safeFetchJson(
+              `${url}/cart/get_user_cart.php`,
+              {
+                method: "GET",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                credentials: "include",
+              }
+            );
+            console.log(cartData);
+            showCart(cartData);
+          } catch (err) {
+            console.error(err);
+          }
+          return;
+        }
+        // Fechar carrinho ao clicar no botão X ou no SVG dentro dele
+        if (e.target.closest(".cart-close")) {
+          document.getElementById("cart").classList.remove("cart-open");
+          return;
+        }
+      });
+
+      async function fetchAndShowCart() {
+        try {
+          const cartData = await safeFetchJson(
+            `${url}/cart/get_user_cart.php`,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              credentials: "include",
+            }
+          );
+          showCart(cartData); // atualiza a UI
+        } catch (error) {
+          console.error("Erro ao atualizar carrinho:", error);
+        }
+      }
+
+      document.body.addEventListener("click", async (e) => {
+        const removeBtn = e.target.closest(".cart-item-remove");
+        if (removeBtn) {
+          e.preventDefault();
+          const productId = removeBtn.dataset.productId;
+          try {
+            await safeFetchJson(`${url}/cart/remove_from_cart.php`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              credentials: "include",
+              body: JSON.stringify({ product_id: productId }),
+            });
+            await fetchAndShowCart();
+          } catch (err) {
+            console.error("Erro ao remover item:", err);
+          }
+        }
+      });
+
+      var nav = document.getElementById("nav");
+      window.addEventListener("scroll", function () {
+        nav.style.background = window.pageYOffset > 100 ? "#212121" : "#212121";
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>

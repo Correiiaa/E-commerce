@@ -58,7 +58,7 @@
 
 .perspetiva-colheita-branco {
   height: 300px !important;
-  object-fit: contain;
+  object-fit:contain;
 }
 
 .carousel-wrapper {

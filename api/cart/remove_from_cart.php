@@ -2,7 +2,6 @@
 
 require_once  "../config.php";
 require_once  "../core.php";
-require_once "../user/check_login.php";
 
 
 if (session_status() !== PHP_SESSION_ACTIVE) {
@@ -29,4 +28,5 @@ if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
     $stmt->bindParam(':product_id', $product_id, PDO::PARAM_INT);
     $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
     $stmt->execute();
+    echo json_encode(['success' => true]);
 }

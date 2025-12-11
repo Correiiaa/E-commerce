@@ -49,7 +49,7 @@
               <a class="nav-link" href="./index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Sobre nós</a>
+              <a class="nav-link" href="./aboutus.html">Sobre nós</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="./products.html">Vinhos</a>
@@ -82,9 +82,9 @@
             </div>
             <hr />
 
-            <a href="#" class="sub-menu-link">
+            <a href="./customer.html" class="sub-menu-link">
               <img src="../static/icons/editprofile.png" alt="edit profile" />
-              <p>Edit Profile</p>
+              <p>Profile</p>
               <span>></span>
             </a>
 
@@ -442,17 +442,41 @@
     <!-- Footer -->
 
     <script>
+      const url =
+        "https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/E-commerce/api";
+      async function safeFetchJson(url, opts = {}) {
+        const res = await fetch(url, opts);
+        const text = await res.text();
+        if (!res.ok) {
+          console.error(`Fetch ${url} falhou (status ${res.status}):`, text);
+          throw new Error(`Fetch failed: ${res.status}`);
+        }
+        const ct = res.headers.get("content-type") || "";
+        if (ct.includes("application/json")) {
+          try {
+            return JSON.parse(text);
+          } catch (e) {
+            console.error("Falha ao parsear JSON:", e, text.slice(0, 500));
+            throw e;
+          }
+        }
+        const m = text.match(/(\{[\s\S]*\}|\[[\s\S]*\])/);
+        if (m) return JSON.parse(m[1]);
+        console.error("Resposta não-JSON:", text.slice(0, 500));
+        throw new SyntaxError("Response is not JSON");
+      }
+
       function toggleUserMenu() {
-        safeFetchJson(
-          "https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/E-commerce/api/user/check_login.php"
-        )
+        safeFetchJson(`${url}/user/check_login.php`, { credentials: "include" })
           .then((data) => {
             if (data.is_logged_in) {
-              let submenu = document.getElementById("menu-user-wrap");
-              submenu.classList.toggle("show");
+              document
+                .getElementById("menu-user-wrap")
+                .classList.toggle("show");
             } else {
-              let submenu = document.getElementById("menu-user-wrap-no-user");
-              submenu.classList.toggle("show");
+              document
+                .getElementById("menu-user-wrap-no-user")
+                .classList.toggle("show");
             }
           })
           .catch((error) =>
@@ -461,17 +485,11 @@
       }
 
       function logout() {
-        safeFetchJson(
-          "https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/E-commerce/api/user/logout.php",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-
-        window.location.reload(true);
+        safeFetchJson(`${url}/user/logout.php`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+        }).then(() => window.location.reload(true));
       }
 
       function showCart(cartData) {
@@ -576,53 +594,8 @@
             `;
       }
 
-      
-        const res = await fetch(url, opts);
-        const text = await res.text();
-        if (!res.ok) {
-          consasync function safeFetchJson(url, opts = {}) {ole.error(`Fetch ${url} falhou (status ${res.status}):`, text);
-          throw new Error(`Fetch failed: ${res.status}`);
-        }
-        const ct = res.headers.get("content-type") || "";
-        if (ct.includes("application/json")) {
-          try {
-            return JSON.parse(text);
-          } catch (e) {
-            console.error(
-              "Falha ao parsear JSON com content-type application/json:",
-              e,
-              text.slice(0, 500)
-            );
-            throw e;
-          }
-        }
-        // fallback: extrair primeiro objecto/array JSON do body (remove scripts/html debug)
-        const m = text.match(/(\{[\s\S]*\}|\[[\s\S]*\])/);
-        if (m) {
-          try {
-            return JSON.parse(m[1]);
-          } catch (e) {
-            console.error(
-              "Falha ao parsear JSON extraído:",
-              e,
-              m[1].slice(0, 500)
-            );
-            throw e;
-          }
-        }
-        console.error(
-          "Resposta não-JSON recebida de",
-          url,
-          "->",
-          text.slice(0, 500)
-        );
-        throw new SyntaxError("Response is not JSON");
-      }
-
       document.addEventListener("DOMContentLoaded", () => {
-        safeFetchJson(
-          "https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/E-commerce/api/products/allproducts.php"
-        )
+        safeFetchJson(`${url}/products/allproducts.php`)
           .then((data) => {
             // normaliza: o endpoint devolve { products: [...], count: N }
             const products = Array.isArray(data) ? data : data.products || [];
@@ -723,12 +696,13 @@
           e.preventDefault();
           try {
             const cartData = await safeFetchJson(
-              "https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/E-commerce/api/cart/get_user_cart.php",
+              `${url}/cart/get_user_cart.php`,
               {
                 method: "GET",
                 headers: {
                   "Content-Type": "application/json",
                 },
+                credentials: "include",
               }
             );
             console.log(cartData);
@@ -753,21 +727,15 @@
 
           // Enviar pedido POST à API
           try {
-            const cartData = await safeFetchJson(
-              "https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/E-commerce/api/cart/add_cart.php",
-              {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ product_id: productId, quantity: 1 }),
-              }
-            );
-            if (!cartData.ok) {
-              throw new Error("Erro ao adicionar ao carrinho");
-            }
-            console.log(cartData);
-            showCart(cartData);
+            const cartData = await safeFetchJson(`${url}/cart/add_cart.php`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              credentials: "include",
+              body: JSON.stringify({ product_id: productId, quantity: 1 }),
+            });
+            await fetchAndShowCart();
           } catch (err) {
             console.error(err);
           }
@@ -777,15 +745,15 @@
       async function fetchAndShowCart() {
         try {
           const cartData = await safeFetchJson(
-            "https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/E-commerce/api/cart/get_user_cart.php",
+            `${url}/cart/get_user_cart.php`,
             {
               method: "GET",
               headers: {
                 "Content-Type": "application/json",
               },
+              credentials: "include",
             }
           );
-          if (!cartData.ok) throw new Error("Erro ao obter carrinho");
           showCart(cartData); // atualiza a UI
         } catch (error) {
           console.error("Erro ao atualizar carrinho:", error);
@@ -793,26 +761,30 @@
       }
 
       document.body.addEventListener("click", async (e) => {
-        if (e.target.classList.contains("cart-item-remove")) {
+        const removeBtn = e.target.closest(".cart-item-remove");
+        if (removeBtn) {
           e.preventDefault();
-
-          const productId = e.target.dataset.productId;
-          await safeFetchJson(
-            "https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/E-commerce/api/cart/remove_from_cart.php",
-            {
+          const productId = removeBtn.dataset.productId;
+          try {
+            await safeFetchJson(`${url}/cart/remove_from_cart.php`, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
+              credentials: "include",
               body: JSON.stringify({ product_id: productId }),
-            }
-          );
-          await fetchAndShowCart();
+            });
+            await fetchAndShowCart();
+          } catch (err) {
+            console.error("Erro ao remover item:", err);
+          }
         }
       });
 
       document.addEventListener("DOMContentLoaded", () => {
-        fetch("/api/best_seller")
-          .then((response) => response.json())
-          .then((products) => {
+        safeFetchJson(`${url}/products/best_seller.php`)
+          .then((data) => {
+            console.log(data);
+            // normaliza: o endpoint devolve { products: [...], count: N }
+            const products = Array.isArray(data) ? data : data.products || [];
             const container = document.getElementById(
               "product-container-bestseller"
             );
@@ -825,12 +797,17 @@
                 extraClass = " MM-rose";
               } else if (product.name === "Perspetiva Colheita Branco") {
                 extraClass = " perspetiva-colheita-branco";
+              } else if (
+                product.name === "Vinho Teste 1" ||
+                product.name === "Vinho Teste 2"
+              ) {
+                extraClass = " vinho-teste";
               }
 
               const card = document.createElement("div");
               card.classList.add("card", "h-100");
               card.innerHTML = `
-                    <img class="card-img-top${extraClass}" src="/static/images/${
+                    <img class="card-img-top${extraClass}" src="/tesp-ds-g32/E-commerce/static/images/${
                 product.image_url
               }" alt="${product.name}">
                     <div class="card-body text-center">
@@ -838,7 +815,7 @@
                         <p class="card-text">${Number(product.price).toFixed(
                           2
                         )} €</p>
-                        <a href="/products/${
+                        <a href="product.html?id=${
                           product.id
                         }" class="btn btn-light">Ver detalhes</a>
                         <a class="btn btn-dark a add-to-cart-btn" data-product-id="${
