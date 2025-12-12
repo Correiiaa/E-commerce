@@ -645,21 +645,7 @@
                                 </tr>
                             </thead>
                             <tbody id="productsTableBody">
-                                <tr>
-                                    <td><img src="../static/images/perspetiva-colheita-branco.jpg" class="product-img"
-                                            alt="Produto"></td>
-                                    <td>Perspetiva Colheita Branco</td>
-                                    <td>Vinho Branco</td>
-                                    <td>12,50 €</td>
-                                    <td>45</td>
-                                    <td><span class="badge bg-success badge-status">Ativo</span></td>
-                                    <td>
-                                        <button class="action-btn btn-edit" data-bs-toggle="modal"
-                                            data-bs-target="#editProductModal"><i class="fas fa-edit"></i></button>
-                                        <button class="action-btn btn-delete" onclick="deleteProduct(1)"><i
-                                                class="fas fa-trash"></i></button>
-                                    </td>
-                                </tr>
+                                <!-- Linhas de produtos são inseridas aqui via JavaScript -->
                             </tbody>
                         </table>
                     </div>
@@ -731,19 +717,8 @@
                                     <th>Ações</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>#001</td>
-                                    <td>João Silva</td>
-                                    <td>joao@exemplo.com</td>
-                                    <td>912 345 678</td>
-                                    <td>01/11/2025</td>
-                                    <td><span class="badge bg-success badge-status">Ativo</span></td>
-                                    <td>
-                                        <button class="action-btn btn-edit"><i class="fas fa-eye"></i></button>
-                                        <button class="action-btn btn-delete"><i class="fas fa-ban"></i></button>
-                                    </td>
-                                </tr>
+                            <tbody id="usersTableBody">
+
                                 <!-- Mais linhas aqui -->
                             </tbody>
                         </table>
@@ -1014,6 +989,76 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+
+        const url = "https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/E-commerce/api";
+
+
+        async function safeFetchJson(url, opts = {}) {
+            const res = await fetch(url, opts);
+            const text = await res.text();
+            if (!res.ok) {
+                console.error(`Fetch ${url} falhou (status ${res.status}):`, text);
+                throw new Error(`Fetch failed: ${res.status}`);
+            }
+            const ct = res.headers.get("content-type") || "";
+            if (ct.includes("application/json")) {
+                try {
+                    return JSON.parse(text);
+                } catch (e) {
+                    console.error("Falha ao parsear JSON:", e, text.slice(0, 500));
+                    throw e;
+                }
+            }
+            const m = text.match(/(\{[\s\S]*\}|\[[\s\S]*\])/);
+            if (m) return JSON.parse(m[1]);
+            console.error("Resposta não-JSON:", text.slice(0, 500));
+            throw new SyntaxError("Response is not JSON");
+        }
+
+        async function checkAdminAccess() {
+            try {
+                const response = await safeFetchJson(`${url}/user/check_login.php`, {
+                    method: 'GET',
+                    credentials: 'include',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+
+                const data = await response.json();
+
+                console.log("🔐 Sessão:", data);
+
+                // Verificar se está logado E é admin
+                if (!data.is_logged_in) {
+                    alert('Por favor, faça login para aceder à dashboard.');
+                    window.location.href = '../templates/login.html';
+                    return false;
+                }
+
+                if (!data.is_admin || data.is_admin !== 1) {
+                    alert('Acesso negado. Esta área é exclusiva para administradores.');
+                    window.location.href = '../templates/index.html';
+                    return false;
+                }
+
+                // ✅ É admin - mostrar dados do utilizador
+                console.log(`✅ Admin autenticado: ${data.username}`);
+
+                // Atualizar nome do admin na UI (se tiveres um elemento)
+                const adminNameEl = document.getElementById('adminName');
+                if (adminNameEl) {
+                    adminNameEl.textContent = data.username || 'Admin';
+                }
+
+                return true;
+
+            } catch (error) {
+                console.error("❌ Erro ao verificar sessão:", error);
+                alert('Erro ao verificar autenticação. Por favor, faça login novamente.');
+                window.location.href = '../templates/login.html';
+                return false;
+            }
+        }
+
         // Navigation
         function showSection(sectionName) {
             // Hide all sections
@@ -1041,6 +1086,85 @@
             };
             document.getElementById('pageTitle').textContent = titles[sectionName];
         }
+
+        // Get All Products
+        document.addEventListener("DOMContentLoaded", async () => {
+
+            // 1. VERIFICAR ACESSO PRIMEIRO
+            const isAdmin = await checkAdminAccess();
+
+            if (!isAdmin) {
+                return; // Para a execução se não for admin
+            }
+
+            // 2. CARREGAR DADOS DA DASHBOARD (só se for admin)
+            console.log("🔄 A carregar dados da dashboard...");
+
+            safeFetchJson(`${url}/products/allproducts.php`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                credentials: "include"
+            })
+                .then((data) => {
+                    // normaliza: o endpoint devolve { products: [...], count: N }
+                    const products = Array.isArray(data) ? data : data.products || [];
+                    const container = document.getElementById("productsTableBody");
+                    products.forEach((product) => {
+                        const tr = document.createElement("tr");
+                        tr.innerHTML = `
+                    <td><img src="../static/images/${product.image_url || '../static/images/default-product.jpg'}" class="product-img" alt="Produto"></td>
+                    <td>${product.name}</td>
+                    <td>${product.category}</td>
+                    <td>${parseFloat(product.price).toFixed(2)} €</td>
+                    <td>${product.quantity}</td>
+                    <td><span class="badge bg-success badge-status">Ativo</span></td>
+                    <td>
+                        <button class="action-btn btn-edit" data-bs-toggle="modal" data-bs-target="#editProductModal"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn btn-delete" onclick="deleteProduct(${product.id})"><i class="fas fa-trash"></i></button>
+                    </td>
+                `;
+                        container.appendChild(tr);
+                    });
+                }).catch((error) => {
+                    console.error("Erro ao carregar produtos:", error);
+                });
+
+            // Get all users
+            safeFetchJson(`${url}/user/get_all_users.php`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                credentials: 'include'
+            })
+                .then((data) => {
+                    // normaliza: o endpoint devolve { users: [...], count: N }
+                    const users = Array.isArray(data) ? data : data.users || [];
+                    const container = document.getElementById("usersTableBody");
+                    users.forEach((user) => {
+                        const tr = document.createElement("tr");
+                        tr.innerHTML = `
+                    <td>#${user.id}</td>
+                    <td>${user.fname} ${user.lname}</td>
+                    <td>${user.email}</td>
+                    <td>${user.phone || '-'}</td>
+                    <td>${new Date(user.created_at).toLocaleDateString()}</td>
+                    <td><span class="badge bg-success badge-status">Ativo</span></td>
+                    <td>
+                        <button class="action-btn btn-edit"><i class="fas fa-eye"></i></button>
+                        <button class="action-btn btn-delete"><i class="fas fa-ban"></i></button>
+                    </td>
+                `;
+                        container.appendChild(tr);
+                    });
+                }).catch((error) => {
+                    console.error("Erro ao carregar utilizadores:", error);
+                });
+
+        })
+
 
         // Toggle Sidebar (Mobile)
         function toggleSidebar() {

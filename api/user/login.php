@@ -45,6 +45,7 @@ $response = [
     'username'   => $row['username'],
     'first_name' => $row['fname'] ?? '',
     'last_name'  => $row['lname'] ?? '',
+    'role'   => (bool) $row['is_admin'],
     'redirect'   => '/index.html'
 ];
 
