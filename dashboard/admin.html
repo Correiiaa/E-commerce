@@ -677,19 +677,9 @@
                                     <th>Ações</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>#12345</td>
-                                    <td>João Silva</td>
-                                    <td>10/12/2025</td>
-                                    <td>89,90 €</td>
-                                    <td><span class="badge bg-success badge-status">Entregue</span></td>
-                                    <td>
-                                        <button class="action-btn btn-edit" data-bs-toggle="modal"
-                                            data-bs-target="#orderDetailModal"><i class="fas fa-eye"></i></button>
-                                    </td>
-                                </tr>
-                                <!-- Mais linhas aqui -->
+                            <tbody id="ordersTableBody">
+
+                                <!-- JS -->
                             </tbody>
                         </table>
                     </div>
@@ -1017,13 +1007,11 @@
 
         async function checkAdminAccess() {
             try {
-                const response = await safeFetchJson(`${url}/user/check_login.php`, {
+                const data = await safeFetchJson(`${url}/user/check_login.php`, {
                     method: 'GET',
                     credentials: 'include',
                     headers: { 'Content-Type': 'application/json' }
                 });
-
-                const data = await response.json();
 
                 console.log("🔐 Sessão:", data);
 
@@ -1034,7 +1022,7 @@
                     return false;
                 }
 
-                if (!data.is_admin || data.is_admin !== 1) {
+                if (!data.role || data.role !== 1) {
                     alert('Acesso negado. Esta área é exclusiva para administradores.');
                     window.location.href = '../templates/index.html';
                     return false;
@@ -1096,6 +1084,8 @@
             if (!isAdmin) {
                 return; // Para a execução se não for admin
             }
+
+            await loadOrders();
 
             // 2. CARREGAR DADOS DA DASHBOARD (só se for admin)
             console.log("🔄 A carregar dados da dashboard...");
@@ -1164,6 +1154,109 @@
                 });
 
         })
+
+        // Carregar encomendas na dashboard
+        async function loadOrders() {
+            try {
+                const orders = await safeFetchJson(`${url}/order/get_all_orders.php`, {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include'
+                });
+
+                const container = document.getElementById("ordersTableBody");
+
+                if (orders.length === 0) {
+                    container.innerHTML = '<tr><td colspan="7" class="text-center">Nenhuma encomenda encontrada</td></tr>';
+                    return;
+                }
+
+                orders.forEach((order) => {
+                    // Status badge colors
+                    const statusColors = {
+                        'pending': 'bg-warning',
+                        'processing': 'bg-info',
+                        'shipped': 'bg-primary',
+                        'delivered': 'bg-success',
+                        'cancelled': 'bg-danger'
+                    };
+
+                    const statusLabels = {
+                        'pending': 'Pendente',
+                        'processing': 'Em Processamento',
+                        'shipped': 'Enviado',
+                        'delivered': 'Entregue',
+                        'cancelled': 'Cancelado'
+                    };
+
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+                <td>#${order.id}</td>
+                <td>${order.fname} ${order.lname}</td>
+                <td>${order.items_count} ${order.items_count === 1 ? 'item' : 'items'}</td>
+                <td>${parseFloat(order.total_price).toFixed(2)} €</td>
+                <td><span class="badge ${statusColors[order.status] || 'bg-secondary'} badge-status">${statusLabels[order.status] || order.status}</span></td>
+                <td>${new Date(order.created_at).toLocaleDateString('pt-PT')}</td>
+                <td>
+                    <button class="action-btn btn-edit" onclick="viewOrderDetails(${order.id})" data-bs-toggle="modal" data-bs-target="#viewOrderModal">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    <button class="action-btn btn-delete" onclick="deleteOrder(${order.id})">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </td>
+            `;
+                    container.appendChild(tr);
+                });
+
+                console.log("✅ Encomendas carregadas:", orders.length);
+
+            } catch (error) {
+                console.error("❌ Erro ao carregar encomendas:", error);
+            }
+        }
+
+        // Ver detalhes da encomenda
+        async function viewOrderDetails(orderId) {
+            try {
+                const order = await safeFetchJson(`${url}/order/get_order_details.php?id=${orderId}`, {
+                    credentials: 'include'
+                });
+
+                console.log("📦 Detalhes da encomenda:", order);
+
+                // Preencher modal com dados
+                document.getElementById('modalOrderId').textContent = `#${order.id}`;
+                document.getElementById('modalOrderCustomer').textContent = `${order.fname} ${order.lname}`;
+                document.getElementById('modalOrderEmail').textContent = order.email;
+                document.getElementById('modalOrderPhone').textContent = order.phone || '-';
+                document.getElementById('modalOrderAddress').textContent = order.shipping_address;
+                document.getElementById('modalOrderTracking').textContent = order.tracking_code || '-';
+                document.getElementById('modalOrderDate').textContent = new Date(order.created_at).toLocaleString('pt-PT');
+                document.getElementById('modalOrderStatus').textContent = order.status;
+                document.getElementById('modalOrderTotal').textContent = `${parseFloat(order.total_price).toFixed(2)} €`;
+
+                // Listar items
+                const itemsContainer = document.getElementById('modalOrderItems');
+                itemsContainer.innerHTML = order.items.map(item => `
+            <div class="order-item d-flex align-items-center mb-3 pb-3 border-bottom">
+                <img src="../static/images/${item.image_url}" alt="${item.product_name}" style="width: 60px; height: 60px; object-fit: contain; margin-right: 15px;">
+                <div class="flex-grow-1">
+                    <strong>${item.product_name}</strong>
+                    <div class="text-muted small">${item.category}</div>
+                </div>
+                <div class="text-end">
+                    <div>${item.quantity}x ${parseFloat(item.price).toFixed(2)} €</div>
+                    <strong>${parseFloat(item.subtotal).toFixed(2)} €</strong>
+                </div>
+            </div>
+        `).join('');
+
+            } catch (error) {
+                console.error("❌ Erro ao carregar detalhes:", error);
+                alert('Erro ao carregar detalhes da encomenda');
+            }
+        }
 
 
         // Toggle Sidebar (Mobile)
