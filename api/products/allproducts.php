@@ -10,7 +10,10 @@ error_log("Utilizador: " . ($db['username'] ?? 'unknown'));
 $pdo = connectDB($db);
 
 try {
-    $sql = "SELECT * FROM products";
+    $sql = "SELECT p.*, c.nome AS category
+            FROM products p
+            LEFT JOIN categorias c ON p.category_id = c.id
+            WHERE p.active = 1";
     error_log("SQL: $sql");
 
     $stm = $pdo->query($sql);

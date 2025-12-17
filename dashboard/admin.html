@@ -1216,10 +1216,14 @@
             }
         }
 
+        const orderId = order.id;
         // Ver detalhes da encomenda
         async function viewOrderDetails(orderId) {
             try {
-                const order = await safeFetchJson(`${url}/order/get_order_details.php?id=${orderId}`, {
+                const orderfetch = `${url}/order/get_order_details.php?id=${encodeURIComponent(orderId)}`;
+
+                const order = await safeFetchJson(orderfetch, {
+                    method: 'GET',
                     credentials: 'include'
                 });
 

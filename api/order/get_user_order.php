@@ -18,6 +18,6 @@ $pdo = connectDB($db);
 $sql= "SELECT * FROM orders WHERE user_id = :user_id ORDER BY created_at DESC";
 $stmt = $pdo->prepare($sql);
 $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-$stmt->execute();
+$stmt->execute();  
 $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 echo json_encode(['orders' => $orders]);

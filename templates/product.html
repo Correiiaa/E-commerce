@@ -1,192 +1,154 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
-    />
-    <link rel="stylesheet" href="../static/navbar.css" />
-    <link rel="stylesheet" href="../static/cart.css" />
-    <link rel="stylesheet" href="../static/body.css" />
-    <link rel="stylesheet" href="../static/productdetaill.css" />
-    <link rel="stylesheet" href="../static/cards.css" />
-    <link rel="stylesheet" href="../static/SectionTitles.css" />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <title>Toni Distribuição</title>
-  </head>
-  <body>
-    <div class="navbar-product-page"></div>
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="nav">
-      <div class="container">
-        <a class="navbar-brand" href="./index.html">Toni Correia</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="./index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./aboutus.html">Sobre nós</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./products.html">Vinhos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Bar</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" onclick="scrollToBottom()">Contacto</a>
-            </li>
-          </ul>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+  <link rel="stylesheet" href="../static/navbar.css" />
+  <link rel="stylesheet" href="../static/cart.css" />
+  <link rel="stylesheet" href="../static/body.css" />
+  <link rel="stylesheet" href="../static/productdetaill.css" />
+  <link rel="stylesheet" href="../static/cards.css" />
+  <link rel="stylesheet" href="../static/SectionTitles.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <title>Toni Distribuição</title>
+</head>
 
-        <div class="cart-botton" id="cart-button">
-          <img src="../static/icons/6493694.png" alt="cart-icon" />
-        </div>
+<body>
+  <div class="navbar-product-page"></div>
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="nav">
+    <div class="container">
+      <a class="navbar-brand" href="./index.html">Toni Correia</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-        <div class="icon-user-menu">
-          <img
-            src="../static/icons/usericon.png"
-            alt="User"
-            onclick="toggleUserMenu()"
-          />
-        </div>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="./index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./aboutus.html">Sobre nós</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./products.html">Vinhos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Bar</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" onclick="scrollToBottom()">Contacto</a>
+          </li>
+        </ul>
+      </div>
 
-        <div class="menu-user-wrap" id="menu-user-wrap">
-          <div class="sub-menu">
-            <div class="user-info">
-              <h2>User Menu</h2>
-            </div>
-            <hr />
+      <div class="cart-botton" id="cart-button">
+        <img src="../static/icons/6493694.png" alt="cart-icon" />
+      </div>
 
-            <a href="#" class="sub-menu-link">
-              <img src="../static/icons/editprofile.png" alt="edit profile" />
-              <p>Edit Profile</p>
-              <span>></span>
-            </a>
+      <div class="icon-user-menu">
+        <img src="../static/icons/usericon.png" alt="User" onclick="toggleUserMenu()" />
+      </div>
 
-            <a href="#" class="sub-menu-link">
-              <img src="../static/icons/orders.png" alt="Orders" />
-              <p>Orders</p>
-              <span>></span>
-            </a>
-
-            <a href="#" class="sub-menu-link">
-              <img src="../static/icons/support.png" alt="Support" />
-              <p>Help & Support</p>
-              <span>></span>
-            </a>
-
-            <a href="" class="sub-menu-link" onclick="logout()">
-              <img src="../static/icons/logout.png" alt="Lougout" />
-              <p>Logout</p>
-              <span>></span>
-            </a>
+      <div class="menu-user-wrap" id="menu-user-wrap">
+        <div class="sub-menu">
+          <div class="user-info">
+            <h2>User Menu</h2>
           </div>
-        </div>
+          <hr />
 
-        <div class="menu-user-wrap-no-user" id="menu-user-wrap-no-user">
-          <div class="sub-menu">
-            <div class="user-info">
-              <h2>Login to acess</h2>
-            </div>
-            <hr />
-            <a href="./login.html" class="sub-menu-link">
-              <img src="../static/icons/login.png" alt="Login" />
-              <p>Login</p>
-              <span>></span>
-            </a>
-            <a href="./register.html" class="sub-menu-link">
-              <img src="../static/icons/register.jpg" alt="Register" />
-              <p>Register</p>
-              <span>></span>
-            </a>
-          </div>
-        </div>
+          <a href="#" class="sub-menu-link">
+            <img src="../static/icons/editprofile.png" alt="edit profile" />
+            <p>Edit Profile</p>
+            <span>></span>
+          </a>
 
-        <div class="search">
-          <input
-            type="text"
-            class="search__input"
-            placeholder="Pesquisa o teu vinho"
-            name="query"
-          />
-          <button class="search__button">
-            <svg class="search__icon" aria-hidden="true" viewBox="0 0 24 24">
-              <g>
-                <path
-                  d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"
-                ></path>
-              </g>
-            </svg>
-          </button>
+          <a href="#" class="sub-menu-link">
+            <img src="../static/icons/orders.png" alt="Orders" />
+            <p>Orders</p>
+            <span>></span>
+          </a>
+
+          <a href="#" class="sub-menu-link">
+            <img src="../static/icons/support.png" alt="Support" />
+            <p>Help & Support</p>
+            <span>></span>
+          </a>
+
+          <a href="" class="sub-menu-link" onclick="logout()">
+            <img src="../static/icons/logout.png" alt="Lougout" />
+            <p>Logout</p>
+            <span>></span>
+          </a>
         </div>
       </div>
-      <!-- Carrinho removido da navbar -->
 
-      <div id="cart" class="cart-sidebar">
-        <div
-          class="d-flex justify-content-between align-items-center"
-          bis_skin_checked="1"
-        >
-          <p class="cart-title">O seu carrinho</p>
-          <button type="button" class="cart-close">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-            >
-              <g fill="none" fill-rule="evenodd">
-                <g fill="#222">
-                  <g>
-                    <path
-                      d="M21.41 2.59c-.325-.326-.852-.326-1.178 0L12 10.821 3.768 2.589c-.326-.325-.853-.325-1.179 0-.325.326-.325.853 0 1.179L10.822 12l-8.233 8.232c-.325.326-.325.853 0 1.179.326.325.853.325 1.179 0L12 13.178l8.232 8.233c.326.325.853.325 1.179 0 .325-.326.325-.853 0-1.179L13.178 12l8.233-8.232c.325-.326.325-.853 0-1.179z"
-                      transform="translate(-1860 -34) translate(1860 34)"
-                    ></path>
-                  </g>
+      <div class="menu-user-wrap-no-user" id="menu-user-wrap-no-user">
+        <div class="sub-menu">
+          <div class="user-info">
+            <h2>Login to acess</h2>
+          </div>
+          <hr />
+          <a href="./login.html" class="sub-menu-link">
+            <img src="../static/icons/login.png" alt="Login" />
+            <p>Login</p>
+            <span>></span>
+          </a>
+          <a href="./register.html" class="sub-menu-link">
+            <img src="../static/icons/register.jpg" alt="Register" />
+            <p>Register</p>
+            <span>></span>
+          </a>
+        </div>
+      </div>
+
+      <div class="search">
+        <input type="text" class="search__input" placeholder="Pesquisa o teu vinho" name="query" />
+        <button class="search__button">
+          <svg class="search__icon" aria-hidden="true" viewBox="0 0 24 24">
+            <g>
+              <path
+                d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+              </path>
+            </g>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <!-- Carrinho removido da navbar -->
+
+    <div id="cart" class="cart-sidebar">
+      <div class="d-flex justify-content-between align-items-center" bis_skin_checked="1">
+        <p class="cart-title">O seu carrinho</p>
+        <button type="button" class="cart-close">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <g fill="none" fill-rule="evenodd">
+              <g fill="#222">
+                <g>
+                  <path
+                    d="M21.41 2.59c-.325-.326-.852-.326-1.178 0L12 10.821 3.768 2.589c-.326-.325-.853-.325-1.179 0-.325.326-.325.853 0 1.179L10.822 12l-8.233 8.232c-.325.326-.325.853 0 1.179.326.325.853.325 1.179 0L12 13.178l8.232 8.233c.326.325.853.325 1.179 0 .325-.326.325-.853 0-1.179L13.178 12l8.233-8.232c.325-.326.325-.853 0-1.179z"
+                    transform="translate(-1860 -34) translate(1860 34)"></path>
                 </g>
               </g>
-            </svg>
-          </button>
-        </div>
+            </g>
+          </svg>
+        </button>
       </div>
-    </nav>
+    </div>
+  </nav>
 
-    <div class="product-page">
-      <div class="containersection" id="product-section">
-        <!-- <div class="section-header">
+  <div class="product-page">
+    <div class="containersection" id="product-section">
+      <!-- <div class="section-header">
                 <a class="product-section" href="/products"><p>{{ product.category }}</p></a>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item">
@@ -197,158 +159,126 @@
                     </li>
                 </ul>
             </div> -->
-        <div class="row mb-4">
-          <div class="col-12">
-            <h1 class="display-4 fw-bold mb-2">Vinhos</h1>
-            <nav aria-label="breadcrumb">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                  <a href="/" class="text-decoration-none">Home</a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">
-                  Vinhos
-                </li>
-              </ol>
-            </nav>
-            <div class="free-shipping">
-              <i class="fas fa-truck me-2"></i>Portes grátis a partir de 50€
-            </div>
+      <div class="row mb-4">
+        <div class="col-12">
+          <h1 class="display-4 fw-bold mb-2">Vinhos</h1>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="/" class="text-decoration-none">Home</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Vinhos
+              </li>
+            </ol>
+          </nav>
+          <div class="free-shipping">
+            <i class="fas fa-truck me-2"></i>Portes grátis a partir de 50€
           </div>
         </div>
-        <div class="product-details">
-          <div class="product-image">
-            <img id="product-image" src="" alt="" />
-          </div>
-          <div class="product-info">
-            <p class="product-name" id="product-name"></p>
-            <p class="product-id" id="product-id"></p>
-            <p class="product-price" id="product-price"></p>
-            <div class="addtocart">
-              <button
-                class="btn btn-dark add-to-cart-btn"
-                id="add-to-cart-btn"
-                data-product-id=""
-              >
-                Adicionar ao Carrinho
+      </div>
+      <div class="product-details">
+        <div class="product-image">
+          <img id="product-image" src="" alt="" />
+        </div>
+        <div class="product-info">
+          <p class="product-name" id="product-name"></p>
+          <p class="product-id" id="product-id"></p>
+          <p class="product-price" id="product-price"></p>
+          <div class="addtocart">
+            <button class="btn btn-dark add-to-cart-btn" id="add-to-cart-btn" data-product-id="">
+              Adicionar ao Carrinho
+            </button>
+            <div class="quantity-button-wrapper d-flex align-items-center justify-content-start" bis_skin_checked="1">
+              <button type="button" class="quantity-button quantity-buttons-less core-cart--qty core-cart--qty-minus">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
+                  <g fill="none" fill-rule="evenodd">
+                    <g fill="#222">
+                      <g>
+                        <g>
+                          <g>
+                            <path
+                              d="M2.636 2.633c-.223.224-.223.586 0 .81l8.904 8.902c.223.224.585.224.808 0 .224-.223.224-.585 0-.809L3.445 2.633c-.223-.223-.585-.223-.809 0z"
+                              transform="translate(-114 -167) translate(9 79) translate(80 75) translate(25 13) rotate(-45 7.492 7.49)">
+                            </path>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
               </button>
-              <div
-                class="quantity-button-wrapper d-flex align-items-center justify-content-start"
-                bis_skin_checked="1"
-              >
-                <button
-                  type="button"
-                  class="quantity-button quantity-buttons-less core-cart--qty core-cart--qty-minus"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="15"
-                    height="15"
-                    viewBox="0 0 15 15"
-                  >
-                    <g fill="none" fill-rule="evenodd">
-                      <g fill="#222">
+              <input type="text" name="Quantity" value="1" class="quantity-buttons-input core-cart--qty-input"
+                readonly="" />
+              <button type="button" class="quantity-button quantity-buttons-more core-cart--qty core-cart--qty-plus">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
+                  <g fill="none" fill-rule="evenodd">
+                    <g fill="#222">
+                      <g>
                         <g>
                           <g>
-                            <g>
-                              <path
-                                d="M2.636 2.633c-.223.224-.223.586 0 .81l8.904 8.902c.223.224.585.224.808 0 .224-.223.224-.585 0-.809L3.445 2.633c-.223-.223-.585-.223-.809 0z"
-                                transform="translate(-114 -167) translate(9 79) translate(80 75) translate(25 13) rotate(-45 7.492 7.49)"
-                              ></path>
-                            </g>
+                            <path
+                              d="M12.35 2.637c-.223-.223-.586-.223-.809 0L7.496 6.682 3.451 2.637c-.223-.223-.585-.223-.809 0-.223.223-.223.586 0 .809L6.687 7.49l-4.06 4.06c-.223.223-.223.585 0 .809.224.223.586.223.809 0l4.06-4.06 4.05 4.049c.223.223.585.223.808 0 .224-.223.224-.586 0-.809L8.305 7.49l4.045-4.044c.223-.223.223-.586 0-.809z"
+                              transform="translate(-227 -167) translate(9 79) translate(80 75) translate(138 13) rotate(-45 7.49 7.498)">
+                            </path>
                           </g>
                         </g>
                       </g>
                     </g>
-                  </svg>
-                </button>
-                <input
-                  type="text"
-                  name="Quantity"
-                  value="1"
-                  class="quantity-buttons-input core-cart--qty-input"
-                  readonly=""
-                />
-                <button
-                  type="button"
-                  class="quantity-button quantity-buttons-more core-cart--qty core-cart--qty-plus"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="15"
-                    height="15"
-                    viewBox="0 0 15 15"
-                  >
-                    <g fill="none" fill-rule="evenodd">
-                      <g fill="#222">
-                        <g>
-                          <g>
-                            <g>
-                              <path
-                                d="M12.35 2.637c-.223-.223-.586-.223-.809 0L7.496 6.682 3.451 2.637c-.223-.223-.585-.223-.809 0-.223.223-.223.586 0 .809L6.687 7.49l-4.06 4.06c-.223.223-.223.585 0 .809.224.223.586.223.809 0l4.06-4.06 4.05 4.049c.223.223.585.223.808 0 .224-.223.224-.586 0-.809L8.305 7.49l4.045-4.044c.223-.223.223-.586 0-.809z"
-                                transform="translate(-227 -167) translate(9 79) translate(80 75) translate(138 13) rotate(-45 7.49 7.498)"
-                              ></path>
-                            </g>
-                          </g>
-                        </g>
-                      </g>
-                    </g>
-                  </svg>
-                </button>
-              </div>
+                  </g>
+                </svg>
+              </button>
             </div>
+          </div>
 
-            <div class="product-spects">
-              <div class="row">
-                <div class="col-12 col-lg-6">
-                  <div class="product-detail-spects">
-                    <div class="product-detail-spects-icon">
-                      <img src="../static/icons/regiao.jpg" alt="Regiao" />
-                    </div>
-                    <div class="product-detail-spects-text">
-                      <span>Região</span>
-                      <p id="regiao"></p>
-                    </div>
+          <div class="product-spects">
+            <div class="row">
+              <div class="col-12 col-lg-6">
+                <div class="product-detail-spects">
+                  <div class="product-detail-spects-icon">
+                    <img src="../static/icons/regiao.jpg" alt="Regiao" />
                   </div>
-                  <div class="product-detail-spects">
-                    <div class="product-detail-spects-icon">
-                      <img src="../static/icons/anovinho.jpg" alt="" />
-                    </div>
-                    <div class="product-detail-spects-text">
-                      <span>Ano</span>
-                      <p id="ano"></p>
-                    </div>
-                  </div>
-                  <div class="product-detail-spects">
-                    <div class="product-detail-spects-icon">
-                      <img src="../static/icons/teoralcool.jpg" alt="Alcool" />
-                    </div>
-                    <div class="product-detail-spects-text">
-                      <span>Teor alcoólico</span>
-                      <p id="volumeal"></p>
-                    </div>
+                  <div class="product-detail-spects-text">
+                    <span>Região</span>
+                    <p id="regiao"></p>
                   </div>
                 </div>
-                <div class="col-12 col-lg-6">
-                  <div class="product-detail-spects">
-                    <div class="product-detail-spects-icon">
-                      <img
-                        src="../static/icons/contry-icon.png"
-                        alt="Pais de origem"
-                      />
-                    </div>
-                    <div class="product-detail-spects-text">
-                      <span>Pai­s</span>
-                      <p id="pais"></p>
-                    </div>
+                <div class="product-detail-spects">
+                  <div class="product-detail-spects-icon">
+                    <img src="../static/icons/anovinho.jpg" alt="" />
                   </div>
-                  <div class="product-detail-spects">
-                    <div class="product-detail-spects-icon">
-                      <img src="../static/icons/produtor.jpg" alt="Produtor" />
-                    </div>
-                    <div class="product-detail-spects-text">
-                      <span>Produtor</span>
-                      <p id="produtor"></p>
-                    </div>
+                  <div class="product-detail-spects-text">
+                    <span>Ano</span>
+                    <p id="ano"></p>
+                  </div>
+                </div>
+                <div class="product-detail-spects">
+                  <div class="product-detail-spects-icon">
+                    <img src="../static/icons/teoralcool.jpg" alt="Alcool" />
+                  </div>
+                  <div class="product-detail-spects-text">
+                    <span>Teor alcoólico</span>
+                    <p id="volumeal"></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-lg-6">
+                <div class="product-detail-spects">
+                  <div class="product-detail-spects-icon">
+                    <img src="../static/icons/contry-icon.png" alt="Pais de origem" />
+                  </div>
+                  <div class="product-detail-spects-text">
+                    <span>Pai­s</span>
+                    <p id="pais"></p>
+                  </div>
+                </div>
+                <div class="product-detail-spects">
+                  <div class="product-detail-spects-icon">
+                    <img src="../static/icons/produtor.jpg" alt="Produtor" />
+                  </div>
+                  <div class="product-detail-spects-text">
+                    <span>Produtor</span>
+                    <p id="produtor"></p>
                   </div>
                 </div>
               </div>
@@ -357,411 +287,378 @@
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="container">
-      <h2 class="section-subtitle highlight-products-subtitle">
-        Produtos Recomendados
-      </h2>
-      <p class="section-title highlight-products-title"></p>
-    </div>
+  <div class="container">
+    <h2 class="section-subtitle highlight-products-subtitle">
+      Produtos Recomendados
+    </h2>
+    <p class="section-title highlight-products-title"></p>
+  </div>
 
-    <div class="carousel-wrapper">
-      <button class="carousel-btn prev"><</button>
-      <div class="carousel-viewport">
-        <div class="carousel-track" id="product-container"></div>
+  <div class="carousel-wrapper">
+    <button class="carousel-btn prev">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <div class="carousel-viewport">
+      <div class="carousel-track" id="product-container">
+        <!-- Cards serão adicionados AQUI pelo JavaScript -->
       </div>
-      <button class="carousel-btn next">></button>
     </div>
+    <button class="carousel-btn next">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  </div>
 
-    <!-- Footer -->
-    <footer
-      class="text-center text-lg-start bg-body-tertiary text-muted"
-      style="background-color: #212121 !important"
-    >
-      <!-- Section: Social media -->
-      <section
-        class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
-      >
-        <!-- Left -->
-        <div class="me-5 d-none d-lg-block" style="color: rgb(221, 221, 221)">
-          <span>Get connected with us on social networks:</span>
-        </div>
-        <!-- Left -->
+  <!-- Footer -->
+  <footer class="text-center text-lg-start bg-body-tertiary text-muted" style="background-color: #212121 !important">
+    <!-- Section: Social media -->
+    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+      <!-- Left -->
+      <div class="me-5 d-none d-lg-block" style="color: rgb(221, 221, 221)">
+        <span>Get connected with us on social networks:</span>
+      </div>
+      <!-- Left -->
 
-        <!-- Right -->
-        <div>
-          <a
-            href="https://www.facebook.com/profile.php?id=100088980578739"
-            target="_blank"
-            class="me-4 text-reset"
-          >
-            <img
-              src="../static/icons/facebookicon.png"
-              class="icons-footer"
-              style="width: 30px"
-            />
-          </a>
-          <a
-            href="https://www.instagram.com/winewine.distribuicao/"
-            target="_blank"
-            class="me-4 text-reset"
-          >
-            <img
-              src="../static/icons/instagramicon.png"
-              alt="Instagram"
-              class="icons-footer"
-              style="width: 30px"
-            />
-          </a>
-          <a href="" class="me-4 text-reset">
-            <i class="fab fa-google"></i>
-          </a>
-          <a href="" class="me-4 text-reset">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="" class="me-4 text-reset">
-            <i class="fab fa-linkedin"></i>
-          </a>
-          <a href="" class="me-4 text-reset">
-            <i class="fab fa-github"></i>
-          </a>
-        </div>
-        <!-- Right -->
-      </section>
-      <!-- Section: Social media -->
+      <!-- Right -->
+      <div>
+        <a href="https://www.facebook.com/profile.php?id=100088980578739" target="_blank" class="me-4 text-reset">
+          <img src="../static/icons/facebookicon.png" class="icons-footer" style="width: 30px" />
+        </a>
+        <a href="https://www.instagram.com/winewine.distribuicao/" target="_blank" class="me-4 text-reset">
+          <img src="../static/icons/instagramicon.png" alt="Instagram" class="icons-footer" style="width: 30px" />
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-google"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+      <!-- Right -->
+    </section>
+    <!-- Section: Social media -->
 
-      <!-- Section: Links  -->
-      <section class="">
-        <div class="container text-center text-md-start mt-5">
-          <!-- Grid row -->
-          <div class="row mt-3">
-            <!-- Grid column -->
-            <div
-              class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4"
-              style="color: white"
-            >
-              <!-- Content -->
-              <h6 class="text-uppercase fw-bold mb-4">
-                <i class="fas fa-gem me-3">Toni Correia</i>
-              </h6>
-              <p>HorÃ¡rio: Segunda a Sexta - 10h00 Ã s 19h00</p>
-            </div>
-            <!-- Grid column -->
-
-            <!-- Grid column -->
-            <div
-              class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4"
-              style="color: white"
-            >
-              <!-- Links -->
-              <h6 class="text-uppercase fw-bold mb-4">Products</h6>
-              <p>
-                <a href="#!" class="text-reset">Vinho tinto</a>
-              </p>
-              <p>
-                <a href="#!" class="text-reset">Vinho Branco</a>
-              </p>
-              <p>
-                <a href="#!" class="text-reset">Espumantes</a>
-              </p>
-              <p>
-                <a href="#!" class="text-reset">Vinho Verde</a>
-              </p>
-            </div>
-            <!-- Grid column -->
-
-            <!-- Grid column -->
-            <div
-              class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4"
-              style="color: white"
-            >
-              <!-- Links -->
-              <h6 class="text-uppercase fw-bold mb-4">Useful links</h6>
-              <p>
-                <a href="#!" class="text-reset">All products</a>
-              </p>
-              <p>
-                <a href="#!" class="text-reset">About us</a>
-              </p>
-              <p>
-                <a href="#!" class="text-reset">Orders</a>
-              </p>
-              <p>
-                <a href="#!" class="text-reset">Bar</a>
-              </p>
-            </div>
-            <!-- Grid column -->
-
-            <!-- Grid column -->
-            <div
-              class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4"
-              style="color: white"
-            >
-              <!-- Links -->
-              <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-              <p><i class="fas fa-home me-3"></i> 4540 Arouca, Rossas</p>
-              <p>
-                <i class="fas fa-envelope me-3"></i>
-                winewine.distribuicao@example.com
-              </p>
-              <p><i class="fas fa-phone me-3"></i> + 351 910 295 159</p>
-            </div>
-            <!-- Grid column -->
+    <!-- Section: Links  -->
+    <section class="">
+      <div class="container text-center text-md-start mt-5">
+        <!-- Grid row -->
+        <div class="row mt-3">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4" style="color: white">
+            <!-- Content -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              <i class="fas fa-gem me-3">Toni Correia</i>
+            </h6>
+            <p>HorÃ¡rio: Segunda a Sexta - 10h00 Ã s 19h00</p>
           </div>
-          <!-- Grid row -->
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4" style="color: white">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">Products</h6>
+            <p>
+              <a href="#!" class="text-reset">Vinho tinto</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Vinho Branco</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Espumantes</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Vinho Verde</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4" style="color: white">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">Useful links</h6>
+            <p>
+              <a href="#!" class="text-reset">All products</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">About us</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Orders</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Bar</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4" style="color: white">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+            <p><i class="fas fa-home me-3"></i> 4540 Arouca, Rossas</p>
+            <p>
+              <i class="fas fa-envelope me-3"></i>
+              winewine.distribuicao@example.com
+            </p>
+            <p><i class="fas fa-phone me-3"></i> + 351 910 295 159</p>
+          </div>
+          <!-- Grid column -->
         </div>
-      </section>
-      <!-- Section: Links  -->
-
-      <!-- Copyright -->
-      <div
-        class="text-center p-4"
-        style="background-color: rgba(0, 0, 0, 0.05)"
-      >
-        Â© 2021 Copyright:
-        <a class="text-reset fw-bold" href="/">tonicorreia.com</a>
+        <!-- Grid row -->
       </div>
-      <!-- Copyright -->
-    </footer>
-    <!-- Footer -->
+    </section>
+    <!-- Section: Links  -->
 
-    <script>
-      const url = `https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/E-commerce/api`;
-      async function safeFetchJson(url, opts = {}) {
-        const res = await fetch(url, opts);
-        const text = await res.text();
-        if (!res.ok) {
-          console.error(`Fetch ${url} falhou (status ${res.status}):`, text);
-          throw new Error(`Fetch failed: ${res.status}`);
+    <!-- Copyright -->
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05)">
+      Â© 2021 Copyright:
+      <a class="text-reset fw-bold" href="/">tonicorreia.com</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+
+  <script>
+    const url = `https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/E-commerce/api`;
+    async function safeFetchJson(url, opts = {}) {
+      const res = await fetch(url, opts);
+      const text = await res.text();
+      if (!res.ok) {
+        console.error(`Fetch ${url} falhou (status ${res.status}):`, text);
+        throw new Error(`Fetch failed: ${res.status}`);
+      }
+      const ct = res.headers.get("content-type") || "";
+      if (ct.includes("application/json")) {
+        try {
+          return JSON.parse(text);
+        } catch (e) {
+          console.error(
+            "Falha ao parsear JSON com content-type application/json:",
+            e,
+            text.slice(0, 500)
+          );
+          throw e;
         }
-        const ct = res.headers.get("content-type") || "";
-        if (ct.includes("application/json")) {
-          try {
-            return JSON.parse(text);
-          } catch (e) {
-            console.error(
-              "Falha ao parsear JSON com content-type application/json:",
-              e,
-              text.slice(0, 500)
-            );
-            throw e;
-          }
+      }
+      // fallback: extrair primeiro objecto/array JSON do body (remove scripts/html debug)
+      const m = text.match(/(\{[\s\S]*\}|\[[\s\S]*\])/);
+      if (m) {
+        try {
+          return JSON.parse(m[1]);
+        } catch (e) {
+          console.error(
+            "Falha ao parsear JSON extraído:",
+            e,
+            m[1].slice(0, 500)
+          );
+          throw e;
         }
-        // fallback: extrair primeiro objecto/array JSON do body (remove scripts/html debug)
-        const m = text.match(/(\{[\s\S]*\}|\[[\s\S]*\])/);
-        if (m) {
-          try {
-            return JSON.parse(m[1]);
-          } catch (e) {
-            console.error(
-              "Falha ao parsear JSON extraído:",
-              e,
-              m[1].slice(0, 500)
-            );
-            throw e;
-          }
-        }
-        console.error(
-          "Resposta não-JSON recebida de",
-          url,
-          "->",
-          text.slice(0, 500)
-        );
-        throw new SyntaxError("Response is not JSON");
+      }
+      console.error(
+        "Resposta não-JSON recebida de",
+        url,
+        "->",
+        text.slice(0, 500)
+      );
+      throw new SyntaxError("Response is not JSON");
+    }
+
+    var product = {};
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      // ===== 1. CARREGAR PRODUTO PRINCIPAL =====
+      let id = new URLSearchParams(location.search).get("id");
+      if (!id) {
+        const parts = location.pathname.split("/").filter(Boolean);
+        id = parts[parts.length - 1] || "";
+      }
+      id = Number(id);
+
+      if (!id) {
+        console.error("❌ Invalid product id");
+        return;
       }
 
-      var product = {};
+      const productUrl = `${url}/products/get_products_by_id.php?id=${encodeURIComponent(
+        id
+      )}`;
+      console.log("🔍 Fetching product:", productUrl);
 
-      document.addEventListener("DOMContentLoaded", async () => {
-        // ===== 1. CARREGAR PRODUTO PRINCIPAL =====
-        let id = new URLSearchParams(location.search).get("id");
-        if (!id) {
-          const parts = location.pathname.split("/").filter(Boolean);
-          id = parts[parts.length - 1] || "";
+      try {
+        product = await safeFetchJson(productUrl, { method: "GET" });
+        console.log("✅ Product loaded:", product);
+
+        document.getElementById("product-image").src = `${url.replace(
+          "/api",
+          ""
+        )}/static/images/${product.image_url}`;
+        document.getElementById("product-name").textContent = product.name;
+        document.getElementById("product-id").textContent =
+          "ID: " + product.id;
+        document.getElementById("product-price").textContent =
+          product.price + " €";
+        document.getElementById("regiao").textContent = product.regiao || "—";
+        document.getElementById("ano").textContent = product.ano || "—";
+        document.getElementById("volumeal").textContent =
+          product.volumeal || "—";
+        document.getElementById("pais").textContent = product.pais || "—";
+        document.getElementById("produtor").textContent =
+          product.produtor || "—";
+
+        if (document.getElementById("descricao")) {
+          document.getElementById("descricao").textContent =
+            product.descricao || "";
         }
-        id = Number(id);
+      } catch (e) {
+        console.error("❌ Failed to fetch product data:", e);
+        return;
+      }
 
-        if (!id) {
-          console.error("❌ Invalid product id");
-          return;
-        }
+      // ===== 2. CARREGAR PRODUTOS RECOMENDADOS (mesma categoria) =====
+      const section = product.category_id;
+      console.log("🔍 Fetching recommended products, section:", section);
 
-        const productUrl = `${url}/products/get_products_by_id.php?id=${encodeURIComponent(
-          id
+      try {
+        // ⚠️ GET não leva body! Usa query string
+        const productsUrl = `${url}/products/get_products_section.php?section=${encodeURIComponent(
+          section
         )}`;
-        console.log("🔍 Fetching product:", productUrl);
+        console.log("📡 Request URL:", productsUrl);
 
-        try {
-          product = await safeFetchJson(productUrl, { method: "GET" });
-          console.log("✅ Product loaded:", product);
+        const products = await safeFetchJson(productsUrl, {
+          method: "GET",
+          credentials: "include",
+        });
 
-          document.getElementById("product-image").src = `${url.replace(
-            "/api",
-            ""
-          )}/static/images/${product.image_url}`;
-          document.getElementById("product-name").textContent = product.name;
-          document.getElementById("product-id").textContent =
-            "ID: " + product.id;
-          document.getElementById("product-price").textContent =
-            product.price + " €";
-          document.getElementById("regiao").textContent = product.regiao || "—";
-          document.getElementById("ano").textContent = product.ano || "—";
-          document.getElementById("volumeal").textContent =
-            product.volumeal || "—";
-          document.getElementById("pais").textContent = product.pais || "—";
-          document.getElementById("produtor").textContent =
-            product.produtor || "—";
+        console.log("✅ Recommended products:", products);
 
-          if (document.getElementById("descricao")) {
-            document.getElementById("descricao").textContent =
-              product.descricao || "";
-          }
-        } catch (e) {
-          console.error("❌ Failed to fetch product data:", e);
+        if (!Array.isArray(products) || products.length === 0) {
+          console.warn(
+            "⚠️ Nenhum produto recomendado encontrado para section:",
+            section
+          );
           return;
         }
 
-        // ===== 2. CARREGAR PRODUTOS RECOMENDADOS (mesma categoria) =====
-        const section = product.category || "Vinho Branco";
-        console.log("🔍 Fetching recommended products, section:", section);
+        const container = document.getElementById("product-container");
+        container.innerHTML = "";
 
-        try {
-          // ⚠️ GET não leva body! Usa query string
-          const productsUrl = `${url}/products/get_products_section.php?section=${encodeURIComponent(
-            section
-          )}`;
-          console.log("📡 Request URL:", productsUrl);
-
-          const products = await safeFetchJson(productsUrl, {
-            method: "GET",
-            credentials: "include",
-          });
-
-          console.log("✅ Recommended products:", products);
-
-          if (!Array.isArray(products) || products.length === 0) {
-            console.warn(
-              "⚠️ Nenhum produto recomendado encontrado para section:",
-              section
-            );
-            return;
+        products.forEach((prod) => {
+          let extraClass = "";
+          if (prod.name === "Encosta d´Aregos") {
+            extraClass = " encosta-daregos";
+          } else if (prod.name === "M&M ROSÉ") {
+            extraClass = " MM-rose";
+          } else if (prod.name === "Perspetiva Colheita Branco") {
+            extraClass = " perspetiva-colheita-branco";
           }
 
-          const container = document.getElementById("product-container");
-          container.innerHTML = "";
-
-          products.forEach((prod) => {
-            let extraClass = "";
-            if (prod.name === "Encosta d´Aregos") {
-              extraClass = " encosta-daregos";
-            } else if (prod.name === "M&M ROSÉ") {
-              extraClass = " MM-rose";
-            } else if (prod.name === "Perspetiva Colheita Branco") {
-              extraClass = " perspetiva-colheita-branco";
-            }
-
-            const card = document.createElement("div");
-            card.classList.add("card", "h-100");
-            card.innerHTML = `
-              <img class="card-img-top${extraClass}" src="../static/images/${
-              prod.image_url
+          const card = document.createElement("div");
+          card.classList.add("card", "h-100");
+          card.innerHTML = `
+              <img class="card-img-top${extraClass}" src="../static/images/${prod.image_url
             }" alt="${prod.name}">
               <div class="card-body text-center">
                 <h5 class="card-title">${prod.name}</h5>
                 <p class="card-text">${Number(prod.price).toFixed(2)} €</p>
-                <a href="product.html?id=${
-                  prod.id
-                }" class="btn btn-light">Ver detalhes</a>
-                <a class="btn btn-dark add-to-cart-btn" data-product-id="${
-                  prod.id
-                }">Cart</a>
+                <a href="product.html?id=${prod.id
+            }" class="btn btn-light">Ver detalhes</a>
+                <a class="btn btn-dark add-to-cart-btn" data-product-id="${prod.id
+            }">Cart</a>
               </div>
             `;
-            container.appendChild(card);
-          });
-
-          // ===== 3. CAROUSEL LOGIC =====
-          const track = document.querySelector(".carousel-track");
-          const cards = track.querySelectorAll(".card");
-
-          if (cards.length === 0) {
-            console.warn("⚠️ Nenhum card no carousel");
-            return;
-          }
-
-          const prevBtn = document.querySelector(".carousel-btn.prev");
-          const nextBtn = document.querySelector(".carousel-btn.next");
-          const visibleCards = 3;
-          let currentIndex = 0;
-
-          const updateCarousel = () => {
-            const cardWidth = cards[0].offsetWidth + 20;
-            const offset = currentIndex * cardWidth;
-            track.style.transform = `translateX(-${offset}px)`;
-
-            cards.forEach((card, index) => {
-              card.classList.remove("fade");
-              if (
-                index < currentIndex ||
-                index >= currentIndex + visibleCards
-              ) {
-                card.classList.add("fade");
-              }
-            });
-          };
-
-          prevBtn.addEventListener("click", () => {
-            if (currentIndex > 0) {
-              currentIndex--;
-              updateCarousel();
-            }
-          });
-
-          nextBtn.addEventListener("click", () => {
-            if (currentIndex < cards.length - visibleCards) {
-              currentIndex++;
-              updateCarousel();
-            }
-          });
-
-          updateCarousel();
-        } catch (error) {
-          console.error("❌ Erro ao buscar produtos recomendados:", error);
-        }
-      });
-
-      function toggleUserMenu() {
-        fetch(url + "/user/check_login.php")
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.is_logged_in) {
-              let submenu = document.getElementById("menu-user-wrap");
-              submenu.classList.toggle("show");
-            } else {
-              let submenu = document.getElementById("menu-user-wrap-no-user");
-              submenu.classList.toggle("show");
-            }
-          })
-          .catch((error) =>
-            console.error("Error checking user session:", error)
-          );
-      }
-
-      function logout() {
-        fetch(url + "/user/logout.php", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          container.appendChild(card);
         });
 
-        window.location.reload(true);
-      }
+        // ===== 3. CAROUSEL LOGIC =====
+        const track = document.querySelector(".carousel-track");
+        const cards = track.querySelectorAll(".card");
 
-      function showCart(cartData) {
-        const cartDiv = document.getElementById("cart");
-        cartDiv.classList.add("cart-open");
-        cartDiv.innerHTML = `
+        if (cards.length === 0) {
+          console.warn("⚠️ Nenhum card no carousel");
+          return;
+        }
+
+        const prevBtn = document.querySelector(".carousel-btn.prev");
+        const nextBtn = document.querySelector(".carousel-btn.next");
+        const visibleCards = 3;
+        let currentIndex = 0;
+
+        const updateCarousel = () => {
+          const cardWidth = cards[0].offsetWidth + 20;
+          const offset = currentIndex * cardWidth;
+          track.style.transform = `translateX(-${offset}px)`;
+
+          cards.forEach((card, index) => {
+            card.classList.remove("fade");
+            if (
+              index < currentIndex ||
+              index >= currentIndex + visibleCards
+            ) {
+              card.classList.add("fade");
+            }
+          });
+        };
+
+        prevBtn.addEventListener("click", () => {
+          if (currentIndex > 0) {
+            currentIndex--;
+            updateCarousel();
+          }
+        });
+
+        nextBtn.addEventListener("click", () => {
+          if (currentIndex < cards.length - visibleCards) {
+            currentIndex++;
+            updateCarousel();
+          }
+        });
+
+        updateCarousel();
+      } catch (error) {
+        console.error("❌ Erro ao buscar produtos recomendados:", error);
+      }
+    });
+
+    function toggleUserMenu() {
+      fetch(url + "/user/check_login.php")
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.is_logged_in) {
+            let submenu = document.getElementById("menu-user-wrap");
+            submenu.classList.toggle("show");
+          } else {
+            let submenu = document.getElementById("menu-user-wrap-no-user");
+            submenu.classList.toggle("show");
+          }
+        })
+        .catch((error) =>
+          console.error("Error checking user session:", error)
+        );
+    }
+
+    function logout() {
+      fetch(url + "/user/logout.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      window.location.reload(true);
+    }
+
+    function showCart(cartData) {
+      const cartDiv = document.getElementById("cart");
+      cartDiv.classList.add("cart-open");
+      cartDiv.innerHTML = `
                 <div class="d-flex justify-content-between align-items-center" bis_skin_checked="1">
                     <p class="cart-title">O seu carrinho</p>
                     <button type="button" class="cart-close">
@@ -778,8 +675,8 @@
                 </div>
                 <div class="cart-items">
                     ${cartData.items
-                      .map(
-                        (item) => `
+          .map(
+            (item) => `
                         <div class="cart-item">
                             <div class="d-flex align-items-start" bis_skin_checked="1">
                                 <div class="item-image">
@@ -846,89 +743,31 @@
                             </div>
                         </div>
                     `
-                      )
-                      .join("")}
+          )
+          .join("")}
                 </div>
                 <div class="box-cart-total">
                     <div class="title-cart-total">
                         <span class="cart-total-title">Total: </span>
                         <div class="total-price">${cartData.total.toFixed(
-                          2
-                        )}€</div>
+            2
+          )}€</div>
                     </div>
                 </div>
             `;
-      }
+    }
 
-      // Efeito de scroll para mudar a cor do navbar
-      var nav = document.getElementById("nav");
-      window.addEventListener("scroll", function () {
-        nav.style.background =
-          window.pageYOffset > 100 ? "#212121" : "transparent";
-      });
+    // Efeito de scroll para mudar a cor do navbar
+    var nav = document.getElementById("nav");
+    window.addEventListener("scroll", function () {
+      nav.style.background =
+        window.pageYOffset > 100 ? "#212121" : "transparent";
+    });
 
-      document.body.addEventListener("click", async (e) => {
-        // Abrir carrinho ao clicar no .cart-botton ou seu filho
-        if (e.target.closest(".cart-botton")) {
-          e.preventDefault();
-          try {
-            const cartData = await safeFetchJson(
-              `${url}/cart/get_user_cart.php`,
-              {
-                method: "GET",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                credentials: "include",
-              }
-            );
-            console.log(cartData);
-            showCart(cartData);
-          } catch (err) {
-            console.error(err);
-          }
-          return;
-        }
-        // Fechar carrinho ao clicar no botão X ou no SVG dentro dele
-        if (e.target.closest(".cart-close")) {
-          document.getElementById("cart").classList.remove("cart-open");
-          return;
-        }
-      });
-
-      document.body.addEventListener("click", async (e) => {
-        if (e.target.classList.contains("add-to-cart-btn")) {
-          e.preventDefault();
-
-          const productId = product.id;
-
-          console.log("Adicionar ao carrinho, productId:", productId);
-
-          if (!productId) {
-            console.error("Product ID não encontrado no botão");
-            return;
-          }
-          // Enviar pedido POST à API
-          try {
-            const cartData = await safeFetchJson(`${url}/cart/add_cart.php`, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              credentials: "include",
-              body: JSON.stringify({
-                product_id: parseInt(productId, 10),
-                quantity: 1,
-              }),
-            });
-            await fetchAndShowCart();
-          } catch (err) {
-            console.error(err);
-          }
-        }
-      });
-
-      async function fetchAndShowCart() {
+    document.body.addEventListener("click", async (e) => {
+      // Abrir carrinho ao clicar no .cart-botton ou seu filho
+      if (e.target.closest(".cart-botton")) {
+        e.preventDefault();
         try {
           const cartData = await safeFetchJson(
             `${url}/cart/get_user_cart.php`,
@@ -940,118 +779,177 @@
               credentials: "include",
             }
           );
-          showCart(cartData); // atualiza a UI
-        } catch (error) {
-          console.error("Erro ao atualizar carrinho:", error);
+          console.log(cartData);
+          showCart(cartData);
+        } catch (err) {
+          console.error(err);
         }
+        return;
       }
+      // Fechar carrinho ao clicar no botão X ou no SVG dentro dele
+      if (e.target.closest(".cart-close")) {
+        document.getElementById("cart").classList.remove("cart-open");
+        return;
+      }
+    });
 
-      document.body.addEventListener("click", async (e) => {
-        if (e.target.classList.contains("cart-item-remove")) {
-          e.preventDefault();
+    document.body.addEventListener("click", async (e) => {
+      if (e.target.classList.contains("add-to-cart-btn")) {
+        e.preventDefault();
 
-          const productId = e.target.dataset.productId;
-          await safeFetchJson(`${url}/cart/remove_from_cart.php`, {
+        const productId = product.id;
+
+        console.log("Adicionar ao carrinho, productId:", productId);
+
+        if (!productId) {
+          console.error("Product ID não encontrado no botão");
+          return;
+        }
+        // Enviar pedido POST à API
+        try {
+          const cartData = await safeFetchJson(`${url}/cart/add_cart.php`, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ product_id: productId }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+            body: JSON.stringify({
+              product_id: parseInt(productId, 10),
+              quantity: 1,
+            }),
           });
           await fetchAndShowCart();
+        } catch (err) {
+          console.error(err);
         }
-      });
-
-      // document.addEventListener("DOMContentLoaded", () => {
-      //   const section = product.category;
-      //   const productsUrl = `${url}/products/get_products_section.php?section=${encodeURIComponent(section)}`;
-      //     console.log("📡 Request URL:", productsUrl);
-
-      //     const products = await safeFetchJson(productsUrl, {
-      //       method: "GET",
-      //       credentials: "include"
-      //     });
-
-      //     const container = document.getElementById("product-container");
-      //     container.innerHTML = "";
-      //     products.forEach((product) => {
-      //         let extraClass = "";
-      //         if (product.name === "Encosta d´Aregos") {
-      //           extraClass = " encosta-daregos";
-      //         } else if (product.name === "M&M ROSÉ") {
-      //           extraClass = " MM-rose";
-      //         } else if (product.name === "Perspetiva Colheita Branco") {
-      //           extraClass = " perspetiva-colheita-branco";
-      //         }
-
-      //         const card = document.createElement("div");
-      //         card.classList.add("card", "h-100");
-      //         card.innerHTML = `
-      //                   <img class="card-img-top${extraClass}" src="/static/images/${
-      //           product.image_url
-      //         }" alt="${product.name}">
-      //                   <div class="card-body text-center">
-      //                       <h5 class="card-title">${product.name}</h5>
-      //                       <p class="card-text">${Number(
-      //                         product.price
-      //                       ).toFixed(2)} â‚¬</p>
-      //                       <a href="/products/${
-      //                         product.id
-      //                       }" class="btn btn-light">Ver detalhes</a>
-      //                       <a class="btn btn-dark a add-to-cart-btn" data-product-id="${
-      //                         product.id
-      //                       }">Cart</a>
-      //                   </div>
-      //               `;
-      //         container.appendChild(card);
-      //       });
-
-      // Carousel logic igual ao index
-      //       const track = document.querySelector(".carousel-track");
-      //       const cards = track.querySelectorAll(".card");
-      //       const prevBtn = document.querySelector(".carousel-btn.prev");
-      //       const nextBtn = document.querySelector(".carousel-btn.next");
-      //       const visibleCards = 3;
-      //       let currentIndex = 0;
-
-      //       const updateCarousel = () => {
-      //         const cardWidth = cards[0].offsetWidth + 20; // 20px gap
-      //         const offset = currentIndex * cardWidth;
-      //         track.style.transform = `translateX(-${offset}px)`;
-
-      //         cards.forEach((card, index) => {
-      //           card.classList.remove("fade");
-      //           if (
-      //             index < currentIndex ||
-      //             index >= currentIndex + visibleCards
-      //           ) {
-      //             card.classList.add("fade");
-      //           }
-      //         });
-      //       };
-
-      //       prevBtn.addEventListener("click", () => {
-      //         if (currentIndex > 0) {
-      //           currentIndex--;
-      //           updateCarousel();
-      //         }
-      //       });
-
-      //       nextBtn.addEventListener("click", () => {
-      //         if (currentIndex < cards.length - visibleCards) {
-      //           currentIndex++;
-      //           updateCarousel();
-      //         }
-      //       });
-
-      //       updateCarousel();
-      //     })
-      //     .catch((error) => {
-      //       console.error("Erro ao buscar produtos:", error);
-      //     });
-      // });
-
-      function scrollToBottom() {
-        window.scrollTo(0, document.body.scrollHeight);
       }
-    </script>
-  </body>
+    });
+
+    async function fetchAndShowCart() {
+      try {
+        const cartData = await safeFetchJson(
+          `${url}/cart/get_user_cart.php`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+          }
+        );
+        showCart(cartData); // atualiza a UI
+      } catch (error) {
+        console.error("Erro ao atualizar carrinho:", error);
+      }
+    }
+
+    document.body.addEventListener("click", async (e) => {
+      if (e.target.classList.contains("cart-item-remove")) {
+        e.preventDefault();
+
+        const productId = e.target.dataset.productId;
+        await safeFetchJson(`${url}/cart/remove_from_cart.php`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ product_id: productId }),
+        });
+        await fetchAndShowCart();
+      }
+    });
+
+    // document.addEventListener("DOMContentLoaded", () => {
+    //   const section = product.category;
+    //   const productsUrl = `${url}/products/get_products_section.php?section=${encodeURIComponent(section)}`;
+    //     console.log("📡 Request URL:", productsUrl);
+
+    //     const products = await safeFetchJson(productsUrl, {
+    //       method: "GET",
+    //       credentials: "include"
+    //     });
+
+    //     const container = document.getElementById("product-container");
+    //     container.innerHTML = "";
+    //     products.forEach((product) => {
+    //         let extraClass = "";
+    //         if (product.name === "Encosta d´Aregos") {
+    //           extraClass = " encosta-daregos";
+    //         } else if (product.name === "M&M ROSÉ") {
+    //           extraClass = " MM-rose";
+    //         } else if (product.name === "Perspetiva Colheita Branco") {
+    //           extraClass = " perspetiva-colheita-branco";
+    //         }
+
+    //         const card = document.createElement("div");
+    //         card.classList.add("card", "h-100");
+    //         card.innerHTML = `
+    //                   <img class="card-img-top${extraClass}" src="/static/images/${
+    //           product.image_url
+    //         }" alt="${product.name}">
+    //                   <div class="card-body text-center">
+    //                       <h5 class="card-title">${product.name}</h5>
+    //                       <p class="card-text">${Number(
+    //                         product.price
+    //                       ).toFixed(2)} â‚¬</p>
+    //                       <a href="/products/${
+    //                         product.id
+    //                       }" class="btn btn-light">Ver detalhes</a>
+    //                       <a class="btn btn-dark a add-to-cart-btn" data-product-id="${
+    //                         product.id
+    //                       }">Cart</a>
+    //                   </div>
+    //               `;
+    //         container.appendChild(card);
+    //       });
+
+    // Carousel logic igual ao index
+    //       const track = document.querySelector(".carousel-track");
+    //       const cards = track.querySelectorAll(".card");
+    //       const prevBtn = document.querySelector(".carousel-btn.prev");
+    //       const nextBtn = document.querySelector(".carousel-btn.next");
+    //       const visibleCards = 3;
+    //       let currentIndex = 0;
+
+    //       const updateCarousel = () => {
+    //         const cardWidth = cards[0].offsetWidth + 20; // 20px gap
+    //         const offset = currentIndex * cardWidth;
+    //         track.style.transform = `translateX(-${offset}px)`;
+
+    //         cards.forEach((card, index) => {
+    //           card.classList.remove("fade");
+    //           if (
+    //             index < currentIndex ||
+    //             index >= currentIndex + visibleCards
+    //           ) {
+    //             card.classList.add("fade");
+    //           }
+    //         });
+    //       };
+
+    //       prevBtn.addEventListener("click", () => {
+    //         if (currentIndex > 0) {
+    //           currentIndex--;
+    //           updateCarousel();
+    //         }
+    //       });
+
+    //       nextBtn.addEventListener("click", () => {
+    //         if (currentIndex < cards.length - visibleCards) {
+    //           currentIndex++;
+    //           updateCarousel();
+    //         }
+    //       });
+
+    //       updateCarousel();
+    //     })
+    //     .catch((error) => {
+    //       console.error("Erro ao buscar produtos:", error);
+    //     });
+    // });
+
+    function scrollToBottom() {
+      window.scrollTo(0, document.body.scrollHeight);
+    }
+  </script>
+</body>
+
 </html>

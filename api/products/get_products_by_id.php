@@ -13,7 +13,10 @@ if ($id <= 0) {
 }
 
 $pdo = connectDB($db);
-$sql = "SELECT * FROM products WHERE id = :id";
+$sql = "SELECT p.*, c.nome AS category
+            FROM products p
+            LEFT JOIN categorias c ON p.category_id = c.id
+            WHERE p.id = :id";
 $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 $stmt->execute();

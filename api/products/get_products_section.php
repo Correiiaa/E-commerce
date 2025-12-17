@@ -8,7 +8,7 @@ header('Content-Type: application/json; charset=utf-8');
 $pdo = connectDB($db);
 
 try {
-    $section = filter_input(INPUT_GET, 'section', FILTER_SANITIZE_SPECIAL_CHARS) ?? '';
+    $section = filter_input(INPUT_GET, 'section', FILTER_SANITIZE_NUMBER_INT) ?? '';
 
     if (empty($section)) {
         http_response_code(400);
@@ -16,9 +16,9 @@ try {
         exit;
     }
 
-    $sql = "SELECT * FROM products WHERE category = :section AND active = 1";
+    $sql = "SELECT * FROM products WHERE category_id = :section AND active = 1";
     $stm = $pdo->prepare($sql);
-    $stm->bindParam(':section', $section, PDO::PARAM_STR);
+    $stm->bindParam(':section', $section, PDO::PARAM_INT);
     $stm->execute();
     $products = $stm->fetchAll(PDO::FETCH_ASSOC);
 
