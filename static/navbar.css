@@ -18,14 +18,14 @@
 
 .navbar-nav {
   text-align: center;
-  
 }
 
 .nav-link {
-  padding: .2rem 1rem;
+  padding: 0.2rem 1rem;
 }
 
-.nav-link.active,.nav-link:focus{
+.nav-link.active,
+.nav-link:focus {
   color: #fff;
 }
 
@@ -35,7 +35,8 @@
   line-height: 0.3;
 }
 
-.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+.navbar-light .navbar-nav .nav-link:focus,
+.navbar-light .navbar-nav .nav-link:hover {
   color: #fff;
 }
 
@@ -55,11 +56,12 @@
   padding: 0.7rem 1rem;
   border-radius: 30px;
   width: 12em;
-  transition: all ease-in-out .5s;
+  transition: all ease-in-out 0.5s;
   margin-right: -2rem;
 }
 
-.search__input:hover, .search__input:focus {
+.search__input:hover,
+.search__input:focus {
   box-shadow: 0 0 1em #00000013;
 }
 
@@ -80,7 +82,7 @@
 .search__button {
   border: none;
   background-color: transparent;
-  margin-top: .1em;
+  margin-top: 0.1em;
 }
 
 .search__button:hover {
@@ -106,13 +108,13 @@
   padding-right: 20px;
 }
 
-.nav-item{
+.nav-item {
   cursor: pointer;
 }
 
 /*SUbsmenus*/
 
-.menu-user-wrap{
+.menu-user-wrap {
   position: absolute;
   top: 100%;
   right: 10%;
@@ -122,11 +124,11 @@
   transition: max-height 0.5s;
 }
 
-.menu-user-wrap.show{
+.menu-user-wrap.show {
   max-height: 400px;
 }
 
-.menu-user-wrap-no-user{
+.menu-user-wrap-no-user {
   position: absolute;
   top: 100%;
   right: 10%;
@@ -136,11 +138,25 @@
   transition: max-height 0.5s;
 }
 
-.menu-user-wrap-no-user.show{
+.menu-user-wrap-no-user.show {
   max-height: 400px;
 }
 
-.sub-menu{
+.menu-user-wrap-admin {
+  position: absolute;
+  top: 100%;
+  right: 10%;
+  width: 320px;
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height 0.5s;
+}
+
+.menu-user-wrap-admin.show {
+  max-height: 400px;
+}
+
+.sub-menu {
   background: #fff;
   padding: 20px;
   margin: 10px;
@@ -163,7 +179,7 @@
   margin: 15px 0 10px;
 }
 
-.sub-menu-link{
+.sub-menu-link {
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -171,13 +187,13 @@
   margin: 12px 0;
 }
 
-.sub-menu-link p{
+.sub-menu-link p {
   width: 100%;
-} 
+}
 
-.sub-menu-link img{
+.sub-menu-link img {
   width: 40px;
-  background-color:#ccc ;
+  background-color: #ccc;
   border-radius: 50%;
   padding: 8px;
   margin-right: 15px;

@@ -104,6 +104,21 @@
         </div>
       </div>
 
+      <div class="menu-user-wrap-admin" id="menu-user-wrap-admin">
+        <div class="sub-menu">
+          <div class="user-info">
+            <h2>Admin Menu</h2>
+          </div>
+          <hr />
+
+          <a href="../dashboard/admin.html" class="sub-menu-link">
+            <img src="../static/icons/usericon.png" alt="Admin Panel" />
+            <p>Admin Panel</p>
+            <span>></span>
+          </a>
+        </div>
+      </div>
+
       <div class="search">
         <input type="text" class="search__input" placeholder="Pesquisa o teu vinho" name="query" />
         <button class="search__button">
@@ -369,9 +384,14 @@
     function toggleUserMenu() {
       safeFetchJson(`${url}/user/check_login.php`, { credentials: "include" })
         .then((data) => {
+          console.log(data);
           if (data.is_logged_in) {
             document
               .getElementById("menu-user-wrap")
+              .classList.toggle("show");
+          } else if (data.role === 1) {
+            document
+              .getElementById("menu-user-wrap-admin")
               .classList.toggle("show");
           } else {
             document
