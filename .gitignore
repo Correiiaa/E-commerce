@@ -3,4 +3,3 @@ __pycache__
 .vscode
 flask_session
 api/config.php
-app.py
