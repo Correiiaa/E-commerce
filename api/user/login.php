@@ -12,7 +12,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 }
 
 // ler e validar input
-$username = trim((string) (filter_input(INPUT_POST, 'user', FILTER_UNSAFE_RAW) ?? ''));
+$username = trim((string) (filter_input(INPUT_POST, 'user', FILTER_SANITIZE_SPECIAL_CHARS) ?? ''));
 $password = (string) (filter_input(INPUT_POST, 'pwd', FILTER_UNSAFE_RAW) ?? '');
 
 if ($username === '' || $password === '') {

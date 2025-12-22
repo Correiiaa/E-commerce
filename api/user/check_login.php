@@ -5,11 +5,6 @@ require_once  "../config.php";
 require_once  "../core.php";
 
 
-// permitir envio do id de sessão via header para testes
-// if (!empty($_SERVER['HTTP_X_SESSION_ID'])) {
-//     session_id(trim($_SERVER['HTTP_X_SESSION_ID']));
-// }
-
 function check_login()
 {
     if (session_status() !== PHP_SESSION_ACTIVE) {

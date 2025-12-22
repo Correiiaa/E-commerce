@@ -25,7 +25,6 @@ try {
             p.name,
             p.price,
             p.image_url,
-            p.category,
             p.discont
         FROM favorites f
         INNER JOIN products p ON f.product_id = p.id
