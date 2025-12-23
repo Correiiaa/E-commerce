@@ -7,6 +7,7 @@
     <title>Dashboard Admin - Toni Correia</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="../scripts/script.js"></script>
     <style>
         :root {
             --sidebar-width: 250px;
@@ -505,8 +506,8 @@
                 <div class="user-profile">
                     <div class="user-avatar">AD</div>
                     <div>
-                        <strong>Admin</strong>
-                        <br><small class="text-muted">Administrador</small>
+                        <strong><span id="adminUser"></span></strong>
+                        <br><small class="text-muted"><span id="adminName"></span></small>
                     </div>
                 </div>
             </div>
@@ -899,50 +900,43 @@
     </div>
 
     <!-- Modal: Detalhes Encomenda -->
-    <div class="modal fade" id="orderDetailModal" tabindex="-1">
+    <div class="modal fade" id="viewOrderModal" tabindex="-1" aria-labelledby="viewOrderModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Detalhes da Encomenda #12345</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <h5 class="modal-title" id="viewOrderModalLabel">Detalhes da Encomenda <span
+                            id="modalOrderId"></span></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <h6>Informação do Cliente</h6>
-                            <p><strong>Nome:</strong> João Silva</p>
-                            <p><strong>Email:</strong> joao@exemplo.com</p>
-                            <p><strong>Telefone:</strong> 912 345 678</p>
+                            <p><strong>Nome:</strong> <span id="modalOrderCustomer"></span></p>
+                            <p><strong>Email:</strong> <span id="modalOrderEmail"></span></p>
+                            <p><strong>Telefone:</strong> <span id="modalOrderPhone"></span></p>
+                            <p><strong>NIF:</strong> <span id="modalOrderNif"></span></p>
                         </div>
                         <div class="col-md-6">
                             <h6>Informação da Encomenda</h6>
-                            <p><strong>Data:</strong> 10/12/2025</p>
-                            <p><strong>Estado:</strong> <span class="badge bg-success">Entregue</span></p>
-                            <p><strong>Total:</strong> 89,90 €</p>
+                            <p><strong>Data:</strong> <span id="modalOrderDate"></span></p>
+                            <p><strong>Estado:</strong> <span id="modalOrderStatus" class="badge bg-warning"></span></p>
+                            <p><strong>Total:</strong> <span id="modalOrderTotal"></span></p>
+                            <p><strong>Endereço de Envio:</strong></p>
+                            <p class="text-muted" id="modalOrderAddress"></p>
                         </div>
                     </div>
-                    <h6>Produtos</h6>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Produto</th>
-                                <th>Quantidade</th>
-                                <th>Preço</th>
-                                <th>Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Perspetiva Colheita Branco</td>
-                                <td>2</td>
-                                <td>12,50 €</td>
-                                <td>25,00 €</td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+                    <hr>
+
+                    <h6 class="mb-3">Produtos da Encomenda</h6>
+                    <div id="modalOrderItems">
+                        <!-- Items são inseridos aqui via JavaScript -->
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary">Imprimir</button>
                 </div>
             </div>
         </div>
@@ -980,31 +974,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
 
-        const url = "https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/E-commerce/api";
-
-
-        async function safeFetchJson(url, opts = {}) {
-            const res = await fetch(url, opts);
-            const text = await res.text();
-            if (!res.ok) {
-                console.error(`Fetch ${url} falhou (status ${res.status}):`, text);
-                throw new Error(`Fetch failed: ${res.status}`);
-            }
-            const ct = res.headers.get("content-type") || "";
-            if (ct.includes("application/json")) {
-                try {
-                    return JSON.parse(text);
-                } catch (e) {
-                    console.error("Falha ao parsear JSON:", e, text.slice(0, 500));
-                    throw e;
-                }
-            }
-            const m = text.match(/(\{[\s\S]*\}|\[[\s\S]*\])/);
-            if (m) return JSON.parse(m[1]);
-            console.error("Resposta não-JSON:", text.slice(0, 500));
-            throw new SyntaxError("Response is not JSON");
-        }
-
         async function checkAdminAccess() {
             try {
                 const data = await safeFetchJson(`${url}/user/check_login.php`, {
@@ -1013,7 +982,7 @@
                     headers: { 'Content-Type': 'application/json' }
                 });
 
-                console.log("🔐 Sessão:", data);
+                console.log("Sessão:", data);
 
                 // Verificar se está logado E é admin
                 if (!data.is_logged_in) {
@@ -1029,18 +998,16 @@
                 }
 
                 // ✅ É admin - mostrar dados do utilizador
-                console.log(`✅ Admin autenticado: ${data.username}`);
+                console.log(`Admin autenticado: ${data.username}`);
+                document.getElementById('adminUser').textContent = data.username;
 
-                // Atualizar nome do admin na UI (se tiveres um elemento)
-                const adminNameEl = document.getElementById('adminName');
-                if (adminNameEl) {
-                    adminNameEl.textContent = data.username || 'Admin';
-                }
+                const name = data.fname + ' ' + data.last_name;
+                document.getElementById('adminName').textContent = name;
 
                 return true;
 
             } catch (error) {
-                console.error("❌ Erro ao verificar sessão:", error);
+                console.error("Erro ao verificar sessão:", error);
                 alert('Erro ao verificar autenticação. Por favor, faça login novamente.');
                 window.location.href = '../templates/login.html';
                 return false;
@@ -1088,7 +1055,7 @@
             await loadOrders();
 
             // 2. CARREGAR DADOS DA DASHBOARD (só se for admin)
-            console.log("🔄 A carregar dados da dashboard...");
+            console.log("A carregar dados da dashboard...");
 
             safeFetchJson(`${url}/products/allproducts.php`, {
                 method: "GET",
@@ -1198,25 +1165,21 @@
                 <td><span class="badge ${statusColors[order.status] || 'bg-secondary'} badge-status">${statusLabels[order.status] || order.status}</span></td>
                 <td>${new Date(order.created_at).toLocaleDateString('pt-PT')}</td>
                 <td>
-                    <button class="action-btn btn-edit" onclick="viewOrderDetails(${order.id})" data-bs-toggle="modal" data-bs-target="#viewOrderModal">
+                    <button class="action-btn btn-edit" onclick="viewOrderDetails(${order.id})">
                         <i class="fas fa-eye"></i>
-                    </button>
-                    <button class="action-btn btn-delete" onclick="deleteOrder(${order.id})">
-                        <i class="fas fa-trash"></i>
                     </button>
                 </td>
             `;
                     container.appendChild(tr);
                 });
 
-                console.log("✅ Encomendas carregadas:", orders.length);
+                console.log("Encomendas carregadas:", orders.length);
 
             } catch (error) {
-                console.error("❌ Erro ao carregar encomendas:", error);
+                console.error("Erro ao carregar encomendas:", error);
             }
         }
 
-        const orderId = order.id;
         // Ver detalhes da encomenda
         async function viewOrderDetails(orderId) {
             try {
@@ -1227,38 +1190,105 @@
                     credentials: 'include'
                 });
 
-                console.log("📦 Detalhes da encomenda:", order);
+                console.log("Detalhes da encomenda:", order);
+
+                // Verificar se elementos existem
+                const modalOrderId = document.getElementById('modalOrderId');
+                const modalOrderNif = document.getElementById('modalOrderNif');
+                const modalOrderCustomer = document.getElementById('modalOrderCustomer');
+                const modalOrderEmail = document.getElementById('modalOrderEmail');
+                const modalOrderPhone = document.getElementById('modalOrderPhone');
+                const modalOrderAddress = document.getElementById('modalOrderAddress');
+                const modalOrderDate = document.getElementById('modalOrderDate');
+                const modalOrderStatus = document.getElementById('modalOrderStatus');
+                const modalOrderTotal = document.getElementById('modalOrderTotal');
+                const modalOrderItems = document.getElementById('modalOrderItems');
+
+                if (!modalOrderItems) {
+                    console.error("Elemento 'modalOrderItems' não encontrado");
+                    return;
+                }
 
                 // Preencher modal com dados
-                document.getElementById('modalOrderId').textContent = `#${order.id}`;
-                document.getElementById('modalOrderCustomer').textContent = `${order.fname} ${order.lname}`;
-                document.getElementById('modalOrderEmail').textContent = order.email;
-                document.getElementById('modalOrderPhone').textContent = order.phone || '-';
-                document.getElementById('modalOrderAddress').textContent = order.shipping_address;
-                document.getElementById('modalOrderTracking').textContent = order.tracking_code || '-';
-                document.getElementById('modalOrderDate').textContent = new Date(order.created_at).toLocaleString('pt-PT');
-                document.getElementById('modalOrderStatus').textContent = order.status;
-                document.getElementById('modalOrderTotal').textContent = `${parseFloat(order.total_price).toFixed(2)} €`;
+                modalOrderId.textContent = `#${order.id}`;
+                modalOrderNif.textContent = order.nif || '-';
+                modalOrderCustomer.textContent = `${order.fname} ${order.lname}`;
+                modalOrderEmail.textContent = order.email;
+                modalOrderPhone.textContent = order.phone || '-';
+                modalOrderAddress.textContent = order.shipping_address;
+                modalOrderDate.textContent = new Date(order.created_at).toLocaleString('pt-PT');
 
-                // Listar items
-                const itemsContainer = document.getElementById('modalOrderItems');
-                itemsContainer.innerHTML = order.items.map(item => `
-            <div class="order-item d-flex align-items-center mb-3 pb-3 border-bottom">
-                <img src="../static/images/${item.image_url}" alt="${item.product_name}" style="width: 60px; height: 60px; object-fit: contain; margin-right: 15px;">
-                <div class="flex-grow-1">
-                    <strong>${item.product_name}</strong>
-                    <div class="text-muted small">${item.category}</div>
+                // Status com cor
+                const statusColors = {
+                    'pending': 'bg-warning',
+                    'processing': 'bg-info',
+                    'shipped': 'bg-primary',
+                    'delivered': 'bg-success',
+                    'cancelled': 'bg-danger'
+                };
+                const statusLabels = {
+                    'pending': 'Pendente',
+                    'processing': 'Em Processamento',
+                    'shipped': 'Enviado',
+                    'delivered': 'Entregue',
+                    'cancelled': 'Cancelado'
+                };
+                modalOrderStatus.className = `badge ${statusColors[order.status] || 'bg-secondary'}`;
+                modalOrderStatus.textContent = statusLabels[order.status] || order.status;
+
+                modalOrderTotal.textContent = `${parseFloat(order.total_price).toFixed(2)} €`;
+
+                // Listar items com validação
+                if (!order.items || order.items.length === 0) {
+                    modalOrderItems.innerHTML = '<p class="text-muted">Nenhum item nesta encomenda</p>';
+                } else {
+                    modalOrderItems.innerHTML = order.items.map(item => `
+                <div class="order-item d-flex align-items-center mb-3 pb-3 border-bottom">
+                    <img src="../static/images/${item.image_url || 'default-product.jpg'}" 
+                         alt="${item.product_name}" 
+                         style="width: 60px; height: 60px; object-fit: contain; margin-right: 15px;"
+                         onerror="this.src='../static/images/default-product.jpg'">
+                    <div class="flex-grow-1">
+                        <strong>${item.product_name}</strong>
+                        <div class="text-muted small">${item.category || 'Sem categoria'}</div>
+                    </div>
+                    <div class="text-end">
+                        <div class="text-muted small">${item.quantity}x ${parseFloat(item.unit_price || item.price).toFixed(2)} €</div>
+                        <strong>${parseFloat(item.quantity * (item.unit_price || item.price)).toFixed(2)} €</strong>
+                    </div>
                 </div>
-                <div class="text-end">
-                    <div>${item.quantity}x ${parseFloat(item.price).toFixed(2)} €</div>
-                    <strong>${parseFloat(item.subtotal).toFixed(2)} €</strong>
-                </div>
-            </div>
-        `).join('');
+            `).join('');
+                }
+
+                //  Fechar modal anterior se existir
+                const existingModal = bootstrap.Modal.getInstance(document.getElementById('viewOrderModal'));
+                if (existingModal) {
+                    existingModal.dispose(); // Remover completamente
+                }
+
+                //  Mostrar modal
+                const modalElement = document.getElementById('viewOrderModal');
+                const modal = new bootstrap.Modal(modalElement, {
+                    backdrop: true,
+                    keyboard: true
+                });
+                modal.show();
+
+                //  Garantir que backdrop é removido ao fechar
+                modalElement.addEventListener('hidden.bs.modal', function () {
+                    // Remover backdrop manualmente se ainda existir
+                    const backdrops = document.querySelectorAll('.modal-backdrop');
+                    backdrops.forEach(backdrop => backdrop.remove());
+
+                    // Restaurar scroll do body
+                    document.body.classList.remove('modal-open');
+                    document.body.style.removeProperty('overflow');
+                    document.body.style.removeProperty('padding-right');
+                }, { once: true }); // Executar apenas uma vez
 
             } catch (error) {
-                console.error("❌ Erro ao carregar detalhes:", error);
-                alert('Erro ao carregar detalhes da encomenda');
+                console.error(" Erro ao carregar detalhes:", error);
+                alert('Erro ao carregar detalhes da encomenda. Verifique a consola para mais informações.');
             }
         }
 

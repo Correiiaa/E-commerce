@@ -1,3 +1,4 @@
+<!-- filepath: \\arca.ua.pt\Hosting\esan-tesp-ds-paw.web.ua.pt\tesp-ds-g32\E-commerce\templates\customer.html -->
 <!DOCTYPE html>
 <html lang="pt">
 
@@ -185,6 +186,97 @@
       color: #721c24;
     }
 
+    .order-details {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid #e9ecef;
+    }
+
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #f8f9fa;
+    }
+
+    .order-item:last-child {
+      border-bottom: none;
+    }
+
+    .product-card {
+      border: 1px solid #dee2e6;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .product-card img {
+      max-width: 100%;
+      height: 200px;
+      object-fit: contain;
+      margin-bottom: 15px;
+    }
+
+    .product-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 10px;
+    }
+
+    .product-price {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #dc3545;
+      margin-bottom: 15px;
+    }
+
+    .btn-add-cart {
+      background-color: #1a1a1a;
+      color: white;
+      padding: 10px 25px;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-add-cart:hover {
+      background-color: #dc3545;
+      transform: translateY(-2px);
+    }
+
+    .btn-remove-favorite {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: white;
+      border: none;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s;
+    }
+
+    .btn-remove-favorite:hover {
+      background-color: #dc3545;
+      color: white;
+    }
+
     .form-group {
       margin-bottom: 25px;
     }
@@ -243,7 +335,6 @@
         justify-content: center;
       }
     }
-
 
     .menu-user-wrap-admin {
       position: absolute;
@@ -324,18 +415,10 @@
       <!-- Encomendas Tab -->
       <div id="tab-encomendas" class="tab-pane">
         <h2 class="section-title">As Suas Encomendas</h2>
-        <div class="empty-state">
-          <p>Ainda não efetuou nenhuma encomenda</p>
-        </div>
-        <!-- Exemplo de encomenda (remover classe d-none quando houver dados) -->
-        <div class="order-card d-none">
-          <div class="order-header">
-            <span class="order-number">Encomenda #12345</span>
-            <span class="order-status completed">Entregue</span>
+        <div id="orders-container">
+          <div class="empty-state">
+            <p>Ainda não efetuou nenhuma encomenda</p>
           </div>
-          <p><strong>Data:</strong> 01/12/2025</p>
-          <p><strong>Total:</strong> 89,90 €</p>
-          <p><strong>Produtos:</strong> 3 itens</p>
         </div>
       </div>
 
@@ -372,33 +455,14 @@
       <!-- Favoritos Tab -->
       <div id="tab-favoritos" class="tab-pane d-none">
         <h2 class="section-title">Favoritos</h2>
-        <div class="empty-state">
-          <p>Ainda não tem produtos favoritos</p>
+        <div id="favorites-container">
+          <div class="empty-state">
+            <p>Ainda não tem produtos favoritos</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
-
-
-  <!-- Carrinho lateral -->
-  <div id="cart" class="cart-sidebar">
-    <div class="d-flex justify-content-between align-items-center" bis_skin_checked="1">
-      <p class="cart-title">O seu carrinho</p>
-      <button type="button" class="cart-close">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-          <g fill="none" fill-rule="evenodd">
-            <g fill="#222">
-              <g>
-                <path
-                  d="M21.41 2.59c-.325-.326-.852-.326-1.178 0L12 10.821 3.768 2.589c-.326-.325-.853-.325-1.179 0-.325.326-.325.853 0 1.179L10.822 12l-8.233 8.232c-.325.326-.325.853 0 1.179.326.325.853.325 1.179 0L12 13.178l8.232 8.233c.326.325.853.325 1.179 0 .325-.326.325-.853 0-1.179L13.178 12l8.233-8.232c.325-.326.325-.853 0-1.179z"
-                  transform="translate(-1860 -34) translate(1860 34)"></path>
-              </g>
-            </g>
-          </g>
-        </svg>
-      </button>
-    </div>
-  </div>
 
   <!-- Footer -->
   <footer id="footer" class="text-center text-lg-start bg-body-tertiary text-muted"
@@ -408,10 +472,50 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
+    // ===== 2. TOGGLE FAVORITO (ADICIONAR/REMOVER) =====
+    async function toggleFavorite(productId) {
+      try {
+        const data = await safeFetchJson(`${url}/favourites/remove_favorite.php`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({ product_id: productId }),
+        });
 
-    document.addEventListener("DOMContentLoaded", () => {
+        await fetchAndShowFavorites();
+
+      } catch (error) {
+        console.error("Erro ao alternar favorito:", error);
+        throw error;
+      }
+    }
+
+    /* Fetch and show favorites contents */
+    async function fetchAndShowFavorites() {
+      try {
+        const favoritesData = await safeFetchJson(`${url}/favourites/get_favorites.php`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        });
+        console.log("Favoritos carregados:", favoritesData);
+        renderUserFavorites(favoritesData);
+      } catch (error) {
+        console.error("Erro ao atualizar carrinho:", error);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", async () => {
       navbar();
       footer();
+
+      // ✅ Carregar favoritos do utilizador (função global)
+      await fetchAndShowFavorites();
+
+      // Carregar encomendas
+      await loadUserOrders();
     });
 
     function showTab(tabName) {
@@ -430,65 +534,166 @@
 
       // Adicionar active ao botão clicado
       event.target.classList.add("active");
+
+      // Carregar dados quando necessário
+      if (tabName === 'encomendas') {
+        loadUserOrders();
+      } else if (tabName === 'favoritos') {
+        fetchAndShowFavorites();
+      }
     }
 
+    async function loadUserOrders() {
+      try {
+        const ordersData = await safeFetchJson(`${url}/order/get_user_order.php`, {
+          method: "GET",
+          credentials: "include",
+        });
+
+        const ordersContainer = document.getElementById('orders-container');
+
+        if (!ordersData || ordersData.length === 0) {
+          ordersContainer.innerHTML = '<div class="empty-state"><p>Ainda não efetuou nenhuma encomenda</p></div>';
+          return;
+        }
+
+        let ordersHTML = '';
+        ordersData.forEach(order => {
+          const statusClass = order.status.toLowerCase();
+          const statusText = getOrderStatusText(order.status);
+
+          ordersHTML += `
+          <div class="order-card">
+            <div class="order-header">
+              <span class="order-number">Encomenda #${order.id}</span>
+              <span class="order-status ${statusClass}">${statusText}</span>
+            </div>
+            <p><strong>Data:</strong> ${new Date(order.created_at).toLocaleDateString('pt-PT')}</p>
+            <p><strong>Total:</strong> ${parseFloat(order.total_price).toFixed(2)} €</p>
+            <p><strong>Morada de Envio:</strong> ${order.shipping_address || 'Não especificada'}</p>
+          </div>
+        `;
+        });
+
+        ordersContainer.innerHTML = ordersHTML;
+      } catch (err) {
+        console.error('Erro ao carregar encomendas:', err);
+        document.getElementById('orders-container').innerHTML =
+          '<div class="empty-state"><p>Erro ao carregar encomendas. Faça login primeiro.</p></div>';
+      }
+    }
+
+    async function renderUserFavorites(favoritesData) {
+      try {
+        const favoritesContainer = document.getElementById('favorites-container');
+
+        // Usar a variável do fetchandshowfavorites
+        if (!favoritesData || favoritesData.length === 0) {
+          favoritesContainer.innerHTML = '<div class="empty-state"><p>Ainda não tem produtos favoritos</p></div>';
+          return;
+        }
+
+        if (favoritesData.length === 0) {
+          favoritesContainer.innerHTML = '<div class="empty-state"><p>Ainda não tem produtos favoritos</p></div>';
+          return;
+        }
+
+        let favoritesHTML = '<div class="row justify-content-center">';
+        favoritesData.forEach(product => {
+          favoritesHTML += `
+          <div class="col-md-3 mb-4 d-flex justify-content-center">
+            <div class="product-card position-relative">
+              <button class="btn-remove-favorite" onclick="toggleFavorite(${product.id}); event.stopPropagation();">
+                <i class="fas fa-trash"></i>
+              </button>
+              <a href="product.html?id=${product.id}">
+                <img src="../static/images/${product.image_url}" alt="${product.name}">
+              </a>
+              <div class="product-name">${product.name}</div>
+              <div class="product-price">${parseFloat(product.price).toFixed(2)} €</div>
+              <button class="btn-add-cart add-to-cart-btn" data-product-id="${product.id}">
+                <i class="fas fa-shopping-cart me-2"></i>Adicionar ao Carrinho
+              </button>
+            </div>
+          </div>
+        `;
+        });
+        favoritesHTML += '</div>';
+
+        favoritesContainer.innerHTML = favoritesHTML;
+      } catch (err) {
+        console.error('Erro ao renderizar favoritos:', err);
+        document.getElementById('favorites-container').innerHTML =
+          '<div class="empty-state"><p>Erro ao carregar favoritos</p></div>';
+      }
+    }
+
+    function getOrderStatusText(status) {
+      const statusMap = {
+        'pending': 'Pendente',
+        'processing': 'A Processar',
+        'shipped': 'Enviado',
+        'delivered': 'Entregue',
+        'cancelled': 'Cancelado'
+      };
+      return statusMap[status.toLowerCase()] || status;
+    }
+
+    // ===== ADICIONAR AO CARRINHO =====
     document.body.addEventListener("click", async (e) => {
-      // Abrir carrinho ao clicar no .cart-botton ou seu filho
+      const addBtn = e.target.closest(".add-to-cart-btn");
+
+      if (addBtn) {
+        e.preventDefault();
+        const productId = addBtn.dataset.productId;
+
+        if (!productId) {
+          console.error("Product ID não encontrado");
+          return;
+        }
+
+        try {
+          await safeFetchJson(`${url}/cart/add_cart.php`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include",
+            body: JSON.stringify({
+              product_id: parseInt(productId, 10),
+              quantity: 1,
+            }),
+          });
+
+          console.log("✅ Produto adicionado ao carrinho");
+          await fetchAndShowCart();
+
+        } catch (err) {
+          console.error("❌ Erro ao adicionar ao carrinho:", err);
+          alert("Erro ao adicionar produto. Faça login primeiro.");
+        }
+      }
+    });
+
+    // ===== CARRINHO LATERAL =====
+    document.body.addEventListener("click", async (e) => {
       if (e.target.closest(".cart-botton")) {
         e.preventDefault();
-        try {
-          const cartData = await safeFetchJson(
-            `${url}/cart/get_user_cart.php`,
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              credentials: "include",
-            }
-          );
-          console.log(cartData);
-          showCart(cartData);
-        } catch (err) {
-          console.error(err);
-        }
+        await fetchAndShowCart();
         return;
       }
-      // Fechar carrinho ao clicar no botão X ou no SVG dentro dele
+
       if (e.target.closest(".cart-close")) {
         document.getElementById("cart").classList.remove("cart-open");
         return;
       }
     });
 
-    document.body.addEventListener("click", async (e) => {
-      if (e.target.classList.contains("add-to-cart-btn")) {
-        e.preventDefault();
-
-        const productId = e.target.dataset.productId;
-
-        // Enviar pedido POST à API
-        try {
-          const cartData = await safeFetchJson(`${url}/cart/add_cart.php`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            credentials: "include",
-            body: JSON.stringify({ product_id: productId, quantity: 1 }),
-          });
-          await fetchAndShowCart();
-        } catch (err) {
-          console.error(err);
-        }
-      }
-    });
-
+    // ===== REMOVER DO CARRINHO =====
     document.body.addEventListener("click", async (e) => {
       const removeBtn = e.target.closest(".cart-item-remove");
       if (removeBtn) {
         e.preventDefault();
         const productId = removeBtn.dataset.productId;
+
         try {
           await safeFetchJson(`${url}/cart/remove_from_cart.php`, {
             method: "POST",
@@ -502,6 +707,7 @@
         }
       }
     });
+
   </script>
 </body>
 

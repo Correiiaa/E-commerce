@@ -9,11 +9,10 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
 
-// Verificar se é admin
-$user_id = $_SESSION['user_id'] ?? null;
-if (!$user_id) {
-    http_response_code(401);
-    die('User not logged in');
+// verificar se o utilizador está autenticado e é admin
+if (!isset($_SESSION['user_id']) || !($_SESSION['role'] ?? false)) {
+    http_response_code(403);
+    die('Access denied');
 }
 
 
@@ -39,7 +38,6 @@ try {
             o.status,
             o.total_price,
             o.shipping_address,
-            o.tracking_code,
             o.created_at,
             u.username,
             u.fname,

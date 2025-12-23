@@ -20,9 +20,6 @@ function navbar() {
             <a class="nav-link" href="./products.html">Vinhos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Bar</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" onclick="scrollToBottom()">Contacto</a>
           </li>
         </ul>
@@ -196,7 +193,7 @@ function footer() {
               <a href="#!" class="text-reset">Espumantes</a>
             </p>
             <p>
-              <a href="#!" class="text-reset">Vinho Verde</a>
+              <a href="#!" class="text-reset">Rosé</a>
             </p>
           </div>
           <!-- Grid column -->
@@ -206,16 +203,13 @@ function footer() {
             <!-- Links -->
             <h6 class="text-uppercase fw-bold mb-4">Useful links</h6>
             <p>
-              <a href="/products" class="text-reset">All products</a>
+              <a href="./products.html" class="text-reset">All products</a>
             </p>
             <p>
-              <a href="/aboutus" class="text-reset">About us</a>
+              <a href="./aboutus.html" class="text-reset">About us</a>
             </p>
             <p>
-              <a href="#!" class="text-reset">Orders</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Bar</a>
+              <a href="./customer.html" class="text-reset">Orders</a>
             </p>
           </div>
           <!-- Grid column -->

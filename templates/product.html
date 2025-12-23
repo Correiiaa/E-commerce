@@ -508,12 +508,6 @@
           console.log(`✅ ${quantity}x produto(s) adicionado(s) ao carrinho`);
           await fetchAndShowCart();
 
-          // Reset quantity após adicionar (apenas no botão principal)
-          if (addBtn.id === "add-to-cart-btn") {
-            currentQuantity = 1;
-            document.querySelector(".quantity-buttons-input").value = 1;
-          }
-
         } catch (err) {
           console.error("❌ Erro ao adicionar ao carrinho:", err);
           alert("Erro ao adicionar produto. Faça login primeiro.");

@@ -31,7 +31,6 @@ try {
             o.status,
             o.total_price,
             o.shipping_address,
-            o.tracking_code,
             o.created_at,
             u.username,
             u.fname,
