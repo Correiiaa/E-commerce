@@ -1,4 +1,31 @@
-/* Navbar style */
+.carousel-item {
+  height: 100vh;
+  width: 100%;
+  min-height: 1dp;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.carousel-caption {
+  bottom: 200px;
+}
+
+.carousel-caption h5 {
+  font-size: 45px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 25px;
+  color: #ffffff;
+}
+
+.carousel-caption p {
+  width: 75%;
+  margin: auto;
+  font-size: 18px;
+  line-height: 1.9;
+}
 
 .navbar-light .navbar-brand {
   color: #ffffff;
@@ -22,6 +49,7 @@
 
 .nav-link {
   padding: 0.2rem 1rem;
+  cursor: pointer;
 }
 
 .nav-link.active,
@@ -102,112 +130,9 @@
 
 .icon-user-menu img {
   color: white;
+  width: 30px;
   height: 30px;
   cursor: pointer;
   display: flex;
   padding-right: 20px;
-}
-
-.nav-item {
-  cursor: pointer;
-}
-
-/*SUbsmenus*/
-
-.menu-user-wrap {
-  position: absolute;
-  top: 100%;
-  right: 10%;
-  width: 320px;
-  max-height: 0px;
-  overflow: hidden;
-  transition: max-height 0.5s;
-}
-
-.menu-user-wrap.show {
-  max-height: 400px;
-}
-
-.menu-user-wrap-no-user {
-  position: absolute;
-  top: 100%;
-  right: 10%;
-  width: 320px;
-  max-height: 0px;
-  overflow: hidden;
-  transition: max-height 0.5s;
-}
-
-.menu-user-wrap-no-user.show {
-  max-height: 400px;
-}
-
-.menu-user-wrap-admin {
-  position: absolute;
-  top: 100%;
-  right: 10%;
-  width: 320px;
-  max-height: 0px;
-  overflow: hidden;
-  transition: max-height 0.5s;
-}
-
-.menu-user-wrap-admin.show {
-  max-height: 400px;
-}
-
-.sub-menu {
-  background: #fff;
-  padding: 20px;
-  margin: 10px;
-}
-
-.user-info {
-  display: flex;
-  align-items: center;
-}
-
-.user-info h3 {
-  font-weight: 500;
-}
-
-.sub-menu hr {
-  border: 0;
-  height: 1px;
-  width: 100%;
-  background: #212529;
-  margin: 15px 0 10px;
-}
-
-.sub-menu-link {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: #212529;
-  margin: 12px 0;
-}
-
-.sub-menu-link p {
-  width: 100%;
-}
-
-.sub-menu-link img {
-  width: 40px;
-  background-color: #ccc;
-  border-radius: 50%;
-  padding: 8px;
-  margin-right: 15px;
-}
-
-.sub-menu-link span {
-  font-size: 22px;
-  transition: transform 0.5s;
-}
-
-.sub-menu-link:hover span {
-  transform: translateX(5px);
-}
-
-.sub-menu-link:hover p {
-  font-weight: 600;
 }

@@ -164,7 +164,7 @@ async function fetchAndShowCart() {
       },
       credentials: "include",
     });
-    showCart(cartData); // atualiza a UI
+    showCart(cartData); 
   } catch (error) {
     console.error("Erro ao atualizar carrinho:", error);
   }
@@ -174,3 +174,4 @@ async function fetchAndShowCart() {
 function scrollToBottom() {
   window.scrollTo(0, document.body.scrollHeight);
 }
+
