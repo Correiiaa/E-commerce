@@ -108,7 +108,7 @@ E-commerce/
 
 ## 👥 Autores
 
-**Grupo 32 - TeSP Desenvolvimento de Software**  
+**Toni Correia - TeSP Desenvolvimento de Software**  
 Universidade de Aveiro - ESAN  
 Ano Letivo: 2024/2025
 
