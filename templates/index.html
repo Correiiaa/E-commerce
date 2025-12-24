@@ -28,6 +28,34 @@
     .menu-user-wrap-admin.show {
       max-height: 400px;
     }
+
+    .menu-user-wrap {
+      position: absolute;
+      top: 100%;
+      right: 10%;
+      width: 320px;
+      max-height: 0px;
+      overflow: hidden;
+      transition: max-height 0.5s;
+    }
+
+    .menu-user-wrap.show {
+      max-height: 400px;
+    }
+
+    .menu-user-wrap-no-user {
+      position: absolute;
+      top: 100%;
+      right: 10%;
+      width: 320px;
+      max-height: 0px;
+      overflow: hidden;
+      transition: max-height 0.5s;
+    }
+
+    .menu-user-wrap-no-user.show {
+      max-height: 400px;
+    }
   </style>
 </head>
 
@@ -54,6 +82,7 @@
       </button>
     </div>
   </div>
+
 
   <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">

@@ -15,6 +15,7 @@
   <script src="../scripts/script.js"></script>
   <script src="../scripts/navbar.js" defer></script>
   <style>
+
     .hero-section {
       background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
       padding: 60px 20px;
@@ -663,11 +664,11 @@
             }),
           });
 
-          console.log("✅ Produto adicionado ao carrinho");
+          console.log("Produto adicionado ao carrinho");
           await fetchAndShowCart();
 
         } catch (err) {
-          console.error("❌ Erro ao adicionar ao carrinho:", err);
+          console.error("Erro ao adicionar ao carrinho:", err);
           alert("Erro ao adicionar produto. Faça login primeiro.");
         }
       }
