@@ -524,9 +524,9 @@
                             <i class="fas fa-wine-bottle"></i>
                         </div>
                         <div class="stat-title">Total Produtos</div>
-                        <div class="stat-value">247</div>
+                        <div class="stat-value"><span id="totalProducts"></span></div>
                         <div class="stat-change">
-                            <i class="fas fa-arrow-up"></i> 12% este mês
+                            <i class="fas fa-arrow-up"></i>
                         </div>
                     </div>
 
@@ -535,9 +535,9 @@
                             <i class="fas fa-shopping-cart"></i>
                         </div>
                         <div class="stat-title">Encomendas</div>
-                        <div class="stat-value">89</div>
+                        <div class="stat-value"><span id="totalOrders"></span></div>
                         <div class="stat-change">
-                            <i class="fas fa-arrow-up"></i> 8% este mês
+                            <i class="fas fa-arrow-up"></i>
                         </div>
                     </div>
 
@@ -546,9 +546,9 @@
                             <i class="fas fa-euro-sign"></i>
                         </div>
                         <div class="stat-title">Receita Total</div>
-                        <div class="stat-value">12.450€</div>
+                        <div class="stat-value"><span id="totalRevenue"></span>€</div>
                         <div class="stat-change">
-                            <i class="fas fa-arrow-up"></i> 15% este mês
+                            <i class="fas fa-arrow-up"></i>
                         </div>
                     </div>
 
@@ -557,9 +557,9 @@
                             <i class="fas fa-users"></i>
                         </div>
                         <div class="stat-title">Utilizadores</div>
-                        <div class="stat-value">1.234</div>
+                        <div class="stat-value"><span id="totalUsers"></span></div>
                         <div class="stat-change">
-                            <i class="fas fa-arrow-up"></i> 5% este mês
+                            <i class="fas fa-arrow-up"></i>
                         </div>
                     </div>
                 </div>
@@ -583,7 +583,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <!-- <tr>
                                     <td>#12345</td>
                                     <td>João Silva</td>
                                     <td>10/12/2025</td>
@@ -612,7 +612,7 @@
                                     <td>
                                         <button class="action-btn btn-edit"><i class="fas fa-eye"></i></button>
                                     </td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
                     </div>
@@ -1067,6 +1067,7 @@
                 .then((data) => {
                     // normaliza: o endpoint devolve { products: [...], count: N }
                     const products = Array.isArray(data) ? data : data.products || [];
+                    document.getElementById("totalProducts").textContent = data.count
                     const container = document.getElementById("productsTableBody");
                     products.forEach((product) => {
                         const tr = document.createElement("tr");
@@ -1097,6 +1098,9 @@
                 credentials: 'include'
             })
                 .then((data) => {
+                    let userNumber = 0;
+                    data.forEach(user => userNumber++);
+                    document.getElementById("totalUsers").textContent = userNumber;
                     // normaliza: o endpoint devolve { users: [...], count: N }
                     const users = Array.isArray(data) ? data : data.users || [];
                     const container = document.getElementById("usersTableBody");
@@ -1132,6 +1136,12 @@
                 });
 
                 const container = document.getElementById("ordersTableBody");
+                document.getElementById("totalOrders").textContent = orders.length;
+                let total = 0.00;
+                orders.forEach(order => {
+                    total += parseFloat(order.total_price);
+                });
+                document.getElementById("totalRevenue").textContent = total.toFixed(2);
 
                 if (orders.length === 0) {
                     container.innerHTML = '<tr><td colspan="7" class="text-center">Nenhuma encomenda encontrada</td></tr>';

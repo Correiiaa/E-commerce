@@ -150,8 +150,16 @@ function showCart(cartData) {
                           2
                         )}€</div>
                     </div>
+                    <button type="button" class="btn-checkout" onclick="goToCheckout()">
+                        <i class="fas fa-credit-card me-2"></i>Finalizar Compra
+                    </button>
                 </div>
             `;
+}
+
+/* Go to checkout page */
+function goToCheckout() {
+  window.location.href = "./checkout.html";
 }
 
 /* Fetch and show cart contents */
@@ -164,7 +172,7 @@ async function fetchAndShowCart() {
       },
       credentials: "include",
     });
-    showCart(cartData); 
+    showCart(cartData);
   } catch (error) {
     console.error("Erro ao atualizar carrinho:", error);
   }
@@ -174,4 +182,3 @@ async function fetchAndShowCart() {
 function scrollToBottom() {
   window.scrollTo(0, document.body.scrollHeight);
 }
-

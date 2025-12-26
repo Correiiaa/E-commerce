@@ -218,13 +218,13 @@ body {
 }
 
 /* Ajustes no Quantity Button */
-.quantity-button-wrapper {
+/* .quantity-button-wrapper {
   border: 1px solid #ddd;
   border-radius: 5px;
   background: white;
-}
+} */
 
-.quantity-button {
+/* .quantity-button {
   width: 40px;
   height: 50px;
   border: none;
@@ -234,12 +234,12 @@ body {
   align-items: center;
   justify-content: center;
   transition: background 0.2s;
-}
+} */
 
-.quantity-button:hover {
+/* .quantity-button:hover {
   background: #f5f5f5;
-}
-
+} */
+/* 
 .quantity-buttons-input {
   width: 60px;
   height: 50px;
@@ -249,7 +249,7 @@ body {
   border-right: 1px solid #ddd;
   font-weight: 600;
   background: white;
-}
+} */
 
 /* Ajustes no botão Adicionar ao Carrinho */
 .addtocart .btn.big {
