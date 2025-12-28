@@ -16,7 +16,7 @@
     rel="stylesheet" />
   <script src="../scripts/script.js"></script>
   <script src="../scripts/navbar.js"></script>
-  <title>Login</title>
+  <title>Login - Toni Correia</title>
 </head>
 
 <body>
@@ -83,13 +83,22 @@
           const data = await safeFetchJson(form.action, {
             method: "POST",
             credentials: "include",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: new URLSearchParams({
-              user: username,
-              pwd: password,
-            }).toString(),
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              username: username,
+              password: password
+            })
           });
-          window.location.href = "./index.html";
+
+          console.log('Login sucesso:', data);
+          if (data.role) {
+            window.location.href = "../dashboard/admin.html";
+          } else {
+            window.location.href = "./index.html";
+          }
+
         } catch (err) {
           document.getElementById("login-error").textContent =
             "Erro no login: Credenciais inválidas";

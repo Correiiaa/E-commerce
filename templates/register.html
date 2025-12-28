@@ -17,7 +17,7 @@
     rel="stylesheet" />
   <script src="../scripts/script.js"></script>
   <script src="../scripts/navbar.js"></script>
-  <title>Registo</title>
+  <title>Registo - Toni Correia</title>
 </head>
 
 <body>
@@ -98,27 +98,32 @@
         const email = form.email.value.trim();
         const password = form.pwd.value;
         const confirm_password = form.confirm.value;
-        if (!username || !password) return;
+        if (!username || !password || !confirm_password) return;
         try {
           const data = await safeFetchJson(form.action, {
             method: "POST",
             credentials: "include",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: new URLSearchParams({
-              user: username,
-              pwd: password,
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              username: username,
+              password: password,
               fname: fname,
               lname: lname,
               email: email,
               confirm: confirm_password
-            }).toString(),
+            })
           });
+
           window.location.href = "./login.html";
         } catch (err) {
           document.getElementById("login-error").textContent =
             `Erro no Registo: ${err.message}`;
         }
       });
+
+
 
   </script>
 </body>
