@@ -95,13 +95,13 @@
     <p class="section-title highlight-products-title"></p>
   </div>
 
-  <div class="carousel-wrapper">
+  <div class="carousel-wrapper" id="carousel-recommended">
     <button class="carousel-btn prev">
       <i class="fas fa-chevron-left"></i>
     </button>
     <div class="carousel-viewport">
       <div class="carousel-track" id="product-container">
-        <!-- ✅ Cards serão adicionados AQUI pelo JavaScript -->
+        <!-- Cards aqui -->
       </div>
     </div>
     <button class="carousel-btn next">
@@ -116,13 +116,13 @@
     <p class="section-title highlight-products-title"></p>
   </div>
 
-  <div class="carousel-wrapper">
+  <div class="carousel-wrapper" id="carousel-bestseller">
     <button class="carousel-btn prev">
       <i class="fas fa-chevron-left"></i>
     </button>
     <div class="carousel-viewport">
       <div class="carousel-track" id="product-container-bestseller">
-        <!-- ✅ Cards serão adicionados AQUI pelo JavaScript -->
+        <!-- Cards aqui -->
       </div>
     </div>
     <button class="carousel-btn next">
@@ -138,16 +138,57 @@
 
   <script>
 
+    function initCarousel(wrapperSelector) {
+      const wrapper = document.querySelector(wrapperSelector);
+      if (!wrapper) return;
+
+      const track = wrapper.querySelector(".carousel-track");
+      const cards = track.querySelectorAll(".card");
+      const prevBtn = wrapper.querySelector(".carousel-btn.prev");
+      const nextBtn = wrapper.querySelector(".carousel-btn.next");
+      const visibleCards = 3;
+      let currentIndex = 0;
+
+      const updateCarousel = () => {
+        const cardWidth = cards[0].offsetWidth + 20;
+        const offset = currentIndex * cardWidth;
+        track.style.transform = `translateX(-${offset}px)`;
+
+        cards.forEach((card, index) => {
+          card.classList.remove("fade");
+          if (index < currentIndex || index >= currentIndex + visibleCards) {
+            card.classList.add("fade");
+          }
+        });
+      };
+
+      prevBtn.addEventListener("click", () => {
+        if (currentIndex > 0) {
+          currentIndex--;
+          updateCarousel();
+        }
+      });
+
+      nextBtn.addEventListener("click", () => {
+        if (currentIndex < cards.length - visibleCards) {
+          currentIndex++;
+          updateCarousel();
+        }
+      });
+
+      updateCarousel();
+    }
+
     document.addEventListener("DOMContentLoaded", () => {
       navbar();
       footer();
+      // ===== PRODUTOS RECOMENDADOS =====
       safeFetchJson(`${url}/products/allproducts.php`)
         .then((data) => {
-          // normaliza: o endpoint devolve { products: [...], count: N }
           const products = Array.isArray(data) ? data : data.products || [];
           const container = document.getElementById("product-container");
+
           products.forEach((product) => {
-            console.log(product.name);
             let extraClass = "";
             if (product.name === "Encosta d´Aregos") {
               extraClass = " encosta-daregos";
@@ -165,65 +206,64 @@
             const card = document.createElement("div");
             card.classList.add("card", "h-100");
             card.innerHTML = `
-                    <img class="card-img-top${extraClass}" src="/tesp-ds-g32/E-commerce/static/images/${product.image_url
-              }" alt="${product.name}">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">${product.name}</h5>
-                        <p class="card-text">${Number(product.price).toFixed(
-                2
-              )} €</p>
-                        <a href="product.html?id=${product.id
-              }" class="btn btn-light">Ver detalhes</a>
-                        <a class="btn btn-dark a add-to-cart-btn" data-product-id="${product.id
-              }">Cart</a>
-                    </div>
-                `;
+            <img class="card-img-top${extraClass}" src="https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/uploads/${product.image_url}" alt="${product.name}">
+            <div class="card-body text-center">
+              <h5 class="card-title">${product.name}</h5>
+              <p class="card-text">${Number(product.price).toFixed(2)} €</p>
+              <a href="product.html?id=${product.id}" class="btn btn-light">Ver detalhes</a>
+              <a class="btn btn-dark a add-to-cart-btn" data-product-id="${product.id}">Cart</a>
+            </div>
+          `;
             container.appendChild(card);
           });
 
-          // Carousel logic
-          const track = document.querySelector(".carousel-track");
-          const cards = track.querySelectorAll(".card");
-          const prevBtn = document.querySelector(".carousel-btn.prev");
-          const nextBtn = document.querySelector(".carousel-btn.next");
-          const visibleCards = 3;
-          let currentIndex = 0;
-
-          const updateCarousel = () => {
-            const cardWidth = cards[0].offsetWidth + 20; // 20px gap
-            const offset = currentIndex * cardWidth;
-            track.style.transform = `translateX(-${offset}px)`;
-
-            cards.forEach((card, index) => {
-              card.classList.remove("fade");
-              if (
-                index < currentIndex ||
-                index >= currentIndex + visibleCards
-              ) {
-                card.classList.add("fade");
-              }
-            });
-          };
-
-          prevBtn.addEventListener("click", () => {
-            if (currentIndex > 0) {
-              currentIndex--;
-              updateCarousel();
-            }
-          });
-
-          nextBtn.addEventListener("click", () => {
-            if (currentIndex < cards.length - visibleCards) {
-              currentIndex++;
-              updateCarousel();
-            }
-          });
-
-          // Inicializar com fade correto
-          updateCarousel();
+          // ✅ Inicializar carrossel RECOMENDADOS
+          initCarousel("#carousel-recommended");
         })
         .catch((error) => {
-          console.error("Erro ao buscar produtos:", error);
+          console.error("Erro ao buscar produtos recomendados:", error);
+        });
+
+      // ===== PRODUTOS POPULARES =====
+      safeFetchJson(`${url}/products/best_seller.php`)
+        .then((data) => {
+          const products = Array.isArray(data) ? data : data.products || [];
+          const container = document.getElementById("product-container-bestseller");
+
+          products.forEach((product) => {
+            let extraClass = "";
+            if (product.name === "Encosta d´Aregos") {
+              extraClass = " encosta-daregos";
+            } else if (product.name === "M&M ROSÉ") {
+              extraClass = " MM-rose";
+            } else if (product.name === "Perspetiva Colheita Branco") {
+              extraClass = " perspetiva-colheita-branco";
+            } else if (
+              product.name === "Vinho Teste 1" ||
+              product.name === "Vinho Teste 2"
+            ) {
+              extraClass = " vinho-teste";
+            }
+
+            const card = document.createElement("div");
+            card.classList.add("card", "h-100");
+            card.innerHTML = `
+            <img class="card-img-top${extraClass}" src="https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/uploads/${product.image_url}" alt="${product.name}">
+            <div class="card-body text-center">
+              <h5 class="card-title">${product.name}</h5>
+              <p class="card-text">${Number(product.price).toFixed(2)} €</p>
+              <a href="product.html?id=${product.id}" class="btn btn-light">Ver detalhes</a>
+              <a class="btn btn-dark a add-to-cart-btn" data-product-id="${product.id}">Cart</a>
+            </div>
+          `;
+            container.appendChild(card);
+          });
+
+          // ✅ Inicializar carrossel POPULARES
+          initCarousel("#carousel-bestseller");
+        })
+        .catch((error) => {
+          console.error("Erro ao buscar produtos populares:", error);
         });
     });
 
@@ -303,97 +343,6 @@
         }
       }
     });
-
-    document.addEventListener("DOMContentLoaded", () => {
-      safeFetchJson(`${url}/products/best_seller.php`)
-        .then((data) => {
-          console.log(data);
-          // normaliza: o endpoint devolve { products: [...], count: N }
-          const products = Array.isArray(data) ? data : data.products || [];
-          const container = document.getElementById(
-            "product-container-bestseller"
-          );
-          products.forEach((product) => {
-            console.log(product.name);
-            let extraClass = "";
-            if (product.name === "Encosta d´Aregos") {
-              extraClass = " encosta-daregos";
-            } else if (product.name === "M&M ROSÉ") {
-              extraClass = " MM-rose";
-            } else if (product.name === "Perspetiva Colheita Branco") {
-              extraClass = " perspetiva-colheita-branco";
-            } else if (
-              product.name === "Vinho Teste 1" ||
-              product.name === "Vinho Teste 2"
-            ) {
-              extraClass = " vinho-teste";
-            }
-
-            const card = document.createElement("div");
-            card.classList.add("card", "h-100");
-            card.innerHTML = `
-                    <img class="card-img-top${extraClass}" src="/tesp-ds-g32/E-commerce/static/images/${product.image_url
-              }" alt="${product.name}">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">${product.name}</h5>
-                        <p class="card-text">${Number(product.price).toFixed(
-                2
-              )} €</p>
-                        <a href="product.html?id=${product.id
-              }" class="btn btn-light">Ver detalhes</a>
-                        <a class="btn btn-dark a add-to-cart-btn" data-product-id="${product.id
-              }">Cart</a>
-                    </div>
-                `;
-            container.appendChild(card);
-          });
-
-          // Carousel logic
-          const track = document.querySelector(".carousel-track");
-          const cards = track.querySelectorAll(".card");
-          const prevBtn = document.querySelector(".carousel-btn.prev");
-          const nextBtn = document.querySelector(".carousel-btn.next");
-          const visibleCards = 3;
-          let currentIndex = 0;
-
-          const updateCarousel = () => {
-            const cardWidth = cards[0].offsetWidth + 20; // 20px gap
-            const offset = currentIndex * cardWidth;
-            track.style.transform = `translateX(-${offset}px)`;
-
-            cards.forEach((card, index) => {
-              card.classList.remove("fade");
-              if (
-                index < currentIndex ||
-                index >= currentIndex + visibleCards
-              ) {
-                card.classList.add("fade");
-              }
-            });
-          };
-
-          prevBtn.addEventListener("click", () => {
-            if (currentIndex > 0) {
-              currentIndex--;
-              updateCarousel();
-            }
-          });
-
-          nextBtn.addEventListener("click", () => {
-            if (currentIndex < cards.length - visibleCards) {
-              currentIndex++;
-              updateCarousel();
-            }
-          });
-
-          // Inicializar com fade correto
-          updateCarousel();
-        })
-        .catch((error) => {
-          console.error("Erro ao buscar produtos:", error);
-        });
-    });
-
   </script>
 </body>
 

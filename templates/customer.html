@@ -15,7 +15,6 @@
   <script src="../scripts/script.js"></script>
   <script src="../scripts/navbar.js" defer></script>
   <style>
-
     .hero-section {
       background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
       padding: 60px 20px;
@@ -393,10 +392,10 @@
       <button class="nav-link active" onclick="showTab('encomendas')">
         Encomendas
       </button>
-      <button class="nav-link" onclick="showTab('dados')">
+      <!-- <button class="nav-link" onclick="showTab('dados')">
         Dados Pessoais
       </button>
-      <button class="nav-link" onclick="showTab('moradas')">Moradas</button>
+      <button class="nav-link" onclick="showTab('moradas')">Moradas</button> -->
       <button class="nav-link" onclick="showTab('favoritos')">
         Favoritos
       </button>
@@ -423,7 +422,7 @@
         </div>
       </div>
 
-      <!-- Dados Pessoais Tab -->
+      <!-- Dados Pessoais Tab
       <div id="tab-dados" class="tab-pane d-none">
         <h2 class="section-title">Dados Pessoais</h2>
         <form id="form-dados">
@@ -445,13 +444,15 @@
         </form>
       </div>
 
-      <!-- Moradas Tab -->
+      Moradas Tab 
       <div id="tab-moradas" class="tab-pane d-none">
         <h2 class="section-title">Moradas</h2>
         <div class="empty-state">
           <p>Ainda não adicionou nenhuma morada</p>
         </div>
       </div>
+      -->
+
 
       <!-- Favoritos Tab -->
       <div id="tab-favoritos" class="tab-pane d-none">
@@ -608,7 +609,7 @@
                 <i class="fas fa-trash"></i>
               </button>
               <a href="product.html?id=${product.id}">
-                <img src="../static/images/${product.image_url}" alt="${product.name}">
+                <img src="https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/uploads/${product.image_url}" alt="${product.name}">
               </a>
               <div class="product-name">${product.name}</div>
               <div class="product-price">${parseFloat(product.price).toFixed(2)} €</div>
