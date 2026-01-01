@@ -3,13 +3,10 @@
 
 require_once "../config.php";
 require_once "../core.php";
+require_once "../session_config.php";
 
 header('Content-Type: application/json; charset=utf-8');
 
-
-if (session_status() !== PHP_SESSION_ACTIVE) {
-    session_start();
-}
 
 // Ler dados JSON do body
 $json = file_get_contents('php://input');
