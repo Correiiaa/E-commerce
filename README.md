@@ -28,6 +28,6 @@ Entidades (inferidas das funcionalidades):
 - Portefólio demonstrável
 
 ## 💡 Ideias Futuras
-- Administração (CRUD produtos)
+- Integração com CTT
 - Integração de gateway (sandbox Stripe / PayPal)
 
