@@ -6,7 +6,7 @@ spl_autoload_register(function ($class) {
 
     // Apenas classes do namespace PHPMailer\PHPMailer
     if (strpos($class, 'PHPMailer\\PHPMailer\\') === 0) {
-        // Remove o namespace base (PHPMailer\PHPMailer\)
+        // Remove o namespace base 
         $class_name = substr($class, 18);
 
         // Caminho para o ficheiro (relativo a vendor/)

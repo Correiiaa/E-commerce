@@ -1409,7 +1409,7 @@
 
                     const container = document.getElementById('categoriesTableBody');
 
-                    // ✅ CORRIGIR: Usar data.categories em vez de data
+
                     const categories = data.categories || [];
 
                     if (categories.length === 0) {
@@ -1839,10 +1839,10 @@
                     select.appendChild(option);
                 });
 
-                console.log("✅ Categorias carregadas:", data.categories);
+                console.log("Categorias carregadas:", data.categories);
 
             } catch (error) {
-                console.error("❌ Erro ao carregar categorias:", error);
+                console.error("Erro ao carregar categorias:", error);
                 const select = document.getElementById('categorySelect');
                 select.innerHTML = '<option value="">Erro ao carregar categorias</option>';
             }
@@ -1912,8 +1912,8 @@
             errorDiv.classList.add('d-none');
             successDiv.classList.add('d-none');
 
-            // ✅ DEBUG: Mostrar todos os dados que vão ser enviados
-            console.log("📤 Dados a enviar:");
+
+            console.log("Dados a enviar:");
             for (let [key, value] of formData.entries()) {
                 if (value instanceof File) {
                     console.log(`  ${key}: [FILE] ${value.name} (${(value.size / 1024).toFixed(2)} KB)`);
@@ -1930,37 +1930,37 @@
             const image = formData.get('image');
 
             if (!name || name.length < 3) {
-                errorDiv.textContent = '❌ Nome do produto deve ter pelo menos 3 caracteres';
+                errorDiv.textContent = 'Nome do produto deve ter pelo menos 3 caracteres';
                 errorDiv.classList.remove('d-none');
                 return;
             }
 
             if (!category_id) {
-                errorDiv.textContent = '❌ Por favor selecione uma categoria';
+                errorDiv.textContent = 'Por favor selecione uma categoria';
                 errorDiv.classList.remove('d-none');
                 return;
             }
 
             if (!price || parseFloat(price) <= 0) {
-                errorDiv.textContent = '❌ Preço deve ser maior que 0';
+                errorDiv.textContent = 'Preço deve ser maior que 0';
                 errorDiv.classList.remove('d-none');
                 return;
             }
 
             if (!quantity || parseInt(quantity) < 0) {
-                errorDiv.textContent = '❌ Stock deve ser 0 ou maior';
+                errorDiv.textContent = 'Stock deve ser 0 ou maior';
                 errorDiv.classList.remove('d-none');
                 return;
             }
 
             if (!image || image.size === 0) {
-                errorDiv.textContent = '❌ A imagem é obrigatória';
+                errorDiv.textContent = 'A imagem é obrigatória';
                 errorDiv.classList.remove('d-none');
                 return;
             }
 
             if (image.size > 2 * 1024 * 1024) {
-                errorDiv.textContent = `❌ Imagem muito grande: ${(image.size / 1024 / 1024).toFixed(2)}MB. Máximo: 2MB`;
+                errorDiv.textContent = `Imagem muito grande: ${(image.size / 1024 / 1024).toFixed(2)}MB. Máximo: 2MB`;
                 errorDiv.classList.remove('d-none');
                 return;
             }
@@ -1969,7 +1969,7 @@
             submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>A adicionar...';
 
             try {
-                console.log("🚀 A enviar request para:", `${url}/products/create_product.php`);
+                console.log("A enviar request para:", `${url}/products/create_product.php`);
 
                 const response = await fetch(`${url}/products/create_product.php`, {
                     method: 'POST',
@@ -2000,7 +2000,7 @@
                 }
 
                 // Sucesso
-                successDiv.textContent = `✅ ${data.message}`;
+                successDiv.textContent = `${data.message}`;
                 console.log(response);
                 successDiv.classList.remove('d-none');
 
@@ -2016,7 +2016,7 @@
                 }, 100000);
 
             } catch (error) {
-                console.error('❌ Erro completo:', error);
+                console.error('Erro completo:', error);
                 errorDiv.innerHTML = `<strong>Erro:</strong> ${error.message}`;
                 errorDiv.classList.remove('d-none');
             } finally {

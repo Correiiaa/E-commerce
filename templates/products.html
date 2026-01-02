@@ -422,9 +422,9 @@
           userFavorites = new Set(favorites.map((fav) => fav.id));
         }
 
-        console.log("✅ Favoritos carregados:", Array.from(userFavorites));
+        console.log("Favoritos carregados:", Array.from(userFavorites));
       } catch (error) {
-        console.error("❌ Erro ao carregar favoritos:", error);
+        console.error("Erro ao carregar favoritos:", error);
         userFavorites = new Set();
       }
     }
@@ -434,7 +434,7 @@
       const isFavorited = userFavorites.has(productId);
 
       console.log(
-        `${isFavorited ? "💔" : "❤️"} Toggle favorito para produto ID:`,
+        `${isFavorited ? "Removendo favorito para produto ID:" : "Adicionando favorito para produto ID:"}`,
         productId
       );
 
@@ -449,7 +449,7 @@
           });
 
           userFavorites.delete(productId);
-          console.log("💔 Removido dos favoritos:", productId);
+          console.log("Removido dos favoritos:", productId);
         } else {
           // Adicionar favorito
           await safeFetchJson(`${url}/favourites/add_favorite.php`, {
@@ -460,7 +460,7 @@
           });
 
           userFavorites.add(productId);
-          console.log("❤️ Adicionado aos favoritos:", productId);
+          console.log("Adicionado aos favoritos:", productId);
         }
 
         // Atualizar UI do botão específico
@@ -471,7 +471,7 @@
           btn.classList.toggle("active", !isFavorited);
         }
       } catch (error) {
-        console.error("❌ Erro ao atualizar favorito:", error);
+        console.error("Erro ao atualizar favorito:", error);
 
         // Se user não está logado, redirecionar
         if (
@@ -656,7 +656,7 @@
 
       grid.innerHTML = products
         .map((product) => {
-          // ✅ Verificar se produto está nos favoritos
+          // Verificar se produto está nos favoritos
           const isFavorited = userFavorites.has(product.id);
 
           return `
@@ -693,23 +693,23 @@
       document.getElementById("loadingIndicator").style.display = "block";
 
       try {
-        // 1. ✅ CARREGAR FAVORITOS PRIMEIRO (se user logado)
+        // 1. Carregar favoritos primeiro (se user logado)
         await loadUserFavorites();
 
-        // 2. ✅ DEPOIS CARREGAR PRODUTOS
+        // 2. Depois carregar produtos
         const data = await safeFetchJson(`${url}/products/allproducts.php`);
-        console.log("✅ Produtos carregados:", data);
+        console.log("Produtos carregados:", data);
 
         const products = Array.isArray(data) ? data : data.products || [];
         allProducts = products;
         filteredProducts = [...products];
 
-        // 3. ✅ RENDERIZAR COM FAVORITOS JÁ CARREGADOS
+        // 3. Renderizar com favoritos já carregados
         document.getElementById("loadingIndicator").style.display = "none";
         renderProducts(filteredProducts);
 
       } catch (error) {
-        console.error("❌ Erro ao carregar dados:", error);
+        console.error("Erro ao carregar dados:", error);
         document.getElementById("loadingIndicator").innerHTML =
           '<div class="alert alert-danger">Erro ao carregar produtos. Tente novamente.</div>';
       }

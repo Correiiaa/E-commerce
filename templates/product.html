@@ -210,9 +210,9 @@
           userFavorites = new Set(favorites.map((fav) => fav.id));
         }
 
-        console.log("✅ Favoritos carregados:", Array.from(userFavorites));
+        console.log(" Favoritos carregados:", Array.from(userFavorites));
       } catch (error) {
-        console.error("❌ Erro ao carregar favoritos:", error);
+        console.error("Erro ao carregar favoritos:", error);
         userFavorites = new Set();
       }
     }
@@ -222,7 +222,7 @@
       const isFavorited = userFavorites.has(productId);
 
       console.log(
-        `${isFavorited ? "💔" : "❤️"} Toggle favorito para produto ID:`,
+        `${isFavorited ? "Removendo favorito para produto ID:" : "Adicionando favorito para produto ID:"}`,
         productId
       );
 
@@ -237,7 +237,7 @@
           });
 
           userFavorites.delete(productId);
-          console.log("💔 Removido dos favoritos:", productId);
+          console.log("Removido dos favoritos:", productId);
         } else {
           // Adicionar favorito
           await safeFetchJson(`${url}/favourites/add_favorite.php`, {
@@ -248,7 +248,7 @@
           });
 
           userFavorites.add(productId);
-          console.log("❤️ Adicionado aos favoritos:", productId);
+          console.log("Adicionado aos favoritos:", productId);
         }
 
         // Atualizar UI do botão específico
@@ -259,7 +259,7 @@
           btn.classList.toggle("active", !isFavorited);
         }
       } catch (error) {
-        console.error("❌ Erro ao atualizar favorito:", error);
+        console.error("Erro ao atualizar favorito:", error);
 
         // Se user não está logado, redirecionar
         if (
@@ -288,17 +288,16 @@
       id = Number(id);
 
       if (!id) {
-        console.error("❌ Invalid product id");
+        console.error("Invalid product id");
         return;
       }
 
       const productUrl = `${url}/products/get_products_by_id.php?id=${encodeURIComponent(id)}`;
-      console.log("🔍 Fetching product:", productUrl);
+      console.log("Fetching product:", productUrl);
 
       try {
         product = await safeFetchJson(productUrl, { method: "GET" });
-        console.log("✅ Product loaded:", product);
-
+        console.log("Product loaded:", product);
         // Preencher informações do produto
         document.getElementById("product-image").src = `https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/uploads/${product.image_url}`;
         document.getElementById("product-name").textContent = product.name;
@@ -316,11 +315,11 @@
           document.getElementById("descricao").textContent = product.descricao || "";
         }
 
-        // ✅ Atualizar estado do botão de favoritos
+        // Atualizar estado do botão de favoritos
         updateFavoriteButtonState(product.id);
 
       } catch (e) {
-        console.error("❌ Failed to fetch product data:", e);
+        console.error("Failed to fetch product data:", e);
         return;
       }
 
@@ -331,7 +330,7 @@
         const products = await safeFetchJson(productsUrl, { method: "GET", credentials: "include" });
 
         if (!Array.isArray(products) || products.length === 0) {
-          console.warn("⚠️ Nenhum produto recomendado encontrado");
+          console.warn(" Nenhum produto recomendado encontrado");
           return;
         }
 
@@ -344,7 +343,7 @@
           else if (prod.name === "M&M ROSÉ") extraClass = " MM-rose";
           else if (prod.name === "Perspetiva Colheita Branco") extraClass = " perspetiva-colheita-branco";
 
-          // ✅ Verificar se produto está nos favoritos
+          // Verificar se produto está nos favoritos
           const isFavorited = userFavorites.has(prod.id);
           const heartClass = isFavorited ? "fas" : "far";
           const activeClass = isFavorited ? "active" : "";
@@ -404,7 +403,7 @@
 
         updateCarousel();
       } catch (error) {
-        console.error("❌ Erro ao buscar produtos recomendados:", error);
+        console.error("Erro ao buscar produtos recomendados:", error);
       }
     });
 
@@ -476,11 +475,11 @@
             }),
           });
 
-          console.log(`✅ ${quantity}x produto(s) adicionado(s) ao carrinho`);
+          console.log(`${quantity}x produto(s) adicionado(s) ao carrinho`);
           await fetchAndShowCart();
 
         } catch (err) {
-          console.error("❌ Erro ao adicionar ao carrinho:", err);
+          console.error("Erro ao adicionar ao carrinho:", err);
           alert("Erro ao adicionar produto. Faça login primeiro.");
         }
       }
@@ -493,10 +492,10 @@
         const btn = e.target.closest("#favorite-btn");
         const productId = parseInt(btn.dataset.productId, 10);
 
-        // ✅ Usar função global do script.js
+        // Usar função global do script.js
         await toggleFavorite(productId);
 
-        // ✅ Atualizar estado visual
+        // Atualizar estado visual
         updateFavoriteButtonState(productId);
       }
     });

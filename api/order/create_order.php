@@ -6,7 +6,7 @@ require_once "../mail/send_email.php";
 
 header('Content-Type: application/json; charset=utf-8');
 
-// ✅ DEBUG: Verificar sessão
+// Verificar sessão
 if (!isset($_SESSION['user_id'])) {
     http_response_code(401);
     echo json_encode([
@@ -26,7 +26,7 @@ $user_id = $_SESSION['user_id'];
 $json_data = file_get_contents('php://input');
 $data = json_decode($json_data, true);
 
-// ✅ DEBUG: Log dos dados recebidos
+// Log dos dados recebidos
 error_log("Create Order - User ID: $user_id");
 error_log("Create Order - Dados recebidos: " . print_r($data, true));
 
@@ -292,7 +292,7 @@ try {
         ] : null
     ]);
 }
-// ===== FUNÇÃO PARA GERAR HTML DO EMAIL (FORA DOS BLOCOS TRY/CATCH) =====
+// ===== FUNÇÃO PARA GERAR HTML DO EMAIL =====
 function generateOrderConfirmationEmail($customer_name, $order_id, $items, $total, $address, $phone, $nif)
 {
     $items_html = '';
