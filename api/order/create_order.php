@@ -1,5 +1,4 @@
 <?php
-// filepath: \\arca.ua.pt\Hosting\esan-tesp-ds-paw.web.ua.pt\tesp-ds-g32\E-commerce\api\order\create_order.php
 
 require_once "../config.php";
 require_once "../core.php";
@@ -231,7 +230,7 @@ try {
         $email_result = sendEmail(
             $user_data['email'],
             $customer_name,
-            "Confirmação de Encomenda #$order_id - E-Commerce Vinhos",
+            "Confirmação de Encomenda #$order_id - Toni Correia",
             $email_html
         );
 

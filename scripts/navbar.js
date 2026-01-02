@@ -167,22 +167,7 @@ function footer() {
           <!-- Grid column -->
 
           <!-- Grid column -->
-          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4" style="color: white">
-            <!-- Links -->
-            <h6 class="text-uppercase fw-bold mb-4">Products</h6>
-            <p>
-              <a href="#!" class="text-reset">Vinho tinto</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Vinho Branco</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Espumantes</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Rosé</a>
-            </p>
-          </div>
+          
           <!-- Grid column -->
 
           <!-- Grid column -->

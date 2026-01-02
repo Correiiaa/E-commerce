@@ -766,30 +766,11 @@
                             <thead>
                                 <tr>
                                     <th>Nome</th>
-                                    <th>Nº Produtos</th>
-                                    <th>Estado</th>
                                     <th>Ações</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Vinho Branco</td>
-                                    <td>87</td>
-                                    <td><span class="badge bg-success badge-status">Ativo</span></td>
-                                    <td>
-                                        <button class="action-btn btn-edit"><i class="fas fa-edit"></i></button>
-                                        <button class="action-btn btn-delete"><i class="fas fa-trash"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Vinho Tinto</td>
-                                    <td>124</td>
-                                    <td><span class="badge bg-success badge-status">Ativo</span></td>
-                                    <td>
-                                        <button class="action-btn btn-edit"><i class="fas fa-edit"></i></button>
-                                        <button class="action-btn btn-delete"><i class="fas fa-trash"></i></button>
-                                    </td>
-                                </tr>
+                            <tbody id="categoriesTableBody">
+                                <!-- Linhas de categorias são inseridas aqui via JavaScript -->
                             </tbody>
                         </table>
                     </div>
@@ -942,7 +923,7 @@
                                     rows="3"></textarea>
                             </div>
 
-                            <!-- ✅ Mostrar imagem atual (não editável) -->
+
                             <div class="col-12 mb-3">
                                 <label class="form-label">Imagem Atual</label>
                                 <div id="editProductImagePreview" style="max-width: 200px;">
@@ -1022,11 +1003,7 @@
                     <form id="addCategoryForm">
                         <div class="mb-3">
                             <label class="form-label">Nome da Categoria *</label>
-                            <input type="text" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Descrição</label>
-                            <textarea class="form-control" rows="3"></textarea>
+                            <input type="text" id="addCategoryName" class="form-control" required>
                         </div>
                     </form>
                 </div>
@@ -1034,6 +1011,36 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     <button type="submit" form="addCategoryForm"
                         class="btn btn-primary-custom btn-custom">Adicionar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Editar Categoria -->
+    <div class="modal fade" id="editCategoryModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar Categoria</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editCategoryForm">
+                        <input type="hidden" id="editCategoryId">
+                        <div class="mb-3">
+                            <label class="form-label">Nome da Categoria *</label>
+                            <input type="text" id="editCategoryName" class="form-control" required minlength="3">
+                            <div class="invalid-feedback">Nome deve ter pelo menos 3 caracteres</div>
+                        </div>
+                        <div id="editCategoryError" class="alert alert-danger d-none"></div>
+                        <div id="editCategorySuccess" class="alert alert-success d-none"></div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" form="editCategoryForm" class="btn btn-primary-custom btn-custom">
+                        <i class="fas fa-save me-2"></i>Guardar Alterações
+                    </button>
                 </div>
             </div>
         </div>
@@ -1392,6 +1399,42 @@
                 });
 
 
+            // Carregar categorias no select de adicionar produto
+            safeFetchJson(`${url}/products/get_categories.php`, {
+                method: 'GET',
+                credentials: 'include'
+            })
+                .then(data => {
+                    console.log("Categorias carregadas para adicionar produto:", data);
+
+                    const container = document.getElementById('categoriesTableBody');
+
+                    // ✅ CORRIGIR: Usar data.categories em vez de data
+                    const categories = data.categories || [];
+
+                    if (categories.length === 0) {
+                        container.innerHTML = '<tr><td colspan="3" class="text-center text-muted">Nenhuma categoria encontrada</td></tr>';
+                        return;
+                    }
+
+                    categories.forEach(category => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+            <td>${category.nome}</td>
+            <td>
+                <button class="action-btn btn-edit" onclick="openEditCategoryModal(${category.id}, '${category.nome.replace(/'/g, "\\'")}')">
+                    <i class="fas fa-edit"></i>
+                </button>
+            </td>
+        `;
+                        container.appendChild(tr);
+                    });
+                })
+                .catch(error => {
+                    console.error("Erro ao carregar categorias:", error);
+                    document.getElementById('categoriesTableBody').innerHTML =
+                        '<tr><td colspan="3" class="text-center text-danger">Erro ao carregar categorias</td></tr>';
+                });
         });
 
         async function toggleUserAdminStatus(userId, isAdmin) {
@@ -1504,6 +1547,110 @@
                 console.error("Erro ao carregar encomendas:", error);
             }
         }
+
+        // Adicionar nova categoria
+        document.getElementById('addCategoryForm')?.addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const categoryName = document.getElementById('addCategoryName').value.trim();
+
+            if (categoryName.length < 3) {
+                errorDiv.textContent = 'Nome da categoria deve ter pelo menos 3 caracteres';
+                errorDiv.classList.remove('d-none');
+                return;
+            }
+
+            try {
+                console.log("A adicionar categoria:", categoryName);
+
+                const response = await fetch(`${url}/products/create_category.php`, {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ category_name: categoryName })
+                });
+
+                await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.message || data.error || 'Erro ao adicionar categoria');
+                }
+
+                console.log("Categoria adicionada:", data);
+
+                setTimeout(() => {
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('addCategoryModal'));
+                    if (modal) modal.hide();
+                    location.reload();
+                }, 1500);
+
+            } catch (error) {
+                console.error('Erro ao adicionar categoria:', error);
+            }
+        });
+
+        // ABRIR MODAL DE EDIÇÃO DE CATEGORIA
+        function openEditCategoryModal(categoryId, categoryName) {
+            console.log("Editando categoria:", categoryId, categoryName);
+
+            // Preencher campos
+            document.getElementById('editCategoryId').value = categoryId;
+            document.getElementById('editCategoryName').value = categoryName;
+
+            // Limpar mensagens
+            document.getElementById('editCategoryError').classList.add('d-none');
+            document.getElementById('editCategorySuccess').classList.add('d-none');
+
+            // Abrir modal
+            const modal = new bootstrap.Modal(document.getElementById('editCategoryModal'));
+            modal.show();
+        }
+
+        // SUBMETER FORMULARIO DE EDIÇÃO DE CATEGORIA
+        document.getElementById('editCategoryForm')?.addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const categoryId = document.getElementById('editCategoryId').value;
+            const categoryName = document.getElementById('editCategoryName').value.trim();
+
+            if (categoryName.length < 3) {
+                errorDiv.textContent = 'Nome da categoria deve ter pelo menos 3 caracteres';
+                errorDiv.classList.remove('d-none');
+                return;
+            }
+
+            try {
+                console.log("A atualizar categoria:", categoryId, categoryName);
+
+                const response = await fetch(`${url}/products/edit_category.php`, {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ category_id: categoryId, category_name: categoryName })
+                });
+
+                data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.message || data.error || 'Erro ao atualizar categoria');
+                }
+
+                console.log("Categoria atualizada:", data);
+
+                setTimeout(() => {
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('editCategoryModal'));
+                    if (modal) modal.hide();
+                    location.reload();
+                }, 1500);
+
+            } catch (error) {
+                console.error('Erro ao atualizar categoria:', error);
+            }
+        });
 
         // Ver detalhes da encomenda
         async function viewOrderDetails(orderId) {

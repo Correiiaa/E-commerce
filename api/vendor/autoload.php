@@ -1,7 +1,7 @@
 <?php
 
 spl_autoload_register(function ($class) {
-    // Debug: ver qual classe está a tentar carregar
+    // ver qual classe está a tentar carregar
     error_log("Tentando carregar: $class");
 
     // Apenas classes do namespace PHPMailer\PHPMailer
@@ -12,9 +12,6 @@ spl_autoload_register(function ($class) {
         // Caminho para o ficheiro (relativo a vendor/)
         $file = __DIR__ . DIRECTORY_SEPARATOR . 'phpmailer' . DIRECTORY_SEPARATOR . 'phpmailer' . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . $class_name . '.php';
 
-        //Debug
-        error_log("Procurando em: $file");
-        error_log("Existe? " . (file_exists($file) ? 'SIM' : 'NÃO'));
 
         if (file_exists($file)) {
             require $file;

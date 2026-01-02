@@ -1,7 +1,6 @@
 <?php
-// filepath: \\arca.ua.pt\Hosting\esan-tesp-ds-paw.web.ua.pt\tesp-ds-g32\E-commerce\api\mail\send_email.php
-
-require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'config.php';
+require_once '../config.php';
+require_once '../core.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception as PHPMailerException;
@@ -41,10 +40,9 @@ function sendEmailSMTP($to, $to_name, $subject, $html_body, $alt_body = '')
         $mail->Port = EMAIL_PORT;
         $mail->CharSet = 'UTF-8';
 
-        // Debug desativado (ativar para troubleshoot)
+        // Debug desativado
         $mail->SMTPDebug = 0;
 
-        // ✅ FROM = USERNAME (para evitar erro 550)
         $mail->setFrom(EMAIL_FROM_ADDRESS, EMAIL_FROM);
         $mail->addAddress($to, $to_name);
 

@@ -1,5 +1,4 @@
 <?php
-// filepath: \\arca.ua.pt\Hosting\esan-tesp-ds-paw.web.ua.pt\tesp-ds-g32\E-commerce\api\products\get_products_section.php
 require "../config.php";
 require "../core.php";
 

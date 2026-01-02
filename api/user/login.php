@@ -1,9 +1,8 @@
 <?php
-// filepath: \\arca.ua.pt\Hosting\esan-tesp-ds-paw.web.ua.pt\tesp-ds-g32\E-commerce\api\user\login.php
 
 require_once "../config.php";
 require_once "../core.php";
-require_once "../session_config.php";
+
 
 header('Content-Type: application/json; charset=utf-8');
 
@@ -19,10 +18,11 @@ if (!$data) {
 }
 
 // Validar input
-$username = filter_var(($data['username']) ? trim($data['username']) : '', FILTER_SANITIZE_SPECIAL_CHARS);
+$identifier = filter_var(($data['username'] ?? ''), FILTER_SANITIZE_SPECIAL_CHARS);
+$identifier = trim($identifier);
 $password = filter_var(($data['password']) ? $data['password'] : '', FILTER_UNSAFE_RAW);
 
-if ($username === '' || $password === '') {
+if ($identifier === '' || $password === '') {
     http_response_code(400);
     echo json_encode(['error' => 'Username e password obrigatorios']);
     exit;
@@ -32,9 +32,9 @@ try {
     $pdo = connectDB($db);
 
     // Procurar utilizador
-    $sql = "SELECT id, username, password, is_admin, fname, lname FROM users WHERE username = :username LIMIT 1";
+    $sql = "SELECT id, username, password, is_admin, fname, lname FROM users WHERE username = :username OR email = :username LIMIT 1";
     $stmt = $pdo->prepare($sql);
-    $stmt->bindValue(':username', $username, PDO::PARAM_STR);
+    $stmt->bindValue(':username', $identifier, PDO::PARAM_STR);
     $stmt->execute();
 
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
