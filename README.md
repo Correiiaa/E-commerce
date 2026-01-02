@@ -57,8 +57,6 @@ E-commerce/
 
 **Administrador:**
 
-- Username: `admin`
-- Password: `admin123`
 
 **Cliente:**
 
