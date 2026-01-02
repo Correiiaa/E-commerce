@@ -3,13 +3,13 @@
 
 require_once  "../config.php";
 require_once  "../core.php";
-
+// require_once "../session_config.php";
 
 function check_login()
 {
-    if (session_status() !== PHP_SESSION_ACTIVE) {
-        session_start();
-    }
+    // if (session_status() !== PHP_SESSION_ACTIVE) {
+    //     session_start();
+    // }
 
     header('Content-Type: application/json; charset=utf-8');
 

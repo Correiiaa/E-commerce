@@ -1,12 +1,13 @@
 <?php
 require_once "../config.php";
 require_once "../core.php";
+// require_once "../session_config.php";
 
 header('Content-Type: application/json; charset=utf-8');
 
-if (session_status() !== PHP_SESSION_ACTIVE) {
-    session_start();
-}
+// if (session_status() !== PHP_SESSION_ACTIVE) {
+//     session_start();
+// }
 
 // Verificar autenticação
 if (!isset($_SESSION['user_id']) || !($_SESSION['role'] ?? false)) {
