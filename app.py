@@ -42,8 +42,8 @@ mail = Mail(app)
 # Google OAuth
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
 google_bp = make_google_blueprint(
-    client_id=os.getenv('GOOGLE_CLIENT_ID', '262262777275-kpf98diqdo9dcpnhs7qlorlduir2ih42.apps.googleusercontent.com'),
-    client_secret=os.getenv('GOOGLE_CLIENT_SECRET', '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'),
+    client_id=os.getenv('GOOGLE_CLIENT_ID'),
+    client_secret=os.getenv('GOOGLE_CLIENT_SECRET'),
     scope=[
         "https://www.googleapis.com/auth/userinfo.email",
         "https://www.googleapis.com/auth/userinfo.profile",
@@ -563,3 +563,4 @@ def test_email():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
