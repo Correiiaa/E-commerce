@@ -32,12 +32,12 @@
         <form action="https://esan-tesp-ds-paw.web.ua.pt/tesp-ds-g32/E-commerce/api/user/register.php"
           id="register-form" method="POST">
           <h2>Registo</h2>
-          <input type="text" id="username" name="user" placeholder="Username" />
-          <input type="text" id="fname" name="fname" placeholder="First Name" />
-          <input type="text" id="lname" name="lname" placeholder="Last Name" />
-          <input type="email" id="email" name="email" placeholder="Email" />
-          <input type="password" id="password" name="pwd" placeholder="Password" />
-          <input type="password" id="confirm_password" name="confirm" placeholder="Confirm Password" />
+          <input type="text" id="username" name="user" placeholder="Username" required />
+          <input type="text" id="fname" name="fname" placeholder="First Name" required />
+          <input type="text" id="lname" name="lname" placeholder="Last Name" required />
+          <input type="email" id="email" name="email" placeholder="Email" required />
+          <input type="password" id="password" name="pwd" placeholder="Password" required />
+          <input type="password" id="confirm_password" name="confirm" placeholder="Confirm Password" required />
           <button type="submit" class="button-register" onclick="redirect()">Registar</button>
 
           <div class="form-links">
