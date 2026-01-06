@@ -56,6 +56,7 @@ try {
     // Resposta de sucesso
     echo json_encode([
         'success' => true,
+        'user_id' => $row['id'],
         'username' => $row['username'],
         'first_name' => $row['fname'] ?? '',
         'last_name' => $row['lname'] ?? '',

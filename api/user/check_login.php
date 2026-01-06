@@ -29,7 +29,7 @@ function check_login()
         'is_logged_in' => true,
         'user_id'      => $_SESSION['user_id'] ?? '',
         'username'     => $_SESSION['username'] ?? '',
-        'fname'   => $_SESSION['first_name'] ?? '',
+        'fname'        => $_SESSION['first_name'] ?? '',
         'last_name'    => $_SESSION['last_name'] ?? '',
         'role'         => $_SESSION['role'] ?? '',
         'session_id'   => session_id()

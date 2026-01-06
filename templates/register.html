@@ -99,6 +99,13 @@
         const password = form.pwd.value;
         const confirm_password = form.confirm.value;
         if (!username || !password || !confirm_password) return;
+
+        if (password !== confirm_password) {
+          document.getElementById("login-error").textContent =
+            "Erro no Registo: As passwords não coincidem.";
+          return;
+        }
+
         try {
           const data = await safeFetchJson(form.action, {
             method: "POST",
@@ -111,8 +118,7 @@
               password: password,
               fname: fname,
               lname: lname,
-              email: email,
-              confirm: confirm_password
+              email: email
             })
           });
 
